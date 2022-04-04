@@ -41,7 +41,7 @@ if __name__ == '__main__':
     parser.add_argument('--pretrained', default=False)
     parser.add_argument('--project_name', default="from-scratch_no-resampling_adam")
 
-    parser.add_argument('--checkpoints_root', default='/cmlscratch/sdooley1/Checkpoints/timm_explore_few_epochs/')
+    parser.add_argument('--checkpoints_root', default='/cmlscratch/sdooley1/FR-NAS/Checkpoints/timm_explore_few_epochs/')
     parser.add_argument('--head_name', default='CosFace')
     parser.add_argument('--train_loss', default='Focal', type=str)
 
@@ -124,11 +124,11 @@ if __name__ == '__main__':
                                {'params': backbone_paras_only_bn}], lr=args.lr)
     scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, total_iters=100)
 
-
-    backbone, head = backbone.to(device), head.to(device)
-    backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
     backbone = nn.DataParallel(backbone)
-    backbone = backbone.to(device)
+    #head = nn.DataParallel(head)
+    backbone, head = backbone.to(device), head.to(device)
+
+    backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
 
     ####################################################################################################################################
     # ======= train & validation & save checkpoint =======#
@@ -136,27 +136,27 @@ if __name__ == '__main__':
 #     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up  # use the first 1/25 epochs to warm up
 
     
-    _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size, k_accuracy = True, multilabel_accuracy = True, demographic_to_labels = demographic_to_labels_test, test = True)
+#     _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size, k_accuracy = True, multilabel_accuracy = True, demographic_to_labels = demographic_to_labels_test, test = True)
 
-    results = {}
-    results['Model'] = args.backbone_name
-    results['seed'] = args.seed
-    results['epoch'] = -1
-    for k in acc_k_test.keys():
-#                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-#                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-        experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=-1)
-        experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=-1)
-        experiment.log_metric("Intra Test " + k, intra_test[k], epoch=-1)
-        experiment.log_metric("Inter Test " + k, inter_test[k], epoch=-1)
+#     results = {}
+#     results['Model'] = args.backbone_name
+#     results['seed'] = args.seed
+#     results['epoch'] = -1
+#     for k in acc_k_test.keys():
+# #                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
+# #                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
+#         experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=-1)
+#         experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=-1)
+#         experiment.log_metric("Intra Test " + k, intra_test[k], epoch=-1)
+#         experiment.log_metric("Inter Test " + k, inter_test[k], epoch=-1)
 
-        results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-        results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-        results['Intra '+k] = (round(intra_test[k], 3))
-        results['Inter '+k] = (round(inter_test[k], 3))
+#         results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
+#         results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
+#         results['Intra '+k] = (round(intra_test[k], 3))
+#         results['Inter '+k] = (round(inter_test[k], 3))
 
-    print(results)
-    save_output_from_dict('results_nooversampling', results, args.file_name)
+#     print(results)
+#     save_output_from_dict('results_nooversampling', results, args.file_name)
  ####################################################################################################################################
     # ======= training =======#
 
@@ -181,7 +181,7 @@ if __name__ == '__main__':
 
                 inputs, labels = inputs.to(device), labels.to(device).long()
                 features = backbone(inputs)
-                outputs = head(features, labels)
+                outputs = head(features,labels)
                 loss = train_criterion(outputs, labels).mean()
                 optimizer.zero_grad()
                 loss.backward()
@@ -208,7 +208,7 @@ if __name__ == '__main__':
 #                                                 demographic_to_labels = demographic_to_labels_train, test = False)
 
             '''For test data compute only k-neighbors accuracy'''
-            _,_, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
+            _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
                                        k_accuracy = True, multilabel_accuracy = True,
                                        demographic_to_labels = demographic_to_labels_test, test = True)
 
