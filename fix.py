@@ -13,8 +13,8 @@ bb['seed_arg'] = '--seed'
 bb['seed'] = 222
 bb['pretrained_arg'] = ''
 bb['pretrained'] = ''
-bb.file = '/cmlscratch/sdooley1/face.evoLVe.PyTorch/fairness_train_timm.py'
-bb = bb[bb.batch_size == 100]
+bb.file = '/cmlscratch/sdooley1/FR-NAS/face.evoLVe.PyTorch/fairness_train_timm.py'
+bb = bb[bb.batch_size == 50]
 bb['batch_size'] = 250
 bb = bb.loc[bb.apply(lambda x: x.backbone_name not in finished_models, axis=1)]
 bb.to_csv('commands/scratch.sh', sep=' ', index=False, header = False)
