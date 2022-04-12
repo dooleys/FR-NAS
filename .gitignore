@@ -138,4 +138,5 @@ cml-tools/
 .notebook*
 .Trash*
 .Rhistory
-
+DataParallel/
+rhea/
