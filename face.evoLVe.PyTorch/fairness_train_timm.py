@@ -30,7 +30,7 @@ torch.backends.cudnn.benchmark = False
 user_cfg = user_configs[1]
 
 default_test_root = user_cfg['default_test_root']
-default_train_root = user_cfg['default_test_root']
+default_train_root = user_cfg['default_train_root']
 
 
 if __name__ == '__main__':
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--data_test_root', default=default_test_root)
     parser.add_argument('--data_train_root', default=default_train_root)
-    parser.add_argument('--demographics', default= user_cfg['demogrphics_file'])
+    parser.add_argument('--demographics', default= user_cfg['demographics_file'])
     parser.add_argument('--backbone_name', default='resnet50')
     parser.add_argument('--pretrained', default=False)
     parser.add_argument('--project_name', default="from-scratch_no-resampling_adam")
@@ -97,7 +97,7 @@ if __name__ == '__main__':
         workspace=user_cfg['comet_workspace'],
     )
     experiment.add_tag(args.backbone_name)
-
+    
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(args)
 
 
