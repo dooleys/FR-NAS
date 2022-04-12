@@ -233,7 +233,7 @@ if __name__ == '__main__':
                 results['Inter '+k] = (round(inter_test[k], 3))
 
             print(results)
-            save_output_from_dict('results_nooversampling', results, args.file_name)
+            save_output_from_dict(user_cfg['output_dir'], results, args.file_name)
 
 
             epoch += 1
