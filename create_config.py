@@ -14,7 +14,7 @@ def main(args):
         print(config)
         yaml.dump(config, fh)
         print("Config created at:",folder + f"/config.yaml")
-        #Test to check if we can read the written file
+    #Test to check if we can read the written file
     with open(folder + f"/config.yaml", "r") as ymlfile:
         cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
         print(cfg)
