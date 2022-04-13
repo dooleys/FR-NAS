@@ -115,7 +115,7 @@ if __name__ == '__main__':
 
 
     
-    head = CosFace(in_features=embedding_size, out_features=num_class, device_id=args.gpu_id)
+    head = CosFace(in_features=embedding_size, out_features=num_class, device_id=range(torch.cuda.device_count()))
     train_criterion = FocalLoss(elementwise=True)
 
     ####################################################################################################################
@@ -129,7 +129,6 @@ if __name__ == '__main__':
 
     backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
     backbone = nn.DataParallel(backbone)
-    #head = nn.DataParallel(head)
     backbone, head = backbone.to(device), head.to(device)
 
 
@@ -165,7 +164,7 @@ if __name__ == '__main__':
 
     print('Start training')
     with experiment.train():
-        while epoch < args.num_epoch:
+        while epoch <= args.num_epoch:
 
             experiment.log_current_epoch(epoch)
             backbone.train()  # set to training mode
