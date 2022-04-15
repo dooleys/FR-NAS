@@ -249,7 +249,7 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
         img = Image.open(path)
         img.convert('RGB')
         img = self.transform(img)
-        return (img, target, sens_attr)
+        return (img, target, sens_attr, index)
 
 
 def balanced_weights(images, nclasses, attr=1):

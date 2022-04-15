@@ -11,7 +11,7 @@ from head.metrics import CosFace
 from loss.focal import FocalLoss
 from util.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoint, \
     schedule_lr, AverageMeter, accuracy
-from util.fairness_utils import evaluate
+from util.fairness_utils import evaluate, add_column_to_file
 from util.data_utils_balanced import prepare_data
 import numpy as np
 import pandas as pd
@@ -73,8 +73,9 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
-    if not os.path.isdir(os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name)):
-        os.mkdir(os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name))
+    checkpoint_directory = os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name)
+    if not os.path.isdir(checkpoint_directory):
+        os.mkdir(checkpoint_directory)
 
 
 
@@ -132,34 +133,7 @@ if __name__ == '__main__':
     backbone, head = backbone.to(device), head.to(device)
 
 
-    ####################################################################################################################################
-    # ======= train & validation & save checkpoint =======#
-#     num_epoch_warm_up = args.num_epoch // 25  # use the first 1/25 epochs to warm up
-#     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up  # use the first 1/25 epochs to warm up
-
-    
-#     _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size, k_accuracy = True, multilabel_accuracy = True, demographic_to_labels = demographic_to_labels_test, test = True)
-
-#     results = {}
-#     results['Model'] = args.backbone_name
-#     results['seed'] = args.seed
-#     results['epoch'] = -1
-#     for k in acc_k_test.keys():
-# #                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-# #                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-#         experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=-1)
-#         experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=-1)
-#         experiment.log_metric("Intra Test " + k, intra_test[k], epoch=-1)
-#         experiment.log_metric("Inter Test " + k, inter_test[k], epoch=-1)
-
-#         results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-#         results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-#         results['Intra '+k] = (round(intra_test[k], 3))
-#         results['Inter '+k] = (round(inter_test[k], 3))
-
-#     print(results)
-#     save_output_from_dict('results_nooversampling', results, args.file_name)
- ####################################################################################################################################
+    ####################################################################################################################
     # ======= training =======#
 
     print('Start training')
@@ -173,13 +147,7 @@ if __name__ == '__main__':
             meters['loss'] = AverageMeter()
             meters['top5'] = AverageMeter()
 
-#             if epoch in args.stages:  # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
-#                 schedule_lr(optimizer)
-
-            for inputs, labels, sens_attr in tqdm(iter(dataloaders['train'])):
-
-#                 if batch + 1 <= num_batch_warm_up:  # adjust LR for each training batch during warm up
-#                     warm_up_lr(batch + 1, num_batch_warm_up, args.lr, optimizer)
+            for inputs, labels, sens_attr, _ in tqdm(iter(dataloaders['train'])):
 
                 inputs, labels = inputs.to(device), labels.to(device).long()
                 features = backbone(inputs)
@@ -204,32 +172,42 @@ if __name__ == '__main__':
             experiment.log_metric("Training Acc5", meters['top5'].avg, step=epoch)
 
 
-            '''For train data compute only multilabel accuracy'''
-#             loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders['train'], train_criterion, backbone,head, embedding_size,
-#                                                 k_accuracy = False, multilabel_accuracy = True,
-#                                                 demographic_to_labels = demographic_to_labels_train, test = False)
-
-            '''For test data compute only k-neighbors accuracy'''
-            _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
-                                       k_accuracy = True, multilabel_accuracy = True,
+            '''For test data compute k-neighbors accuracy and multi-accuracy'''
+            k_accuracy = True
+            multilabel_accuracy = True
+            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
+                                       k_accuracy = k_accuracy, multilabel_accuracy = multilabel_accuracy,
                                        demographic_to_labels = demographic_to_labels_test, test = True)
+            
+            # save outputs
+            kacc_df, multi_df = None, None
+            if k_accuracy:
+                kacc_df = pd.DataFrame(np.array([list(indices_all),
+                                                 list(nearest_id)]).T, 
+                                       columns=['ids','epoch_'+str(epoch)])
+            if multilabel_accuracy:
+                multi_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(predicted_all)]).T,
+                                        columns=['ids','epoch_'+str(epoch)])
+            add_column_to_file(checkpoint_directory,
+                               '', epoch, 
+                               multi_df = multi_df, kacc_df = kacc_df)
+
 
             results = {}
             results['Model'] = args.backbone_name
             results['seed'] = args.seed
             results['epoch'] = epoch
-            for k in acc_k_test.keys():
-#                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-#                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-                experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=epoch)
-                experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=epoch)
-                experiment.log_metric("Intra Test " + k, intra_test[k], epoch=epoch)
-                experiment.log_metric("Inter Test " + k, inter_test[k], epoch=epoch)
+            for k in acc_k.keys():
+                experiment.log_metric("Acc multi Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Acc k Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Intra Test " + k, intra[k], epoch=epoch)
+                experiment.log_metric("Inter Test " + k, inter[k], epoch=epoch)
 
-                results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-                results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-                results['Intra '+k] = (round(intra_test[k], 3))
-                results['Inter '+k] = (round(inter_test[k], 3))
+                results['Acc multi '+k] = (round(acc_k[k].item()*100, 3))
+                results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
+                results['Intra '+k] = (round(intra[k], 3))
+                results['Inter '+k] = (round(inter[k], 3))
 
             print(results)
             save_output_from_dict(user_cfg['output_dir'], results, args.file_name)
@@ -240,7 +218,7 @@ if __name__ == '__main__':
             # save checkpoints per epoch
 
             if (epoch == args.num_epoch) or (epoch % 20 == 0):
-                checkpoint_name_to_save = os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name,
+                checkpoint_name_to_save = os.path.join(checkpoint_directory,
                             "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth".
                             format(args.head_name, args.backbone_name, args.name, str(args.p_identities), str(args.p_images), str(epoch)))
 
