@@ -1,0 +1,2 @@
+Model	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+resnet50	222	0	0.0	6.849	25.675	7.774	0.0	7.74	24.164	7.336
