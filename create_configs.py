@@ -44,7 +44,7 @@ if __name__ == "__main__":
                         default="from-scratch_no-resampling_adam",
                         type=str)
     parser.add_argument('--head',
-                        default=['CosFace', 'ArcFace', 'MagFace'],
+                        default=['CosFace', 'ArcFace', 'MagFace', 'SphereFace'],
                         type=list)
     parser.add_argument('--train_loss', default='Focal', type=str)
     parser.add_argument('--min_num_images', default=3, type=int)
@@ -56,7 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--scheduler', default='CosineAnnealingLR', type=str)
     parser.add_argument('--rho', default=0.9, type=float)
     parser.add_argument(
-        '--eps', default=1e-06,
+        '--eps', default=1e-08,
         type=float)  #differnt for diff opts, ReduceLROnPlateau has this too
     parser.add_argument('--initial_accumulator_value', default=0, type=float)
     parser.add_argument('--groups_to_modify', default= ['male', 'female'], type=str, nargs='+')
@@ -68,7 +68,6 @@ if __name__ == "__main__":
     parser.add_argument('--etas', default=(0.5, 1.2), type=tuple)
     parser.add_argument('--step_sizes', default=(1e-06, 50), type=tuple)
     parser.add_argument('--dampening', default=0, type=float)
-    parser.add_argument('--nesterov', default=False, type=bool)
     parser.add_argument('--weight_decay', default=0, type=float)
     parser.add_argument('--lr_decay', default=0, type=float)
     parser.add_argument('--lambd', default=0.0001, type=float)
@@ -83,7 +82,7 @@ if __name__ == "__main__":
     parser.add_argument('--line_search_fn', default=None, type=str)
     parser.add_argument('--centered', default=False, type=bool)
     parser.add_argument('--num_workers', default=4, type=int)
-    parser.add_argument('--lr', default=1e-4, type=float)
+    parser.add_argument('--lr', default=0.001, type=float)
     parser.add_argument('--verbose', default=False, type=bool)
     parser.add_argument('--last_epoch', default=-1, type=int)
     parser.add_argument('--lr_lambda', default=[0.01, 0.02],

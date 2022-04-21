@@ -64,7 +64,7 @@ class Softmax(nn.Module):
 
 
 class ArcFace(nn.Module):
-    r"""Implement of ArcFace (https://arxiv.org/pdf/1801.07698v1.pdf):
+    r"""Implementation of ArcFace (https://arxiv.org/pdf/1801.07698v1.pdf):
         Args:
             in_features: size of each input sample
             out_features: size of each output sample
@@ -121,7 +121,7 @@ class ArcFace(nn.Module):
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
         output *= self.s
 
-        return output
+        return output, 0.0
 
 
 class CosFace(nn.Module):
@@ -171,7 +171,7 @@ class CosFace(nn.Module):
         output = (one_hot * phi) + ((1.0 - one_hot) * cosine)  # you can use torch.where if your torch.__version__ is 0.4
         output *= self.s
 
-        return output
+        return output, 0.0
 
     def __repr__(self):
         return self.__class__.__name__ + '(' \
@@ -250,8 +250,8 @@ class SphereFace(nn.Module):
         # --------------------------- Calculate output ---------------------------
         output = (one_hot * (phi_theta - cos_theta) / (1 + self.lamb)) + cos_theta
         output *= NormOfFeature.view(-1, 1)
-
-        return output
+        
+        return output, 0.0
 
     def __repr__(self):
         return self.__class__.__name__ + '(' \
@@ -495,9 +495,9 @@ class CurricularFace(nn.Module):
 class MagFace(nn.Module):
     """Implementation for "ArcFace: Additive Angular Margin Loss for Deep Face Recognition"
     """
-    def __init__(self, feat_dim, num_class, margin_am=0.0, scale=32, l_a=10, u_a=110, l_margin=0.45, u_margin=0.8, lamda=20):
+    def __init__(self, in_features, out_features, device_id, margin_am=0.0, scale=32, l_a=10, u_a=110, l_margin=0.45, u_margin=0.8, lamda=20):
         super(MagFace, self).__init__()
-        self.weight = Parameter(torch.Tensor(feat_dim, num_class))
+        self.weight = Parameter(torch.Tensor(in_features, out_features))
         self.weight.data.uniform_(-1, 1).renorm_(2, 1, 1e-5).mul_(1e5)
         self.margin_am = margin_am
         self.scale = scale        

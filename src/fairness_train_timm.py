@@ -18,7 +18,7 @@ import pandas as pd
 import random
 import timm
 from utils.utils import save_output_from_dict
-
+from utils.utils_train import get_optimizer, get_scheduler, get_head
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.manual_seed(222)
 torch.cuda.manual_seed_all(222)
@@ -67,9 +67,7 @@ if __name__ == '__main__':
     experiment.add_tag(opt['backbone'])
     
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(opt)
-
-
-
+    opt["num_class"]=num_class
     ''' Model '''
     backbone = timm.create_model(opt['backbone'], 
                                  num_classes=0,
@@ -80,10 +78,9 @@ if __name__ == '__main__':
     # get model's embedding size
     meta = pd.read_csv(opt['metadata_file'])
     embedding_size = int(meta[meta['model_name'] == opt['backbone']].feature_dim)
-
-
+    opt["embedding_size"]=embedding_size
     
-    head = CosFace(in_features=embedding_size, out_features=num_class, device_id=range(torch.cuda.device_count()))
+    head = get_head(opt)
     train_criterion = FocalLoss(elementwise=True)
 
     ####################################################################################################################
@@ -91,47 +88,12 @@ if __name__ == '__main__':
 
     backbone_paras_only_bn, backbone_paras_wo_bn = separate_resnet_bn_paras(backbone)
     _, head_paras_wo_bn = separate_resnet_bn_paras(head)
-    if opt["optimizer"]=="Adam":
-       optimizer = optim.Adam([{'params': backbone_paras_wo_bn + head_paras_wo_bn, 'weight_decay': opt["weight_decay"]},
-                               {'params': backbone_paras_only_bn}], lr=opt["lr"], betas=opt["betas"], eps=opt["eps"])
-    #optimizer = optim.Adam([{'params': backbone_paras_wo_bn + head_paras_wo_bn, 'weight_decay': opt["weight_decay"]},
-    #                           {'params': backbone_paras_only_bn}], lr=opt["lr"])
-    scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, total_iters=100)
+    optimizer = get_optimizer(opt,backbone,head)    
+    scheduler = get_scheduler(opt, optimizer)
 
     backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(opt, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
     backbone = nn.DataParallel(backbone)
     backbone, head = backbone.to(device), head.to(device)
-
-
-    ####################################################################################################################################
-    # ======= train & validation & save checkpoint =======#
-#     num_epoch_warm_up = args.num_epoch // 25  # use the first 1/25 epochs to warm up
-#     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up  # use the first 1/25 epochs to warm up
-
-    
-#     _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size, k_accuracy = True, multilabel_accuracy = True, demographic_to_labels = demographic_to_labels_test, test = True)
-
-#     results = {}
-#     results['Model'] = args.backbone_name
-#     results['seed'] = args.seed
-#     results['epoch'] = -1
-#     for k in acc_k_test.keys():
-# #                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-# #                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-#         experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=-1)
-#         experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=-1)
-#         experiment.log_metric("Intra Test " + k, intra_test[k], epoch=-1)
-#         experiment.log_metric("Inter Test " + k, inter_test[k], epoch=-1)
-
-#         results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-#         results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-#         results['Intra '+k] = (round(intra_test[k], 3))
-#         results['Inter '+k] = (round(inter_test[k], 3))
-
-#     print(results)
-#     save_output_from_dict('results_nooversampling', results, args.file_name)
- ####################################################################################################################################
-    # ======= training =======#
 
     print('Start training')
     with experiment.train():
@@ -154,8 +116,9 @@ if __name__ == '__main__':
 
                 inputs, labels = inputs.to(device), labels.to(device).long()
                 features = backbone(inputs)
-                outputs = head(features,labels)
-                loss = train_criterion(outputs, labels).mean()
+                outputs, reg_loss= head(features,labels)
+                loss = train_criterion(outputs, labels) + reg_loss
+                loss = loss.mean()
                 optimizer.zero_grad()
                 loss.backward()
                 optimizer.step()
