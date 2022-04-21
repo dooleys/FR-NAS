@@ -5,6 +5,7 @@
  
 <code> python create_configs.py --backbone ghostnet_100 --batch_size 64 </code>
  
+## Training
 ### To train a model based on the created configs execute the following command
 <code>python src/fairness_train_timm.py --config_path <your_config_path> </code> 
  
