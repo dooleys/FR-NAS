@@ -35,6 +35,7 @@ def main(args):
                   "r") as ymlfile:
             cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
+
 if __name__ == "__main__":
     """This is executed when run from the command line"""
     parser = argparse.ArgumentParser()
@@ -43,25 +44,37 @@ if __name__ == "__main__":
     parser.add_argument('--project_name',
                         default="from-scratch_no-resampling_adam",
                         type=str)
-    parser.add_argument('--head',
-                        default=['CosFace', 'ArcFace', 'MagFace', 'SphereFace'],
-                        type=list)
+    parser.add_argument(
+        '--head',
+        default=['CosFace', 'ArcFace', 'MagFace', 'SphereFace'],
+        type=list)
     parser.add_argument('--train_loss', default='Focal', type=str)
     parser.add_argument('--min_num_images', default=3, type=int)
     parser.add_argument('--batch_size', default=64, type=int)
     parser.add_argument('--input_size', default=112, type=int)
     parser.add_argument('--momentum', default=0.9, type=float)
     parser.add_argument('--dropout', default=0.3, type=float)
-    parser.add_argument('--optimizer', default=["Adam",'AdamW', 'SGD'], type=list)
+    parser.add_argument('--optimizer',
+                        default=["Adam", 'AdamW', 'SGD'],
+                        type=list)
     parser.add_argument('--scheduler', default='CosineAnnealingLR', type=str)
     parser.add_argument('--rho', default=0.9, type=float)
     parser.add_argument(
         '--eps', default=1e-08,
         type=float)  #differnt for diff opts, ReduceLROnPlateau has this too
     parser.add_argument('--initial_accumulator_value', default=0, type=float)
-    parser.add_argument('--groups_to_modify', default= ['male', 'female'], type=str, nargs='+')
-    parser.add_argument('--p_identities', default=[1.0, 1.0], type=float, nargs='+')
-    parser.add_argument('--p_images', default=[1.0, 1.0], type=float, nargs='+')
+    parser.add_argument('--groups_to_modify',
+                        default=['male', 'female'],
+                        type=str,
+                        nargs='+')
+    parser.add_argument('--p_identities',
+                        default=[1.0, 1.0],
+                        type=float,
+                        nargs='+')
+    parser.add_argument('--p_images',
+                        default=[1.0, 1.0],
+                        type=float,
+                        nargs='+')
     parser.add_argument('--mean', default=[0.5, 0.5, 0.5], type=int)
     parser.add_argument('--std', default=[0.5, 0.5, 0.5], type=int)
     parser.add_argument('--betas', default=(0.9, 0.999), type=tuple)
@@ -111,8 +124,7 @@ if __name__ == "__main__":
     parser.add_argument('--div_factor', default=25.0, type=float)
     parser.add_argument('--final_div_factor', default=10000.0, type=float)
     parser.add_argument('--three_phase', default=False, type=bool)
-    parser.add_argument('--base_lr', default=1e-4,
-                        type=float) 
+    parser.add_argument('--base_lr', default=1e-4, type=float)
     parser.add_argument('--max_lr', default=3, type=float)
     parser.add_argument('--step_size_up', default=2000, type=int)
     parser.add_argument('--step_size_down', default=None, type=int)
@@ -135,18 +147,15 @@ if __name__ == "__main__":
                         default="KKiKMVZI9RCYowoKDZDS5Y2km",
                         type=str)
     parser.add_argument('--comet_workspace', default="rsukthanker")
-    parser.add_argument(
-        '--checkpoints_root',
-        default=
-        "Checkpoints/timm_explore_few_epochs/",
-        type=str)
+    parser.add_argument('--checkpoints_root',
+                        default="Checkpoints/timm_explore_few_epochs/",
+                        type=str)
     parser.add_argument('--metadata_file',
                         default="timm_model_metadata.csv",
                         type=str)
-    parser.add_argument(
-        '--demographics_file',
-        default="CelebA/CelebA_demographics.txt",
-        type=str)
+    parser.add_argument('--demographics_file',
+                        default="CelebA/CelebA_demographics.txt",
+                        type=str)
     parser.add_argument(
         '--default_train_root',
         default=
