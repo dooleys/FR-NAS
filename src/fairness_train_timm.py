@@ -1,7 +1,6 @@
 from comet_ml import Experiment
 import argparse
 from tqdm import tqdm
-from config import user_configs
 import os
 import torch
 import torch.nn as nn
@@ -27,10 +26,6 @@ random.seed(222)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-user_cfg = user_configs[1]
-
-default_test_root = user_cfg['default_test_root']
-default_train_root = user_cfg['default_train_root']
 
 
 if __name__ == '__main__':
@@ -109,7 +104,7 @@ if __name__ == '__main__':
 #             if epoch in args.stages:  # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
 #                 schedule_lr(optimizer)
 
-            for inputs, labels, sens_attr in tqdm(iter(dataloaders['train'])):
+            for inputs, labels, sens_attr, _ in tqdm(iter(dataloaders['train'])):
 
 #                 if batch + 1 <= num_batch_warm_up:  # adjust LR for each training batch during warm up
 #                     warm_up_lr(batch + 1, num_batch_warm_up, args.lr, optimizer)
@@ -143,28 +138,42 @@ if __name__ == '__main__':
 #                                                 k_accuracy = False, multilabel_accuracy = True,
 #                                                 demographic_to_labels = demographic_to_labels_train, test = False)
 
-            '''For test data compute only k-neighbors accuracy'''
-            _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
-                                       k_accuracy = True, multilabel_accuracy = True,
+            '''For test data compute only k-neighbors accuracy and multi-accuracy'''
+            k_accuracy = True
+            multilabel_accuracy = True
+            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
+                                       k_accuracy = k_accuracy, multilabel_accuracy = multilabel_accuracy,
                                        demographic_to_labels = demographic_to_labels_test, test = True)
+            
+            # save outputs
+            kacc_df, multi_df = None, None
+            if k_accuracy:
+                kacc_df = pd.DataFrame(np.array([list(indices_all),
+                                                 list(nearest_id)]).T, 
+                                       columns=['ids','epoch_'+str(epoch)])
+            if multilabel_accuracy:
+                multi_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(predicted_all)]).T,
+                                        columns=['ids','epoch_'+str(epoch)])
+            add_column_to_file(checkpoint_directory,
+                               '', epoch, 
+                               multi_df = multi_df, kacc_df = kacc_df)
+
 
             results = {}
-            results['Model'] = opt["backbone"]
-            results['seed'] = opt["seed"]
+            results['Model'] = args.backbone_name
+            results['seed'] = args.seed
             results['epoch'] = epoch
-            for k in acc_k_test.keys():
-#                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-#                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-                experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=epoch)
-                experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=epoch)
-                experiment.log_metric("Intra Test " + k, intra_test[k], epoch=epoch)
-                experiment.log_metric("Inter Test " + k, inter_test[k], epoch=epoch)
+            for k in acc_k.keys():
+                experiment.log_metric("Acc multi Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Acc k Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Intra Test " + k, intra[k], epoch=epoch)
+                experiment.log_metric("Inter Test " + k, inter[k], epoch=epoch)
 
-                results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-                results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-                results['Intra '+k] = (round(intra_test[k], 3))
-                results['Inter '+k] = (round(inter_test[k], 3))
-
+                results['Acc multi '+k] = (round(acc_k[k].item()*100, 3))
+                results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
+                results['Intra '+k] = (round(intra[k], 3))
+                results['Inter '+k] = (round(inter[k], 3))
             print(results)
             save_output_from_dict(opt['out_dir'], results, opt["file_name"])
 
