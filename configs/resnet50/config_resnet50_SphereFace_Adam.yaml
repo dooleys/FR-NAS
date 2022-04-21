@@ -37,7 +37,7 @@ gamma: 0.1
 groups_to_modify:
 - male
 - female
-head: MagFace
+head: SphereFace
 history_size: 100
 initial_accumulator_value: 0
 input_size: 112

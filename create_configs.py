@@ -12,6 +12,10 @@ def main(args):
     os.makedirs(folder, exist_ok=True)
     config = vars(args)
     hp_grid = {}
+    with open(config["user_config"],"r") as ymlfile:
+        user_config = yaml.load(ymlfile, Loader=yaml.FullLoader)
+    for k in user_config.keys():
+        config[k]=user_config[k]
     for x in config.keys():
         if x == "head" or x == "optimizer":
             hp_grid[x] = config[x]
@@ -39,11 +43,9 @@ def main(args):
 if __name__ == "__main__":
     """This is executed when run from the command line"""
     parser = argparse.ArgumentParser()
+    parser.add_argument("--user_config", type=str)
     parser.add_argument('--backbone', default='resnet50')
     parser.add_argument('--pretrained', default=False)
-    parser.add_argument('--project_name',
-                        default="from-scratch_no-resampling_adam",
-                        type=str)
     parser.add_argument(
         '--head',
         default=['CosFace', 'ArcFace', 'MagFace', 'SphereFace'],
@@ -143,29 +145,6 @@ if __name__ == "__main__":
                         default='timm_from-scratch.csv',
                         type=str)
     parser.add_argument('--seed', default=222, type=int)
-    parser.add_argument('--comet_api_key',
-                        default="KKiKMVZI9RCYowoKDZDS5Y2km",
-                        type=str)
-    parser.add_argument('--comet_workspace', default="rsukthanker")
-    parser.add_argument('--checkpoints_root',
-                        default="Checkpoints/timm_explore_few_epochs/",
-                        type=str)
-    parser.add_argument('--metadata_file',
-                        default="timm_model_metadata.csv",
-                        type=str)
-    parser.add_argument('--demographics_file',
-                        default="CelebA/CelebA_demographics.txt",
-                        type=str)
-    parser.add_argument(
-        '--default_train_root',
-        default=
-        "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/",
-        type=str)
-    parser.add_argument(
-        '--default_test_root',
-        default=
-        "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/",
-        type=str)
     parser.add_argument('--out_dir', default=".", type=str)
     args = parser.parse_args()
     main(args)

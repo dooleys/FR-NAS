@@ -106,5 +106,6 @@ tolerance_grad: 1.0e-07
 total_iters: 5
 total_steps: null
 train_loss: Focal
+user_config: config_user.yaml
 verbose: false
 weight_decay: 0

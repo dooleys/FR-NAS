@@ -1,0 +1,8 @@
+comet_api_key: KKiKMVZI9RCYowoKDZDS5Y2km
+comet_workspace: rsukthanker
+default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/
+default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/
+project_name: from-scratch_no-resampling_adam
+checkpoints_root: Checkpoints/timm_explore_few_epochs/
+metadata_file: timm_model_metadata.csv
+demographics_file: CelebA/CelebA_demographics.txt

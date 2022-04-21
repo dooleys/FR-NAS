@@ -25,7 +25,7 @@ div_factor: 25.0
 dropout: 0.3
 end_factor: 1.0
 epochs: null
-eps: 1.0e-06
+eps: 1.0e-08
 eta_min: 0.0
 etas: !!python/tuple
 - 0.5
@@ -44,7 +44,7 @@ input_size: 112
 lambd: 0.0001
 last_epoch: -1
 line_search_fn: null
-lr: 0.0001
+lr: 0.001
 lr_decay: 0
 lr_lambda:
 - 0.01
@@ -67,7 +67,6 @@ mode: min
 momentum: 0.9
 momentum_decay: 0.004
 name: CelebA
-nesterov: false
 num_epoch: 100
 num_workers: 4
 optimizer: AdamW
@@ -107,5 +106,6 @@ tolerance_grad: 1.0e-07
 total_iters: 5
 total_steps: null
 train_loss: Focal
+user_config: config_user.yaml
 verbose: false
 weight_decay: 0
