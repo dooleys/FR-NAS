@@ -1,3 +1,4 @@
+from pathlib import Path
 from comet_ml import Experiment
 import argparse
 from tqdm import tqdm
@@ -74,8 +75,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     checkpoint_directory = os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name)
-    if not os.path.isdir(checkpoint_directory):
-        os.mkdir(checkpoint_directory)
+    Path(checkpoint_directory).mkdir(parents=True, exist_ok=True)
 
 
 
@@ -200,12 +200,12 @@ if __name__ == '__main__':
             results['seed'] = args.seed
             results['epoch'] = epoch
             for k in acc_k.keys():
-                experiment.log_metric("Acc multi Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Acc multi Test " + k, acc[k], epoch=epoch)
                 experiment.log_metric("Acc k Test " + k, acc_k[k], epoch=epoch)
                 experiment.log_metric("Intra Test " + k, intra[k], epoch=epoch)
                 experiment.log_metric("Inter Test " + k, inter[k], epoch=epoch)
 
-                results['Acc multi '+k] = (round(acc_k[k].item()*100, 3))
+                results['Acc multi '+k] = (round(acc[k].item()*100, 3))
                 results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
                 results['Intra '+k] = (round(intra[k], 3))
                 results['Inter '+k] = (round(inter[k], 3))
@@ -218,7 +218,7 @@ if __name__ == '__main__':
 
             # save checkpoints per epoch
 
-            if (epoch == args.num_epoch) or (epoch % 20 == 0):
+            if (epoch == args.num_epoch) or (epoch % 1 == 0):
                 checkpoint_name_to_save = os.path.join(checkpoint_directory,
                             "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth".
                             format(args.head_name, args.backbone_name, args.name, str(args.p_identities), str(args.p_images), str(epoch)))

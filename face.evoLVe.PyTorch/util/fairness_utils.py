@@ -55,10 +55,10 @@ def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = No
         print(fn)
         old_df = _load_data(fn)
         if epoch == 0:
-            multi_df.to_csv(fn,index=False)
+            kacc_df.to_csv(fn,index=False)
         else:
             _check_epoch(old_df, epoch)
-            old_df.merge(multi_df).to_csv(fn,index=False)
+            old_df.merge(kacc_df).to_csv(fn,index=False)
     return
     
     
@@ -75,14 +75,6 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
     inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
     angles_intra, angles_inter, correct = 0, 0, 0
     
-    loss = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    acc = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    count = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    acc_k = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    intra = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    angles_intra, angles_inter, correct = 0, 0, 0
-
     backbone.eval()
     if multilabel_accuracy:
         head.eval()
@@ -171,6 +163,7 @@ def l2_dist(feature_matrix, test_features):
     ''' computing distance matrix '''
     return torch.cdist(test_features, feature_matrix)
 
+#acc_k, correct, nearest_id = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, feature_matrix, torch.tensor(labels_all), np.array(demographic_all))
 
 def predictions(feature_matrix, labels, demographic_to_labels, test_features, test_labels, test_demographic):
     dist_matrix =  l2_dist(feature_matrix, test_features)
