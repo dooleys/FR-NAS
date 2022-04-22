@@ -128,6 +128,7 @@ if __name__ == '__main__':
                                {'params': backbone_paras_only_bn}], lr=args.lr)
     scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, total_iters=100)
 
+    backbone, head = backbone.to(device), head.to(device)
     backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
     backbone = nn.DataParallel(backbone)
     backbone, head = backbone.to(device), head.to(device)
