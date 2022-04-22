@@ -185,11 +185,11 @@ if __name__ == '__main__':
             if k_accuracy:
                 kacc_df = pd.DataFrame(np.array([list(indices_all),
                                                  list(nearest_id)]).T, 
-                                       columns=['ids','epoch_'+str(epoch)])
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
             if multilabel_accuracy:
                 multi_df = pd.DataFrame(np.array([list(indices_all),
                                                   list(predicted_all)]).T,
-                                        columns=['ids','epoch_'+str(epoch)])
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(checkpoint_directory,
                                '', epoch, 
                                multi_df = multi_df, kacc_df = kacc_df)
