@@ -17,7 +17,7 @@ def main(args):
     for k in user_config.keys():
         config[k]=user_config[k]
     for x in config.keys():
-        if x == "head" or x == "optimizer":
+        if x == "head" or x == "opt":
             hp_grid[x] = config[x]
     for k in hp_grid.keys():
         del config[k]
@@ -31,7 +31,7 @@ def main(args):
             counter = counter + 1
         backbone = config["backbone"]
         head = config["head"]
-        optimizer = config["optimizer"]
+        optimizer = config["opt"]
         with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml",
                   "w") as fh:
             yaml.dump(config, fh)
@@ -42,8 +42,17 @@ def main(args):
 
 if __name__ == "__main__":
     """This is executed when run from the command line"""
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description='Training Config', add_help=False)
+    parser.add_argument('-c', '--config', default='', type=str, metavar='FILE',
+                    help='YAML config file specifying default arguments')
+
+
+    parser = argparse.ArgumentParser(description='Timm CelebA Training')
+
+    # User config
     parser.add_argument("--user_config", type=str)
+
+    # Model parameters
     parser.add_argument('--backbone', default='resnet50')
     parser.add_argument('--pretrained', default=False)
     parser.add_argument(
@@ -54,17 +63,6 @@ if __name__ == "__main__":
     parser.add_argument('--min_num_images', default=3, type=int)
     parser.add_argument('--batch_size', default=64, type=int)
     parser.add_argument('--input_size', default=112, type=int)
-    parser.add_argument('--momentum', default=0.9, type=float)
-    parser.add_argument('--dropout', default=0.3, type=float)
-    parser.add_argument('--optimizer',
-                        default=["Adam", 'AdamW', 'SGD'],
-                        type=list)
-    parser.add_argument('--scheduler', default='CosineAnnealingLR', type=str)
-    parser.add_argument('--rho', default=0.9, type=float)
-    parser.add_argument(
-        '--eps', default=1e-08,
-        type=float)  #differnt for diff opts, ReduceLROnPlateau has this too
-    parser.add_argument('--initial_accumulator_value', default=0, type=float)
     parser.add_argument('--groups_to_modify',
                         default=['male', 'female'],
                         type=str,
@@ -79,66 +77,7 @@ if __name__ == "__main__":
                         nargs='+')
     parser.add_argument('--mean', default=[0.5, 0.5, 0.5], type=int)
     parser.add_argument('--std', default=[0.5, 0.5, 0.5], type=int)
-    parser.add_argument('--betas', default=(0.9, 0.999), type=tuple)
-    parser.add_argument('--etas', default=(0.5, 1.2), type=tuple)
-    parser.add_argument('--step_sizes', default=(1e-06, 50), type=tuple)
-    parser.add_argument('--dampening', default=0, type=float)
-    parser.add_argument('--weight_decay', default=0, type=float)
-    parser.add_argument('--lr_decay', default=0, type=float)
-    parser.add_argument('--lambd', default=0.0001, type=float)
-    parser.add_argument('--alpha', default=0.75, type=float)
-    parser.add_argument('--t0', default=1000000.0, type=float)
-    parser.add_argument('--max_iter', default=20, type=int)
-    parser.add_argument('--max_eval', default=None, type=int)
-    parser.add_argument('--tolerance_grad', default=1e-07, type=float)
-    parser.add_argument('--tolerance_change', default=1e-09, type=float)
-    parser.add_argument('--momentum_decay', default=0.004, type=float)
-    parser.add_argument('--history_size', default=100, type=int)
-    parser.add_argument('--line_search_fn', default=None, type=str)
-    parser.add_argument('--centered', default=False, type=bool)
     parser.add_argument('--num_workers', default=4, type=int)
-    parser.add_argument('--lr', default=0.001, type=float)
-    parser.add_argument('--verbose', default=False, type=bool)
-    parser.add_argument('--last_epoch', default=-1, type=int)
-    parser.add_argument('--lr_lambda', default=[0.01, 0.02],
-                        type=list)  #discuss can be function too
-    parser.add_argument('--step_size', default=30, type=int)
-    parser.add_argument('--gamma', default=0.1,
-                        type=int)  #Used many times: have dict?
-    parser.add_argument('--milestones', default=[30, 80], type=list)
-    parser.add_argument('--factor', default=0.3333333333333333, type=float)
-    parser.add_argument('--start_factor',
-                        default=0.3333333333333333,
-                        type=float)
-    parser.add_argument('--end_factor', default=1.0, type=float)
-    parser.add_argument('--T_max', default=1000000, type=int)
-    parser.add_argument('--patience', default=10, type=int)
-    parser.add_argument('--eta_min', default=0.0, type=float)
-    parser.add_argument('--min_lr', default=0.0, type=float)
-    parser.add_argument('--total_steps', default=None, type=int)
-    parser.add_argument('--steps_per_epoch', default=1000, type=int)
-    parser.add_argument('--epochs', default=None, type=int)
-    parser.add_argument('--pct_start', default=0.3, type=float)
-    parser.add_argument('--anneal_strategy', default='cos', type=str)
-    parser.add_argument('--cycle_momentum', default=True, type=bool)
-    parser.add_argument('--base_momentum', default=0.85, type=float)
-    parser.add_argument('--max_momentum', default=0.95, type=float)
-    parser.add_argument('--div_factor', default=25.0, type=float)
-    parser.add_argument('--final_div_factor', default=10000.0, type=float)
-    parser.add_argument('--three_phase', default=False, type=bool)
-    parser.add_argument('--base_lr', default=1e-4, type=float)
-    parser.add_argument('--max_lr', default=3, type=float)
-    parser.add_argument('--step_size_up', default=2000, type=int)
-    parser.add_argument('--step_size_down', default=None, type=int)
-    parser.add_argument('--scale_mode', default='cycle', type=str)
-    parser.add_argument('--T_0', default=1000, type=int)
-    parser.add_argument('--T_mult', default=1, type=int)
-    parser.add_argument('--threshold', default=0.0001, type=float)
-    parser.add_argument('--threshold_mode', default='rel', type=str)
-    parser.add_argument('--cooldown', default=0, type=int)
-    parser.add_argument('--mode', default='min', type=str)
-    parser.add_argument('--total_iters', default=5, type=int)
-    parser.add_argument('--num_epoch', default=100, type=int)
     parser.add_argument('--name', default='CelebA', type=str)
     parser.add_argument('--dataset', default='CelebA', type=str)
     parser.add_argument('--file_name',
@@ -146,5 +85,101 @@ if __name__ == "__main__":
                         type=str)
     parser.add_argument('--seed', default=222, type=int)
     parser.add_argument('--out_dir', default=".", type=str)
+    parser.add_argument('--save_freq', default=1, type=int)
+    parser.add_argument('--torchscript', dest='torchscript', action='store_true',
+                    help='torch.jit.script the full model')
+    parser.add_argument('--gp', default=None, type=str, metavar='POOL',
+                    help='Global pool type, one of (fast, avg, max, avgmax, avgmaxc). Model default if None.')
+    
+    # Optimizer parameters
+    parser.add_argument('--opt',
+                        default=["Adam", 'AdamW', 'SGD', "RMSprop"],
+                        type=list)
+    parser.add_argument('--opt-eps', default=None, type=float, metavar='EPSILON',
+                    help='Optimizer Epsilon (default: None, use opt default)')
+    parser.add_argument('--opt-betas', default=None, type=float, nargs='+', metavar='BETA',
+                    help='Optimizer Betas (default: None, use opt default)')
+    parser.add_argument('--momentum', type=float, default=0.9, metavar='M',
+                    help='Optimizer momentum (default: 0.9)')
+    parser.add_argument('--weight-decay', type=float, default=2e-5,
+                    help='weight decay (default: 2e-5)')
+    parser.add_argument('--clip-grad', type=float, default=None, metavar='NORM',
+                    help='Clip gradient norm (default: None, no clipping)')
+    parser.add_argument('--clip-mode', type=str, default='norm',
+                    help='Gradient clipping mode. One of ("norm", "value", "agc")')
+    parser.add_argument('--layer-decay', type=float, default=None,
+                    help='layer-wise learning rate decay (default: None)')
+
+    # Learning rate schedule parameters
+    parser.add_argument('--sched', default='cosine', type=str, metavar='SCHEDULER',
+                    help='LR scheduler (default: "step"')
+    parser.add_argument('--lr', type=float, default=0.05, metavar='LR',
+                    help='learning rate (default: 0.05)')
+    parser.add_argument('--lr-noise', type=float, nargs='+', default=None, metavar='pct, pct',
+                    help='learning rate noise on/off epoch percentages')
+    parser.add_argument('--lr-noise-pct', type=float, default=0.67, metavar='PERCENT',
+                    help='learning rate noise limit percent (default: 0.67)')
+    parser.add_argument('--lr-noise-std', type=float, default=1.0, metavar='STDDEV',
+                    help='learning rate noise std-dev (default: 1.0)')
+    parser.add_argument('--lr-cycle-mul', type=float, default=1.0, metavar='MULT',
+                    help='learning rate cycle len multiplier (default: 1.0)')
+    parser.add_argument('--lr-cycle-decay', type=float, default=0.5, metavar='MULT',
+                    help='amount to decay each learning rate cycle (default: 0.5)')
+    parser.add_argument('--lr-cycle-limit', type=int, default=1, metavar='N',
+                    help='learning rate cycle limit, cycles enabled if > 1')
+    parser.add_argument('--lr-k-decay', type=float, default=1.0,
+                    help='learning rate k-decay for cosine/poly (default: 1.0)')
+    parser.add_argument('--warmup-lr', type=float, default=0.0001, metavar='LR',
+                    help='warmup learning rate (default: 0.0001)')
+    parser.add_argument('--min-lr', type=float, default=1e-6, metavar='LR',
+                    help='lower lr bound for cyclic schedulers that hit 0 (1e-5)')
+    parser.add_argument('--epochs', type=int, default=300, metavar='N',
+                    help='number of epochs to train (default: 300)')
+    parser.add_argument('--epoch-repeats', type=float, default=0., metavar='N',
+                    help='epoch repeat multiplier (number of times to repeat dataset epoch per train epoch).')
+    parser.add_argument('--start-epoch', default=None, type=int, metavar='N',
+                    help='manual epoch number (useful on restarts)')
+    parser.add_argument('--decay-epochs', type=float, default=100, metavar='N',
+                    help='epoch interval to decay LR')
+    parser.add_argument('--warmup-epochs', type=int, default=3, metavar='N',
+                    help='epochs to warmup LR, if scheduler supports')
+    parser.add_argument('--cooldown-epochs', type=int, default=10, metavar='N',
+                    help='epochs to cooldown LR at min_lr, after cyclic schedule ends')
+    parser.add_argument('--patience-epochs', type=int, default=10, metavar='N',
+                    help='patience epochs for Plateau LR scheduler (default: 10')
+    parser.add_argument('--decay-rate', '--dr', type=float, default=0.1, metavar='RATE',
+                    help='LR decay rate (default: 0.1)')
+
+    # Regularization parameters
+
+    parser.add_argument('--drop', type=float, default=0.0, metavar='PCT',
+                    help='Dropout rate (default: 0.)')
+    parser.add_argument('--drop-connect', type=float, default=None, metavar='PCT',
+                    help='Drop connect rate, DEPRECATED, use drop-path (default: None)')
+    parser.add_argument('--drop-path', type=float, default=None, metavar='PCT',
+                    help='Drop path rate (default: None)')
+    parser.add_argument('--drop-block', type=float, default=None, metavar='PCT',
+                    help='Drop block rate (default: None)')
+
+    # Batch norm parameters (only works with gen_efficientnet based models currently)
+    parser.add_argument('--bn-momentum', type=float, default=None,
+                    help='BatchNorm momentum override (if not None)')
+    parser.add_argument('--bn-eps', type=float, default=None,
+                    help='BatchNorm epsilon override (if not None)')
+    parser.add_argument('--sync-bn', action='store_true',
+                    help='Enable NVIDIA Apex or Torch synchronized BatchNorm.')
+    parser.add_argument('--dist-bn', type=str, default='reduce',
+                    help='Distribute BatchNorm stats between nodes after each epoch ("broadcast", "reduce", or "")')
+    parser.add_argument('--split-bn', action='store_true',
+                    help='Enable separate BN layers per augmentation split.')
+
+    # Model Exponential Moving Average
+    parser.add_argument('--model-ema', action='store_true', default=False,
+                    help='Enable tracking moving average of model weights')
+    parser.add_argument('--model-ema-force-cpu', action='store_true', default=False,
+                    help='Force ema to be tracked on CPU, rank=0 node only. Disables EMA validation.')
+    parser.add_argument('--model-ema-decay', type=float, default=0.9998,
+                    help='decay factor for model weights moving average (default: 0.9998)')
+
     args = parser.parse_args()
     main(args)

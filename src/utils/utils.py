@@ -16,12 +16,12 @@ import os
 import csv
 
 
-def load_checkpoint(opt, backbone, head, optimizer, train_loader, p_identities, p_images):
+def load_checkpoint(opt, model, optimizer, train_loader, p_identities, p_images):
 
     # resume from a checkpoint
-    name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt["head"], opt["backbone"], opt["name"], str(p_identities), str(p_images))
+    name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
     print(name)
-    checkpoints_model_root = os.path.join(opt["checkpoints_root"], str(opt["backbone"]) + '_' + str(opt["head"]))
+    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head))
     if not os.path.exists(checkpoints_model_root):
         os.mkdir(checkpoints_model_root)
 
@@ -37,8 +37,7 @@ def load_checkpoint(opt, backbone, head, optimizer, train_loader, p_identities, 
 
         print("Loading Checkpoint '{}'".format(os.path.join(checkpoints_model_root, last_checkpoint)))
         checkpoint = torch.load(os.path.join(checkpoints_model_root, last_checkpoint))
-        backbone.load_state_dict(checkpoint['backbone_state_dict'])
-        head.load_state_dict(checkpoint['head_state_dict'])
+        model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         epoch = checkpoint['epoch']
         batch = len(train_loader)*epoch
@@ -46,7 +45,7 @@ def load_checkpoint(opt, backbone, head, optimizer, train_loader, p_identities, 
         print("No Checkpoints Found at '{}'. Please Have a Check or Continue to Train from Scratch".format(checkpoints_model_root))
         epoch = 0
         batch = 0
-    return backbone, head, optimizer, epoch, batch, checkpoints_model_root
+    return model, optimizer, epoch, batch, checkpoints_model_root
 
 
 

@@ -1,4 +1,4 @@
-backbone: ghostnet_100
+backbone: resnet50
 batch_size: 256
 bn_eps: null
 bn_momentum: null
@@ -26,7 +26,7 @@ gp: null
 groups_to_modify:
 - male
 - female
-head: CosFace
+head: ArcFace
 input_size: 112
 layer_decay: null
 lr: 0.05
@@ -50,7 +50,7 @@ model_ema_force_cpu: false
 momentum: 0.9
 name: CelebA
 num_workers: 4
-opt: AdamW
+opt: RMSprop
 opt_betas: null
 opt_eps: null
 out_dir: .

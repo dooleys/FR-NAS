@@ -285,32 +285,32 @@ def prepare_data(args):
     # demographic classes is a dict containing classes corresponding to each demographic group
 
     train_transform = transforms.Compose([
-        transforms.Resize([int(128 * args["input_size"] / 112), int(128 * args["input_size"] / 112)]),
-        transforms.RandomCrop([args["input_size"], args["input_size"]]),
+        transforms.Resize([int(128 * args.input_size / 112), int(128 * args.input_size / 112)]),
+        transforms.RandomCrop([args.input_size, args.input_size]),
         transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize(mean=args["mean"],
-                             std=args["std"]),
+        transforms.Normalize(mean=args.mean,
+                             std=args.std),
     ])
     test_transform = transforms.Compose([
-        transforms.Resize([int(128 * args["input_size"] / 112), int(128 * args["input_size"] / 112)]),
-        transforms.CenterCrop([args["input_size"], args["input_size"]]),
+        transforms.Resize([int(128 * args.input_size / 112), int(128 * args.input_size / 112)]),
+        transforms.CenterCrop([args.input_size, args.input_size]),
         transforms.ToTensor(),
-        transforms.Normalize(mean=args["mean"],
-                             std=args["std"])])
+        transforms.Normalize(mean=args.mean,
+                             std=args.std)])
 
     ###################################################################################################################
     # ======= data, loss, network =======#
-    demographic_to_all_classes = load_dict_as_str(args["demographics_file"])
+    demographic_to_all_classes = load_dict_as_str(args.demographics_file)
     all_classes_to_demographic = {cl: dem for dem, classes in demographic_to_all_classes.items() for cl in classes}
 
-    if args["dataset"] == 'InterRace':
+    if args.dataset == 'InterRace':
         num_ref_images_train = 70000
         num_ref_images_test = 9897
-    elif args["dataset"] == 'CelebA':
+    elif args.dataset == 'CelebA':
         num_ref_images_train = 67562
         num_ref_images_test = 7636
-    elif args["dataset"] =='BUPT':
+    elif args.dataset =='BUPT':
         num_ref_images_train = 250000
         num_ref_images_test = 18000
     else:
@@ -322,27 +322,27 @@ def prepare_data(args):
     datasets = {}
     print('PREPARING TRAIN DATASET')
 
-    datasets['train'] = ImageFolderWithProtectedAttributes(args["default_train_root"], transform=train_transform,
+    datasets['train'] = ImageFolderWithProtectedAttributes(args.default_train_root, transform=train_transform,
                                                                  demographic_to_all_classes=demographic_to_all_classes,
                                                                  all_classes_to_demographic = all_classes_to_demographic,
-                                                                 p_identities = args["p_identities"],
-                                                                 p_images = args["p_images"],
-                                                                 min_num = args["min_num_images"],
+                                                                 p_identities = args.p_identities,
+                                                                 p_images = args.p_images,
+                                                                 min_num = args.min_num_images,
                                                                  ref_num_images = num_ref_images_train,
-                                                                 seed = args["seed"]
+                                                                 seed = args.seed
                                                           )
     for k in demographic_to_all_classes.keys():
         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
-    datasets['test'] = ImageFolderWithProtectedAttributes(args["default_test_root"], transform=test_transform,
+    datasets['test'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
                                                                  demographic_to_all_classes=demographic_to_all_classes,
                                                                  all_classes_to_demographic = all_classes_to_demographic,
-                                                                 p_identities = {dem: 1.0 for dem,_ in args["p_identities"].items()},
-                                                                 p_images = {dem: 1.0 for dem,_ in args["p_images"].items()},
-                                                                 min_num = args["min_num_images"],
+                                                                 p_identities = {dem: 1.0 for dem,_ in args.p_identities.items()},
+                                                                 p_images = {dem: 1.0 for dem,_ in args.p_images.items()},
+                                                                 min_num = args.min_num_images,
                                                                  ref_num_images = num_ref_images_test,
-                                                                 seed = args["seed"]
+                                                                 seed = args.seed
                                                          )
 
     for k in demographic_to_all_classes.keys():
@@ -364,11 +364,11 @@ def prepare_data(args):
                                                        sampler=train_sampler, num_workers=args.num_workers,
                                                        drop_last=True)
     '''
-    dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args["batch_size"],
-                                                       shuffle = True, num_workers=args["num_workers"],
+    dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
+                                                       shuffle = True, num_workers=args.num_workers,
                                                        drop_last=True)
 
-    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args["batch_size"], shuffle=False, num_workers=args["num_workers"])
+    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 
     for k in dataloaders.keys():
         print('Len of {} dataloader is {}'.format(k, len(dataloaders[k])))

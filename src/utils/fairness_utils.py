@@ -110,8 +110,8 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
 
             if multilabel_accuracy:
                 features = backbone(inputs)
-                outputs = head(features, labels)
-                loss_value = criterion(outputs, labels)
+                outputs, loss_g= head(features, labels)
+                loss_value = criterion(outputs, labels)+loss_g
 
                 # add sum of losses for female and male images
                 for k in loss.keys():
