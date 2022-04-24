@@ -22,7 +22,7 @@ from utils.utils_train import Network, get_head
 from utils.fairness_utils import evaluate, add_column_to_file
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
-
+from timm.utils.model_ema import ModelEmaV2
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.manual_seed(222)
 torch.cuda.manual_seed_all(222)
@@ -114,12 +114,17 @@ if __name__ == '__main__':
     optimizer = create_optimizer_v2(model, **optimizer_kwargs(cfg=args))
     scheduler, num_epochs = create_scheduler(args, optimizer)
 
-    model, argsimizer, epoch, batch, checkpoints_model_root = load_checkpoint(
-        args, model, optimizer, dataloaders["train"], p_identities,
+    model_ema = None
+    if args.model_ema:
+        # Important to create EMA model after cuda(), DP wrapper, and AMP but before DDP wrapper
+        model_ema = ModelEmaV2(
+            model, decay=args.model_ema_decay, device='cpu' if args.model_ema_force_cpu else None)
+    model, model_ema, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(
+        args, model, model_ema, optimizer, dataloaders["train"], p_identities,
         p_images)
     model = nn.DataParallel(model)
     model = model.to(device)
-    
+    print(model_ema)
     print('Start training')
     with experiment.train():
         while epoch <= args.epochs:
@@ -143,11 +148,12 @@ if __name__ == '__main__':
                 outputs, reg_loss = model(inputs, labels)
                 loss = train_criterion(outputs, labels) + reg_loss
                 loss = loss.mean()
-                argsimizer.zero_grad()
+                optimizer.zero_grad()
                 loss.backward()
-                argsimizer.step()
+                optimizer.step()
                 scheduler.step(epoch + 1, meters["top5"])
-
+                if model_ema is not None:
+                   model_ema.update(model)
                 # measure accuracy and record loss
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
@@ -173,14 +179,22 @@ if __name__ == '__main__':
             loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all = evaluate(
                 dataloaders["test"],
                 train_criterion,
-                backbone,
-                head,
+                model,
                 embedding_size,
                 k_accuracy=k_accuracy,
                 multilabel_accuracy=multilabel_accuracy,
                 demographic_to_labels=demographic_to_labels_test,
                 test=True)
-
+            if model_ema is not None:
+                loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema = evaluate(
+                        dataloaders["test"],
+                        train_criterion,
+                        model_ema.module,
+                        embedding_size,
+                        k_accuracy=k_accuracy,
+                        multilabel_accuracy=multilabel_accuracy,
+                        demographic_to_labels=demographic_to_labels_test,
+                        test=True)
             # save outputs
             # save outputs
             kacc_df, multi_df = None, None
@@ -193,6 +207,7 @@ if __name__ == '__main__':
                                                   list(predicted_all)]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(output_dir,
+                               "default",
                                run_name, 
                                epoch,
                                multi_df = multi_df, 
@@ -213,7 +228,39 @@ if __name__ == '__main__':
                 results['Inter '+k] = (round(inter[k], 3))
 
             print(results)
-            save_output_from_dict(args.out_dir, results, args.file_name)
+            save_output_from_dict(output_dir, results, args.file_name)
+            if model_ema is not None:
+                kacc_df_ema, multi_df_ema = None, None
+                if k_accuracy:
+                   kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                 list(nearest_id_ema)]).T,
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
+                if multilabel_accuracy:
+                   multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                  list(predicted_all_ema)]).T,
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
+                add_column_to_file(output_dir,
+                               "ema",
+                               run_name,
+                               epoch,
+                               multi_df = multi_df_ema,
+                               kacc_df = kacc_df_ema)
+                results_ema = {}
+                results_ema['Model'] = args.backbone
+                results_ema['seed'] = args.seed
+                results_ema['epoch'] = epoch
+                for k in acc_k_ema.keys():
+                   experiment.log_metric("Acc multi Test " + k, acc_k_ema[k], epoch=epoch)
+                   experiment.log_metric("Acc k Test " + k, acc_k_ema[k], epoch=epoch)
+                   experiment.log_metric("Intra Test " + k, intra_ema[k], epoch=epoch)
+                   experiment.log_metric("Inter Test " + k, inter_ema[k], epoch=epoch)
+                   results_ema['Acc multi '+k] = (round(acc_k_ema[k].item()*100, 3))
+                   results_ema['Acc k '+k] = (round(acc_k_ema[k].item()*100, 3))
+                   results_ema['Intra '+k] = (round(intra_ema[k], 3))
+                   results_ema['Inter '+k] = (round(inter_ema[k], 3))
+
+                print(results_ema)
+                save_output_from_dict(output_dir, results_ema, args.file_name_ema)
 
             epoch += 1
 
@@ -232,5 +279,6 @@ if __name__ == '__main__':
                     {
                         'epoch': epoch,
                         'model_state_dict': model.module.state_dict(),
+                        'model_ema_state_dict': model_ema.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict()
                     }, checkpoint_name_to_save)

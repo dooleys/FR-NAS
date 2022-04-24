@@ -22,7 +22,7 @@ def l2_norm(input, axis = 1):
 
 
 
-def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = None):
+def add_column_to_file(path, model_name, experiment_id, epoch, multi_df = None, kacc_df = None):
     
     def _get_filename(path, experiment_id, tag):
         return os.path.join(path, '_'.join([experiment_id, tag])+'.csv')
@@ -41,7 +41,10 @@ def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = No
         return
         
     if multi_df is not None:
-        fn = _get_filename(path, experiment_id, 'multi')
+        if model_name == "default":
+           fn = _get_filename(path, experiment_id, 'multi')
+        if model_name == "ema":
+           fn = _get_filename(path, experiment_id, 'multi_ema')
         print(fn)
         old_df = _load_data(fn)
         if epoch == 0:
@@ -51,7 +54,10 @@ def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = No
             old_df.merge(multi_df).to_csv(fn,index=False)
             
     if kacc_df is not None:
-        fn = _get_filename(path, experiment_id, 'kacc')
+        if model_name == "default":
+           fn = _get_filename(path, experiment_id, 'kacc')
+        if model_name == "ema":
+           fn = _get_filename(path, experiment_id, 'kacc_ema')
         print(fn)
         old_df = _load_data(fn)
         if epoch == 0:
@@ -64,7 +70,7 @@ def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = No
     
 
 
-def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = False, multilabel_accuracy = False,
+def evaluate(dataloader, criterion, model, emb_size,  k_accuracy = False, multilabel_accuracy = False,
              demographic_to_labels = None, test = True):
 
     loss = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
@@ -83,10 +89,10 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
     inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
     angles_intra, angles_inter, correct = 0, 0, 0
 
-    backbone.eval()
-    if multilabel_accuracy:
-        head.eval()
-
+    #backbone.eval()
+    #if multilabel_accuracy:
+    #    head.eval()
+    model.eval()
     # figure out embedding size
     if emb_size is None:
         inputs, _, _ = next(iter(dataloader))
@@ -109,8 +115,7 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
         with torch.no_grad():
 
             if multilabel_accuracy:
-                features = backbone(inputs)
-                outputs, loss_g= head(features, labels)
+                outputs, loss_g= model(inputs, labels)
                 loss_value = criterion(outputs, labels)+loss_g
 
                 # add sum of losses for female and male images
@@ -132,7 +137,10 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
             if k_accuracy:
                 #need to build feature matrix
                 inputs_flipped = torch.flip(inputs, [3])
-                embed = backbone(inputs) + backbone(inputs_flipped)
+                try:
+                   embed = model.module.backbone(inputs) + model.module.backbone(inputs_flipped)
+                except AttributeError:
+                   embed = model.backbone(inputs) + model.backbone(inputs_flipped)
                 features_batch = l2_norm(embed)
                 feature_matrix = torch.cat((feature_matrix, features_batch.detach().cpu()), dim = 0)
 

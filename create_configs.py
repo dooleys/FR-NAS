@@ -83,6 +83,9 @@ if __name__ == "__main__":
     parser.add_argument('--file_name',
                         default='timm_from-scratch.csv',
                         type=str)
+    parser.add_argument('--file_name_ema',
+                        default='timm_from-scratch_ema.csv',
+                        type=str)
     parser.add_argument('--seed', default=222, type=int)
     parser.add_argument('--out_dir', default=".", type=str)
     parser.add_argument('--save_freq', default=1, type=int)

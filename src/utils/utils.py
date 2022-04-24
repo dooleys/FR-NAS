@@ -16,7 +16,7 @@ import os
 import csv
 
 
-def load_checkpoint(opt, model, optimizer, train_loader, p_identities, p_images):
+def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identities, p_images):
 
     # resume from a checkpoint
     name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
@@ -37,6 +37,8 @@ def load_checkpoint(opt, model, optimizer, train_loader, p_identities, p_images)
 
         print("Loading Checkpoint '{}'".format(os.path.join(checkpoints_model_root, last_checkpoint)))
         checkpoint = torch.load(os.path.join(checkpoints_model_root, last_checkpoint))
+        if model_ema is not None:
+           model_ema.load_state_dict(checkpoint['model_ema_state_dict'])
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         epoch = checkpoint['epoch']
@@ -45,7 +47,7 @@ def load_checkpoint(opt, model, optimizer, train_loader, p_identities, p_images)
         print("No Checkpoints Found at '{}'. Please Have a Check or Continue to Train from Scratch".format(checkpoints_model_root))
         epoch = 0
         batch = 0
-    return model, optimizer, epoch, batch, checkpoints_model_root
+    return model, model_ema,optimizer, epoch, batch, checkpoints_model_root
 
 
 
