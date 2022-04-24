@@ -1,7 +1,8 @@
 #!/bin/bash
 export PYTHONPATH=.
 start=$(date +%s.%N)
-python src/fairness_train_timm.py --config_path configs/resnet50/config_resnet50_MagFace_Adam.yaml
+python src/fairness_train_timm.py --config_path configs/efficientnet_b2/config_efficientnet_b2_CosFace_RMSpropTF.yaml
+#python src/fairness_train_timm.py --config_path configs/resnet50/config_resnet50_MagFace_Adam.yaml
 #python3 face.evoLVe.PyTorch/fairness_train_timm.py --backbone_name cait_xs24_384  --input_size 384  --batch_size 64 --seed 222
 #python3 face.evoLVe.PyTorch/fairness_train_timm.py --backbone_name efficientnet_b0  --input_size 112  --batch_size 64 --seed 222
 #python3 face.evoLVe.PyTorch/fairness_train_timm.py --backbone_name swin_large_patch4_window12_384_in22k --input_size 384 --batch_size 4 --seed 222

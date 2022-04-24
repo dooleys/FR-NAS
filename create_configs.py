@@ -96,7 +96,7 @@ if __name__ == "__main__":
     
     # Optimizer parameters
     parser.add_argument('--opt',
-                        default=["Adam", 'AdamW', 'SGD', "RMSprop"],
+                        default=["Adam", 'AdamW', 'SGD', "RMSprop", "RMSpropTF"],
                         type=list)
     parser.add_argument('--opt-eps', default=None, type=float, metavar='EPSILON',
                     help='Optimizer Epsilon (default: None, use opt default)')

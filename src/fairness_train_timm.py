@@ -23,7 +23,8 @@ from utils.fairness_utils import evaluate, add_column_to_file
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
 from timm.utils.model_ema import ModelEmaV2
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#device_ids=range(torch.cuda.device_count())
 torch.manual_seed(222)
 torch.cuda.manual_seed_all(222)
 np.random.seed(222)
@@ -107,6 +108,7 @@ if __name__ == '__main__':
     head = get_head(args)
     train_criterion = FocalLoss(elementwise=True)
     head,backbone= head.to(device), backbone.to(device)
+    backbone = nn.DataParallel(backbone)
     ####################################################################################################################
     # ======= argsimizer =======#
     model = Network(backbone, head)
@@ -122,9 +124,9 @@ if __name__ == '__main__':
     model, model_ema, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(
         args, model, model_ema, optimizer, dataloaders["train"], p_identities,
         p_images)
-    model = nn.DataParallel(model)
+    #model = nn.DataParallel(model)
     model = model.to(device)
-    print(model_ema)
+    #print(model_ema)
     print('Start training')
     with experiment.train():
         while epoch <= args.epochs:
@@ -274,11 +276,18 @@ if __name__ == '__main__':
                     .format(args.head, args.backbone, args.name,
                             str(args.p_identities), str(args.p_images),
                             str(epoch)))
-
-                torch.save(
+                if model_ema is None:
+                  torch.save(
                     {
                         'epoch': epoch,
-                        'model_state_dict': model.module.state_dict(),
+                        'model_state_dict': model.state_dict(),
+                        'optimizer_state_dict': optimizer.state_dict()
+                    }, checkpoint_name_to_save)
+                else:
+                  torch.save(
+                    {
+                        'epoch': epoch,
+                        'model_state_dict': model.state_dict(),
                         'model_ema_state_dict': model_ema.state_dict(),
                         'optimizer_state_dict': optimizer.state_dict()
                     }, checkpoint_name_to_save)
