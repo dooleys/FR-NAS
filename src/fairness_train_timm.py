@@ -216,6 +216,7 @@ if __name__ == '__main__':
                                kacc_df = kacc_df)
             results = {}
             results['Model'] = args.backbone
+            results['config_file'] = args.config_path
             results['seed'] = args.seed
             results['epoch'] = epoch
             for k in acc_k.keys():
@@ -249,6 +250,7 @@ if __name__ == '__main__':
                                kacc_df = kacc_df_ema)
                 results_ema = {}
                 results_ema['Model'] = args.backbone
+                results_ema['config_file'] = args.config_path
                 results_ema['seed'] = args.seed
                 results_ema['epoch'] = epoch
                 for k in acc_k_ema.keys():
