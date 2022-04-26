@@ -9,6 +9,7 @@ def main(args):
     default_main(args)
 
     args.opt = ["Adam", 'AdamW', 'SGD', "RMSprop", "RMSpropTF"]
+    args.head = ['CosFace', 'ArcFace', 'MagFace', 'SphereFace']
     multi_main(args)
 
 
