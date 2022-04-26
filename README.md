@@ -18,7 +18,7 @@
 ## Create list of things to train
 To create the config files from a list of commands, run:
 
- <code> bash ./make_phase1bii.sh > phase1bii.sh</code>
+ <code> bash ./phase1b_samuel.sh</code>
 
 To then create the Phase1b(ii) and Phase1b(iii) training commands, run:
 
