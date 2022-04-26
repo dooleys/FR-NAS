@@ -61,10 +61,10 @@ def add_column_to_file(path, model_name, experiment_id, epoch, multi_df = None, 
         print(fn)
         old_df = _load_data(fn)
         if epoch == 0:
-            multi_df.to_csv(fn,index=False)
+            kacc_df.to_csv(fn,index=False)
         else:
             _check_epoch(old_df, epoch)
-            old_df.merge(multi_df).to_csv(fn,index=False)
+            old_df.merge(kacc_df).to_csv(fn,index=False)
     return
     
     
@@ -81,14 +81,6 @@ def evaluate(dataloader, criterion, model, emb_size,  k_accuracy = False, multil
     inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
     angles_intra, angles_inter, correct = 0, 0, 0
     
-    loss = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    acc = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    count = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    acc_k = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    intra = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
-    angles_intra, angles_inter, correct = 0, 0, 0
-
     #backbone.eval()
     #if multilabel_accuracy:
     #    head.eval()

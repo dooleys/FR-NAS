@@ -252,11 +252,11 @@ if __name__ == '__main__':
                 results_ema['seed'] = args.seed
                 results_ema['epoch'] = epoch
                 for k in acc_k_ema.keys():
-                   experiment.log_metric("Acc multi Test " + k, acc_k_ema[k], epoch=epoch)
+                   experiment.log_metric("Acc multi Test " + k, acc_ema[k], epoch=epoch)
                    experiment.log_metric("Acc k Test " + k, acc_k_ema[k], epoch=epoch)
                    experiment.log_metric("Intra Test " + k, intra_ema[k], epoch=epoch)
                    experiment.log_metric("Inter Test " + k, inter_ema[k], epoch=epoch)
-                   results_ema['Acc multi '+k] = (round(acc_k_ema[k].item()*100, 3))
+                   results_ema['Acc multi '+k] = (round(acc_ema[k].item()*100, 3))
                    results_ema['Acc k '+k] = (round(acc_k_ema[k].item()*100, 3))
                    results_ema['Intra '+k] = (round(intra_ema[k], 3))
                    results_ema['Inter '+k] = (round(inter_ema[k], 3))
