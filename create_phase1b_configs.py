@@ -8,8 +8,8 @@ from create_configs_multi import main as multi_main
 def main(args):
     default_main(args)
 
-    args.opt = ["Adam", 'AdamW', 'SGD', "RMSprop", "RMSpropTF"]
-    args.head = ['CosFace', 'ArcFace', 'MagFace', 'SphereFace']
+    args.opt = ['AdamW', 'SGD']
+    args.head = ['CosFace', 'ArcFace', 'MagFace']
     multi_main(args)
 
 
