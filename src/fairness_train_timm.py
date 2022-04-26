@@ -220,12 +220,12 @@ if __name__ == '__main__':
             results['seed'] = args.seed
             results['epoch'] = epoch
             for k in acc_k.keys():
-                experiment.log_metric("Acc multi Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Acc multi Test " + k, acc[k], epoch=epoch)
                 experiment.log_metric("Acc k Test " + k, acc_k[k], epoch=epoch)
                 experiment.log_metric("Intra Test " + k, intra[k], epoch=epoch)
                 experiment.log_metric("Inter Test " + k, inter[k], epoch=epoch)
 
-                results['Acc multi '+k] = (round(acc_k[k].item()*100, 3))
+                results['Acc multi '+k] = (round(acc[k].item()*100, 3))
                 results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
                 results['Intra '+k] = (round(intra[k], 3))
                 results['Inter '+k] = (round(inter[k], 3))
