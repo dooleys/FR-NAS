@@ -14,3 +14,11 @@
 <code>python src/fairness_train_timm.py --config_path configs/ghostnet_100/config_ghostnet_100_MagFace_Adam.yaml </code>
  
 <code> python src/fairness_train_timm.py --config_path configs/vgg19/config_vgg19_MagFace_SGD.yaml </code> 
+
+## Create list of things to train
+To create the config files from a list of commands, run:
+<code> bash ./make_phase1bii.sh > phase1bii.sh</code>
+
+To then create the Phase1b(ii) and Phase1b(iii) training commands, run:
+<code>bash ./make_phase1bii.sh > phase1bii.sh</code>
+<code>bash ./make_phase1biii.sh > phase1biii.sh</code>

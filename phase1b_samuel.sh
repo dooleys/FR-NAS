@@ -2,8 +2,8 @@ python create_phase1b_configs.py --user_config config_user.yaml --backbone incep
 python create_phase1b_configs.py --user_config config_user.yaml --backbone tnt_s_patch16_224 --batch_size 64 --sched cosine --epochs 300 --opt adamw  --warmup-lr 1e-6 --model-ema --model-ema-decay 0.99996 --warmup-epochs 5 --opt-eps 1e-8 --lr 1e-3 --weight-decay .05 --drop 0 --drop-path .1
 python create_phase1b_configs.py --user_config config_user.yaml --backbone inception_resnet_v2 --batch_size 64 --lr 0.045 --lr-cycle-decay 0.94 --momentum 0.9 --opt RMSProp
 python create_phase1b_configs.py --user_config config_user.yaml --backbone rexnet_200 --batch_size 64 --lr 0.5 --momentum 0.9 --weight-decay 1e-5 --opt SGD
-python create_phase1b_configs.py --user_config config_user.yaml --backbone ig_resnext101_32x16d --batch_size 64 --lr 0.1 --momentum 0.9 --weight-decay 1e-4 --sched step --opt SGD
-python create_phase1b_configs.py --user_config config_user.yaml --backbone resnetrs420 --batch_size 64 --momentum 0.9 --lr 1.6 --opt SGD
+python create_phase1b_configs.py --user_config config_user.yaml --backbone ig_resnext101_32x8d --batch_size 64 --lr 0.1 --momentum 0.9 --weight-decay 1e-4 --sched step --opt SGD
+python create_phase1b_configs.py --user_config config_user.yaml --backbone resnetrs101 --batch_size 64 --momentum 0.9 --lr 1.6 --opt SGD
 python create_phase1b_configs.py --user_config config_user.yaml --backbone selecsls60b --batch_size 64
 python create_phase1b_configs.py --user_config config_user.yaml --backbone Fbnetv3_g --batch_size 64
 python create_phase1b_configs.py --user_config config_user.yaml --backbone legacy_senet154 --batch_size 64 --lr 0.6 --momentum 0.9 --weight-decay 1e-5 --opt SGD
