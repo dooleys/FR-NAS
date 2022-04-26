@@ -8,7 +8,7 @@ import itertools
 
 
 def main(args):
-    folder = f"{args.out_dir}/configs/{args.backbone}/"
+    folder = f"{args.out_dir}/configs_multi/{args.backbone}/"
     os.makedirs(folder, exist_ok=True)
     config = vars(args)
     hp_grid = {}
@@ -16,13 +16,28 @@ def main(args):
         user_config = yaml.load(ymlfile, Loader=yaml.FullLoader)
     for k in user_config.keys():
         config[k]=user_config[k]
-    backbone=config["backbone"]
-    head=config["head"]
-    optimizer=config["opt"]
-    with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml","w") as fh:
-        yaml.dump(config, fh)
-    with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml","r") as ymlfile:
-        cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
+    for x in config.keys():
+        if x == "head" or x == "opt":
+            hp_grid[x] = config[x]
+    for k in hp_grid.keys():
+        del config[k]
+    all_configs = list(itertools.product(*hp_grid.values()))
+    print("Number of configs to create: ", len(all_configs))
+    keys = hp_grid.keys()
+    for c in all_configs:
+        counter = 0
+        for k in keys:
+            config[k] = c[counter]
+            counter = counter + 1
+        backbone = config["backbone"]
+        head = config["head"]
+        optimizer = config["opt"]
+        with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml",
+                  "w") as fh:
+            yaml.dump(config, fh)
+        with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml",
+                  "r") as ymlfile:
+            cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
 
 
 if __name__ == "__main__":
@@ -42,8 +57,8 @@ if __name__ == "__main__":
     parser.add_argument('--pretrained', default=False)
     parser.add_argument(
         '--head',
-        default='CosFace',
-        type=str)
+        default=['CosFace', 'ArcFace', 'MagFace', 'SphereFace'],
+        type=list)
     parser.add_argument('--train_loss', default='Focal', type=str)
     parser.add_argument('--min_num_images', default=3, type=int)
     parser.add_argument('--batch_size', default=64, type=int)
@@ -81,8 +96,8 @@ if __name__ == "__main__":
     
     # Optimizer parameters
     parser.add_argument('--opt',
-                        default="Adam",
-                        type=str)
+                        default=["Adam", 'AdamW', 'SGD', "RMSprop", "RMSpropTF"],
+                        type=list)
     parser.add_argument('--opt-eps', default=None, type=float, metavar='EPSILON',
                     help='Optimizer Epsilon (default: None, use opt default)')
     parser.add_argument('--opt-betas', default=None, type=float, nargs='+', metavar='BETA',
