@@ -136,8 +136,8 @@ if __name__ == "__main__":
                     help='warmup learning rate (default: 0.0001)')
     parser.add_argument('--min-lr', type=float, default=1e-6, metavar='LR',
                     help='lower lr bound for cyclic schedulers that hit 0 (1e-5)')
-    parser.add_argument('--epochs', type=int, default=300, metavar='N',
-                    help='number of epochs to train (default: 300)')
+    parser.add_argument('--epochs', type=int, default=100, metavar='N',
+                    help='number of epochs to train (default: 100)')
     parser.add_argument('--epoch-repeats', type=float, default=0., metavar='N',
                     help='epoch repeat multiplier (number of times to repeat dataset epoch per train epoch).')
     parser.add_argument('--start-epoch', default=None, type=int, metavar='N',
