@@ -1,12 +1,12 @@
 python python src/fairness_train_timm.py --config_path configs/ese_vovnet39b/config_ese_vovnet39b_CosFace_Adam.yaml
-python python src/fairness_train_timm.py --config_path configs/Fbnetv3_g/config_Fbnetv3_g_CosFace_Adam.yaml
+python python src/fairness_train_timm.py --config_path configs/fbnetv3_g/config_fbnetv3_g_CosFace_Adam.yaml
+python python src/fairness_train_timm.py --config_path configs/gluon_inception_v3/config_gluon_inception_v3_CosFace_Adam.yaml
 python python src/fairness_train_timm.py --config_path configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml
 python python src/fairness_train_timm.py --config_path configs/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_SGD.yaml
-python python src/fairness_train_timm.py --config_path configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_Adam.yaml
 python python src/fairness_train_timm.py --config_path configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml
 python python src/fairness_train_timm.py --config_path configs/inception_v4/config_inception_v4_CosFace_RMSProp.yaml
+python python src/fairness_train_timm.py --config_path configs/jx_nest_base/config_jx_nest_base_CosFace_AdamW.yaml
 python python src/fairness_train_timm.py --config_path configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml
-python python src/fairness_train_timm.py --config_path configs/mobilenetjx_nest_basev3_large_100/config_mobilenetjx_nest_basev3_large_100_CosFace_AdamW.yaml
 python python src/fairness_train_timm.py --config_path configs/mobilenetv3_large_100/config_mobilenetv3_large_100_CosFace_RMSpropTF.yaml
 python python src/fairness_train_timm.py --config_path configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml
 python python src/fairness_train_timm.py --config_path configs/resnetrs101/config_resnetrs101_CosFace_SGD.yaml

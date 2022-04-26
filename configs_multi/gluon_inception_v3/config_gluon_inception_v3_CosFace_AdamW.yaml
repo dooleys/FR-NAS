@@ -1,4 +1,4 @@
-backbone: Fbnetv3_g
+backbone: gluon_inception_v3
 batch_size: 64
 bn_eps: null
 bn_momentum: null
@@ -30,7 +30,7 @@ groups_to_modify:
 head: CosFace
 input_size: 112
 layer_decay: null
-lr: 0.05
+lr: 0.4
 lr_cycle_decay: 0.5
 lr_cycle_limit: 1
 lr_cycle_mul: 1.0
@@ -77,6 +77,6 @@ sync_bn: false
 torchscript: false
 train_loss: Focal
 user_config: config_user.yaml
-warmup_epochs: 3
+warmup_epochs: 5
 warmup_lr: 0.0001
 weight_decay: 2.0e-05

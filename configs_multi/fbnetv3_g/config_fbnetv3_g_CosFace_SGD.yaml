@@ -1,4 +1,4 @@
-backbone: Fbnetv3_g
+backbone: fbnetv3_g
 batch_size: 64
 bn_eps: null
 bn_momentum: null
@@ -27,7 +27,7 @@ gp: null
 groups_to_modify:
 - male
 - female
-head: MagFace
+head: CosFace
 input_size: 112
 layer_decay: null
 lr: 0.05

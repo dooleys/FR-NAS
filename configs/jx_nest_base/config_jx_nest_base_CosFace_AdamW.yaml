@@ -1,4 +1,4 @@
-backbone: mobilenetjx_nest_basev3_large_100
+backbone: jx_nest_base
 batch_size: 64
 bn_eps: null
 bn_momentum: null
@@ -27,7 +27,7 @@ gp: null
 groups_to_modify:
 - male
 - female
-head: MagFace
+head: CosFace
 input_size: 112
 layer_decay: null
 lr: 0.00025
@@ -51,7 +51,7 @@ model_ema_force_cpu: false
 momentum: 0.9
 name: CelebA
 num_workers: 4
-opt: SGD
+opt: AdamW
 opt_betas: null
 opt_eps: null
 out_dir: .
