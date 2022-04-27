@@ -64,7 +64,7 @@ p_images:
 patience_epochs: 10
 pretrained: false
 project_name: Phase1B
-save_freq: 1
+save_freq: 20
 sched: cosine
 seed: 222
 split_bn: false
