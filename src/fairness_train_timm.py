@@ -273,10 +273,9 @@ if __name__ == '__main__':
             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
                 checkpoint_name_to_save = os.path.join(
                     args.checkpoints_root,
-                    args.backbone + '_' + args.head,
-                    "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth"
-                    .format(args.head, args.backbone, args.name,
-                            str(args.p_identities), str(args.p_images),
+                    args.backbone + '_' + args.head + '_' + args.opt,
+                    "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
+                    .format(args.head, args.backbone, args.opt, args.name,
                             str(epoch)))
                 if model_ema is None:
                   torch.save(
