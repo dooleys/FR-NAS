@@ -21,7 +21,7 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
     # resume from a checkpoint
     name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
     print(name)
-    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head))
+    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head)+'_' + str(opt.opt))
     if not os.path.exists(checkpoints_model_root):
         os.mkdir(checkpoints_model_root)
 

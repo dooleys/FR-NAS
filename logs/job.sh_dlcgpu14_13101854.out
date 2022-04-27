@@ -1,0 +1,86 @@
+{'backbone': 'cait_xs24_384', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/timm_explore_few_epochs/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'KKiKMVZI9RCYowoKDZDS5Y2km', 'comet_workspace': 'rsukthanker', 'cooldown_epochs': 10, 'dataset': 'CelebA', 'decay_epochs': 30.0, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/', 'demographics_file': 'CelebA/CelebA_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': 0.1, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'MagFace', 'input_size': 384, 'layer_decay': None, 'lr': 0.0005, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'timm_model_metadata.csv', 'min_lr': 1e-05, 'min_num_images': 3, 'model_ema': True, 'model_ema_decay': 0.99996, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'CelebA', 'num_workers': 4, 'opt': 'SGD', 'opt_betas': None, 'opt_eps': 1e-08, 'out_dir': '.', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'from-scratch_no-resampling_adam', 'save_freq': 1, 'sched': 'cosine', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user.yaml', 'warmup_epochs': 5, 'warmup_lr': 1e-06, 'weight_decay': 0.05}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/rsukthanker/from-scratch-no-resampling-adam/8e6ed0ac64d54f609786c6df96e3b089
+
+PREPARING TRAIN DATASET
+Overall # of images for male available is 67562
+# images selected for male is 67562
+Overall # of images for female available is 76524
+# images selected for female is 67562
+Number of idx for male is 3529
+Number of idx for female is 3529
+PREPARING TEST DATASET
+Overall # of images for male available is 7644
+# images selected for male is 7636
+Overall # of images for female available is 8851
+# images selected for female is 7636
+Number of idx for male is 406
+Number of idx for female is 406
+Len of train dataloader is 2111
+Len of test dataloader is 239
+Checkpoint_Head_MagFace_Backbone_cait_xs24_384_Dataset_CelebA_p_idx{'male': 1.0, 'female': 1.0}_p_img{'male': 1.0, 'female': 1.0}_Epoch_
+Found checkpoints for this model: []
+No Checkpoints Found at 'Checkpoints/timm_explore_few_epochs/cait_xs24_384_MagFace'. Please Have a Check or Continue to Train from Scratch
+Start training
+  0%|          | 0/2111 [00:00<?, ?it/s]  0%|          | 0/2111 [00:11<?, ?it/s]
+Traceback (most recent call last):
+  File "/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/src/fairness_train_timm.py", line 150, in <module>
+    outputs, reg_loss = model(inputs, labels)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/src/utils/utils_train.py", line 14, in forward
+    features = self.backbone(inputs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/parallel/data_parallel.py", line 168, in forward
+    outputs = self.parallel_apply(replicas, inputs, kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/parallel/data_parallel.py", line 178, in parallel_apply
+    return parallel_apply(replicas, inputs, kwargs, self.device_ids[:len(replicas)])
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/parallel/parallel_apply.py", line 86, in parallel_apply
+    output.reraise()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/_utils.py", line 457, in reraise
+    raise exception
+RuntimeError: Caught RuntimeError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/parallel/parallel_apply.py", line 61, in _worker
+    output = module(*input, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/timm/models/cait.py", line 302, in forward
+    x = self.forward_features(x)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/timm/models/cait.py", line 291, in forward_features
+    x = blk(x)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/timm/models/cait.py", line 196, in forward
+    x = x + self.drop_path(self.gamma_1 * self.attn(self.norm1(x)))
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1110, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/timm/models/cait.py", line 171, in forward
+    x = (attn @ v).transpose(1, 2).reshape(B, N, C)
+RuntimeError: CUDA out of memory. Tried to allocate 84.00 MiB (GPU 0; 10.76 GiB total capacity; 9.27 GiB already allocated; 78.69 MiB free; 9.64 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+COMET INFO: ---------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.ml/rsukthanker/from-scratch-no-resampling-adam/8e6ed0ac64d54f609786c6df96e3b089
+COMET INFO:   Metrics:
+COMET INFO:     train_curr_epoch : 0
+COMET INFO:   Uploads:
+COMET INFO:     conda-environment-definition : 1
+COMET INFO:     conda-info                   : 1
+COMET INFO:     conda-specification          : 1
+COMET INFO:     environment details          : 1
+COMET INFO:     filename                     : 1
+COMET INFO:     git metadata                 : 1
+COMET INFO:     git-patch (uncompressed)     : 1 (13.87 MB)
+COMET INFO:     installed packages           : 1
+COMET INFO:     os packages                  : 1
+COMET INFO:     source_code                  : 1 (13.48 KB)
+COMET INFO: ---------------------------
+COMET INFO: Uploading metrics, params, and assets to Comet before program termination (may take several seconds)
+COMET INFO: The Python SDK has 3600 seconds to finish before aborting...
+Runtime was 35.740394830703735

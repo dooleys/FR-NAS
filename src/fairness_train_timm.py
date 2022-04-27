@@ -96,6 +96,17 @@ if __name__ == '__main__':
                                  bn_eps=args.bn_eps,
                                  scriptable=args.torchscript,
                                  ).to(device)
+    '''backbone = timm.create_model(args.backbone,
+                                 num_classes=0,
+                                 pretrained=args.pretrained,
+                                 drop_connect_rate=args.drop_connect,
+                                 drop_path_rate=args.drop_path,
+                                 drop_block_rate=args.drop_block,
+                                 global_pool=args.gp,
+                                 bn_momentum=args.bn_momentum,
+                                 bn_eps=args.bn_eps,
+                                 scriptable=args.torchscript,
+                                 ).to(device)'''
     config = timm.data.resolve_data_config({}, model=backbone)
     model_input_size = args.input_size
 
@@ -273,7 +284,7 @@ if __name__ == '__main__':
             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
                 checkpoint_name_to_save = os.path.join(
                     args.checkpoints_root,
-                    args.backbone + '_' + args.head,
+                    args.backbone + '_' + args.head + '_' + args.opt,
                     "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth"
                     .format(args.head, args.backbone, args.name,
                             str(args.p_identities), str(args.p_images),
