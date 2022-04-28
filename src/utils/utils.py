@@ -19,7 +19,7 @@ import csv
 def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identities, p_images):
 
     # resume from a checkpoint
-    name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_Opt_{}_Epoch_".format(opt.head, opt.backbone, opt.name, opt.opt)
+    name = "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_".format(opt.head, opt.backbone, opt.opt, opt.name)
     print(name)
     checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head)+'_' + str(opt.opt))
     if not os.path.exists(checkpoints_model_root):
