@@ -28,7 +28,7 @@ groups_to_modify:
 - male
 - female
 head: CosFace
-input_size: 224
+input_size: 112
 layer_decay: null
 lr: 0.0001
 lr_cycle_decay: 0.5
@@ -63,13 +63,8 @@ p_images:
 - 1.0
 patience_epochs: 10
 pretrained: false
-<<<<<<< HEAD:configs/rexnet_200/config_rexnet_200_CosFace_SGD.yaml
-project_name: Phase1B
-save_freq: 20
-=======
 project_name: from-scratch_no-resampling_adam
 save_freq: 1
->>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd:configs_multi/cspdarknet53/config_cspdarknet53_CosFace_SGD.yaml
 sched: cosine
 seed: 222
 split_bn: false

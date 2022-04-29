@@ -63,15 +63,9 @@ p_images:
 - 1.0
 patience_epochs: 10
 pretrained: false
-<<<<<<< HEAD:configs_multi/vgg19_bn/config_vgg19_bn_MagFace_AdamW.yaml
-project_name: Phase1B
-save_freq: 20
-sched: step
-=======
 project_name: from-scratch_no-resampling_adam
 save_freq: 1
 sched: multistep
->>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd:configs_multi/ghostnet_100/config_ghostnet_100_MagFace_AdamW.yaml
 seed: 222
 split_bn: false
 start_epoch: null

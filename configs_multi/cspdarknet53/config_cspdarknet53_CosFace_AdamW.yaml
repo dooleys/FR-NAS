@@ -63,13 +63,8 @@ p_images:
 - 1.0
 patience_epochs: 10
 pretrained: false
-<<<<<<< HEAD:configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml
-project_name: Phase1B
-save_freq: 20
-=======
 project_name: from-scratch_no-resampling_adam
 save_freq: 1
->>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd:configs_multi/cspdarknet53/config_cspdarknet53_CosFace_AdamW.yaml
 sched: cosine
 seed: 222
 split_bn: false
