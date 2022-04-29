@@ -131,7 +131,6 @@ dmypy.json
 
 # specific
 log/
-Checkpoints/
 data/
 cml-tools/
 .cml_*
@@ -139,4 +138,5 @@ cml-tools/
 .Trash*
 .Rhistory
 DataParallel/
+*.pth
 rhea/
