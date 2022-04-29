@@ -1,0 +1,15 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	0	0.0	12.795	33.581	15.001	0.0	9.324	32.582	13.822
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	1	0.0	30.461	34.701	22.606	0.0	21.857	34.489	20.484
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	2	0.0	53.169	37.045	30.689	0.0	42.391	36.597	27.326
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	3	0.0	69.054	40.186	38.038	0.0	60.097	41.375	35.684
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	4	0.0	76.349	43.356	44.61	0.0	69.028	44.256	42.094
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	5	0.0	79.544	44.241	46.849	0.0	73.625	45.25	44.536
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	6	0.0	82.962	45.012	50.348	0.0	76.742	46.653	48.244
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	7	0.0	84.887	44.77	50.787	0.0	80.081	46.155	48.892
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	8	0.0	82.962	45.787	51.079	0.0	78.222	47.25	49.625
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	9	0.0	86.354	45.82	53.301	0.0	82.386	47.116	51.549
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	10	0.0	86.917	46.149	54.994	0.0	82.91	47.39	52.818
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	11	0.0	86.315	46.715	55.012	0.0	80.317	47.929	52.312
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	12	0.0	88.541	46.279	56.69	0.0	84.848	47.949	54.83
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_SGD.yaml	222	13	0.0	87.493	47.097	56.625	0.0	83.971	48.462	54.892
