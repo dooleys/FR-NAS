@@ -46,3 +46,5 @@ gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_SGD.yaml	222	44	0.0	56.823	54.126	63.788	0.0	46.202	56.301	62.212
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_SGD.yaml	222	45	0.0	54.95	54.582	63.74	0.0	41.828	57.107	61.424
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_SGD.yaml	222	46	0.0	56.063	54.289	63.894	0.0	42.666	56.888	62.088
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_SGD.yaml	222	47	0.0	57.805	53.977	63.661	0.0	43.138	56.841	62.305
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_SGD.yaml	222	48	0.0	57.137	54.106	64.115	0.0	43.203	56.838	62.252

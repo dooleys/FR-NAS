@@ -17,3 +17,4 @@ ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD.yaml	222	15	0.0	78.601	10.867	12.114	0.0	71.726	12.105	12.051
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD.yaml	222	16	0.0	78.326	10.919	12.09	0.0	71.949	11.827	11.945
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD.yaml	222	17	0.0	78.353	10.879	12.061	0.0	72.446	12.117	12.227
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD.yaml	222	18	0.0	79.151	10.834	12.064	0.0	72.734	11.663	11.734

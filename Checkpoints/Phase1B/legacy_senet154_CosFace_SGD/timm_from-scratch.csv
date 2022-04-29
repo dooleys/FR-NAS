@@ -76,3 +76,4 @@ legacy_senet154	configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml	
 legacy_senet154	configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml	222	74	0.0	85.634	52.192	65.883	0.0	79.164	54.939	65.346
 legacy_senet154	configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml	222	75	0.0	85.333	52.17	65.562	0.0	79.387	55.029	65.207
 legacy_senet154	configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml	222	76	0.0	85.686	52.152	65.975	0.0	80.003	54.823	65.083
+legacy_senet154	configs/legacy_senet154/config_legacy_senet154_CosFace_SGD.yaml	222	77	0.0	86.145	52.281	66.046	0.0	79.806	54.94	65.082

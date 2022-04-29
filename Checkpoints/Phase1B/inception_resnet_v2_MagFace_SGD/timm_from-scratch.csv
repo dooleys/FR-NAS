@@ -9,3 +9,5 @@ inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	7	0.0	91.488	39.074	51.974	0.0	88.109	40.208	49.615
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	8	0.0	91.344	39.009	52.38	0.0	88.476	40.345	50.325
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	9	0.0	91.619	39.704	53.744	0.0	89.314	41.17	51.597
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	10	0.0	92.051	39.972	54.535	0.0	89.576	41.492	52.656
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	11	0.0	91.841	41.102	55.59	0.0	88.711	42.921	54.041

@@ -41,3 +41,5 @@ gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_AdamW.yaml	222	39	0.013	68.779	nan	nan	0.0	65.911	nan	nan
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_AdamW.yaml	222	40	0.065	67.706	nan	nan	0.0	64.654	nan	nan
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_AdamW.yaml	222	41	0.039	66.881	nan	nan	0.0	60.856	nan	nan
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_AdamW.yaml	222	42	0.026	69.264	nan	nan	0.0	65.492	nan	nan
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_MagFace_AdamW.yaml	222	43	0.026	65.505	nan	nan	0.0	64.615	nan	nan

@@ -79,3 +79,5 @@ gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_AdamW.yaml	222	77	0.065	45.43	nan	nan	0.0	34.77	nan	nan
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_AdamW.yaml	222	78	0.065	46.936	nan	nan	0.0	36.498	nan	nan
 gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_AdamW.yaml	222	79	0.079	45.521	nan	nan	0.0	35.149	nan	nan
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_AdamW.yaml	222	80	0.039	45.115	nan	nan	0.0	34.743	nan	nan
+gluon_xception65	configs_multi/gluon_xception65/config_gluon_xception65_CosFace_AdamW.yaml	222	81	0.039	43.714	nan	nan	0.0	33.172	nan	nan
