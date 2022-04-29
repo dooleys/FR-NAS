@@ -28,11 +28,7 @@ groups_to_modify:
 - male
 - female
 head: CosFace
-<<<<<<<< HEAD:configs/cait_xs24_384/config_tnt_s_patch16_224_CosFace_AdamW.yaml
-input_size: 224
-========
 input_size: 384
->>>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd:configs/cait_xs24_384/config_cait_xs24_384_CosFace_adamw.yaml
 layer_decay: null
 lr: 0.0005
 lr_cycle_decay: 0.5
@@ -67,13 +63,8 @@ p_images:
 - 1.0
 patience_epochs: 10
 pretrained: false
-<<<<<<<< HEAD:configs/cait_xs24_384/config_tnt_s_patch16_224_CosFace_AdamW.yaml
-project_name: Phase1B
-save_freq: 20
-========
 project_name: from-scratch_no-resampling_adam
 save_freq: 1
->>>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd:configs/cait_xs24_384/config_cait_xs24_384_CosFace_adamw.yaml
 sched: cosine
 seed: 222
 split_bn: false
