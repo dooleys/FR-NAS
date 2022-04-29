@@ -15,3 +15,12 @@ inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	13	0.0	20.561	13.445	7.423	0.0	13.463	13.074	6.116
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	14	0.0	22.263	12.93	7.192	0.0	13.973	13.925	6.816
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	15	0.0	22.931	12.991	7.309	0.0	14.445	13.805	6.57
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	16	0.0	25.026	12.473	7.422	0.0	15.61	14.111	6.873
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	17	0.0	24.502	12.434	7.34	0.0	17.457	13.513	7.099
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	18	0.0	26.008	12.334	7.533	0.0	17.588	13.197	6.919
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	19	0.0	25.891	12.503	7.641	0.0	18.138	13.215	6.918
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	20	0.0	26.283	12.166	7.563	0.0	17.365	13.213	7.001
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	21	0.0	27.043	12.241	7.708	0.0	18.95	13.011	6.996
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	22	0.0	27.475	11.985	7.336	0.0	18.098	13.052	7.0
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	23	0.0	27.043	11.95	7.421	0.0	19.303	12.669	6.878
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	24	0.0	29.02	11.986	7.711	0.0	19.552	12.356	6.794

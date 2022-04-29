@@ -11,3 +11,13 @@ inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	9	0.0	91.619	39.704	53.744	0.0	89.314	41.17	51.597
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	10	0.0	92.051	39.972	54.535	0.0	89.576	41.492	52.656
 inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	11	0.0	91.841	41.102	55.59	0.0	88.711	42.921	54.041
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	12	0.0	91.684	41.021	55.545	0.0	88.777	43.017	54.408
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	13	0.0	91.802	41.415	55.957	0.0	89.13	43.404	54.621
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	14	0.0	91.789	41.562	56.096	0.0	89.34	43.109	54.208
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	15	0.0	92.169	42.177	57.548	0.0	89.144	44.094	56.08
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	16	0.0	18.138	22.773	8.886	0.0	15.191	22.122	8.536
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	17	0.0	90.767	43.335	57.832	0.0	87.886	45.11	56.166
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	18	0.0	91.383	43.955	58.741	0.0	88.188	45.313	56.806
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	19	0.0	91.331	43.97	58.631	0.0	88.07	45.549	57.025
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	20	0.0	91.069	43.922	58.771	0.0	87.926	46.139	57.841
+inception_resnet_v2	configs_multi/inception_resnet_v2/config_inception_resnet_v2_MagFace_SGD.yaml	222	21	0.0	90.375	44.378	58.808	0.0	87.651	46.05	57.336

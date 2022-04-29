@@ -31,3 +31,17 @@ ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	29	0.0	82.766	31.129	35.718	0.0	76.427	30.851	31.928
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	30	0.0	84.062	30.86	36.118	0.0	76.441	30.641	31.756
 ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	31	0.0	83.565	30.489	35.195	0.0	77.37	30.009	30.934
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	32	0.0	84.992	30.19	35.852	0.0	78.117	30.322	31.97
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	33	0.0	85.267	29.696	35.628	0.0	78.549	29.495	31.197
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	34	0.0	85.058	30.086	36.111	0.0	78.3	30.043	31.81
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	35	0.0	84.324	30.578	35.96	0.0	78.405	30.41	32.029
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	36	0.0	83.159	31.496	36.344	0.0	78.195	30.8	32.449
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	37	0.0	84.206	31.108	36.508	0.0	78.562	30.649	32.512
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	38	0.0	85.804	30.637	36.975	0.0	79.322	30.635	33.204
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	39	0.0	85.005	30.809	37.172	0.0	79.439	30.973	33.514
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	40	0.0	85.477	30.475	36.977	0.0	79.819	30.135	32.358
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	41	0.0	85.228	30.328	36.495	0.0	79.361	30.578	32.672
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	42	0.0	85.568	30.724	36.625	0.0	80.461	30.146	32.697
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	43	0.0	86.014	30.26	36.664	0.0	80.238	30.182	32.876
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	44	0.0	85.293	31.224	37.275	0.0	80.526	30.679	33.324
+ig_resnext101_32x8d	configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_CosFace_AdamW.yaml	222	45	0.0	85.817	31.075	37.805	0.0	79.924	31.005	33.796

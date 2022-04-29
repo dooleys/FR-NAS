@@ -1,7 +1,25 @@
 #!/bin/bash
 export PYTHONPATH=.
 start=$(date +%s.%N)
-python src/fairness_train_timm.py --config_path configs/efficientnet_b2/config_efficientnet_b2_CosFace_RMSpropTF.yaml
+#python src/fairness_train_timm.py --config_path configs/cait_xs24_384/config_cait_xs24_384_CosFace_adamw.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cait_xs24_384/config_cait_xs24_384_ArcFace_AdamW.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cait_xs24_384/config_cait_xs24_384_ArcFace_SGD.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cait_xs24_384/config_cait_xs24_384_CosFace_SGD.yaml 
+#python src/fairness_train_timm.py --config_path configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_SGD.yaml
+#python src/fairness_train_timm.py --config_path configs/ghostnet_100/config_ghostnet_100_CosFace_sgd.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_SGD.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/ghostnet_100/config_ghostnet_100_CosFace_AdamW.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/ghostnet_100/config_ghostnet_100_MagFace_AdamW.yaml
+#python src/fairness_train_timm.py --config_path configs_multi/ghostnet_100/config_ghostnet_100_MagFace_SGD.yaml 
+#python src/fairness_train_timm.py --config_path configs/cspdarknet53/config_cspdarknet53_CosFace_adam.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_ArcFace_AdamW.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_ArcFace_SGD.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_CosFace_AdamW.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_CosFace_SGD.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_MagFace_AdamW.yaml started
+#python src/fairness_train_timm.py --config_path configs_multi/cspdarknet53/config_cspdarknet53_MagFace_SGD.yaml started
 #python src/fairness_train_timm.py --config_path configs/resnet50/config_resnet50_MagFace_Adam.yaml
 #python3 face.evoLVe.PyTorch/fairness_train_timm.py --backbone_name cait_xs24_384  --input_size 384  --batch_size 64 --seed 222
 #python3 face.evoLVe.PyTorch/fairness_train_timm.py --backbone_name efficientnet_b0  --input_size 112  --batch_size 64 --seed 222

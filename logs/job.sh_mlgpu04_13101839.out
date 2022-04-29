@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/src/fairness_train_timm.py", line 42, in <module>
+    with open(args.config_path, "r") as ymlfile:
+FileNotFoundError: [Errno 2] No such file or directory: 'configs_muli//cait_xs24_384/config_cait_xs24_384_ArcFace_SGD.yaml'
+Runtime was 3.8882665634155273

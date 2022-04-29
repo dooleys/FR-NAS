@@ -1,0 +1,62 @@
+{'backbone': 'cspdarknet53', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/timm_explore_few_epochs/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'KKiKMVZI9RCYowoKDZDS5Y2km', 'comet_workspace': 'rsukthanker', 'cooldown_epochs': 10, 'dataset': 'CelebA', 'decay_epochs': 100, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/', 'demographics_file': 'CelebA/CelebA_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': None, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'CosFace', 'input_size': 112, 'layer_decay': None, 'lr': 0.0001, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'timm_model_metadata.csv', 'min_lr': 1e-06, 'min_num_images': 3, 'model_ema': False, 'model_ema_decay': 0.9998, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'CelebA', 'num_workers': 4, 'opt': 'SGD', 'opt_betas': None, 'opt_eps': None, 'out_dir': '.', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'from-scratch_no-resampling_adam', 'save_freq': 1, 'sched': 'cosine', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user.yaml', 'warmup_epochs': 3, 'warmup_lr': 0.0001, 'weight_decay': 0.0005}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+COMET INFO: Experiment is live on comet.ml https://www.comet.ml/rsukthanker/from-scratch-no-resampling-adam/89f583a81f01456e8f7d403ddcb098e9
+
+PREPARING TRAIN DATASET
+Overall # of images for male available is 67562
+# images selected for male is 67562
+Overall # of images for female available is 76524
+# images selected for female is 67562
+Number of idx for male is 3529
+Number of idx for female is 3529
+PREPARING TEST DATASET
+Overall # of images for male available is 7644
+# images selected for male is 7636
+Overall # of images for female available is 8851
+# images selected for female is 7636
+Number of idx for male is 406
+Number of idx for female is 406
+Len of train dataloader is 2111
+Len of test dataloader is 239
+Checkpoint_Head_CosFace_Backbone_cspdarknet53_Dataset_CelebA_p_idx{'male': 1.0, 'female': 1.0}_p_img{'male': 1.0, 'female': 1.0}_Epoch_
+Found checkpoints for this model: ["Checkpoint_Head_CosFace_Backbone_cspdarknet53_Dataset_CelebA_p_idx{'male': 1.0, 'female': 1.0}_p_img{'male': 1.0, 'female': 1.0}_Epoch_1.pth", "Checkpoint_Head_CosFace_Backbone_cspdarknet53_Dataset_CelebA_p_idx{'male': 1.0, 'female': 1.0}_p_img{'male': 1.0, 'female': 1.0}_Epoch_2.pth"]
+Loading Checkpoint 'Checkpoints/timm_explore_few_epochs/cspdarknet53_CosFace/Checkpoint_Head_CosFace_Backbone_cspdarknet53_Dataset_CelebA_p_idx{'male': 1.0, 'female': 1.0}_p_img{'male': 1.0, 'female': 1.0}_Epoch_2.pth'
+Start training
+  0%|          | 0/2111 [00:00<?, ?it/s]  0%|          | 0/2111 [00:02<?, ?it/s]
+Traceback (most recent call last):
+  File "/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/src/fairness_train_timm.py", line 166, in <module>
+    optimizer.step()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/optim/optimizer.py", line 88, in wrapper
+    return func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/autograd/grad_mode.py", line 27, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/torch/optim/sgd.py", line 127, in step
+    momentum = group['momentum']
+KeyError: 'momentum'
+COMET INFO: ---------------------------
+COMET INFO: Comet.ml Experiment Summary
+COMET INFO: ---------------------------
+COMET INFO:   Data:
+COMET INFO:     display_summary_level : 1
+COMET INFO:     url                   : https://www.comet.ml/rsukthanker/from-scratch-no-resampling-adam/89f583a81f01456e8f7d403ddcb098e9
+COMET INFO:   Metrics:
+COMET INFO:     train_curr_epoch : 2
+COMET INFO:     train_loss       : 30.169105529785156
+COMET INFO:   Uploads:
+COMET INFO:     conda-environment-definition : 1
+COMET INFO:     conda-info                   : 1
+COMET INFO:     conda-specification          : 1
+COMET INFO:     environment details          : 1
+COMET INFO:     filename                     : 1
+COMET INFO:     git metadata                 : 1
+COMET INFO:     git-patch (uncompressed)     : 1 (13.87 MB)
+COMET INFO:     installed packages           : 1
+COMET INFO:     model graph                  : 1
+COMET INFO:     os packages                  : 1
+COMET INFO:     source_code                  : 1 (14.11 KB)
+COMET INFO: ---------------------------
+COMET INFO: Uploading metrics, params, and assets to Comet before program termination (may take several seconds)
+COMET INFO: The Python SDK has 3600 seconds to finish before aborting...
+COMET INFO: Uploading 1 metrics, params and output messages
+Runtime was 26.192649126052856
