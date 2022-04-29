@@ -131,7 +131,6 @@ dmypy.json
 
 # specific
 log/
-Checkpoints/
 data/
 cml-tools/
 .cml_*
