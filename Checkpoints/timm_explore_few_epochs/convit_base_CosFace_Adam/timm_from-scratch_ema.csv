@@ -1,0 +1,25 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	0	0.0	4.911	34.123	7.145	0.0	5.134	29.196	6.094
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	1	0.0	4.78	34.952	7.259	0.0	5.173	29.925	6.184
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	2	0.0	4.426	34.091	7.036	0.0	5.016	28.86	5.902
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	3	0.0	4.4	32.797	6.619	0.0	4.95	27.457	5.484
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	4	0.0	4.413	30.673	6.026	0.0	4.872	25.256	4.907
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	5	0.0	4.309	27.936	5.322	0.0	4.78	22.543	4.268
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	6	0.0	4.23	24.893	4.627	0.0	4.675	19.61	3.648
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	7	0.0	4.191	21.694	3.901	0.0	4.61	16.735	3.036
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	8	0.0	4.112	18.997	3.275	0.0	4.57	14.437	2.516
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	9	0.0	4.02	16.607	2.662	0.0	4.439	12.643	2.048
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	10	0.0	3.811	15.421	2.169	0.0	4.243	12.104	1.74
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	11	0.0	3.719	17.905	2.033	0.0	3.929	14.656	1.767
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	12	0.0	3.326	24.808	2.157	0.0	3.549	21.366	2.015
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	13	0.0	3.117	38.61	2.838	0.0	3.353	34.863	2.704
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	14	0.0	2.92	50.752	3.445	0.0	2.999	46.679	3.144
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	15	0.0	2.685	57.491	3.684	0.0	2.645	54.721	3.48
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	16	0.0	2.462	57.881	3.38	0.0	3.012	53.828	3.154
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	17	0.0	2.868	42.795	2.204	0.0	3.117	33.495	1.664
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	18	0.0	3.169	27.096	1.442	0.0	3.3	16.867	0.892
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	19	0.0	3.483	15.315	1.027	0.0	3.837	7.71	0.591
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	20	0.0	3.85	7.009	0.617	0.0	4.138	3.779	0.414
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	21	0.0	4.269	2.263	0.344	0.0	4.426	1.798	0.301
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	22	0.0	4.531	1.826	0.315	0.0	5.055	1.573	0.289
+convit_base	configs/convit_base/config_convit_base_CosFace_Adam.yaml	222	23	0.0	5.068	1.692	0.322	0.0	5.33	1.498	0.296

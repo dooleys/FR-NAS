@@ -1,0 +1,23 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	0	0.0	18.085	15.856	0.093	0.0	9.914	nan	0.118
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	1	0.0	0.616	2.637	0.082	0.0	0.445	2.687	0.08
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	2	0.0	1.008	1.289	0.06	0.0	1.1	1.469	0.063
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	3	0.0	3.523	nan	0.0	0.0	0.76	nan	0.001
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	4	0.0	21.556	3.829	0.061	0.0	6.744	nan	0.059
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	5	0.0	11.433	4.685	0.162	0.0	7.753	5.066	0.18
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	6	0.0	0.812	6.319	0.484	0.039	0.917	6.83	0.447
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	7	0.0	2.122	5.69	0.775	0.0	2.135	7.123	1.077
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	8	0.013	4.034	7.307	1.67	0.0	3.104	7.651	1.634
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	9	0.0	7.268	8.65	3.036	0.0	5.657	8.715	2.651
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	10	0.0	10.293	8.544	3.37	0.0	5.919	9.902	3.354
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	11	0.0	14.667	9.229	4.218	0.0	8.958	10.652	4.149
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	12	0.0	18.295	9.396	4.847	0.0	11.996	10.781	4.867
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	13	0.0	23.062	9.74	5.559	0.0	14.497	11.467	5.624
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	14	0.0	28.405	10.081	6.257	0.0	17.535	11.685	6.196
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	15	0.0	33.198	10.195	6.862	0.0	21.163	11.469	6.642
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	16	0.0	36.708	10.167	7.198	0.0	24.515	11.637	7.057
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	17	0.0	42.051	10.172	7.683	0.0	26.192	11.978	7.506
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	18	0.0	44.343	10.238	7.933	0.0	29.649	11.497	7.573
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	19	0.0	47.224	9.996	8.001	0.0	31.653	11.78	7.939
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	20	0.0	49.28	10.191	8.45	0.0	33.84	11.755	8.217
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_MagFace_AdamW.yaml	222	21	0.0	51.27	10.33	8.807	0.0	35.739	11.981	8.615

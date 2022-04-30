@@ -1,0 +1,15 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	0	0.0	1.702	nan	0.137	0.0	0.563	nan	0.146
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	1	0.0	2.75	nan	0.141	0.0	0.917	nan	0.126
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	2	0.0	3.719	6.428	0.258	0.0	1.336	nan	0.252
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	3	0.0	2.043	8.349	1.063	0.0	1.768	8.728	1.088
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	4	0.0	2.776	15.33	3.552	0.0	2.279	14.113	3.143
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	5	0.0	5.422	20.37	7.058	0.0	4.832	18.784	6.207
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	6	0.0	10.005	25.091	10.588	0.0	7.032	22.821	8.861
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	7	0.0	9.193	31.867	13.613	0.0	6.98	32.749	13.073
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	8	0.0	12.389	40.115	20.1	0.0	9.73	38.11	18.204
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	9	0.0	13.869	40.963	21.409	0.0	10.175	42.471	21.038
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	10	0.0	25.956	40.216	27.477	0.0	19.133	43.059	26.845
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	11	0.0	39.51	44.805	36.684	0.0	26.716	47.551	35.297
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	12	0.0	47.355	45.352	39.724	0.0	34.049	47.641	37.159
+tf_efficientnet_b7_ns	configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml	222	13	0.0	50.249	44.689	39.499	0.0	37.166	46.015	35.454

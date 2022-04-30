@@ -1,0 +1,15 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	0	0.0	0.092	nan	0.0	0.0	0.236	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	1	0.0	8.054	nan	0.052	0.0	9.206	nan	0.046
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	2	0.0	6.391	9.546	2.826	0.0	4.99	10.378	2.71
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	3	0.0	13.607	22.703	9.694	0.0	9.455	24.231	8.858
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	4	0.0	0.34	nan	0.0	0.0	0.013	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	5	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	6	0.0	0.262	0.0	0.0	0.0	0.0	0.0	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	7	0.0	0.236	nan	0.0	0.0	0.131	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	8	0.0	0.183	nan	0.0	0.0	0.144	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	9	0.0	0.327	nan	0.0	0.0	0.026	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	10	0.0	0.223	nan	0.0	0.0	0.079	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	11	0.0	0.223	nan	0.0	0.0	0.052	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	12	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+resmlp_big_24_224_in22ft1k	configs/resmlp_big_24_224_in22ft1k/config_resmlp_big_24_224_in22ft1k_CosFace_AdamW.yaml	222	13	0.0	0.196	0.0	0.0	0.0	0.079	0.0	0.0

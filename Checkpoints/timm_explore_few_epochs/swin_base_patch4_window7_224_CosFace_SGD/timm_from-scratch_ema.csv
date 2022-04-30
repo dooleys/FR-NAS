@@ -1,0 +1,13 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	0	0.0	5.016	23.323	3.951	0.0	5.278	19.653	3.44
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	1	0.0	4.924	16.233	2.638	0.0	5.291	13.47	2.276
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	2	0.0	4.924	9.66	1.541	0.0	5.029	7.943	1.328
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	3	0.0	4.832	5.856	0.939	0.0	5.055	4.809	0.809
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	4	0.0	4.806	3.881	0.625	0.0	5.029	3.193	0.539
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	5	0.0	4.767	2.849	0.457	0.0	5.042	2.351	0.395
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	6	0.0	4.636	2.292	0.361	0.0	4.976	1.897	0.314
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	7	0.0	4.623	1.982	0.305	0.0	4.911	1.643	0.266
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	8	0.0	4.505	1.808	0.269	0.0	4.885	1.501	0.235
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	9	0.0	4.518	1.715	0.247	0.0	4.819	1.424	0.216
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	10	0.0	4.531	1.667	0.232	0.0	4.728	1.384	0.203
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_SGD.yaml	222	11	0.0	4.4	1.651	0.221	0.0	4.662	1.371	0.194

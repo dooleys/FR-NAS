@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+cait_xs24_384	configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml	222	0	0.0	0.891	nan	0.0	0.0	0.026	nan	0.0
+cait_xs24_384	configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml	222	1	0.0	10.87	nan	0.005	0.0	1.729	nan	0.004
+cait_xs24_384	configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml	222	2	0.0	20.574	0.301	0.028	0.0	11.97	0.262	0.026
+cait_xs24_384	configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml	222	3	0.0	5.304	0.431	0.055	0.0	5.147	0.382	0.052
+cait_xs24_384	configs_multi/cait_xs24_384/config_cait_xs24_384_MagFace_AdamW.yaml	222	4	0.0	4.125	0.639	0.1	0.0	4.295	0.582	0.099

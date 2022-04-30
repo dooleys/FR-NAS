@@ -1,0 +1,11 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	0	0.0	5.841	0.602	0.042	0.0	4.911	0.655	0.046
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	1	0.0	4.295	nan	0.477	0.0	1.192	nan	0.034
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	2	0.0	3.497	nan	0.142	0.0	0.904	nan	0.222
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	3	0.0	2.043	nan	0.03	0.0	0.406	nan	0.102
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	4	0.0	0.838	nan	0.008	0.0	0.183	nan	0.006
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	5	0.0	0.707	nan	0.105	0.0	0.026	nan	0.031
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	6	0.0	0.38	nan	0.0	0.0	0.0	nan	0.0
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	7	0.0	0.432	nan	0.0	0.0	0.0	nan	0.0
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	8	0.0	0.485	nan	0.0	0.0	0.0	nan	0.0
+jx_nest_base	configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml	222	9	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0

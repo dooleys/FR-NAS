@@ -1,0 +1,13 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	0	0.0	5.828	42.653	8.833	0.0	6.351	37.99	8.051
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	1	0.0	5.946	42.912	8.473	0.0	6.037	38.216	7.719
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	2	0.0	5.88	40.944	7.583	0.0	5.854	36.255	6.886
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	3	0.0	5.788	38.117	6.604	0.0	5.54	33.658	6.031
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	4	0.0	5.618	35.409	5.851	0.0	5.343	31.184	5.354
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	5	0.0	5.448	32.718	5.236	0.0	5.291	28.737	4.8
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	6	0.0	5.291	30.659	4.841	0.0	5.107	26.863	4.419
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	7	0.0	5.12	28.655	4.617	0.0	4.898	25.129	4.203
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	8	0.0	4.911	27.422	4.327	0.0	4.728	24.01	3.934
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	9	0.0	4.754	26.166	4.184	0.0	4.544	22.897	3.807
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	10	0.0	4.793	24.905	3.953	0.0	4.466	21.76	3.608
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_MagFace_SGD.yaml	222	11	0.0	4.662	24.072	3.781	0.0	4.309	21.029	3.445

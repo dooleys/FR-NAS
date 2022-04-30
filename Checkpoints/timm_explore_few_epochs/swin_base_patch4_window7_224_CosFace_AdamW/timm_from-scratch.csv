@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	0	0.0	4.439	1.653	0.216	0.0	4.61	1.392	0.193
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	1	0.0	2.947	3.209	0.206	0.0	3.287	2.789	0.195
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	2	0.0	2.58	8.214	0.512	0.0	2.632	8.826	0.578
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	3	0.0	2.711	13.661	1.383	0.0	2.383	17.387	1.656
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	4	0.0	3.078	18.935	3.386	0.0	2.881	25.992	4.301

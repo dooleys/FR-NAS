@@ -1,0 +1,13 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	0	0.0	4.819	14.343	2.246	0.0	5.134	11.823	1.926
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	1	0.0	4.832	6.053	0.965	0.0	5.055	4.942	0.821
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	2	0.0	4.845	3.227	0.538	0.0	5.055	2.648	0.46
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	3	0.0	4.793	2.164	0.366	0.0	5.042	1.788	0.317
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	4	0.0	4.701	1.694	0.283	0.0	5.042	1.407	0.248
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	5	0.0	4.701	1.487	0.243	0.0	4.924	1.239	0.214
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	6	0.0	4.636	1.389	0.221	0.0	4.95	1.159	0.195
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	7	0.0	4.636	1.34	0.206	0.0	4.924	1.119	0.183
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	8	0.0	4.557	1.304	0.196	0.0	4.832	1.089	0.174
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	9	0.0	4.557	1.294	0.189	0.0	4.872	1.08	0.167
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	10	0.0	4.505	1.297	0.184	0.0	4.819	1.083	0.163
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_SGD.yaml	222	11	0.0	4.466	1.296	0.179	0.0	4.741	1.082	0.159

@@ -1,0 +1,16 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	0	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	1	0.0	0.471	nan	0.0	0.0	0.0	nan	0.0
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	2	0.0	0.812	nan	0.0	0.0	0.026	nan	0.0
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	3	0.0	3.274	nan	0.002	0.0	0.249	nan	0.003
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	4	0.0	8.63	nan	0.006	0.0	2.122	nan	0.007
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	5	0.0	14.196	nan	0.013	0.0	4.505	nan	0.012
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	6	0.0	20.901	0.244	0.027	0.0	8.997	nan	0.024
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	7	0.0	7.452	0.31	0.05	0.0	7.281	0.301	0.047
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	8	0.0	5.199	0.434	0.084	0.0	4.819	0.413	0.081
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	9	0.0	5.54	0.603	0.132	0.0	5.526	0.57	0.126
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	10	0.0	6.129	0.81	0.196	0.0	6.168	0.769	0.187
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	11	0.0	6.718	1.057	0.278	0.0	6.509	1.011	0.267
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	12	0.0	7.687	1.353	0.385	0.0	7.425	1.304	0.369
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	13	0.0	8.447	1.705	0.517	0.0	8.46	1.659	0.496
+xcit_medium_24_p8_224_dist	configs/xcit_medium_24_p8_224_dist/config_xcit_medium_24_p8_224_dist_CosFace_adamw.yaml	222	14	0.0	9.298	2.114	0.68	0.0	8.958	2.069	0.649

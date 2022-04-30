@@ -1,0 +1,13 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	0	0.0	4.597	1.339	0.187	0.0	4.728	1.132	0.168
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	1	0.0	3.156	2.16	0.152	0.0	3.536	1.849	0.142
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	2	0.0	2.92	4.529	0.284	0.0	2.541	4.688	0.309
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	3	0.0	2.672	5.854	0.515	0.0	2.619	7.057	0.573
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	4	0.0	3.064	5.321	0.807	0.0	3.038	6.821	0.976
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	5	0.0	3.719	5.524	1.097	0.0	3.785	6.884	1.241
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	6	0.0	5.644	4.729	1.197	0.0	5.173	5.401	1.315
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	7	0.0	7.517	4.317	1.278	0.0	6.915	4.311	1.234
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	8	0.0	8.525	3.766	1.258	0.0	7.556	3.496	1.101
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	9	0.0	10.267	2.624	0.902	0.0	8.774	2.757	0.903
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	10	0.0	11.616	1.631	0.594	0.0	9.259	1.633	0.549
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW.yaml	222	11	0.0	10.595	1.011	0.303	0.0	7.818	1.389	0.4
