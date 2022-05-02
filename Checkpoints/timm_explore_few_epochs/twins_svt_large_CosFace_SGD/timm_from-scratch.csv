@@ -92,3 +92,11 @@ twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	90	0.0	76.414	52.555	59.867	0.0	63.764	55.594	57.654
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	91	0.0	76.637	52.562	60.04	0.0	64.523	55.665	58.163
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	92	0.0	76.624	52.545	59.936	0.0	63.973	55.788	58.222
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	93	0.0	76.585	52.587	60.161	0.0	64.117	55.722	58.204
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	94	0.0	76.768	52.589	60.133	0.0	64.353	55.465	57.531
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	95	0.0	76.768	52.793	60.789	0.0	64.288	55.942	58.881
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	96	0.0	77.069	52.693	60.432	0.0	64.772	55.913	58.873
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	97	0.0	77.069	52.636	60.528	0.0	64.497	55.887	58.776
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	98	0.0	77.161	52.501	60.134	0.0	64.497	55.667	58.178
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	99	0.0	77.488	52.781	60.834	0.0	64.864	55.902	58.756
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_CosFace_SGD.yaml	222	100	0.0	77.279	52.726	60.675	0.0	64.785	55.927	58.843

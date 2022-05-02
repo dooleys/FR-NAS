@@ -94,3 +94,9 @@ twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	92	0.039	25.707	13.618	7.458	0.0	20.705	13.924	6.898
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	93	0.039	25.917	13.652	7.497	0.0	20.665	13.963	6.932
 twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	94	0.039	26.087	13.685	7.535	0.0	20.665	14.001	6.965
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	95	0.039	26.349	13.714	7.57	0.0	20.822	14.036	6.997
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	96	0.039	26.506	13.741	7.603	0.0	20.809	14.069	7.028
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	97	0.026	26.65	13.766	7.634	0.0	20.953	14.1	7.059
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	98	0.026	26.729	13.793	7.666	0.0	21.15	14.131	7.088
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	99	0.026	26.794	13.817	7.695	0.0	21.386	14.161	7.118
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	100	0.026	26.873	13.84	7.723	0.0	21.49	14.191	7.146
