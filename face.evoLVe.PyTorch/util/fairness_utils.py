@@ -2,6 +2,8 @@ import torch
 from tqdm import tqdm
 import numpy as np
 import random
+import os
+import pandas as pd
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 torch.manual_seed(222)
@@ -20,6 +22,48 @@ def l2_norm(input, axis = 1):
 
 
 
+def add_column_to_file(path, experiment_id, epoch, multi_df = None, kacc_df = None):
+    
+    def _get_filename(path, experiment_id, tag):
+        return os.path.join(path, '_'.join([experiment_id, tag])+'.csv')
+    
+    def _load_data(path):
+        data = None
+        if os.path.exists(path):
+            data = pd.read_csv(path)
+        return data
+    
+    def _check_epoch(df, epoch):
+        # if this epoch shows up as a column name in the dataframe
+        # throw an error
+        columns = list(df.columns)
+        assert 'epoch_'+str(epoch) not in columns
+        return
+        
+    if multi_df is not None:
+        fn = _get_filename(path, experiment_id, 'multi')
+        print(fn)
+        old_df = _load_data(fn)
+        if epoch == 0:
+            multi_df.to_csv(fn,index=False)
+        else:
+            _check_epoch(old_df, epoch)
+            old_df.merge(multi_df).to_csv(fn,index=False)
+            
+    if kacc_df is not None:
+        fn = _get_filename(path, experiment_id, 'kacc')
+        print(fn)
+        old_df = _load_data(fn)
+        if epoch == 0:
+            kacc_df.to_csv(fn,index=False)
+        else:
+            _check_epoch(old_df, epoch)
+            old_df.merge(kacc_df).to_csv(fn,index=False)
+    return
+    
+    
+
+
 def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = False, multilabel_accuracy = False,
              demographic_to_labels = None, test = True):
 
@@ -30,25 +74,29 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
     intra = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
     inter = {k:torch.tensor(0.0) for k in demographic_to_labels.keys()}
     angles_intra, angles_inter, correct = 0, 0, 0
-
+    
     backbone.eval()
     if multilabel_accuracy:
         head.eval()
-        
+
     # figure out embedding size
     if emb_size is None:
         inputs, _, _ = next(iter(dataloader))
         x = torch.randn(inputs.shape).to(device)
         emb_size = backbone(x).shape[1]
-    
+
 
     feature_matrix = torch.empty(0, emb_size)
     labels_all = []
+    indices_all = []
     demographic_all = []
+    predicted_all = []
 
-    for inputs, labels, sens_attr in tqdm(iter(dataloader)):
+    for inputs, labels, sens_attr, indices in tqdm(iter(dataloader)):
         inputs = inputs.to(device)
         labels = labels.to(device).long()
+        labels_all = labels_all + labels.cpu().tolist()
+        indices_all = indices_all + indices.cpu().tolist()
         sens_attr = np.array(sens_attr)
         with torch.no_grad():
 
@@ -63,6 +111,10 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
 
                 # multiclass accuracy
                 _, predicted = outputs.max(1)
+                predicted_all = predicted_all + predicted.cpu().tolist()
+
+
+
                 for k in acc.keys():
                     acc[k] +=  predicted[sens_attr == k].eq(labels[sens_attr == k]).sum().cpu().item()
 
@@ -76,7 +128,6 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
                 features_batch = l2_norm(embed)
                 feature_matrix = torch.cat((feature_matrix, features_batch.detach().cpu()), dim = 0)
 
-                labels_all = labels_all + labels.cpu().tolist()
                 demographic_all = demographic_all + sens_attr.tolist()
 
 
@@ -87,7 +138,7 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
 
     if k_accuracy and test:
         intra, inter, angles_intra, angles_inter, class_centers = intra_inter_variance(feature_matrix, torch.tensor(labels_all), demographic_to_labels)
-        acc_k, correct = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, feature_matrix, torch.tensor(labels_all), np.array(demographic_all))
+        acc_k, correct, nearest_id = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, feature_matrix, torch.tensor(labels_all), np.array(demographic_all))
 
     if k_accuracy and not test:
         m_labels = np.random.choice(demographic_to_labels['male'], 30)
@@ -100,10 +151,10 @@ def evaluate(dataloader, criterion, backbone, head, emb_size,  k_accuracy = Fals
         test_demographic = np.take(np.array(demographic_all), m_idx).tolist() +  np.take(np.array(demographic_all), f_idx).tolist()
 
         intra, inter, angles_intra, angles_inter, class_centers = intra_inter_variance(feature_matrix, torch.tensor(labels_all), demographic_to_labels)
-        acc_k, correct = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, test_features, torch.tensor(test_labels), np.array(test_demographic))
+        acc_k, correct, nearest_id = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, test_features, torch.tensor(test_labels), np.array(test_demographic))
 
         
-    return loss, acc, acc_k, intra, inter, angles_intra, angles_inter, correct, labels_all, demographic_all
+    return loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all
 
 
 
@@ -112,6 +163,7 @@ def l2_dist(feature_matrix, test_features):
     ''' computing distance matrix '''
     return torch.cdist(test_features, feature_matrix)
 
+#acc_k, correct, nearest_id = predictions(feature_matrix, torch.tensor(labels_all), demographic_to_labels, feature_matrix, torch.tensor(labels_all), np.array(demographic_all))
 
 def predictions(feature_matrix, labels, demographic_to_labels, test_features, test_labels, test_demographic):
     dist_matrix =  l2_dist(feature_matrix, test_features)
@@ -119,16 +171,18 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
     nearest_neighbors = torch.topk(dist_matrix, dim=1, k = 2, largest = False)[1][:,1]
     n_images = dist_matrix.shape[0]
     correct = torch.zeros(test_labels.shape)
+    nearest_id = torch.zeros(test_labels.shape)
 
     for img in range(n_images):
         nearest_label = labels[nearest_neighbors[img]].item()
+        nearest_id[img] = nearest_label
         label_img = test_labels[img].item()
         if label_img == nearest_label:
             correct[img] = 1
     for k in acc_k.keys():
         acc_k[k] = (correct[test_demographic == k]).mean()
 
-    return acc_k, correct
+    return acc_k, correct, nearest_id
 
 
 def intra_inter_variance(feature_matrix, labels, demographic_to_labels):

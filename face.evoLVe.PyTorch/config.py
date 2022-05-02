@@ -34,3 +34,30 @@ configurations = {
         NUM_WORKERS = 0,
 ),
 }
+
+user_configs = {
+    1: dict(
+        default_test_root = '/cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/test/',
+        default_train_root = '/cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/train/',
+        demographics_file = '/cmlscratch/sdooley1/data/CelebA/CelebA_demographics.txt',
+        metadata_file = '/cmlscratch/sdooley1/timm_model_metadata.csv',
+        checkpoints_root = '/cmlscratch/sdooley1/rhea/FR-NAS/Checkpoints/timm_explore_few_epochs/',
+        comet_api_key = 'D1J58R7hYXPZzqZhrTIOe6GGQ',
+        comet_workspace = 'samueld',
+        output_dir = '/cmlscratch/sdooley1/rhea/FR-NAS/results_nooversampling/'
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

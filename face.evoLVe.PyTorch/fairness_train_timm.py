@@ -1,6 +1,8 @@
+from pathlib import Path
 from comet_ml import Experiment
 import argparse
 from tqdm import tqdm
+from config import user_configs
 import os
 import torch
 import torch.nn as nn
@@ -10,7 +12,7 @@ from head.metrics import CosFace
 from loss.focal import FocalLoss
 from util.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoint, \
     schedule_lr, AverageMeter, accuracy
-from util.fairness_utils import evaluate
+from util.fairness_utils import evaluate, add_column_to_file
 from util.data_utils_balanced import prepare_data
 import numpy as np
 import pandas as pd
@@ -26,8 +28,10 @@ random.seed(222)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-default_test_root = '/cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/test/'
-default_train_root = '/cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/train/'
+user_cfg = user_configs[1]
+
+default_test_root = user_cfg['default_test_root']
+default_train_root = user_cfg['default_train_root']
 
 
 if __name__ == '__main__':
@@ -36,12 +40,12 @@ if __name__ == '__main__':
 
     parser.add_argument('--data_test_root', default=default_test_root)
     parser.add_argument('--data_train_root', default=default_train_root)
-    parser.add_argument('--demographics', default= '/cmlscratch/sdooley1/data/CelebA/CelebA_demographics.txt')
+    parser.add_argument('--demographics', default= user_cfg['demographics_file'])
     parser.add_argument('--backbone_name', default='resnet50')
     parser.add_argument('--pretrained', default=False)
     parser.add_argument('--project_name', default="from-scratch_no-resampling_adam")
 
-    parser.add_argument('--checkpoints_root', default='/cmlscratch/sdooley1/FR-NAS/Checkpoints/timm_explore_few_epochs/')
+    parser.add_argument('--checkpoints_root', default=user_cfg['checkpoints_root'])
     parser.add_argument('--head_name', default='CosFace')
     parser.add_argument('--train_loss', default='Focal', type=str)
 
@@ -70,8 +74,8 @@ if __name__ == '__main__':
 
 
     args = parser.parse_args()
-    if not os.path.isdir(os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name)):
-        os.mkdir(os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name))
+    checkpoint_directory = os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name)
+    Path(checkpoint_directory).mkdir(parents=True, exist_ok=True)
 
 
 
@@ -89,12 +93,12 @@ if __name__ == '__main__':
     # ======= data, model and test data =======#
 
     experiment = Experiment(
-        api_key="D1J58R7hYXPZzqZhrTIOe6GGQ",
+        api_key=user_cfg['comet_api_key'],
         project_name=args.project_name,
-        workspace="samueld",
+        workspace=user_cfg['comet_workspace'],
     )
     experiment.add_tag(args.backbone_name)
-
+    
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(args)
 
 
@@ -107,12 +111,12 @@ if __name__ == '__main__':
     model_input_size = config['input_size']
     
     # get model's embedding size
-    meta = pd.read_csv('/cmlscratch/sdooley1/timm_model_metadata.csv')
+    meta = pd.read_csv(user_cfg['metadata_file'])
     embedding_size = int(meta[meta['model_name'] == args.backbone_name].feature_dim)
 
 
     
-    head = CosFace(in_features=embedding_size, out_features=num_class, device_id=args.gpu_id)
+    head = CosFace(in_features=embedding_size, out_features=num_class, device_id=range(torch.cuda.device_count()))
     train_criterion = FocalLoss(elementwise=True)
 
     ####################################################################################################################
@@ -124,45 +128,18 @@ if __name__ == '__main__':
                                {'params': backbone_paras_only_bn}], lr=args.lr)
     scheduler = torch.optim.lr_scheduler.LinearLR(optimizer, total_iters=100)
 
+    backbone, head = backbone.to(device), head.to(device)
+    backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
     backbone = nn.DataParallel(backbone)
-    #head = nn.DataParallel(head)
     backbone, head = backbone.to(device), head.to(device)
 
-    backbone, head, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(args, backbone, head, optimizer, dataloaders['train'], p_identities, p_images)
 
-    ####################################################################################################################################
-    # ======= train & validation & save checkpoint =======#
-#     num_epoch_warm_up = args.num_epoch // 25  # use the first 1/25 epochs to warm up
-#     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up  # use the first 1/25 epochs to warm up
-
-    
-#     _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size, k_accuracy = True, multilabel_accuracy = True, demographic_to_labels = demographic_to_labels_test, test = True)
-
-#     results = {}
-#     results['Model'] = args.backbone_name
-#     results['seed'] = args.seed
-#     results['epoch'] = -1
-#     for k in acc_k_test.keys():
-# #                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-# #                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-#         experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=-1)
-#         experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=-1)
-#         experiment.log_metric("Intra Test " + k, intra_test[k], epoch=-1)
-#         experiment.log_metric("Inter Test " + k, inter_test[k], epoch=-1)
-
-#         results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-#         results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-#         results['Intra '+k] = (round(intra_test[k], 3))
-#         results['Inter '+k] = (round(inter_test[k], 3))
-
-#     print(results)
-#     save_output_from_dict('results_nooversampling', results, args.file_name)
- ####################################################################################################################################
+    ####################################################################################################################
     # ======= training =======#
 
     print('Start training')
     with experiment.train():
-        while epoch < args.num_epoch:
+        while epoch <= args.num_epoch:
 
             experiment.log_current_epoch(epoch)
             backbone.train()  # set to training mode
@@ -171,13 +148,7 @@ if __name__ == '__main__':
             meters['loss'] = AverageMeter()
             meters['top5'] = AverageMeter()
 
-#             if epoch in args.stages:  # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
-#                 schedule_lr(optimizer)
-
-            for inputs, labels, sens_attr in tqdm(iter(dataloaders['train'])):
-
-#                 if batch + 1 <= num_batch_warm_up:  # adjust LR for each training batch during warm up
-#                     warm_up_lr(batch + 1, num_batch_warm_up, args.lr, optimizer)
+            for inputs, labels, sens_attr, _ in tqdm(iter(dataloaders['train'])):
 
                 inputs, labels = inputs.to(device), labels.to(device).long()
                 features = backbone(inputs)
@@ -202,43 +173,53 @@ if __name__ == '__main__':
             experiment.log_metric("Training Acc5", meters['top5'].avg, step=epoch)
 
 
-            '''For train data compute only multilabel accuracy'''
-#             loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders['train'], train_criterion, backbone,head, embedding_size,
-#                                                 k_accuracy = False, multilabel_accuracy = True,
-#                                                 demographic_to_labels = demographic_to_labels_train, test = False)
-
-            '''For test data compute only k-neighbors accuracy'''
-            _, acc_test, acc_k_test, intra_test, inter_test, _,_,_,_,_ = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
-                                       k_accuracy = True, multilabel_accuracy = True,
+            '''For test data compute k-neighbors accuracy and multi-accuracy'''
+            k_accuracy = True
+            multilabel_accuracy = True
+            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all = evaluate(dataloaders['test'], train_criterion, backbone, head, embedding_size,
+                                       k_accuracy = k_accuracy, multilabel_accuracy = multilabel_accuracy,
                                        demographic_to_labels = demographic_to_labels_test, test = True)
+            
+            # save outputs
+            kacc_df, multi_df = None, None
+            if k_accuracy:
+                kacc_df = pd.DataFrame(np.array([list(indices_all),
+                                                 list(nearest_id)]).T, 
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
+            if multilabel_accuracy:
+                multi_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(predicted_all)]).T,
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
+            add_column_to_file(checkpoint_directory,
+                               '', epoch, 
+                               multi_df = multi_df, kacc_df = kacc_df)
+
 
             results = {}
             results['Model'] = args.backbone_name
             results['seed'] = args.seed
             results['epoch'] = epoch
-            for k in acc_k_test.keys():
-#                 experiment.log_metric("Loss Train " + k, loss_train[k], step=epoch)
-#                 experiment.log_metric("Acc Train " + k, acc_train[k], step=epoch)
-                experiment.log_metric("Acc multi Test " + k, acc_test[k], epoch=epoch)
-                experiment.log_metric("Acc k Test " + k, acc_k_test[k], epoch=epoch)
-                experiment.log_metric("Intra Test " + k, intra_test[k], epoch=epoch)
-                experiment.log_metric("Inter Test " + k, inter_test[k], epoch=epoch)
+            for k in acc_k.keys():
+                experiment.log_metric("Acc multi Test " + k, acc[k], epoch=epoch)
+                experiment.log_metric("Acc k Test " + k, acc_k[k], epoch=epoch)
+                experiment.log_metric("Intra Test " + k, intra[k], epoch=epoch)
+                experiment.log_metric("Inter Test " + k, inter[k], epoch=epoch)
 
-                results['Acc multi '+k] = (round(acc_test[k].item()*100, 3))
-                results['Acc k '+k] = (round(acc_k_test[k].item()*100, 3))
-                results['Intra '+k] = (round(intra_test[k], 3))
-                results['Inter '+k] = (round(inter_test[k], 3))
+                results['Acc multi '+k] = (round(acc[k].item()*100, 3))
+                results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
+                results['Intra '+k] = (round(intra[k], 3))
+                results['Inter '+k] = (round(inter[k], 3))
 
             print(results)
-            save_output_from_dict('results_nooversampling', results, args.file_name)
+            save_output_from_dict(user_cfg['output_dir'], results, args.file_name)
 
 
             epoch += 1
 
             # save checkpoints per epoch
 
-            if (epoch == args.num_epoch):
-                checkpoint_name_to_save = os.path.join(args.checkpoints_root, args.backbone_name + '_' + args.head_name,
+            if (epoch == args.num_epoch) or (epoch % 1 == 0):
+                checkpoint_name_to_save = os.path.join(checkpoint_directory,
                             "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth".
                             format(args.head_name, args.backbone_name, args.name, str(args.p_identities), str(args.p_images), str(epoch)))
 
