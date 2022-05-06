@@ -1,0 +1,3 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+selecsls60b	configs_multi/selecsls60b/config_selecsls60b_MagFace_AdamW.yaml	222	0	0.0	5.238	12.519	3.211	0.0	3.772	12.96	3.048
+selecsls60b	configs_multi/selecsls60b/config_selecsls60b_MagFace_AdamW.yaml	222	1	0.0	16.54	15.434	7.365	0.0	11.812	16.898	7.134
