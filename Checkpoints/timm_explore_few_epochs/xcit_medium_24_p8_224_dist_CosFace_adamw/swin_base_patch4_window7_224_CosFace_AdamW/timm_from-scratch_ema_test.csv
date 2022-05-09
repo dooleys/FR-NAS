@@ -1,0 +1,26 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	0	0.0	4.832	10.677	1.663	0.0	5.081	8.865	1.446
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	1	0.0	4.322	4.351	0.553	0.0	4.597	3.631	0.487
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	2	0.0	3.287	4.653	0.379	0.0	3.667	4.031	0.356
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	3	0.0	3.064	7.315	0.511	0.0	3.104	6.935	0.518
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	4	0.0	2.803	10.626	0.975	0.0	3.012	11.436	1.074
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	5	0.0	3.025	15.213	2.1	0.0	2.973	17.867	2.26
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	6	0.0	4.374	19.523	3.726	0.0	3.929	23.689	4.103
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	7	0.0	5.723	22.625	5.669	0.0	5.107	26.839	6.262
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	8	0.0	7.884	24.668	7.796	0.0	6.771	28.295	8.378
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	9	0.0	10.765	26.091	9.983	0.0	8.944	29.343	10.705
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	10	0.0	13.174	27.143	12.276	0.0	11.38	30.11	12.729
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	11	0.0	15.741	27.849	14.396	0.0	13.659	30.58	14.479
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	12	0.0	18.871	28.372	16.212	0.0	15.754	30.907	15.993
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	13	0.0	22.944	28.851	17.947	0.0	17.837	31.194	17.424
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	14	0.0	26.86	29.343	19.655	0.0	19.997	31.555	18.781
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	15	0.0	31.063	29.824	21.382	0.0	22.197	31.924	20.024
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	16	0.0	35.555	30.349	23.11	0.0	24.646	32.361	21.313
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	17	0.0	39.615	30.902	24.791	0.0	27.58	32.846	22.674
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	18	0.0	43.112	31.475	26.38	0.0	30.88	33.392	24.075
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	19	0.0	46.241	32.112	27.959	0.0	33.591	33.946	25.452
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	20	0.0	50.262	32.796	29.508	0.0	36.38	34.544	26.825
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	21	0.0	53.523	33.458	31.016	0.0	38.528	35.169	28.213
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	22	0.0	56.037	34.127	32.541	0.0	41.029	35.803	29.563
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	23	0.0	58.827	34.755	33.973	0.0	43.256	36.424	30.848
+swin_base_patch4_window7_224	configs_multi/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW.yaml	222	24	0.0	61.21	35.371	35.386	0.0	45.744	36.995	32.037
