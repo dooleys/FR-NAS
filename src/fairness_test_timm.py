@@ -127,14 +127,13 @@ if __name__ == '__main__':
         model_ema = ModelEmaV2(
             model, decay=args.model_ema_decay, device='cpu' if args.model_ema_force_cpu else None)
     ckpts = load_checkpoints_all(args,args.p_identities,args.p_images)
+    ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('.')[0]))
     #model = nn.DataParallel(model)
     model = model.to(device)
     checkpoints_model_root = os.path.join(args.checkpoints_root, str(args.backbone) + '_' + str(args.head)+'_' + str(args.opt))
     epoch_numbers = []
-    sort = sorted(ckpts)[2:] + sorted(ckpts)[:2]
-    print(sort)
 
-    for ckpt in sort:
+    for ckpt in ckpts:
             checkpoint = torch.load(os.path.join(checkpoints_model_root, ckpt))
             epoch = checkpoint['epoch']-1
             if model_ema is not None:
@@ -165,7 +164,7 @@ if __name__ == '__main__':
                         test=True, rank=comp_rank)
             # save outputs
             # save outputs
-            kacc_df, multi_df, rank_df = None, None, None
+            kacc_df, multi_df, rank_by_image_df, rank_by_id_df = None, None, None, None
             if k_accuracy:
                 kacc_df = pd.DataFrame(np.array([list(indices_all),
                                                  list(nearest_id)]).T,
@@ -175,8 +174,11 @@ if __name__ == '__main__':
                                                   list(predicted_all)]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
             if comp_rank:
-                rank_df = pd.DataFrame(np.array([list(indices_all),
-                                                  list(rank)]).T,
+                rank_by_image_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(rank[:,0])]).T,
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
+                rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(rank[:,1])]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(output_dir,
                                "val",
@@ -184,12 +186,16 @@ if __name__ == '__main__':
                                epoch,
                                multi_df = multi_df, 
                                kacc_df = kacc_df, 
-                               rank_df = rank_df)
+                               rank_by_image_df = rank_by_image_df,
+                               rank_by_id_df = rank_by_id_df)
             if model_ema is not None:
-                kacc_df_ema, multi_df_ema, rank_df_ema = None, None, None
+                kacc_df_ema, multi_df_ema, rank_by_image_df_ema, rank_by_id_df_ema = None, None, None, None
                 if comp_rank:
-                    rank_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                                 list(rank)]).T,
+                    rank_by_image_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                 list(rank[:,0])]).T,
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
+                    rank_by_id_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                 list(rank[:,1])]).T,
                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
                 if k_accuracy:
                     kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
@@ -205,4 +211,5 @@ if __name__ == '__main__':
                                epoch,
                                multi_df = multi_df_ema,
                                kacc_df = kacc_df_ema,
-                               rank_df = rank_df_ema)
+                               rank_by_image_df = rank_by_image_df_ema,
+                               rank_by_id_df = rank_by_id_df_ema)

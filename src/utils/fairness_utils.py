@@ -21,9 +21,7 @@ def l2_norm(input, axis = 1):
     return output
 
 
-
-def add_column_to_file(path, suffix, experiment_id, epoch, multi_df = None, kacc_df = None, rank_df = None):
-    
+def _add_column_to_file(path, suffix, experiment_id, epoch, df):
     def _get_filename(path, suffix, tag):
         return os.path.join(path, '_'.join([suffix, tag])+'.csv')
     
@@ -39,35 +37,32 @@ def add_column_to_file(path, suffix, experiment_id, epoch, multi_df = None, kacc
         columns = list(df.columns)
         assert 'epoch_'+str(epoch) not in columns
         return
-        
+    
+    fn = _get_filename(path, experiment_id, suffix)
+    print(fn)
+    old_df = _load_data(fn)
+    if old_df is None:
+        df.to_csv(fn,index=False)
+    else:
+        _check_epoch(old_df, epoch)
+        old_df.merge(df).to_csv(fn,index=False)
+
+
+def add_column_to_file(path, suffix, experiment_id, epoch, multi_df = None, kacc_df = None, 
+                       rank_by_image_df = None, rank_by_id_df = None):
+    
     if multi_df is not None:
-        fn = _get_filename(path, experiment_id, 'multi_'+suffix)
-        print(fn)
-        old_df = _load_data(fn)
-        if old_df is None:
-            multi_df.to_csv(fn,index=False)
-        else:
-            _check_epoch(old_df, epoch)
-            old_df.merge(multi_df).to_csv(fn,index=False)
+        _add_column_to_file(path, 'multi_'+suffix, experiment_id, epoch, multi_df)
             
     if kacc_df is not None:
-        fn = _get_filename(path, experiment_id, 'kacc_'+suffix)
-        print(fn)
-        old_df = _load_data(fn)
-        if old_df is None:
-            kacc_df.to_csv(fn,index=False)
-        else:
-            _check_epoch(old_df, epoch)
-            old_df.merge(kacc_df).to_csv(fn,index=False)
-    if rank_df is not None:
-        fn = _get_filename(path, experiment_id, 'rank_'+suffix)
-        print(fn)
-        old_df = _load_data(fn)
-        if old_df is None:
-            rank_df.to_csv(fn,index=False)
-        else:
-            _check_epoch(old_df, epoch)
-            old_df.merge(rank_df).to_csv(fn,index=False)
+        _add_column_to_file(path, 'kacc_'+suffix, experiment_id, epoch, kacc_df)
+
+    if rank_by_image_df is not None:
+        _add_column_to_file(path, 'rank_by_image_'+suffix, experiment_id, epoch, rank_by_image_df)
+        
+    if rank_by_id_df is not None:
+        _add_column_to_file(path, 'rank_by_id_'+suffix, experiment_id, epoch, rank_by_id_df)
+        
     return
     
     
@@ -184,12 +179,16 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
         returns the index of the closest point with the same label, if no such point, returns -1
         """
         base_label = labels_np[row[0]]
-        i = 1
-        while i < row.shape[0]:
-            if labels_np[row[i]] == base_label:
-                return i-1
-            i+=1
-        return -1
+        n_img = 1
+        n_id = 1
+        ids = set()
+        while n_img < row.shape[0]:
+            # add this id to the set of 
+            ids.add(labels_np[row[n_img]])
+            if labels_np[row[n_img]] == base_label:
+                return n_img-1, len(list(ids))-1
+            n_img+=1
+        return -1,-1
 
     # if rank is true, then compute the rank of the prediction
     if rank == True:
@@ -197,20 +196,19 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
     # otherwise, just compute the accuracy
     else:
         k = 2
-            
+
     dist_matrix =  l2_dist(feature_matrix, test_features)
     labels_np = labels.numpy()
     inc_dist = torch.topk(dist_matrix, dim=1, k = k, largest = False)[1]
     nearest_same_label = torch.tensor([process_row(row, labels_np) for row in inc_dist])
 
-    correct = (nearest_same_label == 0).long()
+    correct = (nearest_same_label[:,0] == 0).long()
     nearest_id = inc_dist[:,1].apply_(lambda x: labels_np[x])
     acc_k = {}
     for k in acc_k.keys():
         acc_k[k] = (correct[test_demographic == k]).mean()
 
     return acc_k, correct, nearest_id, nearest_same_label
-
 
 def intra_inter_variance(feature_matrix, labels, demographic_to_labels):
     classes = set(labels.tolist())

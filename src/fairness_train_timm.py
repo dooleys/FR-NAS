@@ -178,7 +178,7 @@ if __name__ == '__main__':
             '''For test data compute only k-neighbors accuracy and multi-accuracy'''
             k_accuracy = True
             multilabel_accuracy = True
-            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all = evaluate(
+            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, _ = evaluate(
                 dataloaders["test"],
                 train_criterion,
                 model,
@@ -188,7 +188,7 @@ if __name__ == '__main__':
                 demographic_to_labels=demographic_to_labels_test,
                 test=True)
             if model_ema is not None:
-                loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema = evaluate(
+                loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, _ = evaluate(
                         dataloaders["test"],
                         train_criterion,
                         model_ema.module,
