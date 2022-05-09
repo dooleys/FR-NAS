@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-dpn107	configs_multi/dpn107/config_dpn107_CosFace_SGD.yaml	222	0	0.0	5.12	50.364	11.783	0.0	4.806	45.95	10.201
-dpn107	configs_multi/dpn107/config_dpn107_CosFace_SGD.yaml	222	1	0.0	7.268	45.661	15.83	0.0	6.378	41.396	13.072
