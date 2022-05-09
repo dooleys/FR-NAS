@@ -50,6 +50,21 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
     return model, model_ema,optimizer, epoch, batch, checkpoints_model_root
 
 
+def load_checkpoints_all(opt, p_identities, p_images):
+
+    # resume from a checkpoint
+    name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
+    #print(name)
+    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head)+'_' + str(opt.opt))
+    if not os.path.exists(checkpoints_model_root):
+        os.mkdir(checkpoints_model_root)
+        
+    print(checkpoints_model_root, os.listdir(checkpoints_model_root))
+
+    potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if '.pth' in chckpt]
+    print('Found checkpoints for this model:', potential_checkpoints)
+    return potential_checkpoints
+
 
 
 
