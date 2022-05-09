@@ -139,4 +139,5 @@ cml-tools/
 .Rhistory
 DataParallel/
 *.pth
+src/fairness_train_timm.py
 rhea/

@@ -96,17 +96,6 @@ if __name__ == '__main__':
                                  bn_eps=args.bn_eps,
                                  scriptable=args.torchscript,
                                  ).to(device)
-    '''backbone = timm.create_model(args.backbone,
-                                 num_classes=0,
-                                 pretrained=args.pretrained,
-                                 drop_connect_rate=args.drop_connect,
-                                 drop_path_rate=args.drop_path,
-                                 drop_block_rate=args.drop_block,
-                                 global_pool=args.gp,
-                                 bn_momentum=args.bn_momentum,
-                                 bn_eps=args.bn_eps,
-                                 scriptable=args.torchscript,
-                                 ).to(device)'''
     config = timm.data.resolve_data_config({}, model=backbone)
     model_input_size = args.input_size
 
@@ -281,31 +270,35 @@ if __name__ == '__main__':
 
             # save checkpoints per epoch
 
-            if (epoch == args.epochs) or (epoch % args.save_freq == 0):
-                checkpoint_name_to_save = os.path.join(
+#             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
+            checkpoint_name_to_save = os.path.join(
+                args.checkpoints_root,
+                args.backbone + '_' + args.head + '_' + args.opt,
+                "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
+                .format(args.head, args.backbone, args.opt, args.name,
+                        str(epoch)))
+            if model_ema is None:
+              torch.save(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict()
+                }, checkpoint_name_to_save)
+            else:
+              torch.save(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'model_ema_state_dict': model_ema.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict()
+                }, checkpoint_name_to_save)
+            # remove the previous checkpoint in certain instances
+            if ((epoch-1) % args.save_freq):
+                prev_checkpoint_name_to_save = os.path.join(
                     args.checkpoints_root,
                     args.backbone + '_' + args.head + '_' + args.opt,
-<<<<<<< HEAD
                     "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
                     .format(args.head, args.backbone, args.opt, args.name,
-=======
-                    "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_{}.pth"
-                    .format(args.head, args.backbone, args.name,
-                            str(args.p_identities), str(args.p_images),
->>>>>>> 0c0e3b2ae44a908630b2ef3b3c7c58ba82ee86bd
-                            str(epoch)))
-                if model_ema is None:
-                  torch.save(
-                    {
-                        'epoch': epoch,
-                        'model_state_dict': model.state_dict(),
-                        'optimizer_state_dict': optimizer.state_dict()
-                    }, checkpoint_name_to_save)
-                else:
-                  torch.save(
-                    {
-                        'epoch': epoch,
-                        'model_state_dict': model.state_dict(),
-                        'model_ema_state_dict': model_ema.state_dict(),
-                        'optimizer_state_dict': optimizer.state_dict()
-                    }, checkpoint_name_to_save)
+                            str(epoch-1)))
+                os.remove(prev_checkpoint_name_to_save)
+
