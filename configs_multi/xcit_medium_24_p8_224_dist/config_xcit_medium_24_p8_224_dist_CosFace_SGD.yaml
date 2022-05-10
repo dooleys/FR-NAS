@@ -28,7 +28,7 @@ groups_to_modify:
 - male
 - female
 head: CosFace
-input_size: 224
+input_size: 112
 layer_decay: null
 lr: 0.0005
 lr_cycle_decay: 0.5

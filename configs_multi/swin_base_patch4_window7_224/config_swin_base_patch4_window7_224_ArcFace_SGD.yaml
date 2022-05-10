@@ -1,4 +1,4 @@
-backbone: resmlp_big_24_224_in22ft1k
+backbone: swin_base_patch4_window7_224
 batch_size: 64
 bn_eps: null
 bn_momentum: null
@@ -9,7 +9,7 @@ comet_api_key: KKiKMVZI9RCYowoKDZDS5Y2km
 comet_workspace: rsukthanker
 cooldown_epochs: 10
 dataset: CelebA
-decay_epochs: 100
+decay_epochs: 30.0
 decay_rate: 0.1
 default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/
 default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/
@@ -18,7 +18,7 @@ dist_bn: reduce
 drop: 0.0
 drop_block: null
 drop_connect: null
-drop_path: null
+drop_path: 0.5
 epoch_repeats: 0.0
 epochs: 100
 file_name: timm_from-scratch.csv
@@ -30,7 +30,7 @@ groups_to_modify:
 head: ArcFace
 input_size: 224
 layer_decay: null
-lr: 0.005
+lr: 2.0e-05
 lr_cycle_decay: 0.5
 lr_cycle_limit: 1
 lr_cycle_mul: 1.0
@@ -43,9 +43,9 @@ mean:
 - 0.5
 - 0.5
 metadata_file: timm_model_metadata.csv
-min_lr: 1.0e-06
+min_lr: 2.0e-07
 min_num_images: 3
-model_ema: false
+model_ema: true
 model_ema_decay: 0.9998
 model_ema_force_cpu: false
 momentum: 0.9
@@ -64,7 +64,7 @@ p_images:
 patience_epochs: 10
 pretrained: false
 project_name: from-scratch_no-resampling_adam
-save_freq: 20
+save_freq: 1
 sched: cosine
 seed: 222
 split_bn: false
@@ -78,5 +78,5 @@ torchscript: false
 train_loss: Focal
 user_config: config_user.yaml
 warmup_epochs: 5
-warmup_lr: 0.0001
-weight_decay: 0.2
+warmup_lr: 2.0e-08
+weight_decay: 1.0e-08
