@@ -44,14 +44,7 @@ if __name__ == '__main__':
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-    if not os.path.isdir(
-            os.path.join(
-                args.checkpoints_root,
-                args.backbone + '_' + args.head + '_' + args.opt)):
-        os.mkdir(
-            os.path.join(
-                args.checkpoints_root,
-                args.backbone + '_' + args.head + '_' + args.opt))
+    
     p_images = {
         args.groups_to_modify[i]: args.p_images[i]
         for i in range(len(args.groups_to_modify))
@@ -68,8 +61,9 @@ if __name__ == '__main__':
 
     ####################################################################################################################################
     # ======= data, model and test data =======#
-    run_name = args.backbone + '_' + args.head + '_' + args.opt
-    output_dir = os.path.join(args.checkpoints_root, run_name)
+    run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
+    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS',args.checkpoints_root, run_name)
+    args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
 
@@ -84,18 +78,32 @@ if __name__ == '__main__':
         args)
     args.num_class = num_class
     ''' Model '''
-    backbone = timm.create_model(args.backbone,
-                                 num_classes=0,
-                                 pretrained=args.pretrained,
-                                 drop_rate=args.drop,
-                                 drop_connect_rate=args.drop_connect,
-                                 drop_path_rate=args.drop_path,
-                                 drop_block_rate=args.drop_block,
-                                 global_pool=args.gp,
-                                 bn_momentum=args.bn_momentum,
-                                 bn_eps=args.bn_eps,
-                                 scriptable=args.torchscript,
-                                 ).to(device)
+    if 'ghost' in args.backbone:
+        backbone = timm.create_model(args.backbone,
+                                     num_classes=0,
+                                     pretrained=args.pretrained,
+                                     drop_connect_rate=args.drop_connect,
+                                     drop_path_rate=args.drop_path,
+                                     drop_block_rate=args.drop_block,
+                                     global_pool=args.gp,
+                                     bn_momentum=args.bn_momentum,
+                                     bn_eps=args.bn_eps,
+                                     scriptable=args.torchscript,
+                                     ).to(device)
+    else:
+        backbone = timm.create_model(args.backbone,
+                                     num_classes=0,
+                                     pretrained=args.pretrained,
+                                     drop_rate=args.drop,
+                                     drop_connect_rate=args.drop_connect,
+                                     drop_path_rate=args.drop_path,
+                                     drop_block_rate=args.drop_block,
+                                     global_pool=args.gp,
+                                     bn_momentum=args.bn_momentum,
+                                     bn_eps=args.bn_eps,
+                                     scriptable=args.torchscript,
+                                     ).to(device)
+        
     config = timm.data.resolve_data_config({}, model=backbone)
     model_input_size = args.input_size
 
@@ -155,7 +163,7 @@ if __name__ == '__main__':
                 optimizer.step()
                 scheduler.step(epoch + 1, meters["top5"])
                 if model_ema is not None:
-                   model_ema.update(model)
+                    model_ema.update(model)
                 # measure accuracy and record loss
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
@@ -178,7 +186,8 @@ if __name__ == '__main__':
             '''For test data compute only k-neighbors accuracy and multi-accuracy'''
             k_accuracy = True
             multilabel_accuracy = True
-            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, _ = evaluate(
+            comp_rank = True
+            loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, rank = evaluate(
                 dataloaders["test"],
                 train_criterion,
                 model,
@@ -186,9 +195,9 @@ if __name__ == '__main__':
                 k_accuracy=k_accuracy,
                 multilabel_accuracy=multilabel_accuracy,
                 demographic_to_labels=demographic_to_labels_test,
-                test=True)
+                test=True, rank=comp_rank)
             if model_ema is not None:
-                loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, _ = evaluate(
+                loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank = evaluate(
                         dataloaders["test"],
                         train_criterion,
                         model_ema.module,
@@ -196,10 +205,10 @@ if __name__ == '__main__':
                         k_accuracy=k_accuracy,
                         multilabel_accuracy=multilabel_accuracy,
                         demographic_to_labels=demographic_to_labels_test,
-                        test=True)
+                        test=True, rank=comp_rank)
             # save outputs
             # save outputs
-            kacc_df, multi_df = None, None
+            kacc_df, multi_df, rank_by_image_df, rank_by_id_df = None, None, None, None
             if k_accuracy:
                 kacc_df = pd.DataFrame(np.array([list(indices_all),
                                                  list(nearest_id)]).T,
@@ -208,12 +217,21 @@ if __name__ == '__main__':
                 multi_df = pd.DataFrame(np.array([list(indices_all),
                                                   list(predicted_all)]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
+            if comp_rank:
+                rank_by_image_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(rank[:,0])]).T,
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
+                rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
+                                                  list(rank[:,1])]).T,
+                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(output_dir,
-                               "default",
+                               "val",
                                run_name, 
                                epoch,
                                multi_df = multi_df, 
-                               kacc_df = kacc_df)
+                               kacc_df = kacc_df, 
+                               rank_by_image_df = rank_by_image_df,
+                               rank_by_id_df = rank_by_id_df)
             results = {}
             results['Model'] = args.backbone
             results['config_file'] = args.config_path
@@ -233,35 +251,44 @@ if __name__ == '__main__':
             print(results)
             save_output_from_dict(output_dir, results, args.file_name)
             if model_ema is not None:
-                kacc_df_ema, multi_df_ema = None, None
+                kacc_df_ema, multi_df_ema, rank_by_image_df_ema, rank_by_id_df_ema = None, None, None, None
+                if comp_rank:
+                    rank_by_image_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                 list(rank[:,0])]).T,
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
+                    rank_by_id_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                                                 list(rank[:,1])]).T,
+                                       columns=['ids','epoch_'+str(epoch)]).astype(int)
                 if k_accuracy:
-                   kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                    kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
                                                  list(nearest_id_ema)]).T,
                                        columns=['ids','epoch_'+str(epoch)]).astype(int)
                 if multilabel_accuracy:
-                   multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
+                    multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
                                                   list(predicted_all_ema)]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
                 add_column_to_file(output_dir,
-                               "ema",
+                               "ema_val",
                                run_name,
                                epoch,
                                multi_df = multi_df_ema,
-                               kacc_df = kacc_df_ema)
+                               kacc_df = kacc_df_ema,
+                               rank_by_image_df = rank_by_image_df_ema,
+                               rank_by_id_df = rank_by_id_df_ema)
                 results_ema = {}
                 results_ema['Model'] = args.backbone
                 results_ema['config_file'] = args.config_path
                 results_ema['seed'] = args.seed
                 results_ema['epoch'] = epoch
                 for k in acc_k_ema.keys():
-                   experiment.log_metric("Acc multi Test " + k, acc_ema[k], epoch=epoch)
-                   experiment.log_metric("Acc k Test " + k, acc_k_ema[k], epoch=epoch)
-                   experiment.log_metric("Intra Test " + k, intra_ema[k], epoch=epoch)
-                   experiment.log_metric("Inter Test " + k, inter_ema[k], epoch=epoch)
-                   results_ema['Acc multi '+k] = (round(acc_ema[k].item()*100, 3))
-                   results_ema['Acc k '+k] = (round(acc_k_ema[k].item()*100, 3))
-                   results_ema['Intra '+k] = (round(intra_ema[k], 3))
-                   results_ema['Inter '+k] = (round(inter_ema[k], 3))
+                    experiment.log_metric("Acc multi Test " + k, acc_ema[k], epoch=epoch)
+                    experiment.log_metric("Acc k Test " + k, acc_k_ema[k], epoch=epoch)
+                    experiment.log_metric("Intra Test " + k, intra_ema[k], epoch=epoch)
+                    experiment.log_metric("Inter Test " + k, inter_ema[k], epoch=epoch)
+                    results_ema['Acc multi '+k] = (round(acc_ema[k].item()*100, 3))
+                    results_ema['Acc k '+k] = (round(acc_k_ema[k].item()*100, 3))
+                    results_ema['Intra '+k] = (round(intra_ema[k], 3))
+                    results_ema['Inter '+k] = (round(inter_ema[k], 3))
 
                 print(results_ema)
                 save_output_from_dict(output_dir, results_ema, args.file_name_ema)
@@ -271,9 +298,7 @@ if __name__ == '__main__':
             # save checkpoints per epoch
 
 #             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
-            checkpoint_name_to_save = os.path.join(
-                args.checkpoints_root,
-                args.backbone + '_' + args.head + '_' + args.opt,
+            checkpoint_name_to_save = os.path.join(output_dir,
                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
                 .format(args.head, args.backbone, args.opt, args.name,
                         str(epoch)))
@@ -295,8 +320,7 @@ if __name__ == '__main__':
             # remove the previous checkpoint in certain instances
             if ((epoch-1) % args.save_freq):
                 prev_checkpoint_name_to_save = os.path.join(
-                    args.checkpoints_root,
-                    args.backbone + '_' + args.head + '_' + args.opt,
+                    output_dir,
                     "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
                     .format(args.head, args.backbone, args.opt, args.name,
                             str(epoch-1)))

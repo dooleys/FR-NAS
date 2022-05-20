@@ -11,7 +11,7 @@ cooldown_epochs: 10
 dataset: CelebA
 decay_epochs: 100
 decay_rate: 0.1
-default_test_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/test/
+default_test_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/val/
 default_train_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/train/
 demographics_file: /cmlscratch/sdooley1/data/CelebA/CelebA_demographics.txt
 dist_bn: reduce
