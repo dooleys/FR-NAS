@@ -1,4 +1,4 @@
-backbone: resnet50
+backbone: regnetz_e8
 batch_size: 64
 bn_eps: null
 bn_momentum: null
@@ -11,10 +11,9 @@ cooldown_epochs: 10
 dataset: CelebA
 decay_epochs: 100
 decay_rate: 0.1
-default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/
-default_val_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val/
+default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val/
 default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/
-demographics_file: CelebA_demographics.txt
+demographics_file: CelebA/CelebA_demographics.txt
 dist_bn: reduce
 drop: 0.0
 drop_block: null
@@ -31,7 +30,7 @@ groups_to_modify:
 head: CosFace
 input_size: 112
 layer_decay: null
-lr: 0.05
+lr: 0.1
 lr_cycle_decay: 0.5
 lr_cycle_limit: 1
 lr_cycle_mul: 1.0
@@ -52,7 +51,7 @@ model_ema_force_cpu: false
 momentum: 0.9
 name: CelebA
 num_workers: 4
-opt: Adam
+opt: sgd
 opt_betas: null
 opt_eps: null
 out_dir: .
@@ -66,7 +65,7 @@ patience_epochs: 10
 pretrained: false
 project_name: from-scratch_no-resampling_adam
 save_freq: 1
-sched: cosine
+sched: step
 seed: 222
 split_bn: false
 start_epoch: null
@@ -80,4 +79,4 @@ train_loss: Focal
 user_config: config_user.yaml
 warmup_epochs: 3
 warmup_lr: 0.0001
-weight_decay: 2.0e-05
+weight_decay: 5.0e-05
