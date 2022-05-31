@@ -21,9 +21,9 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
     # resume from a checkpoint
     name = "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_".format(opt.head, opt.backbone, opt.opt, opt.name)
     print(name)
-    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head)+'_' + str(opt.opt))
-    if not os.path.exists(checkpoints_model_root):
-        os.mkdir(checkpoints_model_root)
+    checkpoints_model_root = opt.checkpoints_root
+#     if not os.path.exists(checkpoints_model_root):
+#         os.mkdir(checkpoints_model_root)
 
     potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if chckpt.startswith(name)]
     print('Found checkpoints for this model:', potential_checkpoints)
@@ -55,9 +55,7 @@ def load_checkpoints_all(opt, p_identities, p_images):
     # resume from a checkpoint
     name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
     #print(name)
-    checkpoints_model_root = os.path.join(opt.checkpoints_root, str(opt.backbone) + '_' + str(opt.head)+'_' + str(opt.opt))
-    if not os.path.exists(checkpoints_model_root):
-        os.mkdir(checkpoints_model_root)
+    checkpoints_model_root = opt.checkpoints_root
         
     print(checkpoints_model_root, os.listdir(checkpoints_model_root))
 

@@ -35,8 +35,9 @@ def _add_column_to_file(path, suffix, experiment_id, epoch, df):
         # if this epoch shows up as a column name in the dataframe
         # throw an error
         columns = list(df.columns)
-        assert 'epoch_'+str(epoch) not in columns
-        return
+        if 'epoch_'+str(epoch) in columns:
+            df.drop('epoch_'+str(epoch), axis=1, inplace=True)
+        return df
     
     fn = _get_filename(path, experiment_id, suffix)
     print(fn)
@@ -44,7 +45,7 @@ def _add_column_to_file(path, suffix, experiment_id, epoch, df):
     if old_df is None:
         df.to_csv(fn,index=False)
     else:
-        _check_epoch(old_df, epoch)
+        old_df = _check_epoch(old_df, epoch)
         old_df.merge(df).to_csv(fn,index=False)
 
 
@@ -204,9 +205,9 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
 
     correct = (nearest_same_label[:,0] == 0).long()
     nearest_id = inc_dist[:,1].apply_(lambda x: labels_np[x])
-    acc_k = {}
+    acc_k = {k:0 for k in demographic_to_labels.keys()}
     for k in acc_k.keys():
-        acc_k[k] = (correct[test_demographic == k]).mean()
+        acc_k[k] = (correct[test_demographic == k]).float().mean()
 
     return acc_k, correct, nearest_id, nearest_same_label
 

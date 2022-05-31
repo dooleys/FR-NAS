@@ -1,6 +1,6 @@
 comet_api_key: D1J58R7hYXPZzqZhrTIOe6GGQ
 comet_workspace: samueld
-default_test_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/test/
+default_test_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/val/
 default_train_root: /cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/train/
 project_name: Phase1B
 checkpoints_root: Checkpoints/Phase1B/

@@ -44,14 +44,6 @@ if __name__ == '__main__':
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-    if not os.path.isdir(
-            os.path.join(
-                args.checkpoints_root,
-                args.backbone + '_' + args.head + '_' + args.opt)):
-        os.mkdir(
-            os.path.join(
-                args.checkpoints_root,
-                args.backbone + '_' + args.head + '_' + args.opt))
     p_images = {
         args.groups_to_modify[i]: args.p_images[i]
         for i in range(len(args.groups_to_modify))
@@ -68,8 +60,9 @@ if __name__ == '__main__':
 
     ####################################################################################################################################
     # ======= data, model and test data =======#
-    run_name = args.backbone + '_' + args.head + '_' + args.opt
-    output_dir = os.path.join(args.checkpoints_root, run_name)
+    run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
+    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS',args.checkpoints_root, run_name)
+    args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
     
@@ -130,7 +123,7 @@ if __name__ == '__main__':
     ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('.')[0]))
     #model = nn.DataParallel(model)
     model = model.to(device)
-    checkpoints_model_root = os.path.join(args.checkpoints_root, str(args.backbone) + '_' + str(args.head)+'_' + str(args.opt))
+    checkpoints_model_root = args.checkpoints_root
     epoch_numbers = []
 
     for ckpt in ckpts:
@@ -184,8 +177,8 @@ if __name__ == '__main__':
                                "val",
                                run_name, 
                                epoch,
-                               multi_df = multi_df, 
-                               kacc_df = kacc_df, 
+                               multi_df = None, 
+                               kacc_df = None, 
                                rank_by_image_df = rank_by_image_df,
                                rank_by_id_df = rank_by_id_df)
             if model_ema is not None:
@@ -209,7 +202,7 @@ if __name__ == '__main__':
                                "ema_val",
                                run_name,
                                epoch,
-                               multi_df = multi_df_ema,
-                               kacc_df = kacc_df_ema,
+                               multi_df = None,
+                               kacc_df = None,
                                rank_by_image_df = rank_by_image_df_ema,
                                rank_by_id_df = rank_by_id_df_ema)
