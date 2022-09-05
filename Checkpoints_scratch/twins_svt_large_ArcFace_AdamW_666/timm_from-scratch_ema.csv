@@ -1,0 +1,16 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	0	0.0	9.429	28.812	8.23	0.0	8.617	25.2	6.875
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	1	0.0	7.871	16.74	3.447	0.0	7.713	15.002	2.896
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	2	0.0	6.142	6.882	0.938	0.0	5.919	6.201	0.795
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	3	0.0	5.16	2.51	0.305	0.0	4.557	2.7	0.258
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	4	0.0	6.037	0.277	0.04	0.0	5.081	0.298	0.039
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	5	0.0	0.17	nan	0.0	0.0	0.236	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	6	0.0	0.092	nan	0.0	0.0	0.223	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	7	0.0	0.275	nan	0.0	0.0	0.236	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	8	0.0	0.105	nan	0.0	0.0	0.131	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	9	0.0	0.249	nan	0.0	0.0	0.196	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	10	0.0	0.196	nan	0.0	0.0	0.288	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	11	0.0	0.223	nan	0.0	0.0	0.183	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	12	0.0	0.236	nan	0.0	0.0	0.196	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	13	0.0	0.118	nan	0.0	0.0	0.118	nan	0.0
+twins_svt_large	configs_multi/twins_svt_large/config_twins_svt_large_ArcFace_AdamW.yaml	222	14	0.0	0.21	nan	0.0	0.0	0.262	nan	0.0

@@ -8,10 +8,11 @@ import os
 from PIL import Image
 import numpy as np
 
-torch.manual_seed(222)
-torch.cuda.manual_seed_all(222)
-np.random.seed(222)
-#random.seed(222)
+seed = 666
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
@@ -279,6 +280,10 @@ def balanced_weights(images, nclasses, attr=1):
 
     return weight
 
+def seed_worker(worker_id):
+    worker_seed = torch.initial_seed() % 2**32
+    np.random.seed(worker_seed)
+    random.seed(worker_seed)
 
 def prepare_data(args):
     # function prepares data: loads images and prepares dataloaders
@@ -355,6 +360,8 @@ def prepare_data(args):
 
 
     dataloaders = {}
+    g = torch.Generator()
+    g.manual_seed(0)
     train_imgs = datasets['train'].imgs
     weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
     train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
@@ -366,9 +373,10 @@ def prepare_data(args):
     '''
     dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
                                                        shuffle = True, num_workers=args.num_workers,
+                                                       worker_init_fn=seed_worker,generator=g,
                                                        drop_last=True)
 
-    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,worker_init_fn=seed_worker,generator=g,)
 
     for k in dataloaders.keys():
         print('Len of {} dataloader is {}'.format(k, len(dataloaders[k])))

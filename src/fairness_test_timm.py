@@ -61,12 +61,12 @@ if __name__ == '__main__':
     ####################################################################################################################################
     # ======= data, model and test data =======#
     run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
-    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS',args.checkpoints_root, run_name)
+    output_dir = os.path.join('/work/dlclarge2/sukthank-ZCP_Competition/SMAC3/Checkpoints_scratch/dpn107_CosFace_SGD_0.1_cosine')
     args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
     
-    args.default_test_root = '/cmlscratch/sdooley1/data/CelebA/Img/img_align_celeba_splits/val/'
+    args.default_test_root = '/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/'
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(
         args)
     args.num_class = num_class
@@ -174,7 +174,7 @@ if __name__ == '__main__':
                                                   list(rank[:,1])]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(output_dir,
-                               "val",
+                               "test",
                                run_name, 
                                epoch,
                                multi_df = None, 
@@ -199,7 +199,7 @@ if __name__ == '__main__':
                                                   list(predicted_all_ema)]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
                 add_column_to_file(output_dir,
-                               "ema_val",
+                               "ema_test",
                                run_name,
                                epoch,
                                multi_df = None,

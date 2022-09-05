@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_MagFace_AdamW.yaml	222	0	0.0	10.896	0.102	0.002	0.0	0.891	nan	0.001

@@ -1,0 +1,102 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	0	0.0	12.297	38.656	1.009	0.0	1.886	38.344	1.351
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	1	0.0	2.436		0.077	0.0	0.183		0.083
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	2	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	3	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	4	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	5	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	6	0.0	0.485		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	7	0.0	21.097		0.02	0.0	10.241	0.21	0.017
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	8	0.0	7.975		0.009	0.0	0.039		0.006
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	9	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	10	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	11	0.0	6.823	0.381	0.076	0.0	5.16	0.345	0.064
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	12	0.0	0.432		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	13	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	14	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	15	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	16	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	17	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	18	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	19	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	20	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	21	0.0	1.218		0.0	0.0	0.026		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	22	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	23	0.0	3.143		0.002	0.0	0.223		0.001
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	24	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	25	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	26	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	27	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	28	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	29	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	30	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	31	0.0	0.537		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	32	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	33	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	34	0.0	12.153	0.682	0.033	0.0	7.098	0.589	0.028
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	35	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	36	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	37	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	38	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	39	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	40	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	41	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	42	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	43	0.0	1.074		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	44	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	45	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	46	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	47	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	48	0.0	0.511		0.0	0.0	0.026		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	49	0.0	15.584		0.007	0.0	2.501		0.004
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	50	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	51	0.0	1.506		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	52	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	53	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	54	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	55	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	56	0.0	0.34		0.0	0.0	0.0		0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	57	0.0	0.393			0.0	0.0		
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	58	0.0	8.486	2.055	0.646	0.0	6.496	1.982	0.583
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	59	0.0	2.541	2.447	0.196	0.0	2.108	2.928	0.206
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	60	0.0	9.141	nan	0.008	0.0	0.131	nan	0.007
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	61	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	62	0.0	2.894	nan	0.001	0.0	0.052	nan	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	63	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	64	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	65	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	66	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	67	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	68	0.0	3.431	1.683	0.208	0.0	2.868	1.418	0.18
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	69	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	70	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	71	0.0	0.406	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	72	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	73	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	74	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	75	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	76	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	77	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	78	0.0	1.035	nan	0.0	0.0	0.052	nan	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	79	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	80	0.0	0.773	nan	0.0	0.0	0.079	nan	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	81	0.0	8.735	nan	0.005	0.0	0.655	nan	0.007
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	82	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	83	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	84	0.0	4.806	17.73	1.53	0.0	3.117	14.943	1.292
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	85	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	86	0.0	1.074	nan	0.0	0.0	0.0	nan	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	87	0.0	5.134	nan	0.003	0.0	0.17	nan	0.003
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	88	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	89	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	90	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	91	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	92	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	93	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	94	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	95	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	96	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	97	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	98	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	99	0.0	0.393	nan	nan	0.0	0.0	nan	nan
+inception_resnet_v2	configs/inception_resnet_v2/config_inception_resnet_v2_CosFace_RMSProp.yaml	222	100	0.0	0.406	nan	nan	0.0	0.0	nan	nan

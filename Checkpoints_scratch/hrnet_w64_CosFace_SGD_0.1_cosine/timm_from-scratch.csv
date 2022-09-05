@@ -1,0 +1,102 @@
+Model	config_file	seed	epoch
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	0
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	1
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	2
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	3
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	4
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	5
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	6
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	7
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	8
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	9
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	10
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	11
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	12
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	13
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	14
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	15
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	16
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	17
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	18
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	19
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	20
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	21
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	22
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	23
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	24
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	25
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	26
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	27
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	28
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	29
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	30
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	31
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	32
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	33
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	34
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	35
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	36
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	37
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	38
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	39
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	40
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	41
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	42
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	43
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	44
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	45
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	46
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	47
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	48
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	49
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	50
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	51
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	52
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	53
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	54
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	55
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	56
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	57
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	58
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	59
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	60
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	61
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	62
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	63
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	64
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	65
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	66	0.0	91.344	47.203	65.592	0.0	86.773	50.695	65.029
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	67	0.0	91.54	47.286	64.929	0.0	85.66	51.086	65.157
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	68	0.0	91.619	47.226	65.381	0.0	87.179	50.975	65.572
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	69	0.0	91.671	47.659	65.336	0.0	86.433	51.445	65.515
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	70	0.0	91.239	47.708	65.687	0.0	86.773	51.52	65.877
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	71	0.0	91.16	47.539	65.401	0.0	86.158	51.428	65.839
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	72	0.0	90.492	47.754	65.714	0.0	86.459	51.334	65.659
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	73	0.0	91.082	47.577	65.414	0.0	87.218	51.276	65.613
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	74	0.0	91.121	47.638	66.01	0.0	86.93	51.508	65.754
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	75	0.0	91.317	47.845	66.185	0.0	86.079	51.967	66.354
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	76	0.0	90.911	47.568	65.936	0.0	86.564	51.522	65.798
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	77	0.0	91.763	47.766	66.182	0.0	87.402	51.674	66.003
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	78	0.0	90.885	48.112	66.394	0.0	86.616	51.912	66.203
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	79	0.0	91.566	47.748	65.943	0.0	87.022	51.726	65.911
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	80	0.0	91.632	47.966	66.525	0.0	87.323	51.901	66.225
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	81	0.0	91.475	48.124	66.561	0.0	86.537	52.173	66.317
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	82	0.0	91.959	47.982	66.238	0.0	87.664	51.844	65.925
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	83	0.0	91.527	48.192	66.533	0.0	87.14	52.013	66.095
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	84	0.0	91.763	48.178	66.6	0.0	87.166	51.975	66.17
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	85	0.0	91.488	48.18	66.585	0.0	86.93	51.998	66.129
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	86	0.0	91.566	48.32	66.709	0.0	87.048	52.111	66.225
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	87	0.0	91.042	48.543	67.01	0.0	86.551	52.239	66.316
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	88	0.0	91.147	48.597	67.042	0.0	86.551	52.409	66.647
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	89	0.0	91.2	48.626	67.014	0.0	86.682	52.285	66.304
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	90	0.0	91.042	48.685	67.053	0.0	86.302	52.385	66.403
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	91	0.0	90.833	48.814	67.125	0.0	86.014	52.399	66.443
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	92	0.0	91.265	48.74	67.132	0.0	86.289	52.418	66.409
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	93	0.0	91.278	48.762	67.161	0.0	86.236	52.376	66.404
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	94	0.0	91.239	48.763	67.159	0.0	86.171	52.495	66.489
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	95	0.0	90.623	48.885	67.221	0.0	85.804	52.48	66.442
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	96	0.0	91.029	48.825	67.217	0.0	86.249	52.438	66.45
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	97	0.0	91.042	48.929	67.359	0.0	85.712	52.546	66.546
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	98	0.0	90.99	48.826	67.214	0.0	85.987	52.545	66.574
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	99	0.0	90.401	48.933	67.213	0.0	85.503	52.509	66.468
+hrnet_w64	configs_unified_lr/hrnet_w64/config_hrnet_w64_CosFace_SGD_0.1_cosine.yaml	222	100	0.0	91.213	48.775	67.256	0.0	86.131	52.454	66.497
