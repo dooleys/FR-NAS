@@ -244,6 +244,6 @@ if __name__ == "__main__":
   'edge3': 0,
   'head': 'CosFace',
   'lr_adam': 0.0006048015915653069,
-  'optimizer': 'SGD',
+  'optimizer': 'Adam',
  }
  fairness_objective_dpn(config,0,100)
