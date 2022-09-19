@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/fbnetv3_g/config_fbnetv3_g_CosFace_SGD_0.1_cosine.yaml	222	19	0.0	9.799	30.809	11.585	0.0	9.307	29.186	10.379
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/fbnetv3_g/config_fbnetv3_g_CosFace_SGD_0.1_cosine.yaml	222	39	0.0	19.467	36.661	16.107	0.0	16.849	34.863	14.068
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/fbnetv3_g/config_fbnetv3_g_CosFace_SGD_0.1_cosine.yaml	222	79	0.0	24.643	52.797	28.022	0.0	20.079	51.647	25.136
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/fbnetv3_g/config_fbnetv3_g_CosFace_SGD_0.1_cosine.yaml	222	99	0.0	24.523	54.8	29.58	0.0	20.031	54.414	27.101
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/fbnetv3_g/config_fbnetv3_g_CosFace_SGD_0.1_cosine.yaml	222	100	0.0	24.294	54.86	29.716	0.0	19.935	54.495	27.245

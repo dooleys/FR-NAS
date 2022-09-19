@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_MagFace_AdamW.yaml	222	19	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_MagFace_AdamW.yaml	222	39	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_MagFace_AdamW.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_MagFace_AdamW.yaml	222	99	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_MagFace_AdamW.yaml	222	100	0.264	0.0	nan	nan	0.0	0.0	nan	nan

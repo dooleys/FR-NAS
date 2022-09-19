@@ -1,0 +1,9 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	19	0.0	31.14	44.723	21.909	0.0	25.856	45.203	21.102
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	39	0.0	33.686	40.298	19.349	0.0	29.386	41.088	19.064
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	79	0.0	26.516	52.671	28.273	0.0	23.046	54.356	28.498
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	99	0.0	26.588	55.417	31.007	0.0	24.799	56.219	30.975
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	19	0.0	31.14	44.723	21.909	0.0	25.856	45.203	21.102
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	39	0.0	33.686	40.298	19.349	0.0	29.386	41.088	19.064
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	79	0.0	26.516	52.671	28.273	0.0	23.046	54.356	28.498
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/resnetrs101/config_resnetrs101_CosFace_SGD.yaml	222	99	0.0	26.588	55.417	31.007	0.0	24.799	56.219	30.975

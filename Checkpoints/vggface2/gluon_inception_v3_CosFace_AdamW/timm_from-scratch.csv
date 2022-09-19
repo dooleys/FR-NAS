@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+gluon_inception_v3	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/gluon_inception_v3/config_gluon_inception_v3_CosFace_AdamW.yaml	222	19	0.0	2.078	12.865	2.835	0.0	1.873	16.278	3.117
+gluon_inception_v3	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/gluon_inception_v3/config_gluon_inception_v3_CosFace_AdamW.yaml	222	39	0.0	2.318	17.166	3.599	0.0	2.006	18.513	3.482
+gluon_inception_v3	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/gluon_inception_v3/config_gluon_inception_v3_CosFace_AdamW.yaml	222	79	0.0	4.131	19.297	5.193	0.0	3.555	17.884	4.499
+gluon_inception_v3	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/gluon_inception_v3/config_gluon_inception_v3_CosFace_AdamW.yaml	222	99	0.0	4.251	16.659	4.935	0.0	4.095	18.086	4.825
+gluon_inception_v3	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/gluon_inception_v3/config_gluon_inception_v3_CosFace_AdamW.yaml	222	100	0.0	4.479	16.786	5.026	0.0	4.263	18.245	4.884

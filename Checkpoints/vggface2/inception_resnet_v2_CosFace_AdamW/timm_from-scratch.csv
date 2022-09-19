@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+inception_resnet_v2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	19	0.0	2.57	17.992	4.487	0.0	2.798	19.433	4.416
+inception_resnet_v2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	39	0.0	2.834	17.58	4.363	0.0	2.726	20.084	4.605
+inception_resnet_v2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	79	0.0	2.27	22.082	5.633	0.0	2.498	22.006	5.271
+inception_resnet_v2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	99	0.0	3.05	23.491	6.955	0.0	3.531	23.918	6.675
+inception_resnet_v2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_resnet_v2/config_inception_resnet_v2_CosFace_AdamW.yaml	222	100	0.0	2.858	23.427	6.916	0.0	3.423	23.875	6.668

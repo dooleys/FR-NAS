@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	33.674	29.246	13.91	0.0	28.93	27.328	12.142
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	42.945	49.329	30.414	0.0	35.679	47.393	26.35
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	38.826	52.542	32.084	0.0	33.445	51.086	28.812
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	39.69	54.506	34.355	0.0	33.83	51.857	29.466
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	39.762	54.589	34.463	0.0	33.938	51.934	29.55

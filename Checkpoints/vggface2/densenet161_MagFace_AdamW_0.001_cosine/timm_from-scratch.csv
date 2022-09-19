@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	27.141	14.657	7.047	0.0	24.234	14.592	6.337
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	39	0.0	21.436	17.701	7.715	0.0	16.08	17.472	6.802
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	59	0.0	16.14	19.022	7.533	0.0	12.994	18.722	6.698
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	79	0.0	15.972	20.091	7.663	0.0	11.541	19.862	6.865
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	99	0.0	15.107	19.953	7.567	0.0	11.036	19.952	6.863
+densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_MagFace_AdamW_0.001_cosine.yaml	222	100	0.0	15.18	19.96	7.564	0.0	11.385	19.943	6.872

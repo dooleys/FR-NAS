@@ -1,0 +1,3 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD_0.1_cosine.yaml	222	19	0.0	21.869	12.151	5.641	0.0	21.004	12.902	5.47
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_SGD_0.1_cosine.yaml	222	38	0.0	21.244	13.422	5.99	0.0	19.347	14.095	5.864

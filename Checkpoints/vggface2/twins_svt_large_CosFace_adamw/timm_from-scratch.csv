@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_R2/twins_svt_large/config_twins_svt_large_CosFace_adamw.yaml	222	100	0.0	1.273	10.677	1.834	0.0	1.585	10.64	1.746

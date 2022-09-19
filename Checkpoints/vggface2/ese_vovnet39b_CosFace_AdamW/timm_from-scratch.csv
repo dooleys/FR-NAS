@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml	222	19	0.0	3.963	15.037	4.706	0.0	4.551	18.051	5.271
+ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml	222	39	0.0	4.083	18.514	5.884	0.0	3.987	18.232	5.389
+ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml	222	79	0.0	3.855	18.103	6.075	0.0	3.555	18.611	5.781
+ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml	222	99	0.0	4.744	19.285	6.673	0.0	4.227	19.871	6.352
+ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_CosFace_AdamW.yaml	222	100	0.0	4.756	19.316	6.726	0.0	4.167	20.112	6.43

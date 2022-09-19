@@ -1,0 +1,4 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/xception65/config_xception65_CosFace_SGD_0.1_cosine.yaml	222	19	0.0	17.521	40.712	14.41	0.0	15.624	40.262	13.86
+xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/xception65/config_xception65_CosFace_SGD_0.1_cosine.yaml	222	39	0.0	24.451	49.954	24.201	0.0	22.169	47.485	21.133
+xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/xception65/config_xception65_CosFace_SGD_0.1_cosine.yaml	222	56	0.0	20.007	57.418	28.293	0.0	20.428	55.892	27.296

@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	19	0.0	0.336	nan	0.0	0.0	0.204	nan	0.0
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	28	0.0	0.697	nan	0.0	0.0	1.009	nan	0.0
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	28	0.0	0.697	nan	0.0	0.0	1.009	nan	0.0
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	28	0.0	0.697	nan	0.0	0.0	1.009	nan	0.0
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	28	0.0	0.697	nan	0.0	0.0	1.009	nan	0.0
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_SGD_0.1_cosine.yaml	222	28	0.0	0.697	nan	0.0	0.0	1.009	nan	0.0

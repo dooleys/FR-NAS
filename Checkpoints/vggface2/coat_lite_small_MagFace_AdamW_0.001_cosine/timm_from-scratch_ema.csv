@@ -1,0 +1,21 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	12.994	17.228	7.162	0.0	11.853	18.138	6.783
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	39	0.0	16.837	18.152	7.895	0.0	13.979	17.855	7.105
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	79	0.0	10.952	17.263	6.39	0.0	9.511	17.008	5.711
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	84	0.0	10.88	18.269	6.639	0.0	8.671	17.953	5.955
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	85	0.0	10.712	18.463	6.691	0.0	8.575	18.138	5.997
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	86	0.0	10.628	18.647	6.74	0.0	8.454	18.317	6.037
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	87	0.0	10.64	18.817	6.786	0.0	8.587	18.477	6.072
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	88	0.0	10.604	18.983	6.832	0.0	8.322	18.63	6.104
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	89	0.0	10.412	19.132	6.871	0.0	8.37	18.758	6.132
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	90	0.0	10.388	19.269	6.909	0.0	8.334	18.876	6.158
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	91	0.0	10.208	19.393	6.941	0.0	8.635	18.972	6.178
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	92	0.0	10.244	19.501	6.968	0.0	8.49	19.054	6.196
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	93	0.0	10.088	19.591	6.988	0.0	8.442	19.114	6.208
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	94	0.0	10.016	19.664	7.002	0.0	8.611	19.159	6.216
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	95	0.0	9.859	19.723	7.011	0.0	8.683	19.186	6.218
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	96	0.0	9.775	19.765	7.014	0.0	8.683	19.197	6.214
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	97	0.0	9.859	19.795	7.012	0.0	8.563	19.192	6.204
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	98	0.0	9.847	19.811	7.006	0.0	8.575	19.178	6.192
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	99	0.0	9.799	19.814	6.995	0.0	8.587	19.153	6.175
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_MagFace_AdamW_0.001_cosine.yaml	222	100	0.0	9.847	19.809	6.981	0.0	8.43	19.116	6.153

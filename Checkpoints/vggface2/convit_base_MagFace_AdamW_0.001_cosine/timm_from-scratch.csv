@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	1.141	23.434	3.501	0.0	0.877	24.625	3.522
+convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_MagFace_AdamW_0.001_cosine.yaml	222	39	0.0	2.174	22.0	4.393	0.0	1.909	24.294	4.836
+convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_MagFace_AdamW_0.001_cosine.yaml	222	79	0.0	4.72	18.563	5.031	0.0	5.308	20.107	5.428
+convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_MagFace_AdamW_0.001_cosine.yaml	222	99	0.0	5.008	18.13	4.913	0.0	5.74	19.743	5.336
+convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_MagFace_AdamW_0.001_cosine.yaml	222	100	0.0	4.912	18.178	4.932	0.0	5.656	19.754	5.327

@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_SGD_0.1_cosine.yaml	222	19	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_SGD_0.1_cosine.yaml	222	39	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_SGD_0.1_cosine.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_SGD_0.1_cosine.yaml	222	99	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+jx_nest_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_SGD_0.1_cosine.yaml	222	100	0.264	0.0	nan	nan	0.0	0.0	nan	nan

@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	20.644	40.893	17.302	0.0	18.674	39.993	16.642
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	15.696	44.301	18.172	0.0	16.38	40.829	16.423
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	59	0.0	14.303	53.955	24.978	0.0	14.447	49.13	21.342
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	11.733	61.013	29.717	0.0	12.694	58.312	27.447
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	12.093	61.918	32.354	0.0	12.898	59.282	29.094
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	12.826	61.416	32.479	0.0	13.582	58.876	29.205

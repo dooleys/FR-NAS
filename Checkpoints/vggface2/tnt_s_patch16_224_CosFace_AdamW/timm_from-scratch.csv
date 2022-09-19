@@ -1,0 +1,9 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	19	0.0	41.167	51.019	30.845	0.0	33.061	50.104	27.27
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	39	0.0	35.259	51.342	29.072	0.0	29.302	51.443	26.987
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	79	0.0	36.964	53.482	32.087	0.0	30.071	53.472	29.439
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	99	0.0	38.213	54.221	33.016	0.0	31.008	54.593	30.991
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	19	0.0	41.167	51.019	30.845	0.0	33.061	50.104	27.27
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	39	0.0	35.259	51.342	29.072	0.0	29.302	51.443	26.987
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	79	0.0	36.964	53.482	32.087	0.0	30.071	53.472	29.439
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	99	0.0	38.213	54.221	33.016	0.0	31.008	54.593	30.991

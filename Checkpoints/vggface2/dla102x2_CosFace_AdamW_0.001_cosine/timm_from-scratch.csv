@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+dla102x2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dla102x2/config_dla102x2_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	19.431	46.245	18.576	0.0	19.251	41.765	16.499
+dla102x2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dla102x2/config_dla102x2_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	18.938	54.007	25.786	0.0	17.209	51.715	23.171
+dla102x2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dla102x2/config_dla102x2_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	23.814	59.821	34.782	0.0	21.304	58.265	31.57
+dla102x2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dla102x2/config_dla102x2_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	23.778	59.783	34.793	0.0	20.992	58.513	31.688
+dla102x2	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dla102x2/config_dla102x2_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	24.078	59.804	34.769	0.0	20.956	58.471	31.637

@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	37.661	47.134	28.484	0.0	31.56	46.33	25.479
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	42.488	52.66	34.437	0.0	32.737	50.807	29.305
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	42.14	56.694	38.937	0.0	32.425	56.948	35.132
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	42.26	57.966	41.133	0.0	32.701	56.308	34.307
+coat_lite_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/coat_lite_small/config_coat_lite_small_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	41.443	57.964	40.712	0.0	32.605	56.233	34.065

@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0
+swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	0.6	3.213	0.115	0.0	0.468	3.637	0.149
+swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	0.528	3.74	0.174	0.0	0.54	4.311	0.228
+swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	0.396	3.744	0.174	0.0	0.48	4.314	0.229

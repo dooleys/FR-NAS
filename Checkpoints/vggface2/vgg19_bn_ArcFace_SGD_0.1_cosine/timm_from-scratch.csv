@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	11.829	9.877	3.71	0.0	12.045	9.858	3.626
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	13.39	10.783	4.09	0.0	12.117	11.031	3.932
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	11.265	10.761	3.686	0.0	10.436	10.573	3.439
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	11.625	9.306	3.147	0.0	10.544	9.348	3.023
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	11.613	9.326	3.15	0.0	10.388	9.353	3.03

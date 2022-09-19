@@ -1,0 +1,10 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	19	0.0	0.42	44.118	0.29	0.0	0.588	40.507	0.381
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	39	0.0	0.288	1.928	0.055	0.0	0.168	2.043	0.043
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	99	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	19	0.0	0.42	44.118	0.29	0.0	0.588	40.507	0.381
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	39	0.0	0.288	1.928	0.055	0.0	0.168	2.043	0.043
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	99	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/visformer_small/config_visformer_small_MagFace_SGD_0.1_cosine.yaml	222	100	0.264	0.0	nan	nan	0.0	0.0	nan	nan

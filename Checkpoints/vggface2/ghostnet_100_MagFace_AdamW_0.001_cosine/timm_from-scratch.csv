@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+ghostnet_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	3.759	7.61	1.942	0.0	4.912	7.906	2.076
+ghostnet_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml	222	39	0.0	2.654	10.393	2.496	0.0	3.987	10.43	2.699
+ghostnet_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml	222	79	0.0	2.462	12.135	3.027	0.0	3.483	11.791	2.933
+ghostnet_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml	222	99	0.0	2.63	11.849	2.944	0.0	3.122	11.479	2.827
+ghostnet_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml	222	100	0.0	2.738	11.673	2.895	0.0	3.146	11.3	2.795

@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/rexnet_200/config_rexnet_200_ArcFace_AdamW_0.001_cosine.yaml	222	19	0.0	24.787	12.096	5.645	0.0	20.728	11.778	5.034
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/rexnet_200/config_rexnet_200_ArcFace_AdamW_0.001_cosine.yaml	222	39	0.0	19.419	12.03	5.296	0.0	16.489	12.285	4.912
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/rexnet_200/config_rexnet_200_ArcFace_AdamW_0.001_cosine.yaml	222	79	0.0	15.204	12.708	5.129	0.0	12.321	12.746	4.655
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/rexnet_200/config_rexnet_200_ArcFace_AdamW_0.001_cosine.yaml	222	99	0.0	14.915	12.875	5.168	0.0	11.673	12.795	4.631
+rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/rexnet_200/config_rexnet_200_ArcFace_AdamW_0.001_cosine.yaml	222	100	0.0	14.675	12.925	5.211	0.0	11.841	12.782	4.616

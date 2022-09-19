@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/xception65/config_xception65_ArcFace_SGD_0.1_cosine.yaml	222	8	0.0	11.877	9.331	3.483	0.0	11.925	8.641	3.031

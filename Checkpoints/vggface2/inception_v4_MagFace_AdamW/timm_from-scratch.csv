@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_AdamW.yaml	222	19	0.0	10.424	14.524	5.521	0.0	9.499	14.286	5.038
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_AdamW.yaml	222	39	0.0	11.445	16.785	6.499	0.0	10.064	17.663	6.16
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_AdamW.yaml	222	79	0.0	9.92	18.74	6.972	0.0	9.427	19.341	6.681
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_AdamW.yaml	222	99	0.0	10.184	18.706	6.906	0.0	9.163	19.423	6.714
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_AdamW.yaml	222	100	0.0	10.004	18.732	6.915	0.0	9.343	19.487	6.755

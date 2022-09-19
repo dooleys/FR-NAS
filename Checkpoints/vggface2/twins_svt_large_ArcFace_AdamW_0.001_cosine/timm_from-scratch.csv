@@ -1,0 +1,8 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr_R2/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	100	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	19	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	39	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	59	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	80	0.264	0.0	nan	nan	0.0	0.0	nan	nan
+twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/twins_svt_large/config_twins_svt_large_ArcFace_AdamW_0.001_cosine.yaml	222	80	0.264	0.0	nan	nan	0.0	0.0	nan	nan

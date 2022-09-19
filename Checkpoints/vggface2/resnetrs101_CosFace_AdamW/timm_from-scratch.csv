@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	19	0.0	7.758	24.63	7.564	0.0	7.061	24.011	7.183
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	39	0.0	11.829	21.274	7.551	0.0	10.64	20.434	6.969
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	79	0.0	21.04	17.638	7.519	0.0	17.629	17.095	6.766
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	99	0.0	20.62	17.167	7.298	0.0	17.413	16.788	6.649
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	100	0.0	20.656	17.314	7.371	0.0	17.425	16.959	6.729

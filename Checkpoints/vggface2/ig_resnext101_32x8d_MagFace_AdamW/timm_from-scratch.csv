@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	19	0.0	17.293	16.774	6.984	0.0	16.765	16.445	6.56
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	39	0.0	15.24	19.437	8.001	0.0	14.435	19.551	7.578
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	79	0.0	11.409	19.197	7.175	0.0	10.268	19.247	6.761
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	99	0.0	10.88	20.052	7.356	0.0	9.667	20.245	6.69
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	100	0.0	9.535	20.055	7.316	0.0	9.739	20.293	6.721
+ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/ig_resnext101_32x8d/config_ig_resnext101_32x8d_MagFace_AdamW.yaml	222	100	0.0	9.583	21.142	7.37	0.0	9.559	20.963	6.877

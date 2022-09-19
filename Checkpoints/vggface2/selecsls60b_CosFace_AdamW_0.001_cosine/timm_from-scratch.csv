@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_CosFace_AdamW_0.001_cosine.yaml	222	19	0.0	10.292	40.51	14.891	0.0	10.7	40.405	14.481
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_CosFace_AdamW_0.001_cosine.yaml	222	39	0.0	11.457	44.215	16.221	0.0	11.589	42.408	15.138
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_CosFace_AdamW_0.001_cosine.yaml	222	79	0.0	11.205	52.458	20.851	0.0	10.808	51.024	19.869
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_CosFace_AdamW_0.001_cosine.yaml	222	99	0.0	10.604	52.995	21.372	0.0	10.76	51.575	20.206
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_CosFace_AdamW_0.001_cosine.yaml	222	100	0.0	10.556	53.147	21.293	0.0	10.664	51.818	20.324
