@@ -130,7 +130,7 @@ if __name__ == '__main__':
             checkpoint = torch.load(os.path.join(checkpoints_model_root, ckpt))
             epoch = checkpoint['epoch']-1
             if model_ema is not None:
-               model_ema.load_state_dict(checkpoint['model_ema_state_dict'])
+                model_ema.load_state_dict(checkpoint['model_ema_state_dict'])
             model.load_state_dict(checkpoint['model_state_dict'])
             '''For test data compute only k-neighbors accuracy and multi-accuracy'''
             k_accuracy = True

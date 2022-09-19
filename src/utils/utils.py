@@ -25,7 +25,10 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
 #     if not os.path.exists(checkpoints_model_root):
 #         os.mkdir(checkpoints_model_root)
 
-    potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if chckpt.startswith(name)]
+    if os.path.exists(checkpoints_model_root):
+        potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if chckpt.startswith(name)]
+    else:
+        potential_checkpoints = []
     print('Found checkpoints for this model:', potential_checkpoints)
 
     if len(potential_checkpoints) !=0:
@@ -53,13 +56,17 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
 def load_checkpoints_all(opt, p_identities, p_images):
 
     # resume from a checkpoint
-    name = "Checkpoint_Head_{}_Backbone_{}_Dataset_{}_p_idx{}_p_img{}_Epoch_".format(opt.head, opt.backbone, opt.name, str(p_identities), str(p_images))
+    name = "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_".format(opt.head, opt.backbone, opt.opt, opt.name)
     #print(name)
     checkpoints_model_root = opt.checkpoints_root
         
-    print(checkpoints_model_root, os.listdir(checkpoints_model_root))
+    if os.path.exists(checkpoints_model_root):
+        potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if chckpt.startswith(name)]
+    else:
+        print('Checkpoint Folder does not Exist:', checkpoints_model_root)
+        potential_checkpoints = []
+#     print(checkpoints_model_root, os.listdir(checkpoints_model_root))
 
-    potential_checkpoints = [chckpt for chckpt in os.listdir(checkpoints_model_root) if '.pth' in chckpt]
     print('Found checkpoints for this model:', potential_checkpoints)
     return potential_checkpoints
 

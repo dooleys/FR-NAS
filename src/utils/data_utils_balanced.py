@@ -123,7 +123,8 @@ def make_dataset(
     instances_essential = {dem: [] for dem in p_images.keys()}
     instances_additional = {dem: [] for dem in p_images.keys()}
     available_classes = set()
-    count = [0]*len(class_to_idx.keys())
+#     print(class_to_idx)
+    count = {target_class: 0 for target_class in sorted(class_to_idx.keys())}
     for target_class in sorted(class_to_idx.keys()):
         label = class_to_idx[target_class]
         target_dir = os.path.join(directory, target_class)
@@ -137,11 +138,16 @@ def make_dataset(
                 if is_valid_file(path):
 
                     item = path, label, demographic
-                    if count[label] < min_num:
+                    try:
+                        count[target_class]
+                    except:
+                        print(item)
+                        print(len(count))
+                    if count[target_class] < min_num:
                         instances_essential[demographic].append(item)
                     else:
                         instances_additional[demographic].append(item)
-                    count[label] += 1
+                    count[target_class] += 1
 
                     if target_class not in available_classes:
                         available_classes.add(target_class)
@@ -313,6 +319,12 @@ def prepare_data(args):
     elif args.dataset =='BUPT':
         num_ref_images_train = 250000
         num_ref_images_test = 18000
+    elif args.dataset =='RFW':
+        num_ref_images_train = 8327
+        num_ref_images_test = 8327
+    elif args.dataset =='vggface2':
+        num_ref_images_train = 500
+        num_ref_images_test = 500
     else:
         raise NameError('Wrong dataset')
 
@@ -320,19 +332,19 @@ def prepare_data(args):
 
 
     datasets = {}
-    print('PREPARING TRAIN DATASET')
+#     print('PREPARING TRAIN DATASET')
 
-    datasets['train'] = ImageFolderWithProtectedAttributes(args.default_train_root, transform=train_transform,
-                                                                 demographic_to_all_classes=demographic_to_all_classes,
-                                                                 all_classes_to_demographic = all_classes_to_demographic,
-                                                                 p_identities = args.p_identities,
-                                                                 p_images = args.p_images,
-                                                                 min_num = args.min_num_images,
-                                                                 ref_num_images = num_ref_images_train,
-                                                                 seed = args.seed
-                                                          )
-    for k in demographic_to_all_classes.keys():
-        print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
+#     datasets['train'] = ImageFolderWithProtectedAttributes(args.default_train_root, transform=train_transform,
+#                                                                  demographic_to_all_classes=demographic_to_all_classes,
+#                                                                  all_classes_to_demographic = all_classes_to_demographic,
+#                                                                  p_identities = args.p_identities,
+#                                                                  p_images = args.p_images,
+#                                                                  min_num = args.min_num_images,
+#                                                                  ref_num_images = num_ref_images_train,
+#                                                                  seed = args.seed
+#                                                           )
+#     for k in demographic_to_all_classes.keys():
+#         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
     datasets['test'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
@@ -348,25 +360,26 @@ def prepare_data(args):
     for k in demographic_to_all_classes.keys():
         print('Number of idx for {} is {}'.format(k, len(datasets['test'].demographic_to_classes[k])))
 
-    demographic_to_idx_train = datasets['train'].demographic_to_idx
+#     demographic_to_idx_train = datasets['train'].demographic_to_idx
+    demographic_to_idx_train = None
     demographic_to_idx_test = datasets['test'].demographic_to_idx
     ######################################################
 
 
 
     dataloaders = {}
-    train_imgs = datasets['train'].imgs
-    weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
-    train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
-    num_class = len(datasets['train'].classes)
+#     train_imgs = datasets['train'].imgs
+#     weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
+#     train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
+    num_class = len(datasets['test'].classes)
     '''
     dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
                                                        sampler=train_sampler, num_workers=args.num_workers,
                                                        drop_last=True)
     '''
-    dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
-                                                       shuffle = True, num_workers=args.num_workers,
-                                                       drop_last=True)
+#     dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
+#                                                        shuffle = True, num_workers=args.num_workers,
+#                                                        drop_last=True)
 
     dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
 

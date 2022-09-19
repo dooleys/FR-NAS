@@ -23,6 +23,7 @@ def l2_norm(input, axis = 1):
 
 def _add_column_to_file(path, suffix, experiment_id, epoch, df):
     def _get_filename(path, suffix, tag):
+        print(path, suffix, tag)
         return os.path.join(path, '_'.join([suffix, tag])+'.csv')
     
     def _load_data(path):
