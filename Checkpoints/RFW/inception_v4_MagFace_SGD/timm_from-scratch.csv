@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_SGD.yaml	222	19	0.0	0.985	8.974	3.419	0.0	1.261	11.147	4.509	0.0	1.297	10.991	4.738	0.0	1.021	10.635	4.545
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_SGD.yaml	222	39	0.0	1.633	9.901	4.346	0.0	2.318	12.163	6.087	0.0	2.642	11.841	6.653	0.0	2.318	11.746	6.184
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_SGD.yaml	222	79	0.0	1.609	10.308	5.701	0.0	2.498	12.403	7.52	0.0	2.63	12.894	8.435	0.0	2.846	12.482	7.88
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_SGD.yaml	222	99	0.0	1.813	10.511	5.894	0.0	2.378	12.558	7.698	0.0	2.426	13.027	8.51	0.0	2.57	12.713	8.052
+inception_v4	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/inception_v4/config_inception_v4_MagFace_SGD.yaml	222	100	0.0	1.753	10.403	5.796	0.0	2.414	12.459	7.653	0.0	2.51	13.102	8.569	0.0	2.642	12.72	8.057

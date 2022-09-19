@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+mobilenetv3_large_100	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/mobilenetv3_large_100/config_mobilenetv3_large_100_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	1.417	4.662	2.083	0.0	1.969	7.48	3.825	0.0	2.27	8.268	4.428	0.0	1.669	7.325	3.688

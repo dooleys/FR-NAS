@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+tf_efficientnet_b7_ns	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_SGD_0.1_cosine.yaml	222	19	0.0	1.609	14.174	7.339	0.0	2.378	15.394	8.439	0.0	1.921	15.599	8.692	0.0	2.414	15.413	8.667

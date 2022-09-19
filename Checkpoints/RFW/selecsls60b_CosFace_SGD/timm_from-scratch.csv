@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/selecsls60b/config_selecsls60b_CosFace_SGD.yaml	222	19	0.0	4.407	36.396	29.204	0.0	5.716	35.35	28.968	0.0	5.272	34.985	28.492	0.0	6.197	35.542	30.094
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/selecsls60b/config_selecsls60b_CosFace_SGD.yaml	222	39	0.0	4.419	45.127	45.742	0.0	6.725	43.452	45.116	0.0	5.38	43.896	45.64	0.0	6.713	42.957	44.468
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/selecsls60b/config_selecsls60b_CosFace_SGD.yaml	222	79	0.0	3.543	47.833	50.28	0.0	5.668	47.273	51.951	0.0	4.239	47.709	52.534	0.0	5.704	47.073	51.592
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/selecsls60b/config_selecsls60b_CosFace_SGD.yaml	222	99	0.0	3.447	48.398	51.425	0.0	5.356	47.521	52.291	0.0	4.107	48.019	52.983	0.0	5.308	47.465	52.224
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/selecsls60b/config_selecsls60b_CosFace_SGD.yaml	222	100	0.0	3.435	48.387	51.474	0.0	5.452	47.575	52.436	0.0	4.275	48.085	53.154	0.0	5.392	47.416	52.16

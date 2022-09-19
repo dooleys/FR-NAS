@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_AdamW.yaml	222	19	0.0	0.0	0.763	0.016	0.0	0.0	0.822	0.021	0.0	0.0	0.515	0.011	0.0	0.0	0.626	0.015
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_AdamW.yaml	222	39	0.0	0.024	0.141	0.012	0.0	0.0	0.036	0.002	0.0	0.0	0.023	0.001	0.0	0.0	0.012	0.001
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_AdamW.yaml	222	79	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_AdamW.yaml	222	99	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_AdamW.yaml	222	100	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0

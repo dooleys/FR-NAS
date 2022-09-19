@@ -1,0 +1,5 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/selecsls60b/config_selecsls60b_CosFace_Adam.yaml	222	19	0.0	0.336	2.783	0.743	0.0	0.817	2.767	0.799	0.0	0.42	2.741	0.759	0.0	0.648	2.93	0.802
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/selecsls60b/config_selecsls60b_CosFace_Adam.yaml	222	39	0.0	0.012	nan	0.01	0.0	0.06	nan	0.02	0.0	0.0	nan	0.017	0.0	0.12	nan	0.014
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/selecsls60b/config_selecsls60b_CosFace_Adam.yaml	222	79	0.0	0.0	nan	0.0	0.0	0.012	nan	0.0	0.0	0.012	nan	0.0	0.0	0.0	nan	0.0
+selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/selecsls60b/config_selecsls60b_CosFace_Adam.yaml	222	99	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0	0.0	0.024	nan	0.0	0.0	0.0	nan	0.0
