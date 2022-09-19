@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	19	0.0	1.285	19.044	9.553	0.0	2.102	20.82	11.9	0.0	1.861	22.389	13.007	0.0	2.186	21.294	12.335
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	39	0.0	2.966	19.033	12.456	0.0	4.732	19.647	13.916	0.0	4.263	19.749	14.298	0.0	4.744	19.742	14.466
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	79	0.0	5.596	17.632	13.387	0.0	8.839	17.472	14.305	0.0	8.779	17.296	14.484	0.0	9.811	17.718	14.985
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	99	0.0	5.56	17.645	13.416	0.0	8.899	17.445	14.279	0.0	8.947	17.163	14.398	0.0	10.076	17.642	14.992
+resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/resnetrs101/config_resnetrs101_CosFace_AdamW.yaml	222	100	0.0	5.656	17.723	13.514	0.0	8.959	17.563	14.403	0.0	8.815	17.282	14.53	0.0	10.268	17.72	15.077

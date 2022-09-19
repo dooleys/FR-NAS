@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_ArcFace_SGD.yaml	222	19	0.0	1.813	6.806	3.717	0.0	2.882	7.428	4.463	0.0	2.594	7.473	4.565	0.0	2.558	7.321	4.443
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_ArcFace_SGD.yaml	222	39	0.0	1.885	7.938	4.508	0.0	3.122	9.122	5.831	0.0	3.17	9.543	6.298	0.0	3.254	9.223	6.005
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_ArcFace_SGD.yaml	222	79	0.0	1.765	9.191	5.292	0.0	2.606	9.028	5.859	0.0	2.462	9.367	6.23	0.0	2.558	9.234	6.015
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_ArcFace_SGD.yaml	222	99	0.0	1.513	9.128	5.294	0.0	2.81	8.991	5.887	0.0	2.486	9.189	6.138	0.0	2.582	9.093	5.974
+fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_ArcFace_SGD.yaml	222	100	0.0	1.585	9.084	5.229	0.0	2.858	8.978	5.862	0.0	2.522	9.179	6.128	0.0	2.51	9.06	5.942

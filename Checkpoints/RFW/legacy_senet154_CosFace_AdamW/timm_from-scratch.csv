@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_CosFace_AdamW.yaml	222	19	0.0	1.813	nan	nan	0.0	2.762	nan	nan	0.0	2.378	nan	nan	0.0	2.786	nan	nan
+legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_CosFace_AdamW.yaml	222	39	0.0	2.822	nan	nan	0.0	4.744	nan	nan	0.0	4.335	nan	nan	0.0	4.684	nan	nan
+legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_CosFace_AdamW.yaml	222	79	0.0	4.539	nan	nan	0.0	6.965	nan	nan	0.0	7.157	nan	nan	0.0	7.914	nan	nan
+legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_CosFace_AdamW.yaml	222	99	0.0	4.648	nan	nan	0.0	7.217	nan	nan	0.0	7.35	nan	nan	0.0	8.13	nan	nan
+legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_CosFace_AdamW.yaml	222	100	0.0	4.636	nan	nan	0.0	7.205	nan	nan	0.0	7.386	nan	nan	0.0	7.902	nan	nan

@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dpn107/config_dpn107_MagFace_AdamW_0.001_cosine.yaml	222	19	0.0	4.179	8.84	5.538	0.0	6.233	9.487	6.562	0.0	8.851	11.376	9.092	0.0	7.266	10.705	8.055
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dpn107/config_dpn107_MagFace_AdamW_0.001_cosine.yaml	222	39	0.0	2.498	11.152	6.341	0.0	3.495	11.599	7.478	0.0	4.419	13.118	9.71	0.0	4.059	12.222	8.55
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dpn107/config_dpn107_MagFace_AdamW_0.001_cosine.yaml	222	79	0.0	1.849	12.271	6.853	0.0	2.354	12.902	8.11	0.0	3.579	13.814	10.017	0.0	3.062	13.214	8.971
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dpn107/config_dpn107_MagFace_AdamW_0.001_cosine.yaml	222	99	0.0	1.729	12.573	7.099	0.0	2.33	13.123	8.294	0.0	3.507	13.965	10.152	0.0	2.75	13.413	9.122
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/dpn107/config_dpn107_MagFace_AdamW_0.001_cosine.yaml	222	100	0.0	1.681	12.655	7.139	0.0	2.378	13.177	8.331	0.0	3.543	14.014	10.185	0.0	2.774	13.429	9.12

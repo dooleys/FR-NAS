@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_CosFace_AdamW.yaml	222	19	0.0	0.769	10.728	4.418	0.0	1.597	12.755	5.83	0.0	1.741	12.859	6.32	0.0	1.441	11.909	5.664
+xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_CosFace_AdamW.yaml	222	39	0.0	1.069	12.859	5.953	0.0	2.006	13.278	7.126	0.0	2.066	13.396	7.495	0.0	2.042	13.301	7.268
+xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_CosFace_AdamW.yaml	222	79	0.0	1.081	14.46	6.959	0.0	1.705	14.998	8.22	0.0	1.657	15.262	8.73	0.0	1.789	15.111	8.41
+xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_CosFace_AdamW.yaml	222	99	0.0	1.081	14.794	7.313	0.0	1.813	15.298	8.534	0.0	1.777	15.573	9.051	0.0	1.753	15.481	8.797
+xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_CosFace_AdamW.yaml	222	100	0.0	1.069	14.782	7.285	0.0	1.765	15.176	8.436	0.0	1.765	15.505	8.961	0.0	1.801	15.357	8.695

@@ -1,0 +1,3 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	19	0.0	4.792	33.849	29.348	0.0	8.55	32.945	30.729	0.0	9.271	33.3	31.485	0.0	8.502	33.541	31.5
+tnt_s_patch16_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/tnt_s_patch16_224/config_tnt_s_patch16_224_CosFace_AdamW.yaml	222	19	0.0	4.792	33.849	29.348	0.0	8.55	32.945	30.729	0.0	9.271	33.3	31.485	0.0	8.502	33.541	31.5

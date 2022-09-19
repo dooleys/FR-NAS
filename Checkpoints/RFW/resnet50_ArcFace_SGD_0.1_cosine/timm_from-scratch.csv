@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	2.594	6.494	3.926	0.0	4.828	7.35	4.945	0.0	5.945	8.34	6.08	0.0	5.032	7.974	5.61
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	2.426	6.726	3.951	0.0	4.864	7.66	5.226	0.0	6.725	8.804	6.706	0.0	5.224	8.502	6.076
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	59	0.0	1.933	7.422	4.222	0.0	3.699	9.123	6.123	0.0	5.332	9.558	7.092	0.0	4.323	9.081	6.377
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	1.381	7.886	4.307	0.0	2.69	8.905	5.726	0.0	4.155	9.598	6.988	0.0	2.93	9.32	6.389
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	1.357	7.593	4.012	0.0	2.558	8.987	5.718	0.0	4.095	9.591	6.95	0.0	2.618	9.256	6.241
+resnet50	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnet50/config_resnet50_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	1.357	7.65	4.07	0.0	2.654	8.89	5.627	0.0	4.131	9.557	6.921	0.0	2.714	9.246	6.249

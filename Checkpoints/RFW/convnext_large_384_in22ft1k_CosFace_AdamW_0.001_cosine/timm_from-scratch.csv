@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+convnext_large_384_in22ft1k	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convnext_large_384_in22ft1k/config_convnext_large_384_in22ft1k_CosFace_AdamW_0.001_cosine.yaml	222	0	0.0	0.396	3.893	0.576	0.0	0.612	4.388	0.687	0.0	0.36	4.596	0.715	0.0	0.42	4.48	0.693

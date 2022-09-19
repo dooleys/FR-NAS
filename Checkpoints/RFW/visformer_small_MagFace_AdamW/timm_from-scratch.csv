@@ -1,0 +1,2 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_MagFace_AdamW.yaml	222	19	0.0	0.036	7.868	0.758	0.0	0.084	8.325	0.843	0.0	0.072	7.972	0.804	0.0	0.072	8.291	0.822

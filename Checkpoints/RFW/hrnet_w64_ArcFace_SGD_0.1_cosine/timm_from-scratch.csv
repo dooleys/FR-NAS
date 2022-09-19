@@ -1,0 +1,6 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	6.437	6.835	5.098	0.0	9.127	7.905	6.353	0.0	10.904	8.342	6.989	0.0	10.472	8.086	6.674
+hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	6.413	7.079	5.198	0.0	9.043	7.058	5.452	0.0	12.249	8.811	7.612	0.0	10.136	8.314	6.904
+hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	2.546	8.103	5.022	0.0	3.867	8.377	5.531	0.0	5.8	9.953	7.724	0.0	5.044	9.486	7.006
+hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	2.246	8.666	5.228	0.0	3.315	8.667	5.521	0.0	5.212	10.066	7.712	0.0	3.963	9.881	7.205
+hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	2.126	8.675	5.252	0.0	3.254	8.694	5.554	0.0	5.416	10.054	7.708	0.0	4.107	9.877	7.214

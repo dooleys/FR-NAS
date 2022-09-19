@@ -1,0 +1,5 @@
+Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
+gluon_xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	19	0.0	0.0	nan	nan	0.0	0.0	nan	nan	0.0	0.0	nan	nan	0.0	0.0	nan	nan
+gluon_xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	39	0.0	0.036	nan	nan	0.0	0.072	nan	nan	0.0	0.048	nan	nan	0.0	0.072	nan	nan
+gluon_xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	79	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	99	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
