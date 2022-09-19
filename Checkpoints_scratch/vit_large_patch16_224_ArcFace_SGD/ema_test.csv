@@ -1,0 +1,12 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	0	0.0	2.056	1.113	0.15	0.0	2.03	0.953	0.109
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	1	0.0	19.487	0.31	0.057	0.0	9.639	0.237	0.028
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	2	0.0	8.984	nan	0.022	0.0	1.663	nan	0.005
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	3	0.0	2.082	nan	0.012	0.0	0.314	nan	0.002
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	4	0.0	0.917	nan	0.008	0.0	0.262	nan	0.001
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	5	0.0	0.576	nan	0.006	0.0	0.131	nan	0.001
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	6	0.092	0.327	nan	nan	0.0	0.0	nan	nan
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	7	0.092	0.327	nan	nan	0.0	0.0	nan	nan
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	8	0.092	0.327	nan	nan	0.0	0.0	nan	nan
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	9	0.092	0.327	nan	nan	0.0	0.0	nan	nan
+vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_SGD.yaml	222	10	0.092	0.327	nan	nan	0.0	0.0	nan	nan

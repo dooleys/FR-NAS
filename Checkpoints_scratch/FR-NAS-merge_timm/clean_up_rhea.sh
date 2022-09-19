@@ -1,0 +1,3 @@
+python src/fairness_train_timm.py --config_path configs_unified_lr/ghostnet_100/config_ghostnet_100_MagFace_AdamW_0.001_cosine.yaml
+python src/fairness_train_timm.py --config_path configs_unified_lr/ghostnet_100/config_ghostnet_100_CosFace_AdamW_0.001_cosine.yaml
+python src/fairness_train_timm.py --config_path configs_unified_lr/ghostnet_100/config_ghostnet_100_ArcFace_AdamW_0.001_cosine.yaml

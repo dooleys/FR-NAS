@@ -1,0 +1,102 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	0	0.0	0.616	0.545	0.054	0.0	0.013		0.045
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	1	0.0	8.46		1.857	0.0	5.068		0.517
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	2	0.0	1.899			0.0	0.223		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	3	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	4	0.026	0.445			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	5	0.183	0.655			0.0	0.131		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	6	0.026	3.169			0.0	0.354		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	7	0.236	1.598			0.0	0.511		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	8	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	9	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	10	0.249	0.419			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	11	0.052	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	12	0.0	0.432			0.0	0.039		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	13	0.039	0.419			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	14	0.0	0.485			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	15	0.013	0.471			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	16	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	17	0.393	0.406			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	18	0.039	1.048			0.0	0.131		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	19	0.052	0.432			0.0	0.052		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	20	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	21	0.039	0.432			0.0	0.013		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	22	0.0	0.419			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	23	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	24	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	25	0.354	0.563			0.0	0.118		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	26	0.0	0.445			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	27	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	28	0.013	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	29	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	30	0.0	0.419			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	31	0.026	0.406			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	32	0.013	0.576			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	33	0.0	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	34	0.013	0.471			0.0	0.485		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	35	0.0	0.498		0.073	0.0	0.026		0.087
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	36	0.0	1.506			0.0	0.301		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	37	0.0	0.34		0.006	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	38	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	39	0.0	1.585			0.0	1.035		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	40	0.013	0.432			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	41	0.0	1.493		0.221	0.0	0.917		0.339
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	42	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	43	0.0	0.419		0.05	0.0	0.013		0.088
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	44	0.0	1.257	20.462	1.239	0.0	0.773	18.048	1.007
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	45	0.0	10.241	1.395	0.096	0.0	5.671	1.393	0.09
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	46	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	47	0.0	0.406		0.005	0.0	0.0		0.003
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	48	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	49	0.0	0.393		0.017	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	50	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	51	0.0	0.393		0.033	0.0	0.0		0.004
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	52	0.0	1.585	8.41	0.384	0.0	1.558	7.887	0.363
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	53	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	54	0.393	0.393			0.0	0.0		
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	55	0.0	2.933		0.0	0.0	0.301		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	56	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	57	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	58	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	59	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	60	0.0	0.668		0.0	0.0	0.026		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	61	0.0	21.281	0.336	0.015	0.0	10.346	0.321	0.013
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	62	0.0	14.301		0.012	0.0	2.423		0.007
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	63	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	64	0.0	0.406	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	65	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	66	0.0	7.19	0.799	0.064	0.0	5.382	0.725	0.059
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	67	0.0	0.393	0.0	0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	68	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	69	0.0	1.755		0.154	0.0	0.602		0.091
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	70	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	71	0.0	0.393	0.0	0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	72	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	73	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	74	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	75	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	76	0.0	2.017		0.001	0.0	0.092		0.002
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	77	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	78	0.0	0.393	0.01	0.0	0.0	0.0	0.012	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	79	0.0	0.393		0.0	0.0	0.0		0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	80	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	81	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	82	0.0	0.485	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	83	0.0	0.445	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	84	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	85	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	86	0.0	0.406	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	87	0.0	0.393	90.0	90.0	0.0	0.0	90.0	90.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	88	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	89	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	90	0.0	0.982	nan	0.0	0.0	0.065	nan	0.001
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	91	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	92	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	93	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	94	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	95	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	96	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	97	0.0	0.34	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	98	0.0	0.393	nan	0.0	0.0	0.0	nan	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	99	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0
+gluon_xception65	configs/gluon_xception65/config_gluon_xception65_CosFace_Adam.yaml	222	100	0.0	0.393	0.0	0.0	0.0	0.0	0.0	0.0

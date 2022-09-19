@@ -25,10 +25,11 @@ from timm.scheduler import create_scheduler
 from timm.utils.model_ema import ModelEmaV2
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device_ids=range(torch.cuda.device_count())
-torch.manual_seed(222)
-torch.cuda.manual_seed_all(222)
-np.random.seed(222)
-random.seed(222)
+seed = 666
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
@@ -44,7 +45,13 @@ if __name__ == '__main__':
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-    
+    args.checkpoints_root = "Checkpoints/dpn107_CosFace_SGD_0.1_cosine_666/"
+    args.default_test_root = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val/"
+    args.default_train_root = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/"
+    args.demographics_file = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/CelebA/CelebA_demographics.txt"
+    args.metadata_file = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/timm_model_metadata.csv"
+    args.comet_workspace = "rsukthanker"
+    args.comet_api_key = "KKiKMVZI9RCYowoKDZDS5Y2km"
     p_images = {
         args.groups_to_modify[i]: args.p_images[i]
         for i in range(len(args.groups_to_modify))
@@ -62,7 +69,7 @@ if __name__ == '__main__':
     ####################################################################################################################################
     # ======= data, model and test data =======#
     run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
-    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS',args.checkpoints_root, run_name)
+    output_dir = os.path.join('/work/dlclarge2/sukthank-ZCP_Competition/FRNAS_latest/FR-NAS/',args.checkpoints_root, run_name)
     args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
@@ -83,6 +90,17 @@ if __name__ == '__main__':
                                      num_classes=0,
                                      pretrained=args.pretrained,
                                      drop_connect_rate=args.drop_connect,
+                                     drop_path_rate=args.drop_path,
+                                     drop_block_rate=args.drop_block,
+                                     global_pool=args.gp,
+                                     bn_momentum=args.bn_momentum,
+                                     bn_eps=args.bn_eps,
+                                     scriptable=args.torchscript,
+                                     ).to(device)
+    elif 'mobilenet' in args.backbone:
+        backbone = timm.create_model(args.backbone,
+                                     num_classes=0,
+                                     pretrained=args.pretrained,
                                      drop_path_rate=args.drop_path,
                                      drop_block_rate=args.drop_block,
                                      global_pool=args.gp,

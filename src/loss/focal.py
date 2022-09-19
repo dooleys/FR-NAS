@@ -1,10 +1,17 @@
 import torch
 import torch.nn as nn
-
+import random
+import numpy as np
 
 # Support: ['FocalLoss']
 
-
+seed = 666
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 class FocalLoss(nn.Module):
     def __init__(self, elementwise = False, gamma = 2, eps = 1e-7):
         super(FocalLoss, self).__init__()

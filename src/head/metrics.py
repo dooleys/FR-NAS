@@ -5,7 +5,15 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Parameter
 import math
-
+import numpy as np
+import random
+seed = 666
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
 
 # Support: ['Softmax', 'ArcFace', 'CosFace', 'SphereFace', 'Am_softmax']
 # Support: ['AdaCos','AdaM_Softmax','ArcFace','ArcNegFace','CircleLoss','CurricularFace','MagFace','NPCFace','MV_Softmax','SST_Prototype']
