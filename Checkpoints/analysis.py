@@ -244,8 +244,13 @@ def find_yaml_folder(yaml):
     if it does not exist, return ''
     '''
     experiment_name = yaml.replace('config_','').replace('.yaml','')
+    
+    R2_or_Phase1B = 'R2' if 'R2' in yaml else 'Phase1B'
+            
 
-    experiment_folders = glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/Phase1B/*') + glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/timm_explore_few_epochs/*')
+    experiment_folders = glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/{}/*'.format(R2_or_Phase1B))
+    if R2_or_Phase1B == 'Phase1B':
+        experiment_folders += glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/timm_explore_few_epochs/*')
     where = [get_name_details(experiment_name)[0].lower() == get_name_details(x)[0].lower() for x in experiment_folders]
     yaml_folder = ''
     if any(where):
