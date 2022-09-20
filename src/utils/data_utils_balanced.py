@@ -337,19 +337,19 @@ def prepare_data(args):
 
 
     datasets = {}
-#     print('PREPARING TRAIN DATASET')
+    print('PREPARING TRAIN DATASET')
 
-#     datasets['train'] = ImageFolderWithProtectedAttributes(args.default_train_root, transform=train_transform,
-#                                                                  demographic_to_all_classes=demographic_to_all_classes,
-#                                                                  all_classes_to_demographic = all_classes_to_demographic,
-#                                                                  p_identities = args.p_identities,
-#                                                                  p_images = args.p_images,
-#                                                                  min_num = args.min_num_images,
-#                                                                  ref_num_images = num_ref_images_train,
-#                                                                  seed = args.seed
-#                                                           )
-#     for k in demographic_to_all_classes.keys():
-#         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
+    datasets['train'] = ImageFolderWithProtectedAttributes(args.default_train_root, transform=train_transform,
+                                                                 demographic_to_all_classes=demographic_to_all_classes,
+                                                                 all_classes_to_demographic = all_classes_to_demographic,
+                                                                 p_identities = args.p_identities,
+                                                                 p_images = args.p_images,
+                                                                 min_num = args.min_num_images,
+                                                                 ref_num_images = num_ref_images_train,
+                                                                 seed = args.seed
+                                                          )
+    for k in demographic_to_all_classes.keys():
+        print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
     datasets['test'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
@@ -375,9 +375,9 @@ def prepare_data(args):
     dataloaders = {}
     g = torch.Generator()
     g.manual_seed(0)
-#    train_imgs = datasets['train'].imgs
-#    weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
-#    train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
+#     train_imgs = datasets['train'].imgs
+#     weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
+#     train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
     num_class = len(datasets['train'].classes)
     '''
     dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
