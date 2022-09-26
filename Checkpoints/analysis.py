@@ -74,14 +74,36 @@ def err_from_rank_func(df, epoch_columns):
     # calculate the accuracy 
     return (df[epoch_columns] != 0).sum(axis=0)/df.shape[0]
 
+def _resolve_head(s):
+    if 'CosFace'.lower() in s.lower():
+        return 'CosFace'
+    elif 'ArcFace'.lower() in s.lower():
+        return 'ArcFace'
+    elif 'MagFace'.lower() in s.lower():
+        return 'MagFace'
+    return 'fault'
+    
+def _resolve_opt(s):
+    if 'AdamW'.lower() in s.lower():
+        return 'AdamW'
+    if 'Adam'.lower() in s.lower():
+        return 'Adam'
+    if 'SGD'.lower() in s.lower():
+        return 'SGD'
+    if 'RMSProp'.lower() in s.lower():
+        return 'RMSProp'
+    return 'fault'
+
+
 def get_name_details(f):
-    head_id = -4 if 'cosine' in f else -2
-    opt_id = -3 if 'cosine' in f else -1
+    f = f[:-1] if f[-1] == '/' else f
+    head_id = -8 if 'cosine' in f else -6
     y = os.path.splitext(os.path.basename(f))[0]
     experiment = y.replace('config_','')
-    head = experiment.split('_')[head_id]
-    opt = experiment.split('_')[opt_id]
-    model = '_'.join(experiment.split('_')[:head_id])
+    head = _resolve_head(f)
+    opt = _resolve_opt(f)
+    head_i = experiment.lower().index(head.lower())
+    model = '_'.join(experiment[:head_i].split('_')[:-1])
     return experiment, model, head, opt
 
 
@@ -248,9 +270,9 @@ def find_yaml_folder(yaml):
     R2_or_Phase1B = 'R2' if 'R2' in yaml else 'Phase1B'
             
 
-    experiment_folders = glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/{}/*'.format(R2_or_Phase1B))
+    experiment_folders = glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/{}/*/'.format(R2_or_Phase1B))
     if R2_or_Phase1B == 'Phase1B':
-        experiment_folders += glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/timm_explore_few_epochs/*')
+        experiment_folders += glob.glob('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/timm_explore_few_epochs/*/')
     where = [get_name_details(experiment_name)[0].lower() == get_name_details(x)[0].lower() for x in experiment_folders]
     yaml_folder = ''
     if any(where):
@@ -274,6 +296,11 @@ def get_finished_models_Phase1B():
         final_models.remove('vit_large_patch16_224')
     if 'cait_xs24_384' in final_models:
         final_models.remove('cait_xs24_384')
+        
+    # make sure vgg_bn goes before vgg
+    a, b = final_models.index('vgg19'), final_models.index('vgg19_bn')
+    final_models[b], final_models[a] = final_models[a], final_models[b]
+
 
     return final_models
 

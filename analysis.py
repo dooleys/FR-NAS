@@ -146,7 +146,7 @@ def analyze_rank_files_np(files, metadata, ratio=False, error=False, epochs=None
             acc = err_from_rank_func(df, epoch_columns)
         else:
             acc = acc_from_rank_func(df, epoch_columns)
-        experiment = f.split('/')[1]
+        experiment = f.split('/')[2]
         acc_df.loc[experiment] = acc
         
         if ratio:
