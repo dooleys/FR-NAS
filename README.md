@@ -36,7 +36,7 @@ To train a model based on the created configs execute the following command
 
 To create the config files from a list of commands, run:
 
- <code> bash ./phase1b_samuel.sh</code>
+ <code> bash ./phase1b_xxxxxx.sh</code>
 
 To then create the Phase1b(ii) and Phase1b(iii) training commands, run:
 
