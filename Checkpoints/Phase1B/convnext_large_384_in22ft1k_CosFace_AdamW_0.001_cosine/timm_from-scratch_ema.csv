@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch
-convnext_large_384_in22ft1k	configs_unified_lr/convnext_large_384_in22ft1k/config_convnext_large_384_in22ft1k_CosFace_AdamW_0.001_cosine.yaml	222	0

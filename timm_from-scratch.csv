@@ -1,7 +1,0 @@
-Model	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-resnet50	222	0	0.0	6.849	25.675	7.774	0.0	7.74	24.164	7.336
-ghostnet_100	222	0	2.554	2.554	2.371	0.23	2.135	2.135	1.558	0.161
-ghostnet_100	222	0	2.554	2.554	2.371	0.23	2.135	2.135	1.558	0.161
-ghostnet_100	222	0	2.554	2.554	2.371	0.23	2.135	2.135	1.558	0.161
-ghostnet_100	222	1	6.731	6.731	2.275	0.124	6.548	6.548	2.185	0.149
-resnet50	222	0	3.654	3.654	3.02	0.256	2.619	2.619	2.862	0.275

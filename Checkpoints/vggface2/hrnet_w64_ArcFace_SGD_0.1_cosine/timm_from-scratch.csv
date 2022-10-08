@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	23.682	9.921	4.394	0.0	23.394	9.674	3.965
-hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	28.245	10.829	4.922	0.0	24.931	10.608	4.603
-hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	16.38	12.141	4.769	0.0	14.783	12.173	4.3
-hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	15.312	12.371	4.754	0.0	12.826	12.133	4.128
-hrnet_w64	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/hrnet_w64/config_hrnet_w64_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	15.396	12.35	4.76	0.0	12.754	12.132	4.127

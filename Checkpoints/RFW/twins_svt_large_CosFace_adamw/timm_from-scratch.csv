@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_R2/twins_svt_large/config_twins_svt_large_CosFace_adamw.yaml	222	100	0.0	0.408	7.68	1.953	0.0	0.36	8.778	2.373	0.0	0.264	9.403	2.539	0.0	0.252	9.035	2.405

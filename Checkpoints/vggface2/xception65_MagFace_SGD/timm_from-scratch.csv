@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception65/config_xception65_MagFace_SGD.yaml	222	19	0.0	13.378	13.701	5.39	0.0	12.357	13.253	4.965
-xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception65/config_xception65_MagFace_SGD.yaml	222	39	0.0	13.078	14.336	5.533	0.0	12.874	14.007	5.151
-xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception65/config_xception65_MagFace_SGD.yaml	222	79	0.0	10.676	14.805	5.417	0.0	10.76	14.72	5.075
-xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception65/config_xception65_MagFace_SGD.yaml	222	99	0.0	11.144	14.441	5.24	0.0	10.628	14.564	4.985
-xception65	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception65/config_xception65_MagFace_SGD.yaml	222	100	0.0	10.904	14.422	5.228	0.0	10.652	14.592	5.003

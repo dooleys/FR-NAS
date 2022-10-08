@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-convit_base	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convit_base/config_convit_base_ArcFace_AdamW_0.001_cosine.yaml	222	19	0.0	0.168	9.035	1.554	0.0	0.276	12.094	2.587	0.0	0.192	12.659	2.819	0.0	0.228	12.207	2.562

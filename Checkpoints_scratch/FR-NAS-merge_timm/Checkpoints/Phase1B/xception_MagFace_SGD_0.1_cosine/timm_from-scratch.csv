@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch
-xception	configs_unified_lr/xception/config_xception_MagFace_SGD_0.1_cosine.yaml	222	0
-xception	configs_unified_lr/xception/config_xception_MagFace_SGD_0.1_cosine.yaml	222	1

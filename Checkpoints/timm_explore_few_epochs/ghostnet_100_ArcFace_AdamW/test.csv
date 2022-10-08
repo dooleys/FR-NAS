@@ -1,7 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	0	0.0	2.606	nan	0.003	0.0	0.733	nan	0.001
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	1	0.0	0.76	nan	0.002	0.0	0.118	nan	0.0
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	2	0.0	0.485	nan	0.0	0.0	0.0	nan	0.0
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	3	0.0	0.34	nan	0.0	0.0	0.0	nan	0.0
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	4	0.0	0.354	nan	0.0	0.0	0.0	nan	0.0
-ghostnet_100	configs_multi/ghostnet_100/config_ghostnet_100_ArcFace_AdamW.yaml	222	5	0.0	0.34	nan	0.0	0.0	0.0	nan	0.0

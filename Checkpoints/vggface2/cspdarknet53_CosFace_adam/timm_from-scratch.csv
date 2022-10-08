@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_R2/cspdarknet53/config_cspdarknet53_CosFace_adam.yaml	222	100	0.0	25.868	59.741	31.209	0.0	24.21	57.785	28.782

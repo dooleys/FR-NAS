@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_MagFace_SGD_0.1_cosine.yaml	222	19	0.0	13.318	12.956	4.829	0.0	12.489	13.181	4.641
-selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_MagFace_SGD_0.1_cosine.yaml	222	39	0.0	14.231	14.319	5.458	0.0	14.255	14.786	5.293
-selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_MagFace_SGD_0.1_cosine.yaml	222	79	0.0	14.303	12.564	4.502	0.0	14.027	12.879	4.489
-selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_MagFace_SGD_0.1_cosine.yaml	222	99	0.0	14.327	12.47	4.462	0.0	13.871	12.478	4.317
-selecsls60b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/selecsls60b/config_selecsls60b_MagFace_SGD_0.1_cosine.yaml	222	100	0.0	14.447	12.506	4.476	0.0	13.955	12.48	4.311

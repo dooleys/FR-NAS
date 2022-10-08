@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	99	0.0	51.819	36.698	50.882	0.0	57.019	35.431	50.175	0.0	68.14	35.841	55.235	0.0	67.599	35.195	53.441

@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	20.019	10.384	4.373	0.0	18.998	9.696	3.852
-ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	18.686	12.023	5.042	0.0	18.23	11.478	4.507
-ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	12.249	12.674	4.448	0.0	11.589	12.586	4.131
-ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	11.853	12.006	4.167	0.0	10.46	11.797	3.817
-ig_resnext101_32x8d	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/ig_resnext101_32x8d/config_ig_resnext101_32x8d_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	11.709	11.96	4.161	0.0	10.328	11.742	3.796

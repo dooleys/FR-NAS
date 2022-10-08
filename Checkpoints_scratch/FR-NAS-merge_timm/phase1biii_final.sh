@@ -1,2 +1,0 @@
-python src/fairness_train_timm.py --config_path configs_multi/tnt_s_patch16_224/config_tnt_s_patch16_224_ArcFace_AdamW.yaml
-

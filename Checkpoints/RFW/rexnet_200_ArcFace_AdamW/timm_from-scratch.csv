@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_ArcFace_AdamW.yaml	222	19	0.0	0.204	1.342	0.155	0.0	0.084	1.739	0.183	0.0	0.096	1.811	0.182	0.0	0.168	1.71	0.172
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_ArcFace_AdamW.yaml	222	39	0.0	0.144	7.264	1.002	0.0	0.096	7.364	1.06	0.0	0.084	7.578	1.102	0.0	0.108	7.357	1.052
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_ArcFace_AdamW.yaml	222	79	0.0	0.312	7.949	2.829	0.0	0.408	9.883	3.665	0.0	0.276	10.065	3.781	0.0	0.264	10.094	3.822
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_ArcFace_AdamW.yaml	222	99	0.0	0.372	8.664	3.167	0.0	0.552	10.212	3.955	0.0	0.456	10.39	4.118	0.0	0.408	10.347	4.117
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_ArcFace_AdamW.yaml	222	100	0.0	0.456	8.508	3.108	0.0	0.576	10.141	3.912	0.0	0.432	10.288	4.068	0.0	0.588	10.261	4.076

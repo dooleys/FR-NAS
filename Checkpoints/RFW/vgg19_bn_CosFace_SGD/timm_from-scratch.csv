@@ -1,9 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	19	0.0	4.876	25.573	19.772	0.0	7.446	28.176	23.759	0.0	6.905	27.829	23.527	0.0	7.818	27.695	23.547
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	39	0.0	4.624	27.842	22.49	0.0	8.55	26.717	23.279	0.0	7.866	27.7	24.299	0.0	8.37	27.708	24.459
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	79	0.0	4.708	46.208	48.319	0.0	7.758	42.112	43.749	0.0	7.422	44.007	46.926	0.0	7.53	44.424	47.852
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	99	0.0	4.503	45.486	46.428	0.0	7.266	42.47	43.463	0.0	6.701	41.987	42.704	0.0	6.833	41.958	42.842
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	19	0.0	4.876	25.574	19.772	0.0	7.446	28.176	23.759	0.0	6.905	27.829	23.528	0.0	7.818	27.696	23.548
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	39	0.0	4.624	27.843	22.492	0.0	8.55	26.719	23.28	0.0	7.866	27.701	24.3	0.0	8.37	27.709	24.461
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	79	0.0	4.708	46.209	48.321	0.0	7.758	42.113	43.75	0.0	7.422	44.008	46.928	0.0	7.53	44.425	47.853
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/vgg19_bn/config_vgg19_bn_CosFace_SGD.yaml	222	99	0.0	4.503	45.487	46.43	0.0	7.266	42.471	43.465	0.0	6.701	41.988	42.706	0.0	6.833	41.959	42.844

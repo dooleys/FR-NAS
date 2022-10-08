@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnetrs101/config_resnetrs101_MagFace_SGD_0.1_cosine.yaml	222	19	0.0	25.075	12.862	6.048	0.0	22.673	13.491	5.913
-resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnetrs101/config_resnetrs101_MagFace_SGD_0.1_cosine.yaml	222	39	0.0	22.313	14.757	6.882	0.0	17.906	15.905	6.59
-resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnetrs101/config_resnetrs101_MagFace_SGD_0.1_cosine.yaml	222	79	0.0	13.991	16.185	6.457	0.0	11.301	16.379	5.781
-resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnetrs101/config_resnetrs101_MagFace_SGD_0.1_cosine.yaml	222	99	0.0	13.57	15.907	6.293	0.0	10.46	16.379	5.643
-resnetrs101	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/resnetrs101/config_resnetrs101_MagFace_SGD_0.1_cosine.yaml	222	100	0.0	13.51	15.904	6.298	0.0	10.46	16.347	5.655

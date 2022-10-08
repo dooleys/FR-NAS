@@ -1,7 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr_R2/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	100	0.0	18.554	52.171	24.265	0.0	17.185	51.226	23.03
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	19	0.0	1.489	35.391	3.993	0.0	1.561	32.517	3.712
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	39	0.0	6.677	41.941	12.018	0.0	6.041	43.483	12.139
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	79	0.0	10.256	54.775	22.534	0.0	10.232	54.349	21.953
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	99	0.0	16.789	56.024	26.136	0.0	14.939	56.071	24.845
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/cspdarknet53/config_cspdarknet53_CosFace_SGD_0.1_cosine.yaml	222	100	0.0	17.101	56.087	26.364	0.0	15.432	55.864	24.948

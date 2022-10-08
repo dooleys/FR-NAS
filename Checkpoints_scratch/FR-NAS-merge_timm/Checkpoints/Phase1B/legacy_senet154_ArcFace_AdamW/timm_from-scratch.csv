@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch
-legacy_senet154	configs_multi/legacy_senet154/config_legacy_senet154_ArcFace_AdamW.yaml	222	99
-legacy_senet154	configs_multi/legacy_senet154/config_legacy_senet154_ArcFace_AdamW.yaml	222	100

@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_CosFace_SGD.yaml	222	19	0.0	2.726	37.954	30.783	0.0	4.383	36.274	30.715	0.0	3.951	37.4	32.058	0.0	4.299	36.321	31.075
-fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_CosFace_SGD.yaml	222	39	0.0	4.599	42.756	41.308	0.0	7.326	40.57	40.177	0.0	6.677	41.409	41.525	0.0	8.094	40.707	40.986
-fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_CosFace_SGD.yaml	222	79	0.0	5.212	41.354	39.518	0.0	8.106	38.399	37.095	0.0	7.506	39.398	38.731	0.0	9.043	39.709	39.829
-fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_CosFace_SGD.yaml	222	99	0.0	4.9	42.664	41.342	0.0	7.926	39.422	38.406	0.0	7.073	40.742	40.733	0.0	8.526	40.686	41.157
-fbnetv3_g	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/fbnetv3_g/config_fbnetv3_g_CosFace_SGD.yaml	222	100	0.0	4.816	42.574	41.127	0.0	7.914	39.254	38.101	0.0	7.001	40.645	40.54	0.0	8.346	40.57	40.908

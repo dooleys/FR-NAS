@@ -1,5 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_CosFace_SGD.yaml	222	19	0.0	46.884	46.325	26.99	0.0	39.894	45.938	24.773
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_CosFace_SGD.yaml	222	39	0.0	53.044	51.985	34.557	0.0	43.353	51.396	30.64
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_CosFace_SGD.yaml	222	79	0.0	55.758	58.521	42.593	0.0	44.674	57.779	37.639
-rexnet_200	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/rexnet_200/config_rexnet_200_CosFace_SGD.yaml	222	99	0.0	56.407	59.358	44.117	0.0	45.635	58.947	39.283

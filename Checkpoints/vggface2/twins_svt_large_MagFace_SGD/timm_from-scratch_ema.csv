@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	99	0.0	8.046	13.557	4.184	0.0	7.962	14.232	4.146
-twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	100	0.0	8.094	13.563	4.19	0.0	7.938	14.246	4.152

@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/xception/config_xception_MagFace_SGD_0.1_cosine.yaml	222	1	0.0	1.982	25.078	15.313	0.0	4.023	25.246	17.805	0.0	3.375	25.909	18.149	0.0	2.93	25.56	17.883

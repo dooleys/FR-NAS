@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_ArcFace_SGD_0.1_cosine.yaml	222	14	0.0	6.257	7.121	5.207	0.0	10.424	8.122	6.6	0.0	11.373	9.012	7.55	0.0	11.817	8.429	6.959

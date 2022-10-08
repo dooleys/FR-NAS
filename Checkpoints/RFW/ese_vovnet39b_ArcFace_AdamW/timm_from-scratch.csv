@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_ArcFace_AdamW.yaml	222	19	0.0	2.558	6.567	3.854	0.0	5.212	7.821	5.422	0.0	7.061	8.567	6.476	0.0	6.089	8.207	6.001
-ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_ArcFace_AdamW.yaml	222	39	0.0	1.969	7.208	4.077	0.0	4.071	7.738	5.098	0.0	5.812	9.3	7.066	0.0	4.72	8.86	6.371
-ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_ArcFace_AdamW.yaml	222	79	0.0	1.453	8.288	4.522	0.0	2.978	8.478	5.38	0.0	4.948	9.666	7.2	0.0	3.735	9.185	6.436
-ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_ArcFace_AdamW.yaml	222	99	0.0	1.573	8.266	4.504	0.0	3.062	8.621	5.49	0.0	4.78	9.665	7.186	0.0	3.579	9.19	6.428
-ese_vovnet39b	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/ese_vovnet39b/config_ese_vovnet39b_ArcFace_AdamW.yaml	222	100	0.0	1.633	8.233	4.466	0.0	3.05	8.683	5.546	0.0	4.864	9.59	7.126	0.0	3.603	9.098	6.359

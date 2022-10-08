@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	19	0.0	2.69	7.186	4.247	0.0	3.927	8.027	5.359	0.0	4.167	8.325	5.872	0.0	4.203	8.123	5.628
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	39	0.0	2.678	7.324	4.631	0.0	4.443	8.521	5.899	0.0	5.728	9.152	6.847	0.0	4.96	8.772	6.444
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	79	0.0	2.162	8.21	5.088	0.0	3.254	8.557	5.753	0.0	4.203	9.028	6.67	0.0	3.639	8.874	6.377
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	99	0.0	2.126	7.813	4.66	0.0	3.242	7.898	5.127	0.0	3.603	8.184	6.007	0.0	3.158	8.165	5.782
-vgg19_bn	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/vgg19_bn/config_vgg19_bn_ArcFace_SGD_0.1_cosine.yaml	222	100	0.0	2.21	7.861	4.694	0.0	3.086	7.871	5.096	0.0	3.699	8.204	6.034	0.0	3.158	8.19	5.805

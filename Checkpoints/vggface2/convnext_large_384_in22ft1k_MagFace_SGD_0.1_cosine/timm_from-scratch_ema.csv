@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-convnext_large_384_in22ft1k	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/convnext_large_384_in22ft1k/config_convnext_large_384_in22ft1k_MagFace_SGD_0.1_cosine.yaml	222	14	0.0	0.0	nan	0.0	0.0	0.0	nan	0.0

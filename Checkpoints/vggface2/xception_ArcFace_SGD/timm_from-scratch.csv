@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_ArcFace_SGD.yaml	222	19	0.0	17.005	11.426	4.585	0.0	16.993	11.439	4.47
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_ArcFace_SGD.yaml	222	39	0.0	14.015	11.537	4.511	0.0	12.694	11.722	4.196
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_ArcFace_SGD.yaml	222	79	0.0	10.28	12.153	4.107	0.0	8.815	12.249	3.831
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_ArcFace_SGD.yaml	222	99	0.0	9.751	12.139	4.091	0.0	8.827	12.306	3.816
-xception	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/xception/config_xception_ArcFace_SGD.yaml	222	100	0.0	9.884	12.131	4.085	0.0	8.514	12.289	3.807

@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_ArcFace_AdamW.yaml	222	19	0.264	0.0	nan	nan	0.0	0.0	nan	nan
-visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_ArcFace_AdamW.yaml	222	39	0.264	0.0	nan	nan	0.0	0.0	nan	nan
-visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_ArcFace_AdamW.yaml	222	79	0.264	0.0	nan	nan	0.0	0.0	nan	nan
-visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_ArcFace_AdamW.yaml	222	99	0.264	0.0	nan	nan	0.0	0.0	nan	nan
-visformer_small	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/visformer_small/config_visformer_small_ArcFace_AdamW.yaml	222	100	0.264	0.0	nan	nan	0.0	0.0	nan	nan

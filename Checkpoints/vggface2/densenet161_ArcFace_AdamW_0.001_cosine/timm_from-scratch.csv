@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_ArcFace_AdamW_0.001_cosine.yaml	222	19	0.0	25.796	11.068	5.117	0.0	22.913	11.05	4.728
-densenet161	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/densenet161/config_densenet161_ArcFace_AdamW_0.001_cosine.yaml	222	20	0.0	26.072	10.633	4.861	0.0	22.361	11.226	4.739

@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-twins_svt_large	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/twins_svt_large/config_twins_svt_large_MagFace_SGD.yaml	222	99	0.0	1.501	10.933	5.867	0.0	2.774	11.539	6.64	0.0	2.33	11.79	6.775	0.0	2.174	11.683	6.724

@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-swin_base_patch4_window7_224	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_unified_lr/swin_base_patch4_window7_224/config_swin_base_patch4_window7_224_ArcFace_AdamW_0.001_cosine.yaml	222	19	0.036	0.0	nan	nan	0.0	0.0	nan	nan	0.0	0.0	nan	nan	0.0	0.0	nan	nan

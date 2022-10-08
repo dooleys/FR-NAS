@@ -1,3 +1,0 @@
-Model	config_file	seed	epoch	Acc multi African	Acc k African	Intra African	Inter African	Acc multi Asian	Acc k Asian	Intra Asian	Inter Asian	Acc multi Caucasian	Acc k Caucasian	Intra Caucasian	Inter Caucasian	Acc multi Indian	Acc k Indian	Intra Indian	Inter Indian
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/cspdarknet53/config_cspdarknet53_ArcFace_SGD.yaml	222	99	0.0	1.885	2.066	1.326	0.0	2.294	1.806	1.235	0.0	1.885	1.767	1.212	0.0	2.198	1.777	1.225
-cspdarknet53	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi_R2/cspdarknet53/config_cspdarknet53_ArcFace_SGD.yaml	222	100	0.0	1.849	2.046	1.321	0.0	2.342	1.795	1.229	0.0	1.861	1.755	1.205	0.0	2.234	1.766	1.219

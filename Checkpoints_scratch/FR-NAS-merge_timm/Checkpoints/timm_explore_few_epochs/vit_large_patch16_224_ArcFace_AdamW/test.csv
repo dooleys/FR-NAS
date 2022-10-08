@@ -1,2 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-vit_large_patch16_224	configs_multi/vit_large_patch16_224/config_vit_large_patch16_224_ArcFace_AdamW.yaml	222	0	0.0	0.419	nan	0.0	0.0	0.026	nan	0.0

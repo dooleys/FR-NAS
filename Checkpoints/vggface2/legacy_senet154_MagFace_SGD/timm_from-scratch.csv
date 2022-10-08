@@ -1,6 +1,0 @@
-Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
-legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_MagFace_SGD.yaml	222	19	0.0	20.728	15.272	6.659	0.0	18.866	15.777	6.388
-legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_MagFace_SGD.yaml	222	39	0.0	17.545	15.461	6.277	0.0	15.119	15.755	5.818
-legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_MagFace_SGD.yaml	222	79	0.0	11.529	16.276	5.972	0.0	9.391	16.613	5.418
-legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_MagFace_SGD.yaml	222	99	0.0	11.841	16.554	5.963	0.0	9.595	16.565	5.368
-legacy_senet154	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs_multi/legacy_senet154/config_legacy_senet154_MagFace_SGD.yaml	222	100	0.0	11.361	16.596	6.012	0.0	9.499	16.694	5.416
