@@ -1,5 +1,5 @@
 comet_api_key: 'your_comet_api_key'
-comet_workspace: 'your comet usernmae'
+comet_workspace: 'your comet username'
 default_val_root: 'data/CelebA/val'
 default_train_root: 'data/CelebA/train'
 project_name: frnas
