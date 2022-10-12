@@ -40,10 +40,6 @@ Then to train and evaluate all the models we study run the following commands: <
 bash scripts/experiments_default.sh
 bash scripts/experiments_multi.sh
 ```
- 
- ```
- bash ./make_phase1biii.sh > phase1biii.sh
-  ```
 ## Analysis <a name="analysis1"></a>
 
 
