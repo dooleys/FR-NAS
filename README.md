@@ -4,9 +4,6 @@
 ----
 ![Crates.io](https://img.shields.io/crates/l/Ap?color=orange)
 # On the Importance of Architectures and Hyperparameters for Fairness in Face Recognition [[arxiv]](https://arxiv.org/)
-<p align="text-align: justify">
-Face recognition systems are deployed across the world by government agencies and contractors for sensitive and impactful tasks, such as surveillance and database matching.  Despite their widespread use, these systems are known to exhibit bias across a range of sociodemographic dimensions, such as gender and race. We first run a large-scale analysis of the impact of architectures and training hyperparameters on several common fairness metrics and show that the implicit convention of choosing high-accuracy architectures may be suboptimal for fairness. Motivated by our findings, we run the first neural architecture search for fairness, jointly with a search for hyperparameters. We output a suite of models which Pareto-dominate all other competitive architectures in terms of accuracy and fairness. Furthermore, we show that these models transfer well to other face recognition datasets with similar and distinct protected attributes.
-</align>
 <p align="center"><img src="img/fr-nas-overview.png" width=700 /></p>
 
 # Table of contents
