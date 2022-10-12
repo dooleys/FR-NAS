@@ -4,7 +4,7 @@
 ----
 ![Crates.io](https://img.shields.io/crates/l/Ap?color=orange)
 # On the Importance of Architectures and Hyperparameters for Fairness in Face Recognition [[arxiv]](https://arxiv.org/)
-<p align="center"><img src="img/fr-nas-overview.png" width=700 /></p>
+<p align="center"><img src="img/fr-nas-overview.png" width=700/></p>
 
 # Table of contents
 - [Setup](#setup)
