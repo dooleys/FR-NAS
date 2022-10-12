@@ -8,10 +8,9 @@ import itertools
 
 
 def main(args):
-    folder = f"{args.out_dir}/configs/{args.backbone}/"
+    folder = f"{args.out_dir}/configs_default/{args.backbone}/"
     os.makedirs(folder, exist_ok=True)
     config = vars(args)
-    hp_grid = {}
     with open(config["user_config"],"r") as ymlfile:
         user_config = yaml.load(ymlfile, Loader=yaml.FullLoader)
     for k in user_config.keys():

@@ -1,3 +1,4 @@
+#!/bin/bash
 python src/create_all_configs.py --user_config config_user.yaml --backbone ghostnet_100 --lr 0.1 --momentum 0.9 --weight-decay 0.0001 --opt sgd --sched multistep --input_size 112
 python src/create_all_configs.py --user_config config_user.yaml --backbone cspdarknet53 --lr 1e-4 --opt adam  --weight-decay 0.0005 --input_size 112
 python src/create_all_configs.py --user_config config_user.yaml --backbone dpn107 --sched multistep --lr 0.001 --weight-decay 0.0001 --opt sgd --input_size 224

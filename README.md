@@ -28,21 +28,12 @@ pip install -r requirements.txt
 
 # Analysis of Fairness for Architectures <a name="archs"></a>
 
-## Create Configs <a name="create_configs"></a>
-
-To create config files for a model, execute the following command. Make sure to pass your chosen hyperparams as command line arguments as described in the example below:
+To create configuration files needed to train all the models we study run: <a name="create_configs"></a>
 
 ```
-python create_configs.py --user_config <path_to_user_config> --backbone <backbone> --batch_size <batch_size> 
+source scripts/create_configs.sh
 ```
- 
- ```
- python create_configs.py --user_config config_user.yaml --backbone  ghostnet_100 --batch_size 64
-```
- 
- ``` 
- python create_configs.py --user_config config_user.yaml --backbone vgg19 --batch_size 64 --lr 0.01 --momentum 0.9 --weight-decay 1e-4 --sched step --lr-cycle-decay 0.1
- ```
+
 ## Training and Evaluation <a name="experiments1"></a>
 To then create the Phase1b(ii) and Phase1b(iii) training commands, run:
 
