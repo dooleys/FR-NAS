@@ -17,6 +17,15 @@
     - [Training](#training)
     - [Analysis](#analysis2)
 # Setup <a name="setup"></a>
+To setup your environment use the commands below:
+```
+git clone https://github.com/dooleys/FR-NAS/
+cd FR-NAS
+conda create --name frnas python=3.9.11
+conda activate frnas
+pip install -r requirements.txt
+```
+
 # Analysis of Fairness for Architectures <a name="archs"></a>
 ## Create Configs <a name="create_configs"></a>
 To create config files for a model, execute the following command. Make sure to pass your chosen hyperparams as command line arguments as described in the example below:
