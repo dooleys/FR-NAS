@@ -8,10 +8,10 @@
 
 # Table of contents
 - [Setup](#setup)
-- [Analysis of Fairness for Architectures](#archs)
-    - [Create Configs](#create_configs)
-    - [Experiments](#experiments1)
-    - [Analysis](#analysis1)
+- [Download datasets](#download)
+- [Download raw data files](#download_raw)
+- [Create Configs](#create_configs)
+- [Taining and evaluation](#train&eval)
 - [Joint NAS+HPO](#jointnashpo)
     - [Search](#search)
     - [Training](#training)
@@ -26,21 +26,28 @@ conda activate frnas
 pip install -r requirements.txt
 ```
 
+# Download datasets
+| Dataset  |     Download link     | Split  | 
+|----------|:-------------:|:-------------:|
+| [CelebA](https://arxiv.org/pdf/1411.7766.pdf) | [download](https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg) | Train-Val-Test |
+| [RFW](https://arxiv.org/pdf/1812.00194.pdf) | [download](http://www.whdeng.cn/RFW/index.html)| Test |
+| [VGGFace2](https://arxiv.org/pdf/1710.08092.pdf) | [download](https://academictorrents.com/details/535113b8395832f09121bc53ac85d7bc8ef6fa5b)  | Test |
 # Analysis of Fairness for Architectures <a name="archs"></a>
 
-To create configuration files needed to train all the models we study run: <a name="create_configs"></a>
+### To create configuration files needed to train all the models we study run: <a name="create_configs"></a>
 
 ```
 bash scripts/create_configs.sh
 ```
 
-Then to train and evaluate all the models we study run the following commands: <a name="experiments1"></a>
+### Then to train and evaluate all the models we study run the following commands: <a name="experiments1"></a>
 
  ```
 bash scripts/experiments_default.sh
 bash scripts/experiments_multi.sh
 ```
-## Analysis <a name="analysis1"></a>
+
+### Analysis <a name="analysis1"></a>
 
 
 
