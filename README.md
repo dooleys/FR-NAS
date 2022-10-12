@@ -31,14 +31,14 @@ pip install -r requirements.txt
 To create configuration files needed to train all the models we study run: <a name="create_configs"></a>
 
 ```
-source scripts/create_configs.sh
+bash scripts/create_configs.sh
 ```
 
-## Training and Evaluation <a name="experiments1"></a>
-To then create the Phase1b(ii) and Phase1b(iii) training commands, run:
+Then to train and evaluate all the models we study run the following commands: <a name="experiments1"></a>
 
  ```
- bash ./make_phase1bii.sh > phase1bii.sh
+bash scripts/experiments_default.sh
+bash scripts/experiments_multi.sh
 ```
  
  ```
