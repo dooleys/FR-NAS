@@ -1,7 +1,7 @@
 import torch.optim as optim
 import torch
-from head.metrics import CosFace, SphereFace, ArcFace, MagFace
-from utils.utils import separate_resnet_bn_paras
+from src.head.metrics import CosFace, SphereFace, ArcFace, MagFace
+from src.utils.utils import separate_resnet_bn_paras
 import numpy as np
 import random
 seed = 666
