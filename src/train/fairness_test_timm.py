@@ -6,20 +6,20 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import yaml
-from head.metrics import CosFace
-from loss.focal import FocalLoss
-from utils.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoints_all, \
+from src.head.metrics import CosFace
+from src.loss.focal import FocalLoss
+from src.utils.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoints_all, \
     schedule_lr, AverageMeter, accuracy
-from utils.fairness_utils import evaluate
-from utils.data_utils_balanced import prepare_data
-from utils.utils_train import Network
+from src.utils.fairness_utils import evaluate
+from src.utils.data_utils_balanced import prepare_data
+from src.utils.utils_train import Network
 import numpy as np
 import pandas as pd
 import random
 import timm
-from utils.utils import save_output_from_dict
-from utils.utils_train import Network, get_head
-from utils.fairness_utils import *
+from src.utils.utils import save_output_from_dict
+from src.utils.utils_train import Network, get_head
+from src.utils.fairness_utils import *
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
 from timm.utils.model_ema import ModelEmaV2
