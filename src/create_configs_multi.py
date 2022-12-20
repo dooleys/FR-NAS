@@ -22,7 +22,7 @@ def main(args):
     for k in hp_grid.keys():
         del config[k]
     all_configs = list(itertools.product(*hp_grid.values()))
-    print("Number of configs to create: ", len(all_configs))
+
     keys = hp_grid.keys()
     for c in all_configs:
         counter = 0
@@ -38,7 +38,7 @@ def main(args):
         with open(folder + f"/config_{backbone}_{head}_{optimizer}.yaml",
                   "r") as ymlfile:
             cfg = yaml.load(ymlfile, Loader=yaml.FullLoader)
-
+    print("Configs created for ",config["backbone"])
 
 if __name__ == "__main__":
     """This is executed when run from the command line"""
