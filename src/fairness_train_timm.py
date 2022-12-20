@@ -45,13 +45,6 @@ if __name__ == '__main__':
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-    args.checkpoints_root = "Checkpoints/dpn107_CosFace_SGD_0.1_cosine_666/"
-    args.default_test_root = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val/"
-    args.default_train_root = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/"
-    args.demographics_file = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/CelebA/CelebA_demographics.txt"
-    args.metadata_file = "/work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/timm_model_metadata.csv"
-    args.comet_workspace = "rsukthanker"
-    args.comet_api_key = "KKiKMVZI9RCYowoKDZDS5Y2km"
     p_images = {
         args.groups_to_modify[i]: args.p_images[i]
         for i in range(len(args.groups_to_modify))
@@ -69,7 +62,7 @@ if __name__ == '__main__':
     ####################################################################################################################################
     # ======= data, model and test data =======#
     run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
-    output_dir = os.path.join('/work/dlclarge2/sukthank-ZCP_Competition/FRNAS_latest/FR-NAS/',args.checkpoints_root, run_name)
+    output_dir = os.path.join(args.checkpoints_root, run_name)
     args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
@@ -163,14 +156,8 @@ if __name__ == '__main__':
             meters["loss"] = AverageMeter()
             meters["top5"] = AverageMeter()
 
-            #             if epoch in args.stages:  # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
-            #                 schedule_lr(argsimizer)
-
             for inputs, labels, sens_attr, _ in tqdm(iter(
                     dataloaders["train"])):
-
-                #                 if batch + 1 <= num_batch_warm_up:  # adjust LR for each training batch during warm up
-                #                     warm_up_lr(batch + 1, num_batch_warm_up, args.lr, argsimizer)
 
                 inputs, labels = inputs.to(device), labels.to(device).long()
                 outputs, reg_loss = model(inputs, labels)
@@ -188,7 +175,6 @@ if __name__ == '__main__':
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
 
                 batch += 1
-
             backbone.eval()  # set to testing mode
             head.eval()
             experiment.log_metric("Training Loss",
@@ -198,9 +184,6 @@ if __name__ == '__main__':
                                   meters["top5"].avg,
                                   step=epoch)
             '''For train data compute only multilabel accuracy'''
-            #             loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders.train, train_criterion, backbone,head, embedding_size,
-            #                                                 k_accuracy = False, multilabel_accuracy = True,
-            #                                                 demographic_to_labels = demographic_to_labels_train, test = False)
             '''For test data compute only k-neighbors accuracy and multi-accuracy'''
             k_accuracy = True
             multilabel_accuracy = True
@@ -224,7 +207,6 @@ if __name__ == '__main__':
                         multilabel_accuracy=multilabel_accuracy,
                         demographic_to_labels=demographic_to_labels_test,
                         test=True, rank=comp_rank)
-            # save outputs
             # save outputs
             kacc_df, multi_df, rank_by_image_df, rank_by_id_df = None, None, None, None
             if k_accuracy:
@@ -266,7 +248,6 @@ if __name__ == '__main__':
                 results['Intra '+k] = (round(intra[k], 3))
                 results['Inter '+k] = (round(inter[k], 3))
 
-            print(results)
             save_output_from_dict(output_dir, results, args.file_name)
             if model_ema is not None:
                 kacc_df_ema, multi_df_ema, rank_by_image_df_ema, rank_by_id_df_ema = None, None, None, None
@@ -313,9 +294,6 @@ if __name__ == '__main__':
 
             epoch += 1
 
-            # save checkpoints per epoch
-
-#             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
             checkpoint_name_to_save = os.path.join(output_dir,
                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
                 .format(args.head, args.backbone, args.opt, args.name,
