@@ -2,6 +2,7 @@ comet_api_key: 'your_comet_api_key'
 comet_workspace: 'your comet username'
 default_val_root: 'data/CelebA/val'
 default_train_root: 'data/CelebA/train'
+default_test_root: 'data/CelebA/test'
 project_name: frnas
 checkpoints_root: Checkpoints/
 metadata_file: CelebA/timm_model_metadata.csv

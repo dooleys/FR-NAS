@@ -11,6 +11,7 @@ cooldown_epochs: 10
 dataset: CelebA
 decay_epochs: 2.4
 decay_rate: 0.973
+default_test_root: data/CelebA/test
 default_train_root: data/CelebA/train
 default_val_root: data/CelebA/val
 demographics_file: CelebA/CelebA_demographics.txt
