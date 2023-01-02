@@ -63,7 +63,8 @@ if __name__ == '__main__':
     # ======= data, model and test data =======#
     run_name = os.path.splitext(os.path.basename(args.config_path))[0].replace('config_','')
     output_dir = os.path.join(args.checkpoints_root, run_name)
-    args.checkpoints_root = output_dir
+    if not os.path.isdir(args.checkpoints_root):
+        os.mkdir(args.checkpoints_root)
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
 
@@ -175,6 +176,7 @@ if __name__ == '__main__':
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
 
                 batch += 1
+                #break
             backbone.eval()  # set to testing mode
             head.eval()
             experiment.log_metric("Training Loss",
@@ -189,7 +191,7 @@ if __name__ == '__main__':
             multilabel_accuracy = True
             comp_rank = True
             loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, rank = evaluate(
-                dataloaders["test"],
+                dataloaders["val"],
                 train_criterion,
                 model,
                 embedding_size,
@@ -199,7 +201,7 @@ if __name__ == '__main__':
                 test=True, rank=comp_rank)
             if model_ema is not None:
                 loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank = evaluate(
-                        dataloaders["test"],
+                        dataloaders["val"],
                         train_criterion,
                         model_ema.module,
                         embedding_size,
@@ -291,7 +293,7 @@ if __name__ == '__main__':
 
                 print(results_ema)
                 save_output_from_dict(output_dir, results_ema, args.file_name_ema)
-
+            #break
             epoch += 1
 
             checkpoint_name_to_save = os.path.join(output_dir,
@@ -321,4 +323,6 @@ if __name__ == '__main__':
                     .format(args.head, args.backbone, args.opt, args.name,
                             str(epoch-1)))
                 os.remove(prev_checkpoint_name_to_save)
+        
+            
 

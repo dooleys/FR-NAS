@@ -54,7 +54,7 @@ def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identitie
         epoch = checkpoint['epoch']
         batch = len(train_loader)*epoch
     else:
-        print("No Checkpoints Found at '{}'. Please Have a Check or Continue to Train from Scratch".format(checkpoints_model_root))
+        print("No Checkpoints Found at '{}'. Please Check or Continue to Train from Scratch".format(checkpoints_model_root))
         epoch = 0
         batch = 0
     return model, model_ema,optimizer, epoch, batch, checkpoints_model_root

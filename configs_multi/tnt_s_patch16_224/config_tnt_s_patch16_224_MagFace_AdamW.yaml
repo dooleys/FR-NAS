@@ -11,9 +11,9 @@ cooldown_epochs: 10
 dataset: CelebA
 decay_epochs: 100
 decay_rate: 0.1
-default_test_root: data/CelebA/test
-default_train_root: data/CelebA/train
-default_val_root: data/CelebA/val
+default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test
+default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train
+default_val_root: /work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val
 demographics_file: CelebA/CelebA_demographics.txt
 dist_bn: reduce
 drop: 0.0

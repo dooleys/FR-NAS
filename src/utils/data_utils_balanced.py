@@ -303,7 +303,7 @@ def prepare_data(args):
         transforms.Normalize(mean=args.mean,
                              std=args.std),
     ])
-    test_transform = transforms.Compose([
+    val_transform = transforms.Compose([
         transforms.Resize([int(128 * args.input_size / 112), int(128 * args.input_size / 112)]),
         transforms.CenterCrop([args.input_size, args.input_size]),
         transforms.ToTensor(),
@@ -352,7 +352,7 @@ def prepare_data(args):
         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
-    datasets['test'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
+    datasets['val'] = ImageFolderWithProtectedAttributes(args.default_val_root, transform=val_transform,
                                                                  demographic_to_all_classes=demographic_to_all_classes,
                                                                  all_classes_to_demographic = all_classes_to_demographic,
                                                                  p_identities = {dem: 1.0 for dem,_ in args.p_identities.items()},
@@ -363,11 +363,10 @@ def prepare_data(args):
                                                          )
 
     for k in demographic_to_all_classes.keys():
-        print('Number of idx for {} is {}'.format(k, len(datasets['test'].demographic_to_classes[k])))
+        print('Number of idx for {} is {}'.format(k, len(datasets['val'].demographic_to_classes[k])))
 
-#     demographic_to_idx_train = datasets['train'].demographic_to_idx
     demographic_to_idx_train = None
-    demographic_to_idx_test = datasets['test'].demographic_to_idx
+    demographic_to_idx_test = datasets['val'].demographic_to_idx
     ######################################################
 
 
@@ -375,9 +374,6 @@ def prepare_data(args):
     dataloaders = {}
     g = torch.Generator()
     g.manual_seed(0)
-#     train_imgs = datasets['train'].imgs
-#     weights_train = torch.DoubleTensor(balanced_weights(train_imgs, nclasses=len(datasets['train'].classes)))
-#     train_sampler = torch.utils.data.sampler.WeightedRandomSampler(weights_train, len(weights_train))
     num_class = len(datasets['train'].classes)
     '''
     dataloaders['train'] = torch.utils.data.DataLoader(datasets['train'], batch_size=args.batch_size,
@@ -389,7 +385,7 @@ def prepare_data(args):
                                                        worker_init_fn=seed_worker,generator=g,
                                                        drop_last=True)
 
-    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,worker_init_fn=seed_worker,generator=g,)
+    dataloaders['val'] = torch.utils.data.DataLoader(datasets['val'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,worker_init_fn=seed_worker,generator=g,)
 
     for k in dataloaders.keys():
         print('Len of {} dataloader is {}'.format(k, len(dataloaders[k])))
