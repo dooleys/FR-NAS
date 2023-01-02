@@ -173,11 +173,18 @@ def l2_dist(feature_matrix, test_features):
 
 def predictions(feature_matrix, labels, demographic_to_labels, test_features, test_labels, test_demographic, rank):
     
-    def process_row(row, labels_np):
+    def process_row(row, distances, labels_np):
         """ 
-        given a row where the row is a list of image ids where this list increases
-        in distance in the featue space where the first point is the refernce point.
-        returns the index of the closest point with the same label, if no such point, returns -1
+        given:
+        an array `row` where the row is a list of image ids where this list increases
+        in distance in the featue space where the first point is the refernce point;
+        and given an array `distance` which represents the distance to every point in increasing order,
+        returns:
+        a tuple (a,b,c,d), where
+            a is the the index of the closest point with the same label
+            b is the number of identities which are closer than the closest point of the same identity
+            c is the distance of the closet point, and
+            d is the distance of the closest image of the same identity
         """
         base_label = labels_np[row[0]]
         n_img = 1
@@ -187,9 +194,9 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
             # add this id to the set of 
             ids.add(labels_np[row[n_img]])
             if labels_np[row[n_img]] == base_label:
-                return n_img-1, len(list(ids))-1
+                return n_img-1, len(list(ids))-1, distances[1], distances[n_img]
             n_img+=1
-        return -1,-1
+        return -1,-1,-1,-1
 
     # if rank is true, then compute the rank of the prediction
     if rank == True:
@@ -200,8 +207,8 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
 
     dist_matrix =  l2_dist(feature_matrix, test_features)
     labels_np = labels.numpy()
-    inc_dist = torch.topk(dist_matrix, dim=1, k = k, largest = False)[1]
-    nearest_same_label = torch.tensor([process_row(row, labels_np) for row in inc_dist])
+    distances, inc_dist = torch.topk(dist_matrix, dim=1, k = k, largest = False)
+    nearest_same_label = torch.tensor([process_row(row[0],row[1], labels_np) for row in zip(inc_dist,distances)])
 
     correct = (nearest_same_label[:,0] == 0).long()
     nearest_id = inc_dist[:,1].apply_(lambda x: labels_np[x])

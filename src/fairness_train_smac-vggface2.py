@@ -28,10 +28,11 @@ sys.path.append('/cmlscratch/sdooley1/merge_timm/FR-NAS/')
 from dpn107 import DPN
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device_ids=range(torch.cuda.device_count())
-torch.manual_seed(222)
-torch.cuda.manual_seed_all(222)
-np.random.seed(222)
-random.seed(222)
+seed = 666
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
@@ -49,14 +50,19 @@ def fairness_objective_dpn(config, seed, budget):
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
+    args.opt = config["optimizer"]
+    args.head = config["head"]
+    args.lr = config["lr"]
+    print(args)
         
     # dummy train example
-    args.default_train_root = '/cmlscratch/sdooley1/data/vggface2/test/'
+    args.checkpoints_root = 'Checkpoints/vggface2_train/'
+    args.default_train_root = '/cmlscratch/sdooley1/data/vggface2/train/'
     args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/test/'
     args.demographics_file = '/cmlscratch/sdooley1/data/vggface2/vggface2_demographics.txt'
-    args.RFW_checkpoints_root = 'Checkpoints/vggface2/'
+    args.RFW_checkpoints_root = 'Checkpoints/vggface2_train/'
     args.dataset = 'vggface2'
-    
+
     p_images = {
         args.groups_to_modify[i]: args.p_images[i]
         for i in range(len(args.groups_to_modify))
@@ -70,12 +76,11 @@ def fairness_objective_dpn(config, seed, budget):
 
     print("P identities: {}".format(args.p_identities))
     print("P images: {}".format(args.p_images))
-    
 
     ####################################################################################################################################
     # ======= data, model and test data =======#
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_justAccSMAC".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr"], config["head"],config["optimizer"])
-    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/models_pareto/smac_only_error/')
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr"], config["head"],config["optimizer"])
+    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS',args.checkpoints_root, run_name)
     args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
@@ -83,17 +88,9 @@ def fairness_objective_dpn(config, seed, budget):
     args.RFW_checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
-        
-    print(args.checkpoints_root)
-    ckpts = os.listdir(args.checkpoints_root)
-#     ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('.')[0]))
-    if not len(ckpts):
-        sys.exit()
-
 
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(
         args)
-
     args.num_class = 7058
     edges=[config['edge1'],config['edge2'],config['edge3']]
     # Build model
@@ -115,8 +112,11 @@ def fairness_objective_dpn(config, seed, budget):
     # ======= argsimizer =======#
     model = Network(backbone, head)
    
+    print(args.lr)
+    print(args.opt)
+    args.decay_milestones = [30, 60]
     optimizer = create_optimizer_v2(model, **optimizer_kwargs(cfg=args))
-#     scheduler, num_epochs = create_scheduler(args, optimizer)
+    scheduler, num_epochs = create_scheduler(args, optimizer)
 
     model_ema = None
     if args.model_ema:
@@ -124,40 +124,51 @@ def fairness_objective_dpn(config, seed, budget):
         model_ema = ModelEmaV2(
             model, decay=args.model_ema_decay, device='cpu' if args.model_ema_force_cpu else None)
     model, model_ema, optimizer, epoch, batch, checkpoints_model_root = load_checkpoint(
-        args, model, model_ema, optimizer, dataloaders["test"], p_identities,
+        args, model, model_ema, optimizer, dataloaders["train"], p_identities,
         p_images)
     #model = nn.DataParallel(model)
     model = model.to(device)
     #print(model_ema)
     print('Start training')
-    ckpts = os.listdir(args.checkpoints_root)
-    #model = nn.DataParallel(model)
-    model = model.to(device)
-    checkpoints_model_root = args.checkpoints_root
-    epoch_numbers = []
+    while epoch <= args.epochs:
 
-    for ckpt in ckpts:
-        '''Adjust number of classes in the head'''
-        args.num_class = 7058 #arbitrarily large number
-        head = get_head(args)
-        model.head = head.to(device)
-        if model_ema is not None:
-            model_ema.module.head = head.to(device)
+        model.train()  # set to training mode
+        meters = {}
+        meters["loss"] = AverageMeter()
+        meters["top5"] = AverageMeter()
 
-        print(ckpts)
-        checkpoint = torch.load(os.path.join(checkpoints_model_root, ckpt))
-        epoch = checkpoint['epoch']
-        if model_ema is not None:
-            model_ema.load_state_dict(checkpoint['model_ema_state_dict'])
-        model.load_state_dict(checkpoint['model_state_dict'])    
+        #             if epoch in args.stages:  # adjust LR for each training stage after warm up, you can also choose to adjust LR manually (with slight modification) once plaueau observed
+        #                 schedule_lr(argsimizer)
 
-        '''Adjust number of classes in the head'''
-        args.num_class = 10000 #arbitrarily large number
-        head = get_head(args)
-        model.head = head.to(device)
-        if model_ema is not None:
-            model_ema.module.head = head.to(device)
-            
+        for inputs, labels, sens_attr, _ in tqdm(iter(
+                dataloaders["train"])):
+
+            #                 if batch + 1 <= num_batch_warm_up:  # adjust LR for each training batch during warm up
+            #                     warm_up_lr(batch + 1, num_batch_warm_up, args.lr, argsimizer)
+
+            inputs, labels = inputs.to(device), labels.to(device).long()
+            outputs, reg_loss = model(inputs, labels)
+            loss = train_criterion(outputs, labels) + reg_loss
+            loss = loss.mean()
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            scheduler.step(epoch + 1, meters["top5"])
+            if model_ema is not None:
+                model_ema.update(model)
+            # measure accuracy and record loss
+            prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
+            meters["loss"].update(loss.data.item(), inputs.size(0))
+            meters["top5"].update(prec5.data.item(), inputs.size(0))
+
+            batch += 1
+
+        backbone.eval()  # set to testing mode
+        head.eval()
+        '''For train data compute only multilabel accuracy'''
+        #             loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders.train, train_criterion, backbone,head, embedding_size,
+        #                                                 k_accuracy = False, multilabel_accuracy = True,
+        #                                                 demographic_to_labels = demographic_to_labels_train, test = False)
         '''For test data compute only k-neighbors accuracy and multi-accuracy'''
         k_accuracy = True
         multilabel_accuracy = True
@@ -199,8 +210,6 @@ def fairness_objective_dpn(config, seed, budget):
             rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
                                               list(rank[:,1])]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-        print('before add_column_to_file')
-        print(args.RFW_checkpoints_root, run_name, epoch)
         add_column_to_file(args.RFW_checkpoints_root,
                            "val",
                            run_name, 
@@ -215,7 +224,6 @@ def fairness_objective_dpn(config, seed, budget):
         results['seed'] = args.seed
         results['epoch'] = epoch
         for k in acc_k.keys():
-
             results['Acc multi '+k] = (round(acc[k].item()*100, 3))
             results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
             results['Intra '+k] = (round(intra[k], 3))
@@ -262,18 +270,50 @@ def fairness_objective_dpn(config, seed, budget):
             print(results_ema)
             save_output_from_dict(args.RFW_checkpoints_root, results_ema, args.file_name_ema)
 
+        epoch += 1
+
+        # save checkpoints per epoch
+
+#             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
+        checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
+            "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
+            .format(args.head, args.backbone, args.opt, args.name,
+                    str(epoch)))
+        if model_ema is None:
+            torch.save(
+            {
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict()
+            }, checkpoint_name_to_save)
+        else:
+            torch.save(
+            {
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'model_ema_state_dict': model_ema.state_dict(),
+                'optimizer_state_dict': optimizer.state_dict()
+            }, checkpoint_name_to_save)
+#         # remove the previous checkpoint in certain instances
+#         if ((epoch-1) % args.save_freq):
+#             prev_checkpoint_name_to_save = os.path.join(
+#                 args.RFW_checkpoints_root,
+#                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
+#                 .format(args.head, args.backbone, args.opt, args.name,
+#                         str(epoch-1)))
+#             os.remove(prev_checkpoint_name_to_save)
 
 if __name__ == '__main__':
-#     #SMAC config 1
-#     config ={
-#     'edge1': 0,
-#     'edge2': 0,
-#     'edge3': 0,
-#     'head': 'CosFace',
-#     'lr': 0.2813375341651194,
-#     'optimizer': 'SGD',
-#     }
-#     fairness_objective_dpn(config,0,100)
+    #SMAC config 1
+    config ={
+    'edge1': 0,
+    'edge2': 0,
+    'edge3': 0,
+    'head': 'CosFace',
+    'lr': 0.2813375341651194,
+    'optimizer': 'SGD',
+    }
+    fairness_objective_dpn(config,0,100)
 #     #SMAC config 2
 #     config={
 #     'edge1': 0,
@@ -294,13 +334,3 @@ if __name__ == '__main__':
 #     'optimizer': 'Adam',
 #     }
 #     fairness_objective_dpn(config,0,100)
-    #SMAC with just accuracy config 
-    config={
-    'edge1': 0,
-    'edge2': 4,
-    'edge3': 0,
-    'head': 'CosFace',
-    'lr': 0.0005900596101948813,
-    'optimizer': 'Adam',
-    }
-    fairness_objective_dpn(config,0,100)

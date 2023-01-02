@@ -77,8 +77,8 @@ def fairness_objective_dpn(config, seed, budget):
 
     ####################################################################################################################################
     # ======= data, model and test data =======#
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr"], config["head"],config["optimizer"])
-    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/models_pareto/', run_name)
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_justAccSMAC".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr"], config["head"],config["optimizer"])
+    output_dir = os.path.join('/cmlscratch/sdooley1/merge_timm/FR-NAS/Checkpoints/models_pareto/smac_only_error/')
     args.checkpoints_root = output_dir
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
@@ -267,33 +267,43 @@ def fairness_objective_dpn(config, seed, budget):
 
 
 if __name__ == '__main__':
-    #SMAC config 1
-    config ={
-    'edge1': 0,
-    'edge2': 0,
-    'edge3': 0,
-    'head': 'CosFace',
-    'lr': 0.2813375341651194,
-    'optimizer': 'SGD',
-    }
-    fairness_objective_dpn(config,0,100)
-    #SMAC config 2
+#     #SMAC config 1
+#     config ={
+#     'edge1': 0,
+#     'edge2': 0,
+#     'edge3': 0,
+#     'head': 'CosFace',
+#     'lr': 0.2813375341651194,
+#     'optimizer': 'SGD',
+#     }
+#     fairness_objective_dpn(config,0,100)
+#     #SMAC config 2
+#     config={
+#     'edge1': 0,
+#     'edge2': 1,
+#     'edge3': 0,
+#     'head': 'CosFace',
+#     'lr': 0.32348738788346576,
+#     'optimizer': 'SGD',
+#     }
+#     fairness_objective_dpn(config,0,100)
+#     #SMAC config 3
+#     config={
+#     'edge1': 6,
+#     'edge2': 8,
+#     'edge3': 0,
+#     'head': 'CosFace',
+#     'lr': 0.0006048015915653069,
+#     'optimizer': 'Adam',
+#     }
+#     fairness_objective_dpn(config,0,100)
+    #SMAC with just accuracy config 
     config={
     'edge1': 0,
-    'edge2': 1,
+    'edge2': 4,
     'edge3': 0,
     'head': 'CosFace',
-    'lr': 0.32348738788346576,
-    'optimizer': 'SGD',
-    }
-    fairness_objective_dpn(config,0,100)
-    #SMAC config 3
-    config={
-    'edge1': 6,
-    'edge2': 8,
-    'edge3': 0,
-    'head': 'CosFace',
-    'lr': 0.0006048015915653069,
+    'lr': 0.0005900596101948813,
     'optimizer': 'Adam',
     }
     fairness_objective_dpn(config,0,100)
