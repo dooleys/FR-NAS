@@ -38,15 +38,21 @@ pip install -r requirements.txt
 
 
 ```
-bash scripts/create_configs.sh
+bash scripts/create_configs_celeba.sh
+bash scripts/create_configs_vgg.sh
 ```
 
 
 ## Train and evaluate architectures <a name="train&eval"></a> 
-
+### CelebA
  ```
-bash scripts/experiments_default.sh
-bash scripts/experiments_multi.sh
+bash scripts/experiments_default_celeba.sh
+bash scripts/experiments_multi_celeba.sh
+```
+### VGGFace2
+ ```
+bash scripts/experiments_default_vgg.sh
+bash scripts/experiments_multi_vgg.sh
 ```
 
 # Analysis <a name="analysis1"></a>
