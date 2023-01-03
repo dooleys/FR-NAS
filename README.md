@@ -32,7 +32,7 @@ pip install -r requirements.txt
 |----------|:-------------:|:-------------:|
 | [CelebA](https://arxiv.org/pdf/1411.7766.pdf) | [download](https://drive.google.com/drive/folders/0B7EVK8r0v71pWEZsZE9oNnFzTm8?resourcekey=0-5BR16BdXnb8hVj6CNHKzLg) | Train-Val-Test |
 | [RFW](https://arxiv.org/pdf/1812.00194.pdf) | [download](http://www.whdeng.cn/RFW/index.html)| Test |
-| [VGGFace2](https://arxiv.org/pdf/1710.08092.pdf) | [download](https://drive.google.com/file/d/1jdZw6ZmB7JRK6RS6QP3YEr2sufJ5ibtO/view)  | Train/Test |
+| [VGGFace2](https://arxiv.org/pdf/1710.08092.pdf) | [train](https://drive.google.com/file/d/1jdZw6ZmB7JRK6RS6QP3YEr2sufJ5ibtO/view)|[test](https://www.kaggle.com/datasets/greatgamedota/vggface2-test?resource=download)  | Train/Test |
 # Large-scale study of fairness of architectures <a name="archs"></a>
 ## Create configs <a name="create_configs"></a>
 
