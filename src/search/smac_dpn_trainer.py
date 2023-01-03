@@ -133,7 +133,7 @@ def fairness_objective_dpn(config, seed, budget):
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
-                #break
+                break
             checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
             torch.save(
                 {
@@ -216,6 +216,7 @@ def fairness_objective_dpn(config, seed, budget):
                                kacc_df = kacc_df,
                                rank_by_image_df = rank_by_image_df,
                                rank_by_id_df = rank_by_id_df)
+            break
 
 if __name__ == "__main__":
 

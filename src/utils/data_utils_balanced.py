@@ -192,7 +192,7 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
 
         # create demographic to classes containing only train or test classes + we need to delete classes with few images
         self.demographic_to_classes = {}
-
+        #print(demographic_to_all_classes)
         for dem in demographic_to_all_classes.keys():
             self.demographic_to_classes[dem] = []
             for i, cl in enumerate(demographic_to_all_classes[dem]):
@@ -202,6 +202,7 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
                         self.demographic_to_classes[dem].append(cl)
 
         # getting the minimum number of identities
+        #print(self.demographic_to_classes)
         ref_num_identities = min([len(self.demographic_to_classes[dem]) for dem in self.demographic_to_classes.keys()])
         # shuffle data
         random.seed(seed)
@@ -216,9 +217,10 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
             self.demographic_to_classes[dem] = self.demographic_to_classes[dem][0:desired_num]
 
         # update classes used for training/testing + update class_to_idx
+        #print(self.demographic_to_classes)
         classes = sum(self.demographic_to_classes.values(), [])
         class_to_idx = {classes[i] : i for i in range(len(classes))}
-
+        #print(class_to_idx)
         classes = class_to_idx.keys() # original classes not index
 
         # create demographic to idx dict
