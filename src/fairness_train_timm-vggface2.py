@@ -48,7 +48,7 @@ if __name__ == '__main__':
         setattr(args, key, value)
     args.checkpoints_root = "Checkpoints/vggface2_train/"
     args.default_train_root = '/cmlscratch/sdooley1/data/vggface2/train/'
-    args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/test/'
+    args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/val/'
     args.demographics_file = '/cmlscratch/sdooley1/data/vggface2/vggface2_demographics.txt'
     args.RFW_checkpoints_root = 'Checkpoints/vggface2_train/'
     args.metadata_file = '/cmlscratch/sdooley1/timm_model_metadata.csv'
