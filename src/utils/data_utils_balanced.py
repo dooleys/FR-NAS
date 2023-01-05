@@ -329,7 +329,7 @@ def prepare_data(args):
         num_ref_images_test = 8327
     elif args.dataset =='vggface2':
         num_ref_images_train = 500000
-        num_ref_images_test = 71000
+        num_ref_images_test = 15300
     else:
         raise NameError('Wrong dataset')
 
