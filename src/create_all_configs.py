@@ -50,8 +50,8 @@ if __name__ == "__main__":
     parser.add_argument('--mean', default=[0.5, 0.5, 0.5], type=int)
     parser.add_argument('--std', default=[0.5, 0.5, 0.5], type=int)
     parser.add_argument('--num_workers', default=4, type=int)
-    parser.add_argument('--name', default='CelebA', type=str)
-    parser.add_argument('--dataset', default='CelebA', type=str)
+    parser.add_argument('--name', default='vggface2', type=str)
+    parser.add_argument('--dataset', default='vggface2', type=str)
     parser.add_argument('--file_name',
                         default='timm_from-scratch.csv',
                         type=str)

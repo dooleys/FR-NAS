@@ -8,13 +8,13 @@ clip_mode: norm
 comet_api_key: your_comet_api_key
 comet_workspace: your comet username
 cooldown_epochs: 10
-dataset: CelebA
+dataset: vggface2
 decay_epochs: 2.4
 decay_rate: 0.973
-default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/VGGFACE2_Cleandata/test
-default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/VGGFACE2_Cleandata/train
-default_val_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/VGGFACE2_Cleandata/test
-demographics_file: CelebA/CelebA_demographics.txt
+default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test
+default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/train
+default_val_root: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/val
+demographics_file: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt
 dist_bn: reduce
 drop: 0.2
 drop_block: null
@@ -52,7 +52,7 @@ model_ema: true
 model_ema_decay: 0.9999
 model_ema_force_cpu: false
 momentum: 0.9
-name: CelebA
+name: vggface2
 num_workers: 4
 opt: RMSpropTF
 opt_betas: null

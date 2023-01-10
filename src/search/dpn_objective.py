@@ -80,7 +80,7 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 def fairness_objective_dpn(config, seed, budget):
-    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/celeba_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
+    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
     args.opt = config["optimizer"]
@@ -156,7 +156,7 @@ def fairness_objective_dpn(config, seed, budget):
                     'config': config
                 }, checkpoint_name_to_save)
             epoch=epoch+1
-            #break
+            break
     backbone.eval()
     head.eval()
     k_accuracy = True
@@ -172,7 +172,7 @@ def fairness_objective_dpn(config, seed, budget):
     rank_by_id_val = pd.DataFrame(np.array([list(indices_all_val),
                 list(rank_val[:,1])]).T,
                 columns=['ids','rank_by_id']).astype(int)
-    metadata_val= pd.read_csv('val_identities_gender-expression_seed_222.csv')
+    metadata_val= pd.read_csv('CelebA/val_identities_gender-expression_seed_222.csv')
     df_val = rank_by_id_val.merge(metadata_val)
     rank_diff_val=rank_func(df_val)
     acc_val=acc_overall(df_val)

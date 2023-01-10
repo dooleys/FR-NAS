@@ -88,7 +88,7 @@ def evaluate(dataloader, criterion, model, emb_size,  k_accuracy = False, multil
     if emb_size is None:
         inputs, _, _ = next(iter(dataloader))
         x = torch.randn(inputs.shape).to(device)
-        emb_size = backbone(x).shape[1]
+        emb_size = model.backbone(x).shape[1]
 
 
     feature_matrix = torch.empty(0, emb_size)
@@ -136,7 +136,7 @@ def evaluate(dataloader, criterion, model, emb_size,  k_accuracy = False, multil
                 feature_matrix = torch.cat((feature_matrix, features_batch.detach().cpu()), dim = 0)
 
                 demographic_all = demographic_all + sens_attr.tolist()
-        break
+        #break
 
     if multilabel_accuracy:
         for k in acc.keys():

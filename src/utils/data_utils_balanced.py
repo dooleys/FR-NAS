@@ -330,7 +330,7 @@ def prepare_data(args):
         num_ref_images_train = 8327
         num_ref_images_test = 8327
     elif args.dataset =='vggface2':
-        num_ref_images_train = 577000
+        num_ref_images_train = 500000
         num_ref_images_test = 15300
     else:
         raise NameError('Wrong dataset')
@@ -354,7 +354,7 @@ def prepare_data(args):
         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
-    datasets['val'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
+    datasets['val'] = ImageFolderWithProtectedAttributes(args.default_val_root, transform=test_transform,
                                                                  demographic_to_all_classes=demographic_to_all_classes,
                                                                  all_classes_to_demographic = all_classes_to_demographic,
                                                                  p_identities = {dem: 1.0 for dem,_ in args.p_identities.items()},
