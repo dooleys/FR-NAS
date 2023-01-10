@@ -105,7 +105,8 @@ def fairness_objective_dpn(config, seed, budget):
     args.batch_size=64
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_val = prepare_data(
         args)
-    args.num_class = num_class
+    args.num_class = 7058
+    args.epochs=10
     edges=[int(config['edge1']),int(config['edge2']),int(config['edge3'])]
     # Build model
     backbone = DPN(edges,num_init_features=128, k_r=200, groups=50, k_sec=(1,1,1,1), inc_sec=(20, 64, 64, 128))
@@ -129,6 +130,10 @@ def fairness_objective_dpn(config, seed, budget):
     epoch=0
     start = time.time()
     print('Start training')
+
+
+    print("P identities: {}".format(args.p_identities))
+    print("P images: {}".format(args.p_images))
     while epoch < int(budget):
             model.train()  # set to training mode
             meters = {}
@@ -146,7 +151,7 @@ def fairness_objective_dpn(config, seed, budget):
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
-                break
+                #break
             checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
             torch.save(
                 {
@@ -156,7 +161,7 @@ def fairness_objective_dpn(config, seed, budget):
                     'config': config
                 }, checkpoint_name_to_save)
             epoch=epoch+1
-            break
+            #break
     backbone.eval()
     head.eval()
     k_accuracy = True
@@ -169,15 +174,15 @@ def fairness_objective_dpn(config, seed, budget):
                     multilabel_accuracy=multilabel_accuracy,
                     demographic_to_labels=demographic_to_labels_val,
                     test=True, rank=comp_rank)
-    rank_by_id_val = pd.DataFrame(np.array([list(indices_all_val),
-                list(rank_val[:,1])]).T,
-                columns=['ids','rank_by_id']).astype(int)
-    metadata_val= pd.read_csv('CelebA/val_identities_gender-expression_seed_222.csv')
-    df_val = rank_by_id_val.merge(metadata_val)
+    print(len(list(indices_all_val)))
+    print(len(list(rank_val[:,1])))
+    print(len(list(demographic_all_val)))
+    df = {"ids":list(indices_all_val), "rank_by_id":list(np.array(rank_val[:,1].cpu().detach().numpy())), "gender_expression": list(demographic_all_val)}
+    rank_by_id_val = pd.DataFrame(data=df)
+    df_val = rank_by_id_val
     rank_diff_val=rank_func(df_val)
     acc_val=acc_overall(df_val)
-    res = {
-        "1-accuracy": 1-(acc_val), 
-        "rank_disparity":rank_diff_val,
+    return {
+        "rev_acc": 1-(acc_val), 
+        "rank_disparity": rank_diff_val,
         }
-    return res

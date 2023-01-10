@@ -47,11 +47,11 @@ if __name__ == "__main__":
         cs,
         walltime_limit=400000000000,  # After 40 seconds, we stop the hyperparameter optimization
         n_trials=200,  # Evaluate max 200 different trials
-        objectives=["1 - accuracy", "rank_disparity"],
-        min_budget=1,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
-        max_budget=1,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
+        objectives=["rev_acc", "rank_disparity"],
+        min_budget=2.5,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
+        max_budget=10,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
         n_workers=1,
-        name = "smac_dpn_vgg"
+        name = "smac_dpn_vgg_test"
     )
 
     # We want to run five random configurations before starting the optimization.
