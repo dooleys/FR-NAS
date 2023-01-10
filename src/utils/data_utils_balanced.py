@@ -124,8 +124,7 @@ def make_dataset(
     instances_essential = {dem: [] for dem in p_images.keys()}
     instances_additional = {dem: [] for dem in p_images.keys()}
     available_classes = set()
-#     print(class_to_idx)
-    count = {target_class: 0 for target_class in sorted(class_to_idx.keys())}
+    count = [0]*len(class_to_idx.keys())
     for target_class in sorted(class_to_idx.keys()):
         label = class_to_idx[target_class]
         target_dir = os.path.join(directory, target_class)
@@ -139,31 +138,26 @@ def make_dataset(
                 if is_valid_file(path):
 
                     item = path, label, demographic
-                    try:
-                        count[target_class]
-                    except:
-                        print(item)
-                        print(len(count))
-                    if count[target_class] < min_num:
+                    if count[label] < min_num:
                         instances_essential[demographic].append(item)
                     else:
                         instances_additional[demographic].append(item)
-                    count[target_class] += 1
+                    count[label] += 1
 
                     if target_class not in available_classes:
                         available_classes.add(target_class)
 
     num_additional_images_to_keep = {dem: max(0,int(ref_num_images*p_images[dem])-len(instances_essential[dem])) for dem in p_images.keys()}
-    for dem in num_additional_images_to_keep.keys():
+    for dem in list(num_additional_images_to_keep.keys()):
         random.seed(seed)
         print('Overall # of images for {} available is {}'.format(dem, len(instances_essential[dem] + instances_additional[dem])))
         instances_additional[dem] = random.sample(instances_additional[dem], k=num_additional_images_to_keep[dem])
         instances_all[dem] = instances_essential[dem] + instances_additional[dem]
         print('# images selected for {} is {}'.format(dem, len(instances_all[dem])))
     instances = []
-    for dem in instances_all.keys():
+    for dem in list(instances_all.keys()):
         instances += instances_all[dem]
-    empty_classes = available_classes - set(class_to_idx.keys())
+    empty_classes = available_classes - set(list(class_to_idx.keys()))
     if empty_classes:
         msg = f"Found no valid file for the classes {', '.join(sorted(empty_classes))}. "
         if extensions is not None:
@@ -192,8 +186,8 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
 
         # create demographic to classes containing only train or test classes + we need to delete classes with few images
         self.demographic_to_classes = {}
-        #print(demographic_to_all_classes)
-        for dem in demographic_to_all_classes.keys():
+
+        for dem in list(demographic_to_all_classes.keys()):
             self.demographic_to_classes[dem] = []
             for i, cl in enumerate(demographic_to_all_classes[dem]):
                 if (cl in class_to_idx.keys()):
@@ -202,30 +196,28 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
                         self.demographic_to_classes[dem].append(cl)
 
         # getting the minimum number of identities
-        #print(self.demographic_to_classes)
         ref_num_identities = min([len(self.demographic_to_classes[dem]) for dem in self.demographic_to_classes.keys()])
         # shuffle data
         random.seed(seed)
 
-        for dem in self.demographic_to_classes.keys():
+        for dem in list(self.demographic_to_classes.keys()):
             random.shuffle(self.demographic_to_classes[dem])
 
         # change classes and class_to_idx here based on balance ratio
-        for dem in p_identities.keys():
+        for dem in list(p_identities.keys()):
             desired_num = int(ref_num_identities * p_identities[dem])
             # change labels that we want to keep
             self.demographic_to_classes[dem] = self.demographic_to_classes[dem][0:desired_num]
 
         # update classes used for training/testing + update class_to_idx
-        #print(self.demographic_to_classes)
         classes = sum(self.demographic_to_classes.values(), [])
         class_to_idx = {classes[i] : i for i in range(len(classes))}
-        #print(class_to_idx)
+
         classes = class_to_idx.keys() # original classes not index
 
         # create demographic to idx dict
         self.demographic_to_idx = {}
-        for dem in self.demographic_to_classes.keys():
+        for dem in list(self.demographic_to_classes.keys()):
             self.demographic_to_idx[dem] = []
             for cl in self.demographic_to_classes[dem]:
                 self.demographic_to_idx[dem].append(class_to_idx[cl])
@@ -241,11 +233,12 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
         self.loader = loader
         self.extensions = extensions
 
-        self.classes = classes
-        self.class_to_idx = class_to_idx
-        self.samples = samples
+        self.classes = list(classes)
+        #self.class_to_idx = dict(class_to_idx)
+        self.samples = list(samples)
+        #print(samples)
         self.targets = [s[1] for s in samples]
-        self.imgs = self.samples
+        self.imgs = list(self.samples)
         self.attributes = [s[2] for s in samples]
         self.transform = transform
 
@@ -253,7 +246,7 @@ class ImageFolderWithProtectedAttributes(datasets.ImageFolder):
     def __getitem__(self, index):
         # this is what ImageFolder normally returns
         #original_tuple = super(ImageFolderWithProtectedAttributesModify, self).__getitem__(index)
-
+        #print("Index",index)
         path, target, sens_attr = self.samples[index]
         img = Image.open(path)
         img.convert('RGB')
@@ -350,7 +343,7 @@ def prepare_data(args):
                                                                  ref_num_images = num_ref_images_train,
                                                                  seed = args.seed
                                                           )
-    for k in demographic_to_all_classes.keys():
+    for k in list(demographic_to_all_classes.keys()):
         print('Number of idx for {} is {}'.format(k, len(datasets['train'].demographic_to_classes[k])))
 
     print('PREPARING TEST DATASET')
@@ -364,7 +357,7 @@ def prepare_data(args):
                                                                  seed = args.seed
                                                          )
 
-    for k in demographic_to_all_classes.keys():
+    for k in list(demographic_to_all_classes.keys()):
         print('Number of idx for {} is {}'.format(k, len(datasets['val'].demographic_to_classes[k])))
 
 #     demographic_to_idx_train = datasets['train'].demographic_to_idx
@@ -390,10 +383,8 @@ def prepare_data(args):
                                                        shuffle = True, num_workers=args.num_workers,
                                                        worker_init_fn=seed_worker,generator=g,
                                                        drop_last=True)
-
-    dataloaders['val'] = torch.utils.data.DataLoader(datasets['val'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers,worker_init_fn=seed_worker,generator=g,)
-
-    for k in dataloaders.keys():
+    dataloaders['val'] = torch.utils.data.DataLoader(datasets['val'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+    for k in list(dataloaders.keys()):
         print('Len of {} dataloader is {}'.format(k, len(dataloaders[k])))
 
     return dataloaders, num_class, demographic_to_idx_train, demographic_to_idx_test

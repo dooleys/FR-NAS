@@ -1,0 +1,115 @@
+{
+  "hyperparameters": [
+    {
+      "name": "edge1",
+      "type": "categorical",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "default": "2",
+      "weights": null
+    },
+    {
+      "name": "edge2",
+      "type": "categorical",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "default": "0",
+      "weights": null
+    },
+    {
+      "name": "edge3",
+      "type": "categorical",
+      "choices": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "default": "1",
+      "weights": null
+    },
+    {
+      "name": "head",
+      "type": "categorical",
+      "choices": [
+        "CosFace",
+        "ArcFace",
+        "MagFace"
+      ],
+      "default": "CosFace",
+      "weights": null
+    },
+    {
+      "name": "optimizer",
+      "type": "categorical",
+      "choices": [
+        "Adam",
+        "AdamW",
+        "SGD"
+      ],
+      "default": "Adam",
+      "weights": null
+    },
+    {
+      "name": "lr_adam",
+      "type": "uniform_float",
+      "log": true,
+      "lower": 1e-05,
+      "upper": 0.01,
+      "default": 0.001
+    },
+    {
+      "name": "lr_sgd",
+      "type": "uniform_float",
+      "log": true,
+      "lower": 0.09,
+      "upper": 0.8,
+      "default": 0.1
+    }
+  ],
+  "conditions": [
+    {
+      "child": "lr_adam",
+      "parent": "optimizer",
+      "type": "IN",
+      "values": [
+        "Adam",
+        "AdamW"
+      ]
+    },
+    {
+      "child": "lr_sgd",
+      "parent": "optimizer",
+      "type": "IN",
+      "values": [
+        "SGD"
+      ]
+    }
+  ],
+  "forbiddens": [],
+  "python_module_version": "0.6.0",
+  "json_format_version": 0.4
+}

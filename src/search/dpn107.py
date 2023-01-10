@@ -25,7 +25,7 @@ from typing import Tuple
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from operations import *
+from src.search.operations import *
 from timm.data import IMAGENET_DPN_MEAN, IMAGENET_DPN_STD, IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import build_model_with_cfg
 from timm.models.layers import BatchNormAct2d, ConvNormAct, create_conv2d, create_classifier
@@ -50,7 +50,7 @@ from naslib.search_spaces.nasbench201.conversions import (
 from naslib.utils.utils import get_project_root
 
 from primitives import ResNetBasicblock'''
-from operations import *
+from src.search.operations import *
 __all__ = ['DPN']
 OP_LIST=[lambda C_in,C_out, groups, stride: BnActConv2d(C_in,C_out, kernel_size=3, stride=stride, groups=groups),
          lambda C_in,C_out, groups, stride: BnActConv2d(C_in,C_out, kernel_size=1, stride=stride, groups=groups),

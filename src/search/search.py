@@ -50,15 +50,15 @@ if __name__ == "__main__":
         objectives=["rev_acc", "rank_disparity"],
         min_budget=2.5,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
         max_budget=10,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
-        n_workers=1,
-        name = "smac_dpn_vgg_test"
+        n_workers=4,
+        name = "smac_dpn_vgg_test2"
     )
 
     # We want to run five random configurations before starting the optimization.
     initial_design = MultiFidelityFacade.get_initial_design(scenario, n_configs=10)
     intensifier = MultiFidelityFacade.get_intensifier(scenario, eta=2)
     multi_objective_algorithm = ParEGO(scenario)
-    #client = dask.distributed.Client(scheduler_file="scheduler-dpn-25-file.json")
+    #client = dask.distributed.Client(scheduler_file="scheduler-dpn-file.json")
     # Create our SMAC object and pass the scenario and the train method
     #target_fn = DaskParallelRunner(dask_client=client)
     smac = MultiFidelityFacade(

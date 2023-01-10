@@ -28,7 +28,7 @@ import argparse
 import os
 import pickle
 import time
-from dpn107 import DPN
+from src.search.dpn107 import DPN
 import ConfigSpace as CS
 import ConfigSpace.hyperparameters as CSH
 import numpy as np
@@ -47,7 +47,7 @@ from typing import Tuple
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from operations import *
+from src.search.operations import *
 from timm.data import IMAGENET_DPN_MEAN, IMAGENET_DPN_STD, IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.models.helpers import build_model_with_cfg
 from timm.models.layers import BatchNormAct2d, ConvNormAct, create_conv2d, create_classifier
