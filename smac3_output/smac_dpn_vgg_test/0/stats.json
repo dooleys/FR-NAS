@@ -1,9 +1,38 @@
 {
-    "submitted": 0,
-    "finished": 0,
-    "n_configs": 0,
-    "walltime_used": 1673344323.0521152,
-    "target_function_walltime_used": 0.0,
-    "incumbent_changed": 0,
-    "trajectory": []
+    "submitted": 5,
+    "finished": 5,
+    "n_configs": 4,
+    "walltime_used": 64164.71627211571,
+    "target_function_walltime_used": 64164.68206810951,
+    "incumbent_changed": 2,
+    "trajectory": [
+        {
+            "incumbent": {
+                "edge1": "4",
+                "edge2": "7",
+                "edge3": "8",
+                "head": "CosFace",
+                "optimizer": "AdamW",
+                "lr_adam": 0.0005135589606500231
+            },
+            "cost": 0.615813087229176,
+            "budget": 2.5,
+            "walltime_used": 12502.387712717056,
+            "num_trial": 1
+        },
+        {
+            "incumbent": {
+                "edge1": "5",
+                "edge2": "5",
+                "edge3": "4",
+                "head": "ArcFace",
+                "optimizer": "SGD",
+                "lr_sgd": 0.37757148223815223
+            },
+            "cost": 0.41591135674548885,
+            "budget": 2.5,
+            "walltime_used": 30406.474230527878,
+            "num_trial": 3
+        }
+    ]
 }

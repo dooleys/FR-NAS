@@ -50,8 +50,8 @@ if __name__ == "__main__":
         objectives=["rev_acc", "rank_disparity"],
         min_budget=2.5,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
         max_budget=10,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
-        n_workers=4,
-        name = "smac_dpn_vgg_test2"
+        n_workers=8,
+        name = "smac_dpn_vgg_final"
     )
 
     # We want to run five random configurations before starting the optimization.

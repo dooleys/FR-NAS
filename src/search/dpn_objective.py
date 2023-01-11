@@ -180,7 +180,7 @@ def fairness_objective_dpn(config, seed, budget):
     df = {"ids":list(indices_all_val), "rank_by_id":list(np.array(rank_val[:,1].cpu().detach().numpy())), "gender_expression": list(demographic_all_val)}
     rank_by_id_val = pd.DataFrame(data=df)
     df_val = rank_by_id_val
-    rank_diff_val=rank_func(df_val)
+    rank_diff_val=rank_func(df_val)/(1+rank_func(df_val))
     acc_val=acc_overall(df_val)
     return {
         "rev_acc": 1-(acc_val), 

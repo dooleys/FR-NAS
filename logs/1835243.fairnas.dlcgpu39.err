@@ -1,0 +1,34 @@
+cpu-bind=MASK - dlcgpu39, task  0  0 [2405438]: mask 0xf0000000f0000 set
+2023-01-11 03:35:41,195 - distributed.scheduler - INFO - -----------------------------------------------
+2023-01-11 03:35:41,233 - distributed.http.proxy - INFO - To route to workers diagnostics web server please install jupyter-server-proxy: python -m pip install jupyter-server-proxy
+2023-01-11 03:35:41,237 - distributed.scheduler - INFO - State start
+2023-01-11 03:35:41,249 - distributed.scheduler - INFO - -----------------------------------------------
+2023-01-11 03:35:41,249 - distributed.scheduler - INFO - Clear task state
+2023-01-11 03:35:41,250 - distributed.scheduler - INFO -   Scheduler at:   tcp://10.5.166.199:1796
+2023-01-11 03:35:41,250 - distributed.scheduler - INFO -   dashboard at:                     :8787
+2023-01-11 03:37:43,096 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.197:35987', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:37:43,424 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.197:35987
+2023-01-11 03:37:43,425 - distributed.core - INFO - Starting established connection
+2023-01-11 03:40:24,556 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.82:43257', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:40:24,561 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.82:43257
+2023-01-11 03:40:24,561 - distributed.core - INFO - Starting established connection
+2023-01-11 03:41:05,197 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.84:40927', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:41:05,199 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.84:40927
+2023-01-11 03:41:05,200 - distributed.core - INFO - Starting established connection
+2023-01-11 03:41:15,011 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.85:42303', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:41:15,012 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.85:42303
+2023-01-11 03:41:15,012 - distributed.core - INFO - Starting established connection
+2023-01-11 03:43:50,239 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.86:43723', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:43:50,244 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.86:43723
+2023-01-11 03:43:50,244 - distributed.core - INFO - Starting established connection
+2023-01-11 03:45:29,000 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.205:33525', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:45:29,006 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.205:33525
+2023-01-11 03:45:29,006 - distributed.core - INFO - Starting established connection
+2023-01-11 03:45:32,420 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.203:45833', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:45:32,422 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.203:45833
+2023-01-11 03:45:32,422 - distributed.core - INFO - Starting established connection
+2023-01-11 03:45:52,597 - distributed.scheduler - INFO - Register worker <WorkerState 'tcp://10.5.166.202:37407', status: undefined, memory: 0, processing: 0>
+2023-01-11 03:45:52,599 - distributed.scheduler - INFO - Starting worker compute stream, tcp://10.5.166.202:37407
+2023-01-11 03:45:52,599 - distributed.core - INFO - Starting established connection
+2023-01-11 03:47:14,006 - distributed.scheduler - INFO - Receive client connection: Client-40c85cf4-915a-11ed-8ee8-abf035ae0aaf
+2023-01-11 03:47:14,012 - distributed.core - INFO - Starting established connection
