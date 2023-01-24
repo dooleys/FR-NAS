@@ -1,5 +1,3 @@
-
-
 #from comet_ml import Experiment
 import argparse
 from tqdm import tqdm
@@ -19,35 +17,38 @@ import pandas as pd
 import random
 import timm
 import math
-from src.utils.utils import save_output_from_dict
-from src.utils.utils_train import Network, get_head
-from src.utils.fairness_utils import evaluate, add_column_to_file
+from utils.utils import save_output_from_dict
+from utils.utils_train import Network, get_head
+from utils.fairness_utils import evaluate, add_column_to_file
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
 import argparse
 import argparse
 import os
 import time
-from src.search.dpn107 import DPN
+from dpn107 import DPN
 import numpy as np
 import torch.optim as optim
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from src.search.operations import *
+from operations import *
 import os
 import numpy as np
 import random
+
 device = torch.device("cuda")
-def set_seed(seed):
-   
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+seed = 555
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+np.random.seed(seed)
+random.seed(seed)
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+def count_parameters_in_MB(model):
+  return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
+
 def rank_func(df):
     data = {}
     for g,g_df in df.groupby('gender_expression'):
@@ -67,10 +68,9 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 def fairness_objective_dpn(config, seed, budget):
-    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
+    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
-    print(config)
     args.opt = config["optimizer"]
     args.head = config["head"]
     print(args)
@@ -82,22 +82,22 @@ def fairness_objective_dpn(config, seed, budget):
         args.groups_to_modify[i]: args.p_identities[i]
         for i in range(len(args.groups_to_modify))
     }
+    print(p_identities)
     args.p_images = p_images
     args.p_identities = p_identities
 
     print("P identities: {}".format(args.p_identities))
     print("P images: {}".format(args.p_images))
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_111/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
-    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_111/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_555_angles/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_adam"], config["head"],config["optimizer"])
+    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_555_angles/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_adam"], config["head"],config["optimizer"])
     if not os.path.exists(directory):
        os.makedirs(directory)
     output_dir="Checkpoints_scratch/"
     args.batch_size=64
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test, demographic_to_labels_val = prepare_data(
         args)
-    args.num_class = 7058
-
-    edges=[int(config['edge1']),int(config['edge2']),int(config['edge3'])]
+    args.num_class = num_class
+    edges=[config['edge1'],config['edge2'],config['edge3']]
     # Build model
     backbone = DPN(edges,num_init_features=128, k_r=200, groups=50, k_sec=(1,1,1,1), inc_sec=(20, 64, 64, 128))
     input=torch.ones(4,3,32,32)
@@ -106,8 +106,12 @@ def fairness_objective_dpn(config, seed, budget):
     head = get_head(args)
     train_criterion = FocalLoss(elementwise=True)
     head,backbone= head.to(device), backbone.to(device)
+    print(count_parameters_in_MB(head))
+    print(count_parameters_in_MB(backbone))
     backbone = nn.DataParallel(backbone)
     model = Network(backbone, head)
+    #model.load_state_dict(torch.load("/work/dlclarge2/sukthank-ZCP_Competition/models_pareto/680/model_99.pth")["model_state_dict"])
+    print("model_loaded")
     if (config["optimizer"] == "Adam") or (config["optimizer"] == "AdamW"):
         args.lr=config["lr_adam"]
     if config["optimizer"] == "SGD":
@@ -118,9 +122,8 @@ def fairness_objective_dpn(config, seed, budget):
     scheduler, num_epochs = create_scheduler(args, optimizer)
     model.to(device)
     epoch=0
-    args.epochs = 10
-    budget  = args.epochs
     start = time.time()
+    dict_dem ={"male":1,"female":-1}
     print('Start training')
     while epoch < int(budget):
             model.train()  # set to training mode
@@ -129,19 +132,22 @@ def fairness_objective_dpn(config, seed, budget):
             meters["top5"] = AverageMeter()
             for inputs, labels, sens_attr, _ in tqdm(iter((dataloaders["train"]))):
                 inputs, labels = inputs.to(device), labels.to(device).long()
-                outputs, reg_loss = model(inputs, labels)
+                sens_attr = [dict_dem[s] for s in list(sens_attr)]
+                outputs, reg_loss = model(inputs, labels, torch.Tensor(sens_attr))
                 loss = train_criterion(outputs, labels) + reg_loss
                 loss = loss.mean()
                 optimizer.zero_grad()
                 loss.backward()
+
                 optimizer.step()
                 scheduler.step(epoch + 1, meters["top5"])
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
                 #break
-            checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
-            torch.save(
+            if epoch==99:
+             checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
+             torch.save(
                 {
                     'epoch': epoch,
                     'model_state_dict': model.state_dict(),
@@ -149,14 +155,14 @@ def fairness_objective_dpn(config, seed, budget):
                     'config': config
                 }, checkpoint_name_to_save)
             epoch=epoch+1
-            checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
-            torch.save(
-                {
-                    'epoch': epoch,
-                    'model_state_dict': model.state_dict(),
-                    'optimizer_state_dict': optimizer.state_dict(),
-                    'config': config
-                }, checkpoint_name_to_save)
+            #checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
+            #torch.save(
+            #    {
+            #        'epoch': epoch,
+            #        'model_state_dict': model.state_dict(),
+            #        'optimizer_state_dict': optimizer.state_dict(),
+            #        'config': config
+            #    }, checkpoint_name_to_save)
             k_accuracy = True
             multilabel_accuracy = True
             comp_rank = True
@@ -225,21 +231,77 @@ def fairness_objective_dpn(config, seed, budget):
 
 if __name__ == "__main__":
 
-    config1 =  {
-                "edge1": "3",
-                "edge2": "0",
-                "edge3": "1",
-                "head": "CosFace",
-                "optimizer": "SGD",
-                "lr_sgd": 0.13828312564892567
-            }
-    '''config2 = {
-      "edge1": "6",
-      "edge2": "0",
-      "edge3": "0",
+ #SMAC config 1
+ '''config ={
+  'edge1': 0,
+  'edge2': 0,
+  'edge3': 0,
+  'head': 'CosFace',
+  'lr_sgd': 0.2813375341651194,
+  'optimizer': 'SGD',
+ }
+ #SMAC config 2
+ config={
+  'edge1': 0,
+  'edge2': 1,
+  'edge3': 0,
+  'head': 'CosFace',
+  'lr_sgd': 0.32348738788346576,
+  'optimizer': 'SGD',
+ }
+'''  
+#SMAC config 3
+ config={
+  'edge1': 6,
+  'edge2': 8,
+  'edge3': 0,
+  'head': 'CosFace',
+  'lr_adam': 0.0006048015915653069,
+  'optimizer': 'Adam',
+ }
+ #Config 4
+ '''config = {
+  'edge1': 4,
+  'edge2': 6,
+  'edge3': 7,
+  'head': 'MagFace',
+  'lr_sgd': 0.21727296500399912,
+  'optimizer': 'SGD',}
+# config 5
+ config =  {
+      "edge1": 5,
+      "edge2": 2,
+      "edge3": 0,
       "head": "CosFace",
       "optimizer": "SGD",
-      "lr_sgd": 0.6708884458871945
-    }'''
-    set_seed(888)
-    fairness_objective_dpn(config1,0,10)
+      "lr_sgd": 0.12889657714325153
+    }
+# dpn smac acc 95.9
+config = {
+      "edge1": 4,
+      "edge2": 0,
+      "edge3": 3,
+      "head": "CosFace",
+      "optimizer": "SGD",
+      "lr_sgd": 0.2523152758955039
+    }
+# dpn smac acc 96
+#config = {
+#      "edge1": 1,
+#      "edge2": 5,
+#      "edge3": 2,
+#      "head": "CosFace",
+#      "optimizer": "Adam",
+#      "lr_adam": 0.0006383109384330796
+#    }
+#config = {"edge1": 0, "edge2": 4, "edge3": 0, "head": "CosFace", "optimizer": "Adam", "lr_adam": 0.0005900596101948813}
+#config = {
+#    'edge1': 3,
+#  'edge2': 0,
+#  'edge3': 1,
+#  'head': 'CosFace',
+#  'lr_adam': 0.0002097247501603349,
+#  'optimizer': 'Adam',
+#}
+'''
+fairness_objective_dpn(config,0,100)
