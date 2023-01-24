@@ -1,3 +1,0 @@
-[INFO][abstract_initial_design.py:68] Using `n_configs` and ignoring `n_configs_per_hyperparameter`.
-[WARNING][successive_halving.py:123] The target function is specified to be non-deterministic, but number of seeds to evaluate are set to 1. Consider increasing `n_seeds` from the intensifier.
-[INFO][successive_halving.py:197] Using successive halving with budget type BUDGETS, min budget 2.5, max budget 10 and eta 2.
