@@ -15,13 +15,6 @@ import io
 import os
 import csv
 import random
-seed = 666
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)
-np.random.seed(seed)
-random.seed(seed)
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
 
 def load_checkpoint(opt, model, model_ema,  optimizer, train_loader, p_identities, p_images):
 

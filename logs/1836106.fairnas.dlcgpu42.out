@@ -67,3 +67,127 @@ AdamW
 Start training
 P identities: {'male': 1.0, 'female': 1.0}
 P images: {'male': 1.0, 'female': 1.0}
+30600
+30600
+30600
+{'backbone': 'dpn107', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'your_comet_api_key', 'comet_workspace': 'your comet username', 'cooldown_epochs': 10, 'dataset': 'vggface2', 'decay_epochs': 100, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/train', 'default_val_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/val', 'demographics_file': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': None, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'MagFace', 'input_size': 224, 'layer_decay': None, 'lr': 0.001, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'CelebA/timm_model_metadata.csv', 'min_lr': 1e-06, 'min_num_images': 3, 'model_ema': False, 'model_ema_decay': 0.9998, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'vggface2', 'num_workers': 4, 'opt': 'AdamW', 'opt_betas': None, 'opt_eps': None, 'out_dir': 'vgg_configs', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'frnas', 'save_freq': 1, 'sched': 'multistep', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user_vgg.yaml', 'warmup_epochs': 3, 'warmup_lr': 0.0001, 'weight_decay': 0.0001}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+PREPARING TRAIN DATASET
+Overall # of images for male available is 501741
+# images selected for male is 500000
+Overall # of images for female available is 535649
+# images selected for female is 500000
+Number of idx for male is 1417
+Number of idx for female is 1417
+PREPARING TEST DATASET
+Overall # of images for male available is 71677
+# images selected for male is 15300
+Overall # of images for female available is 75933
+# images selected for female is 15300
+Number of idx for male is 198
+Number of idx for female is 198
+Len of train dataloader is 15625
+Len of val dataloader is 479
+316
+704
+1216
+2432
+7.940653757176841e-05
+AdamW
+Start training
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+30600
+30600
+30600
+{'backbone': 'dpn107', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'your_comet_api_key', 'comet_workspace': 'your comet username', 'cooldown_epochs': 10, 'dataset': 'vggface2', 'decay_epochs': 100, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/train', 'default_val_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/val', 'demographics_file': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': None, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'MagFace', 'input_size': 224, 'layer_decay': None, 'lr': 0.001, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'CelebA/timm_model_metadata.csv', 'min_lr': 1e-06, 'min_num_images': 3, 'model_ema': False, 'model_ema_decay': 0.9998, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'vggface2', 'num_workers': 4, 'opt': 'AdamW', 'opt_betas': None, 'opt_eps': None, 'out_dir': 'vgg_configs', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'frnas', 'save_freq': 1, 'sched': 'multistep', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user_vgg.yaml', 'warmup_epochs': 3, 'warmup_lr': 0.0001, 'weight_decay': 0.0001}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+PREPARING TRAIN DATASET
+Overall # of images for male available is 501741
+# images selected for male is 500000
+Overall # of images for female available is 535649
+# images selected for female is 500000
+Number of idx for male is 1417
+Number of idx for female is 1417
+PREPARING TEST DATASET
+Overall # of images for male available is 71677
+# images selected for male is 15300
+Overall # of images for female available is 75933
+# images selected for female is 15300
+Number of idx for male is 198
+Number of idx for female is 198
+Len of train dataloader is 15625
+Len of val dataloader is 479
+316
+704
+1216
+2432
+7.940653757176841e-05
+AdamW
+Start training
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+30600
+30600
+30600
+{'backbone': 'dpn107', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'your_comet_api_key', 'comet_workspace': 'your comet username', 'cooldown_epochs': 10, 'dataset': 'vggface2', 'decay_epochs': 100, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/train', 'default_val_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/val', 'demographics_file': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': None, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'MagFace', 'input_size': 224, 'layer_decay': None, 'lr': 0.001, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'CelebA/timm_model_metadata.csv', 'min_lr': 1e-06, 'min_num_images': 3, 'model_ema': False, 'model_ema_decay': 0.9998, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'vggface2', 'num_workers': 4, 'opt': 'AdamW', 'opt_betas': None, 'opt_eps': None, 'out_dir': 'vgg_configs', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'frnas', 'save_freq': 1, 'sched': 'multistep', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user_vgg.yaml', 'warmup_epochs': 3, 'warmup_lr': 0.0001, 'weight_decay': 0.0001}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+PREPARING TRAIN DATASET
+Overall # of images for male available is 501741
+# images selected for male is 500000
+Overall # of images for female available is 535649
+# images selected for female is 500000
+Number of idx for male is 1417
+Number of idx for female is 1417
+PREPARING TEST DATASET
+Overall # of images for male available is 71677
+# images selected for male is 15300
+Overall # of images for female available is 75933
+# images selected for female is 15300
+Number of idx for male is 198
+Number of idx for female is 198
+Len of train dataloader is 15625
+Len of val dataloader is 479
+316
+704
+1216
+2432
+2.0291794359363968e-05
+AdamW
+Start training
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+30600
+30600
+30600
+{'backbone': 'dpn107', 'batch_size': 64, 'bn_eps': None, 'bn_momentum': None, 'checkpoints_root': 'Checkpoints/', 'clip_grad': None, 'clip_mode': 'norm', 'comet_api_key': 'your_comet_api_key', 'comet_workspace': 'your comet username', 'cooldown_epochs': 10, 'dataset': 'vggface2', 'decay_epochs': 100, 'decay_rate': 0.1, 'default_test_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test', 'default_train_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/train', 'default_val_root': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/val', 'demographics_file': '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt', 'dist_bn': 'reduce', 'drop': 0.0, 'drop_block': None, 'drop_connect': None, 'drop_path': None, 'epoch_repeats': 0.0, 'epochs': 100, 'file_name': 'timm_from-scratch.csv', 'file_name_ema': 'timm_from-scratch_ema.csv', 'gp': None, 'groups_to_modify': ['male', 'female'], 'head': 'MagFace', 'input_size': 224, 'layer_decay': None, 'lr': 0.001, 'lr_cycle_decay': 0.5, 'lr_cycle_limit': 1, 'lr_cycle_mul': 1.0, 'lr_k_decay': 1.0, 'lr_noise': None, 'lr_noise_pct': 0.67, 'lr_noise_std': 1.0, 'mean': [0.5, 0.5, 0.5], 'metadata_file': 'CelebA/timm_model_metadata.csv', 'min_lr': 1e-06, 'min_num_images': 3, 'model_ema': False, 'model_ema_decay': 0.9998, 'model_ema_force_cpu': False, 'momentum': 0.9, 'name': 'vggface2', 'num_workers': 4, 'opt': 'Adam', 'opt_betas': None, 'opt_eps': None, 'out_dir': 'vgg_configs', 'p_identities': [1.0, 1.0], 'p_images': [1.0, 1.0], 'patience_epochs': 10, 'pretrained': False, 'project_name': 'frnas', 'save_freq': 1, 'sched': 'multistep', 'seed': 222, 'split_bn': False, 'start_epoch': None, 'std': [0.5, 0.5, 0.5], 'sync_bn': False, 'torchscript': False, 'train_loss': 'Focal', 'user_config': 'config_user_vgg.yaml', 'warmup_epochs': 3, 'warmup_lr': 0.0001, 'weight_decay': 0.0001}
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}
+PREPARING TRAIN DATASET
+Overall # of images for male available is 501741
+# images selected for male is 500000
+Overall # of images for female available is 535649
+# images selected for female is 500000
+Number of idx for male is 1417
+Number of idx for female is 1417
+PREPARING TEST DATASET
+Overall # of images for male available is 71677
+# images selected for male is 15300
+Overall # of images for female available is 75933
+# images selected for female is 15300
+Number of idx for male is 198
+Number of idx for female is 198
+Len of train dataloader is 15625
+Len of val dataloader is 479
+316
+704
+1216
+2432
+0.0002998939789001333
+Adam
+Start training
+P identities: {'male': 1.0, 'female': 1.0}
+P images: {'male': 1.0, 'female': 1.0}

@@ -8,13 +8,6 @@ import os
 from PIL import Image
 import numpy as np
 
-seed = 666
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)
-np.random.seed(seed)
-random.seed(seed)
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = False
 
 
 def load_dict(filename):
@@ -357,12 +350,24 @@ def prepare_data(args):
                                                                  seed = args.seed
                                                          )
 
+    datasets['test'] = ImageFolderWithProtectedAttributes(args.default_test_root, transform=test_transform,
+                                                                 demographic_to_all_classes=demographic_to_all_classes,
+                                                                 all_classes_to_demographic = all_classes_to_demographic,
+                                                                 p_identities = {dem: 1.0 for dem,_ in args.p_identities.items()},
+                                                                 p_images = {dem: 1.0 for dem,_ in args.p_images.items()},
+                                                                 min_num = args.min_num_images,
+                                                                 ref_num_images = num_ref_images_test,
+                                                                 seed = args.seed
+                                                         )
+
     for k in list(demographic_to_all_classes.keys()):
         print('Number of idx for {} is {}'.format(k, len(datasets['val'].demographic_to_classes[k])))
+        print('Number of idx for {} is {}'.format(k, len(datasets['test'].demographic_to_classes[k])))
 
 #     demographic_to_idx_train = datasets['train'].demographic_to_idx
     demographic_to_idx_train = None
-    demographic_to_idx_test = datasets['val'].demographic_to_idx
+    demographic_to_idx_val = datasets['val'].demographic_to_idx
+    demographic_to_idx_test = datasets['test'].demographic_to_idx
     ######################################################
 
 
@@ -384,7 +389,8 @@ def prepare_data(args):
                                                        worker_init_fn=seed_worker,generator=g,
                                                        drop_last=True)
     dataloaders['val'] = torch.utils.data.DataLoader(datasets['val'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+    dataloaders['test'] = torch.utils.data.DataLoader(datasets['test'], batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
     for k in list(dataloaders.keys()):
         print('Len of {} dataloader is {}'.format(k, len(dataloaders[k])))
 
-    return dataloaders, num_class, demographic_to_idx_train, demographic_to_idx_test
+    return dataloaders, num_class, demographic_to_idx_train, demographic_to_idx_val, demographic_to_idx_test 

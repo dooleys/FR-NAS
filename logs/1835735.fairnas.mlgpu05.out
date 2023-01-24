@@ -36,3 +36,6 @@ SGD
 Start training
 P identities: {'male': 1.0, 'female': 1.0}
 P images: {'male': 1.0, 'female': 1.0}
+30600
+30600
+30600

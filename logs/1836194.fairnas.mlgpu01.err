@@ -1,1 +1,118 @@
 cpu-bind=MASK - mlgpu01, task  0  0 [3411686]: mask 0x60 set
+Traceback (most recent call last):
+  File "/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/src/search/search.py", line 74, in <module>
+    incumbent = smac.optimize()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/smac/facade/abstract_facade.py", line 320, in optimize
+    incumbent = self._optimizer.optimize()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/smac/main/base_smbo.py", line 242, in optimize
+    self._runner.wait()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/smac/runner/dask_runner.py", line 141, in wait
+    wait(self._pending_trials, return_when="FIRST_COMPLETED")
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 4681, in wait
+    result = client.sync(_wait, fs, timeout=timeout, return_when=return_when)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 318, in sync
+    return sync(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 385, in sync
+    raise exc.with_traceback(tb)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 358, in f
+    result = yield future
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/tornado/gen.py", line 762, in run
+    value = future.result()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 4659, in _wait
+    raise CancelledError(cancelled)
+concurrent.futures._base.CancelledError: ['run_wrapper-391a4c8973cbb1c809f93c9f514a68ff', 'run_wrapper-5522b7cb644dcff63bca9b0d9ae87c75', 'run_wrapper-dc65afd63622d2d5bef5a27b738920ff', 'run_wrapper-f65876875d29083e70020d0cea16f115', 'run_wrapper-a1542efea422ce6c5bed9316988dbc7a']
+2023-01-13 21:40:29,644 - distributed.client - ERROR - cannot schedule new futures after shutdown
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 226, in read
+    frames_nbytes = await stream.read_bytes(fmt_size)
+tornado.iostream.StreamClosedError: Stream is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1396, in _handle_report
+    msgs = await self.scheduler_comm.comm.read()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 242, in read
+    convert_stream_closed_error(self, e)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 150, in convert_stream_closed_error
+    raise CommClosedError(f"in {obj}: {exc}") from exc
+distributed.comm.core.CommClosedError: in <TCP (closed) Client->Scheduler local=tcp://10.5.166.82:59978 remote=tcp://10.5.166.199:1796>: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 759, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1225, in _reconnect
+    await self._ensure_connected(timeout=timeout)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1255, in _ensure_connected
+    comm = await connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/core.py", line 289, in connect
+    comm = await asyncio.wait_for(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 439, in connect
+    stream = await self.client.connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 424, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 861, in getaddrinfo
+    return await self.run_in_executor(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 819, in run_in_executor
+    executor.submit(func, *args), loop=self)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/concurrent/futures/thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown
+2023-01-13 21:40:29,676 - distributed.client - ERROR - cannot schedule new futures after shutdown
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 226, in read
+    frames_nbytes = await stream.read_bytes(fmt_size)
+tornado.iostream.StreamClosedError: Stream is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1396, in _handle_report
+    msgs = await self.scheduler_comm.comm.read()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 242, in read
+    convert_stream_closed_error(self, e)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 150, in convert_stream_closed_error
+    raise CommClosedError(f"in {obj}: {exc}") from exc
+distributed.comm.core.CommClosedError: in <TCP (closed) Client->Scheduler local=tcp://10.5.166.82:59978 remote=tcp://10.5.166.199:1796>: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1524, in _close
+    await asyncio.wait_for(asyncio.shield(handle_report_task), 0.1)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 759, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1404, in _handle_report
+    await self._reconnect()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 759, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1225, in _reconnect
+    await self._ensure_connected(timeout=timeout)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1255, in _ensure_connected
+    comm = await connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/core.py", line 289, in connect
+    comm = await asyncio.wait_for(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 439, in connect
+    stream = await self.client.connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 424, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 861, in getaddrinfo
+    return await self.run_in_executor(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 819, in run_in_executor
+    executor.submit(func, *args), loop=self)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/concurrent/futures/thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown
+slurmstepd-mlgpu01: error: *** JOB 1836194 ON mlgpu01 CANCELLED AT 2023-01-13T21:41:03 ***

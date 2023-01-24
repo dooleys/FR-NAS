@@ -30,3 +30,100 @@
 [INFO][abstract_intensifier.py:367] --- lr_sgd: None -> 0.13828312564892567
 [INFO][abstract_intensifier.py:367] --- optimizer: 'AdamW' -> 'SGD'
 [INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [2.50 / 10] and 4 evaluated challenger(s).
+[INFO][successive_halving_worker.py:613] Challenger (0.0000) is better than incumbent (0.1310) on budget 2.5000.
+[INFO][abstract_intensifier.py:364] Changes in incumbent:
+[INFO][abstract_intensifier.py:367] --- edge1: '3' -> '6'
+[INFO][abstract_intensifier.py:367] --- edge3: '1' -> '0'
+[INFO][abstract_intensifier.py:367] --- head: 'CosFace' -> 'MagFace'
+[INFO][abstract_intensifier.py:367] --- lr_adam: None -> 7.940653757176841e-05
+[INFO][abstract_intensifier.py:367] --- optimizer: 'SGD' -> 'AdamW'
+[INFO][hyperband_worker.py:165] Finished Hyperband iteration-step 1-1 with initial budget 2.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [2.50 / 10] and 4 evaluated challenger(s).
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [2.50 / 10] and 4 evaluated challenger(s).
+[INFO][successive_halving_worker.py:396] First run and no incumbent provided. Challenger is assumed to be the incumbent.
+[INFO][successive_halving_worker.py:613] Challenger (0.0000) is better than incumbent (0.0103) on budget 2.5000.
+[INFO][abstract_intensifier.py:364] Changes in incumbent:
+[INFO][abstract_intensifier.py:367] --- edge1: '6' -> '2'
+[INFO][abstract_intensifier.py:367] --- head: 'MagFace' -> 'CosFace'
+[INFO][abstract_intensifier.py:367] --- lr_adam: 7.940653757176841e-05 -> 1.0318600759521413e-05
+[INFO][abstract_intensifier.py:367] --- optimizer: 'AdamW' -> 'Adam'
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [2.50 / 10] and 4 evaluated challenger(s).
+[INFO][successive_halving_worker.py:396] First run and no incumbent provided. Challenger is assumed to be the incumbent.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-2 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:396] First run and no incumbent provided. Challenger is assumed to be the incumbent.
+[INFO][successive_halving_worker.py:613] Challenger (0.0000) is better than incumbent (0.0268) on budget 5.0000.
+[INFO][abstract_intensifier.py:364] Changes in incumbent:
+[INFO][abstract_intensifier.py:367] --- edge1: '3' -> '6'
+[INFO][abstract_intensifier.py:367] --- edge3: '1' -> '0'
+[INFO][abstract_intensifier.py:367] --- head: 'CosFace' -> 'MagFace'
+[INFO][abstract_intensifier.py:367] --- lr_adam: None -> 7.940653757176841e-05
+[INFO][abstract_intensifier.py:367] --- optimizer: 'SGD' -> 'AdamW'
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-2 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:396] First run and no incumbent provided. Challenger is assumed to be the incumbent.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-2 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-3 with budget [10.00 / 10] and 1 evaluated challenger(s).
+[INFO][hyperband_worker.py:165] Finished Hyperband iteration-step 1-2 with initial budget 5.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-2 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:613] Challenger (0.0073) is better than incumbent (0.0414) on budget 10.0000.
+[INFO][abstract_intensifier.py:364] Changes in incumbent:
+[INFO][abstract_intensifier.py:367] --- edge1: '3' -> '6'
+[INFO][abstract_intensifier.py:367] --- edge3: '1' -> '0'
+[INFO][abstract_intensifier.py:367] --- head: 'CosFace' -> 'MagFace'
+[INFO][abstract_intensifier.py:367] --- lr_adam: None -> 7.940653757176841e-05
+[INFO][abstract_intensifier.py:367] --- optimizer: 'SGD' -> 'AdamW'
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-3 with budget [10.00 / 10] and 1 evaluated challenger(s).
+[INFO][hyperband_worker.py:165] Finished Hyperband iteration-step 1-2 with initial budget 5.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-3 with budget [10.00 / 10] and 1 evaluated challenger(s).
+[INFO][hyperband_worker.py:165] Finished Hyperband iteration-step 1-2 with initial budget 5.
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-1 with budget [5.00 / 10] and 2 evaluated challenger(s).
+[INFO][successive_halving_worker.py:245] Finished Successive Halving iteration-step 1-3 with budget [10.00 / 10] and 1 evaluated challenger(s).
+[INFO][hyperband_worker.py:165] Finished Hyperband iteration-step 1-2 with initial budget 5.
+[ERROR][utils.py:785] cannot schedule new futures after shutdown
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 226, in read
+    frames_nbytes = await stream.read_bytes(fmt_size)
+tornado.iostream.StreamClosedError: Stream is closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1396, in _handle_report
+    msgs = await self.scheduler_comm.comm.read()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 242, in read
+    convert_stream_closed_error(self, e)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 150, in convert_stream_closed_error
+    raise CommClosedError(f"in {obj}: {exc}") from exc
+distributed.comm.core.CommClosedError: in <TCP (closed) Client->Scheduler local=tcp://10.5.166.82:59978 remote=tcp://10.5.166.199:1796>: Stream is closed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 759, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1404, in _handle_report
+    await self._reconnect()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/utils.py", line 759, in wrapper
+    return await func(*args, **kwargs)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1225, in _reconnect
+    await self._ensure_connected(timeout=timeout)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/client.py", line 1255, in _ensure_connected
+    comm = await connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/core.py", line 289, in connect
+    comm = await asyncio.wait_for(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/tasks.py", line 479, in wait_for
+    return fut.result()
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 439, in connect
+    stream = await self.client.connect(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/tornado/tcpclient.py", line 265, in connect
+    addrinfo = await self.resolver.resolve(host, port, af)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/site-packages/distributed/comm/tcp.py", line 424, in resolve
+    for fam, _, _, _, address in await asyncio.get_running_loop().getaddrinfo(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 861, in getaddrinfo
+    return await self.run_in_executor(
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/asyncio/base_events.py", line 819, in run_in_executor
+    executor.submit(func, *args), loop=self)
+  File "/home/sukthank/anaconda3/envs/fairnas/lib/python3.9/concurrent/futures/thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown

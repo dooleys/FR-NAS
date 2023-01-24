@@ -66,7 +66,7 @@ patience_epochs: 10
 pretrained: false
 project_name: frnas
 save_freq: 1
-sched: multistep
+sched: cosine
 seed: 222
 split_bn: false
 start_epoch: null

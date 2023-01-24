@@ -32,3 +32,4 @@ cpu-bind=MASK - dlcgpu39, task  0  0 [2405438]: mask 0xf0000000f0000 set
 2023-01-11 03:45:52,599 - distributed.core - INFO - Starting established connection
 2023-01-11 03:47:14,006 - distributed.scheduler - INFO - Receive client connection: Client-40c85cf4-915a-11ed-8ee8-abf035ae0aaf
 2023-01-11 03:47:14,012 - distributed.core - INFO - Starting established connection
+slurmstepd-dlcgpu39: error: *** JOB 1835243 ON dlcgpu39 CANCELLED AT 2023-01-13T21:40:29 ***

@@ -51,7 +51,7 @@ if __name__ == "__main__":
         min_budget=2.5,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
         max_budget=10,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
         n_workers=8,
-        name = "smac_dpn_vgg_final"
+        name = "smac_dpn_vgg_final_cosine_2"
     )
 
     # We want to run five random configurations before starting the optimization.
@@ -66,7 +66,7 @@ if __name__ == "__main__":
         fairness_objective_dpn,
         initial_design=initial_design,
         multi_objective_algorithm=multi_objective_algorithm,
-        overwrite=True,
+        overwrite=False,
         intensifier = intensifier
     )
     #        target_fn=target_fn,
