@@ -5,34 +5,34 @@ import os
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from src.head.metrics import CosFace, SphereFace, ArcFace, MagFace
 import yaml
-from loss.focal import FocalLoss
-from utils.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoint, \
+from src.loss.focal import FocalLoss
+from src.utils.utils import separate_resnet_bn_paras, warm_up_lr, load_checkpoint, \
     schedule_lr, AverageMeter, accuracy
-from utils.fairness_utils import evaluate
-from utils.data_utils_balanced import prepare_data
+from src.utils.fairness_utils import evaluate
+from src.utils.data_utils_balanced import prepare_data
 import numpy as np
 import pandas as pd
 import random
 import timm
 import math
-from utils.utils import save_output_from_dict
-from utils.utils_train_old import Network, Network_Discriminator, get_head
-from utils.fairness_utils import evaluate, add_column_to_file
+from src.utils.utils import save_output_from_dict
+from src.utils.fairness_utils import evaluate, add_column_to_file
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
 import argparse
 import argparse
 import os
 import time
-from dpn107 import DPN
+from src.search.dpn107 import DPN
 import numpy as np
 import torch.optim as optim
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from operations import *
+from src.search.operations import *
 import os
 import numpy as np
 import random
@@ -45,6 +45,32 @@ np.random.seed(seed)
 random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
+class Network_Discriminator(torch.nn.Module):
+
+    def __init__(self, backbone, head,head_sens):
+        super(Network_Discriminator, self).__init__()
+        self.head=head
+        self.backbone=backbone
+        self.head_sens = head_sens
+    def forward(self, inputs, labels):
+        features = self.head_sens(self.backbone(inputs))
+        outputs, reg_loss = self.head(features, labels)
+
+        return outputs, reg_loss
+
+def get_head(args):
+    if args.head=="CosFace":
+       head = CosFace(in_features=args.embedding_size, out_features=args.num_class, device_id=range(torch.cuda.device_count()))
+    elif args.head=="ArcFace":
+       head = ArcFace(in_features=args.embedding_size, out_features=args.num_class, device_id=range(torch.cuda.device_count()))
+    elif args.head=="SphereFace":
+       head = SphereFace(in_features=args.embedding_size, out_features=args.num_class, device_id=range(torch.cuda.device_count()))
+    elif args.head=="MagFace":
+       head = MagFace(in_features=args.embedding_size, out_features=args.num_class, device_id=range(torch.cuda.device_count()))
+    else:
+        print("Head not supported")
+        return
+    return head
 def count_parameters_in_MB(model):
   return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
 
@@ -67,7 +93,7 @@ class dotdict(dict):
     __setattr__ = dict.__setitem__
     __delattr__ = dict.__delitem__
 def fairness_objective_dpn(config, seed, budget):
-    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
+    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
     args.opt = config["optimizer"]
@@ -87,8 +113,8 @@ def fairness_objective_dpn(config, seed, budget):
 
     print("P identities: {}".format(args.p_identities))
     print("P images: {}".format(args.p_images))
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_discriminator/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
-    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_discriminator/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
+    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
     if not os.path.exists(directory):
        os.makedirs(directory)
     output_dir="Checkpoints_scratch/"
@@ -117,7 +143,7 @@ def fairness_objective_dpn(config, seed, budget):
     print(args.lr)
     print(args.opt)
     args.one_layer_sens = False
-    args.only_discriminator = False
+    args.only_discriminator= False
     args.manipulate = 1
     if args.one_layer_sens:
         head_sens = nn.Linear(in_features=args.embedding_size, out_features=2)
@@ -147,30 +173,31 @@ def fairness_objective_dpn(config, seed, budget):
         if args.opt == "SGD":
            optimizer = optim.SGD([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.01},
                                 {'params': sensitive_net.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
+                                {'params': backbone.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
                                 {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}], momentum=args.momentum)
-        else:
+        elif args.opt == "Adam":
             optimizer = optim.Adam([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.001},
                                 {'params': sensitive_net.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}])        
+                                {'params': backbone.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
+                                {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}])     
+        elif args.opt == "AdamW":
+            optimizer = optim.Adam([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.001},
+                                {'params': sensitive_net.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
+                                {'params': backbone.parameters(), 'weight_decay': args.weight_decay, 'lr': args.lr},
+                                {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}])    
         scheduler, num_epochs = create_scheduler(args, optimizer)
     head_sens = head_sens.to(device)
     backbone = nn.DataParallel(backbone)
     backbone = backbone.to(device)
     model = Network_Discriminator(backbone, head,sensitive_net)
     model.to(device)
-    if edges == [6,8,0]:
-        model.load_state_dict(torch.load("/work/dlclarge2/sukthank-ZCP_Competition/SMAC_new/Checkpoints_scratch/Checkpoints_Edges_680_LR_0.0006048015915653069_Head_CosFace_Optimizer_Adam_discriminator/model_99.pth")["model_state_dict"])
-    elif edges == [0,0,0]:
-        model.load_state_dict(torch.load("/work/dlclarge2/sukthank-ZCP_Competition/SMAC_new/Checkpoints_scratch/Checkpoints_Edges_000_LR_0.2813375341651194_Head_CosFace_Optimizer_SGD_discriminator/model_99.pth")["model_state_dict"])
-    elif edges == [0,1,0]:
-        model.load_state_dict(torch.load("/work/dlclarge2/sukthank-ZCP_Competition/SMAC_new/Checkpoints_scratch/Checkpoints_Edges_010_LR_0.32348738788346576_Head_CosFace_Optimizer_SGD_discriminator/model_99.pth")["model_state_dict"])
     epoch=0
     start = time.time()
     dict_dem ={"male":1,"female":-1}
     print('Start training')
     num_epoch_warm_up = budget // 25  # use the first 1/25 epochs to warm up
     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up  # use the first 1/25 epochs to warm up
-    while epoch < int(budget):
+    while epoch < int(10):
             model.train()  # set to training mode
             head_sens.train()
             meters = {}
@@ -182,9 +209,9 @@ def fairness_objective_dpn(config, seed, budget):
             for inputs, labels, sens_attr, _ in tqdm(iter((dataloaders["train"]))):
                 batch = batch+1
                 inputs, labels = inputs.to(device), labels.to(device).long()
-                sens_attr = torch.Tensor([dict_dem[s] for s in list(sens_attr)]).long()
+                sens_attr = torch.Tensor([dict_dem[s] for s in list(sens_attr)])
                 protected = torch.tensor(sens_attr == -1).type(torch.long).to(device)
-                outputs, reg_loss = model(inputs, labels, torch.Tensor(sens_attr))
+                outputs, reg_loss = model(inputs, labels)
                 features_sens = F.normalize(model.head_sens(model.backbone(inputs)))
                 outputs_sens = head_sens(features_sens)
                 softmax_scores = nn.Softmax()(outputs_sens)
@@ -202,7 +229,7 @@ def fairness_objective_dpn(config, seed, budget):
                 sens_loss = sens_criterion(outputs_sens_detached, protected)
                 loss = train_criterion(outputs, labels) + reg_loss
                 loss = loss.mean()
-                if args.only_discriminator:
+                if args.only_:
                     optimizer.zero_grad()
 
                 elif (batch + 1 <= num_batch_warm_up):
@@ -223,7 +250,7 @@ def fairness_objective_dpn(config, seed, budget):
                 prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
                 meters["loss"].update(loss.data.item(), inputs.size(0))
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
-                break
+                #break
             #break
             epoch = 1234
             if epoch==1234:
@@ -308,7 +335,7 @@ def fairness_objective_dpn(config, seed, budget):
                                kacc_df = kacc_df,
                                rank_by_image_df = rank_by_image_df,
                                rank_by_id_df = rank_by_id_df)
-            break
+            #break
             epoch = epoch+1
 
 if __name__ == "__main__":

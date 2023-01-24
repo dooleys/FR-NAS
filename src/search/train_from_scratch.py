@@ -87,8 +87,8 @@ def fairness_objective_dpn(config, seed, budget):
 
     print("P identities: {}".format(args.p_identities))
     print("P images: {}".format(args.p_images))
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_111/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
-    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_111/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_999/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
+    directory ="Checkpoints_scratch/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_999/".format(str(config["edge1"])+str(config["edge2"])+str(config["edge3"]), config["lr_sgd"], config["head"],config["optimizer"])
     if not os.path.exists(directory):
        os.makedirs(directory)
     output_dir="Checkpoints_scratch/"
@@ -233,13 +233,13 @@ if __name__ == "__main__":
                 "optimizer": "SGD",
                 "lr_sgd": 0.13828312564892567
             }
-    '''config2 = {
+    config2 = {
       "edge1": "6",
       "edge2": "0",
       "edge3": "0",
       "head": "CosFace",
       "optimizer": "SGD",
       "lr_sgd": 0.6708884458871945
-    }'''
-    set_seed(888)
-    fairness_objective_dpn(config1,0,10)
+    }
+    set_seed(999)
+    fairness_objective_dpn(config2,0,10)
