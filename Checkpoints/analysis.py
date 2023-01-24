@@ -132,7 +132,7 @@ def analyze_files(files, metadata, ratio=False, error=False, epochs=None):
         acc_disp_df.loc[experiment] = acc_disp    
     return acc_df, acc_disp_df
 
-def analyze_rank_files_np(files, metadata, ratio=False, error=False, epochs=None): 
+def analyze_files_pd(pd_dict_list, metadata, ratio=False, error=False, epochs=None):
     if epochs is None:
         epochs = ['epoch_'+str(e) for e in range(100)]
         
@@ -140,19 +140,15 @@ def analyze_rank_files_np(files, metadata, ratio=False, error=False, epochs=None
     acc_ratio_df = pd.DataFrame(columns=epochs)
     rank_df = pd.DataFrame(columns=epochs)
     
-    for f in files:
-        try:
-            df = pd.read_csv(f)
-        except:
-            continue
+    for d in pd_dict_list:
+        experiment = d['experiment']
+        df = d['df']
         epoch_columns = list(set(df.columns).intersection(epochs))
         df = metadata.merge(df)
-        num_epochs = len(epoch_columns)
         if error:
             acc = err_from_rank_func(df, epoch_columns)
         else:
             acc = acc_from_rank_func(df, epoch_columns)
-        experiment = get_name_details(f)[0]
         acc_df.loc[experiment] = acc
         
         if ratio:
@@ -171,9 +167,49 @@ def analyze_rank_files_np(files, metadata, ratio=False, error=False, epochs=None
         rank_df.loc[experiment] = rank_ratio    
     return acc_df, acc_ratio_df, rank_df
 
+
 def analyze_rank_files(files, metadata, ratio=False, error=False, epochs=None): 
-    acc_df, acc_ratio_df, rank_df = analyze_rank_files_np(files, metadata, ratio=ratio, error=error, epochs=epochs)
+    pd_dict_list = []
+    for f in files:
+        try:
+            df = pd.read_csv(f)
+        except:
+            continue
+        experiment = get_name_details(f)[0]
+        pd_dict_list += [{'experiment':experiment,
+                          'df': df}]
+
+
+    acc_df, acc_ratio_df, rank_df = analyze_files_pd(pd_dict_list, metadata, ratio=ratio, error=error, epochs=epochs)
     return prepare(acc_df), prepare(acc_ratio_df), prepare(rank_df)
+
+def analyze_pickle_files(pickle_files, metadata, ratio=False, error=False, epochs=None):
+    pd_dict_list = []
+    for model_pickle_files in pickle_files:
+        df = pd.DataFrame()
+        for f in model_pickle_files:
+            epoch = f.split('_')[-1].split('.')[0]
+            pickle_df = pd.read_pickle(f)
+            pickle_df.columns = [f'Epoch_{epoch}_'+c for c in pickle_df.columns]
+            if df.shape[0]:
+                df = pd.merge(df,pickle_df,left_index=True, right_index=True)
+            else:
+                df = pickle_df
+
+        if df.shape[0] == 0:
+            continue
+
+        df = df[[x for x in df.columns if 'nearest_by_id' in x]]
+        df.columns = ['epoch_'+x.split('_')[1] for x in df.columns]
+        df.reset_index(inplace=True)
+        df = df.rename(columns = {'index':'ids'})
+        experiment = f.split('/')[1]
+        pd_dict_list += [{'experiment':experiment,
+                          'df': df}]
+        
+    acc_df, acc_ratio_df, rank_df = analyze_files_pd(pd_dict_list, metadata, ratio=ratio, error=error, epochs=epochs)
+    return prepare(acc_df), prepare(acc_ratio_df), prepare(rank_df)
+
 
 def plot_df(acc_df, acc_disp_df, rank_df = None, title = ''):
     def prepare(df):
