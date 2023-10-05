@@ -1,0 +1,32 @@
+{
+  "data": [
+    [
+      1,
+      null,
+      209652396,
+      25.0,
+      [
+        2147483647.0,
+        2147483647.0
+      ],
+      0.0,
+      8,
+      0.0,
+      0.0,
+      {}
+    ]
+  ],
+  "configs": {
+    "1": {
+      "edge1": "4",
+      "edge2": "7",
+      "edge3": "8",
+      "head": "CosFace",
+      "optimizer": "AdamW",
+      "lr_adam": 0.0005135589606500231
+    }
+  },
+  "config_origins": {
+    "1": "Random Initial Design"
+  }
+}

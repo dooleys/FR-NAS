@@ -131,7 +131,9 @@ dmypy.json
 
 # specific
 log/
-*.pth
+*smac*/
+Checkpoints/
+logs/
 data/
 cml-tools/
 .cml_*
@@ -139,4 +141,6 @@ cml-tools/
 .Trash*
 .Rhistory
 DataParallel/
+*.pth
+src/fairness_train_timm.py
 rhea/
