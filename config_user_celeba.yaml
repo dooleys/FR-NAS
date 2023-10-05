@@ -1,9 +1,0 @@
-comet_api_key: 'your_comet_api_key'
-comet_workspace: 'your comet username'
-default_val_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val'
-default_train_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train'
-default_test_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test'
-project_name: frnas
-checkpoints_root: Checkpoints/
-metadata_file: CelebA/timm_model_metadata.csv
-demographics_file: CelebA/CelebA_demographics.txt

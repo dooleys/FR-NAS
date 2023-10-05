@@ -1,5 +1,5 @@
 <br/>
-<p align="center"><img src="img/FR-NAS.png" width=400 /></p>
+<p align="center"><img src="img/FR-NAS.png" width=350 /></p>
 
 ----
 ![Crates.io](https://img.shields.io/crates/l/Ap?color=orange)

@@ -8,7 +8,7 @@ clip_mode: norm
 comet_api_key: your_comet_api_key
 comet_workspace: your comet username
 cooldown_epochs: 10
-dataset: CelebA
+dataset: vggface2
 decay_epochs: 100
 decay_rate: 0.1
 default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test
@@ -50,7 +50,7 @@ model_ema: false
 model_ema_decay: 0.9998
 model_ema_force_cpu: false
 momentum: 0.9
-name: CelebA
+name: vggface2
 num_workers: 4
 opt: AdamW
 opt_betas: null
@@ -77,7 +77,7 @@ std:
 sync_bn: false
 torchscript: false
 train_loss: Focal
-user_config: config_user_celeba.yaml
+user_config: user_configs/config_user_celeba.yaml
 warmup_epochs: 3
 warmup_lr: 0.0001
 weight_decay: 0.0001
