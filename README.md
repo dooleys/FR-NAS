@@ -85,12 +85,24 @@ sbatch scripts/workers_dpn.sh
 ```
 
 ### Start the distributed search
+Note: You need to start schedulers and workers separately for search on CelebA and VGGFace2
  ```
 sbatch scripts/job_celeba.sh
 sbatch scripts/job_vgg.sh
 ```
 
 ## Training<a name="training"></a>
+Train architectures discovered on CelebA
+```
+python src/search/train_smac_arch_celeba.py --seed 111 --config config1
+python src/search/train_smac_arch_celeba.py --seed 111 --config config2
+```
 
-## Evaluation<a name="evaluation"></a>
+Train architecture discovered on VGGFace2
+```
+python src/search/train_smac_arch_vgg.py --seed 111 
+```
 ## Analysis <a name="analysis2"></a>
+# Evaluation<a name="evaluation"></a>
+# Baselines <a name="baselines"></a>
+
