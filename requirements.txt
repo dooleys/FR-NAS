@@ -60,6 +60,7 @@ cssselect==1.0.3
 cycler==0.10.0
 Cython==0.29.23
 dask==2023.3.0
+dask-jobqueue==0.8.2
 datasets==1.8.0
 debugpy==1.6.0
 decorator==4.4.2
@@ -307,7 +308,7 @@ setuptools==58.0.4
 singledispatch==3.7.0
 six==1.16.0
 sklearn==0.0
-smac==2.0.0
+smac==2.0.2
 smdebug-rulesconfig==1.0.1
 snowballstemmer==2.2.0
 sortedcontainers==2.4.0

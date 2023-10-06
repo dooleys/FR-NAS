@@ -7,7 +7,8 @@ from ConfigSpace import (
     Float,
     InCondition,
 )
-from src.search.dpn_objective import fairness_objective_dpn
+from src.search.dpn_objective_vgg import fairness_objective_dpn_vgg
+from src.search.dpn_objective_celeba import fairness_objective_dpn_celeba
 from smac import MultiFidelityFacade, Scenario
 
 __copyright__ = "Copyright 2021, AutoML.org Freiburg-Hannover"
@@ -15,11 +16,15 @@ __license__ = "3-clause BSD"
 import time
 
 from smac.multi_objective.parego import ParEGO
-
+from smac.runner.target_function_runner import TargetFunctionRunner
 from smac.runner.dask_runner import DaskParallelRunner
 import dask
-
+import argparse
 if __name__ == "__main__":
+    # add arguments
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--dataset', type=str, default="CelebA", help='dataset name')
+    args = argparser.parse_args()
     cs = ConfigurationSpace()
     #import dask
     #client = dask.distributed.Client(scheduler_file="scheduler-dpn-25-file.json")
@@ -50,24 +55,28 @@ if __name__ == "__main__":
         objectives=["rev_acc", "rank_disparity"],
         min_budget=2.5,  # Train the MLP using a hyperparameter configuration for at least 5 epochs
         max_budget=10,  # Train the MLP using a hyperparameter configuration for at most 25 epochs
-        n_workers=8,
-        name = "smac_dpn_vgg_final_cosine_2"
+        n_workers=8
     )
 
     # We want to run five random configurations before starting the optimization.
     initial_design = MultiFidelityFacade.get_initial_design(scenario, n_configs=10)
     intensifier = MultiFidelityFacade.get_intensifier(scenario, eta=2)
     multi_objective_algorithm = ParEGO(scenario)
-    #client = dask.distributed.Client(scheduler_file="scheduler-dpn-file.json")
+    client = dask.distributed.Client(scheduler_file="scheduler-dpn-file.json")
     # Create our SMAC object and pass the scenario and the train method
     #target_fn = DaskParallelRunner(dask_client=client)
+    if args.dataset == "CelebA":
+        objective = fairness_objective_dpn_celeba
+    else:
+        objective = fairness_objective_dpn_vgg
     smac = MultiFidelityFacade(
         scenario,
-        fairness_objective_dpn,
+        objective,
         initial_design=initial_design,
         multi_objective_algorithm=multi_objective_algorithm,
         overwrite=False,
-        intensifier = intensifier
+        intensifier = intensifier,
+        dask_client=client,
     )
     #        target_fn=target_fn,
     # Let's optimize

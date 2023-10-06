@@ -46,6 +46,7 @@ The set of experiments below are for the large-scale analysis we conduct for arc
 ## Modify user configs <a name="user_configs"></a>
 
 After downloading the datasets above change the dataset and metadata paths in ```user_configs/config_user_celeba.yaml``` and ```user_configs/config_user_vgg.yaml``` to their respective locations. If you want to use comet for logging make sure you set the appropriate username and api key in these config files. 
+
 ## Create configs <a name="create_configs"></a>
 
 
