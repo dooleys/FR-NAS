@@ -103,6 +103,9 @@ Train architecture discovered on VGGFace2
 python src/search/train_smac_arch_vgg.py --seed 111 
 ```
 ## Analysis <a name="analysis2"></a>
-# Evaluation<a name="evaluation"></a>
-# Baselines <a name="baselines"></a>
+# Evaluation on FR Benchmarks <a name="evaluation"></a>
+# Comparison with Fairness Baselines <a name="baselines"></a>
+## Angular
+## Label Flip
+## SensitiveNets
 
