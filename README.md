@@ -15,6 +15,7 @@
 - [Joint NAS+HPO](#jointnashpo)
     - [Search](#search)
     - [Training](#training)
+    - [Evaluation](#evaluation)
     - [Analysis](#analysis2)
 # Setup <a name="setup"></a>
 To setup your environment use the commands below:
@@ -39,8 +40,9 @@ pip install -r requirements.txt
 | [CFP_FP](http://cfpw.io/paper.pdf) | [download](https://github.com/ZhaoJ9014/face.evoLVe#Data-Zoo) | Test |
 | [CALFW](http://whdeng.cn/CALFW/?reload=true) | [download](https://github.com/ZhaoJ9014/face.evoLVe#Data-Zoo) | Test |
 | [CPLPW](http://whdeng.cn/CPLFW/index.html?reload=true) | [download](https://github.com/ZhaoJ9014/face.evoLVe#Data-Zoo) | Test | 
-# Large-scale study of fairness of architectures <a name="archs"></a>
 
+# Large-scale study of fairness of architectures <a name="archs"></a>
+The set of experiments below are for the large-scale analysis we conduct for architectures and their biases. This study is a driving force to motivate the use of NAS and HPO in the next experiments. 
 ## Modify user configs <a name="user_configs"></a>
 
 After downloading the datasets above change the dataset and metadata paths in ```user_configs/config_user_celeba.yaml``` and ```user_configs/config_user_vgg.yaml``` to their respective locations. If you want to use comet for logging make sure you set the appropriate username and api key in these config files. 
@@ -65,8 +67,10 @@ bash scripts/experiments_default_vgg.sh
 bash scripts/experiments_multi_vgg.sh
 ```
 
-# Analysis <a name="analysis1"></a>
+## Analysis <a name="analysis1"></a>
 # Joint NAS+HPO <a name="jointnashpo"></a>
+After the large-scale analysis we design a search space inspired by the Dual-Path-Network (DPN) and perform joint NAS and HPO using bayesian optimization in the [SMAC](https://github.com/automl/SMAC3) framework.  
 ## Search <a name="search"></a>
 ## Training<a name="training"></a>
+## Evaluation<a name="evaluation"></a>
 ## Analysis <a name="analysis2"></a>
