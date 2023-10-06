@@ -43,7 +43,7 @@ mean:
 - 0.5
 - 0.5
 - 0.5
-metadata_file: CelebA/timm_model_metadata.csv
+metadata_file: celeba/timm_model_metadata.csv
 min_lr: 1.0e-06
 min_num_images: 3
 model_ema: true

@@ -4,6 +4,6 @@ default_val_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairN
 default_train_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train'
 default_test_root: '/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test'
 project_name: frnas
-checkpoints_root: Checkpoints/
-metadata_file: CelebA/timm_model_metadata.csv
-demographics_file: CelebA/CelebA_demographics.txt
+checkpoints_root: checkpoints/
+metadata_file: celeba/timm_model_metadata.csv
+demographics_file: celeba/CelebA_demographics.txt

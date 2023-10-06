@@ -75,7 +75,7 @@ if __name__ == '__main__':
     )
     experiment.add_tag(args.backbone)
 
-    dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(
+    dataloaders, num_class, demographic_to_labels_train,demographic_to_labels_val, demographic_to_labels_test = prepare_data(
         args)
     args.num_class = num_class
     ''' Model '''
@@ -147,6 +147,7 @@ if __name__ == '__main__':
     #model = nn.DataParallel(model)
     model = model.to(device)
     #print(model_ema)
+    args.epochs = 100
     print('Start training')
     with experiment.train():
         while epoch <= args.epochs:
@@ -176,7 +177,7 @@ if __name__ == '__main__':
                 meters["top5"].update(prec5.data.item(), inputs.size(0))
 
                 batch += 1
-                break
+                #break
             backbone.eval()  # set to testing mode
             head.eval()
             experiment.log_metric("Training Loss",
@@ -185,13 +186,13 @@ if __name__ == '__main__':
             experiment.log_metric("Training Acc5",
                                   meters["top5"].avg,
                                   step=epoch)
-            '''For train data compute only multilabel accuracy'''
-            '''For test data compute only k-neighbors accuracy and multi-accuracy'''
+            #For train data compute only multilabel accuracy
+            #For test data compute only k-neighbors accuracy and multi-accuracy
             k_accuracy = True
             multilabel_accuracy = True
             comp_rank = True
             loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, rank = evaluate(
-                dataloaders["val"],
+                dataloaders["test"],
                 train_criterion,
                 model,
                 embedding_size,
@@ -201,7 +202,7 @@ if __name__ == '__main__':
                 test=True, rank=comp_rank)
             if model_ema is not None:
                 loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank = evaluate(
-                        dataloaders["val"],
+                        dataloaders["test"],
                         train_criterion,
                         model_ema.module,
                         embedding_size,
@@ -227,7 +228,7 @@ if __name__ == '__main__':
                                                   list(rank[:,1])]).T,
                                         columns=['ids','epoch_'+str(epoch)]).astype(int)
             add_column_to_file(output_dir,
-                               "val",
+                               "test",
                                run_name, 
                                epoch,
                                multi_df = multi_df, 
@@ -323,7 +324,10 @@ if __name__ == '__main__':
                     .format(args.head, args.backbone, args.opt, args.name,
                             str(epoch-1)))
                 os.remove(prev_checkpoint_name_to_save)
-            break
+            #break
+        
+            
+
         
             
 

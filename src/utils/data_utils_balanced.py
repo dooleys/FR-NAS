@@ -144,6 +144,8 @@ def make_dataset(
     for dem in list(num_additional_images_to_keep.keys()):
         random.seed(seed)
         print('Overall # of images for {} available is {}'.format(dem, len(instances_essential[dem] + instances_additional[dem])))
+        print(dem)
+        print('Number of essential images for {} is {}'.format(dem, len(instances_essential[dem])))
         instances_additional[dem] = random.sample(instances_additional[dem], k=num_additional_images_to_keep[dem])
         instances_all[dem] = instances_essential[dem] + instances_additional[dem]
         print('# images selected for {} is {}'.format(dem, len(instances_all[dem])))

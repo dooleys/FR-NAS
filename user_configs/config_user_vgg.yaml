@@ -5,5 +5,5 @@ default_train_root: '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggfac
 default_test_root: '/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/test'
 project_name: frnas
 checkpoints_root: Checkpoints/
-metadata_file: CelebA/timm_model_metadata.csv
+metadata_file: celeba/timm_model_metadata.csv
 demographics_file: /work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/data/vggface2/vggface2_demographics.txt
