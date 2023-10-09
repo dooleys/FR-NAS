@@ -19,6 +19,7 @@ from timm.scheduler import create_scheduler
 import argparse
 import os
 import time
+from src.head.metrics import CosFace, SphereFace, ArcFace, MagFace
 from src.search.dpn107 import DPN
 import numpy as np
 from src.utils.utils import get_val_data, separate_resnet_bn_paras, warm_up_lr, \
@@ -32,6 +33,7 @@ import numpy as np
 import random
 import torch.optim as optim
 device = torch.device("cuda")
+
 
 def set_seed(seed):
     torch.manual_seed(seed)
@@ -151,6 +153,7 @@ def fairness_objective_dpn(config, seed, budget):
     output = backbone(input)
     args.embedding_size = output.shape[-1]
     head = get_head(args)
+    args.alpha = 1
     train_criterion = FocalLoss(elementwise=True)
     sens_criterion = torch.nn.CrossEntropyLoss()
     head, backbone = head.to(device), backbone.to(device)

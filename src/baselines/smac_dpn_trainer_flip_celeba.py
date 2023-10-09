@@ -184,7 +184,8 @@ def fairness_objective_dpn(config, seed, budget):
             # print("labels after",labels_after)
             # print(torch.sum(labels==labels_after))
             inputs, labels = inputs.to(device), labels_after.to(device).long()
-            outputs, reg_loss = model(inputs, labels) #, torch.Tensor(sens_attr))
+            # , torch.Tensor(sens_attr))
+            outputs, reg_loss = model(inputs, labels)
             loss = train_criterion(outputs, labels) + reg_loss
             loss = loss.mean()
             optimizer.zero_grad()

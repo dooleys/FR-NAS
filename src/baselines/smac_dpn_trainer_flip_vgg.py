@@ -41,7 +41,6 @@ def set_seed(seed):
     torch.backends.cudnn.benchmark = False
 
 
-
 def count_parameters_in_MB(model):
     return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
 
@@ -185,7 +184,8 @@ def fairness_objective_dpn(config, seed, budget):
             # print("labels after",labels_after)
             # print(torch.sum(labels==labels_after))
             inputs, labels = inputs.to(device), labels_after.to(device).long()
-            outputs, reg_loss = model(inputs, labels) #, torch.Tensor(sens_attr))
+            # , torch.Tensor(sens_attr))
+            outputs, reg_loss = model(inputs, labels)
             loss = train_criterion(outputs, labels) + reg_loss
             loss = loss.mean()
             optimizer.zero_grad()

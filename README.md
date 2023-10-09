@@ -106,6 +106,19 @@ python src/search/train_smac_arch_vgg.py --seed 111
 # Evaluation on FR Benchmarks <a name="evaluation"></a>
 # Comparison with Fairness Baselines <a name="baselines"></a>
 ## Angular
-## Label Flip
-## SensitiveNets
+```
+python src/baselines/smac_dpn_trainer_angular_celeba.py --seed 111 
+python src/baselines/smac_dpn_trainer_angular_vgg.py --seed 111 
+```
 
+## Label Flip
+```
+python src/baselines/smac_dpn_trainer_flip_celeba.py --seed 111 
+python src/baselines/smac_dpn_trainer_flip_vgg.py --seed 111 
+```
+
+## SensitiveNets
+```
+python src/baselines/smac_dpn_trainer_discriminator_celeba.py --seed 111 
+python src/baselines/smac_dpn_trainer_discriminator_vgg.py --seed 111 
+```

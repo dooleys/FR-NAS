@@ -1,4 +1,6 @@
 # from comet_ml import Experiment
+from src.utils.utils import get_val_data, separate_resnet_bn_paras, warm_up_lr, \
+    schedule_lr, AverageMeter, accuracy, load_checkpoint
 import argparse
 from tqdm import tqdm
 import os
@@ -31,9 +33,8 @@ import os
 import numpy as np
 import random
 device = torch.device("cuda")
-import torch.optim as optim
-from src.utils.utils import get_val_data, separate_resnet_bn_paras, warm_up_lr, \
-    schedule_lr, AverageMeter, accuracy, load_checkpoint
+
+
 def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -227,6 +228,7 @@ def fairness_objective_dpn(config, seed, budget):
     print('Start training')
     num_epoch_warm_up = budget // 25  # use the first 1/25 epochs to warm up
     # use the first 1/25 epochs to warm up
+    args.alpha = 1
     num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up
     while epoch < int(budget):
         model.train()  # set to training mode
