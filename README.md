@@ -3,7 +3,7 @@
 
 ----
 ![Crates.io](https://img.shields.io/crates/l/Ap?color=orange)
-# Rethinking Bias Mitigation: Fairer Architectures Make for Fairer Face Recognition [[arxiv]](https://arxiv.org/)
+# Rethinking Bias Mitigation: Fairer Architectures Make for Fairer Face Recognition [[arxiv]](https://arxiv.org/) - NeurIPS 2023 (<em>Oral</em>)
 <p align="center"><img src="img/fr-nas-overview.png" width=700/></p>
 
 # Table of contents
