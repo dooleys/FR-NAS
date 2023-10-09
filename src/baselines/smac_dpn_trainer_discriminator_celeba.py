@@ -18,10 +18,11 @@ from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
 import argparse
 import os
+import torch.optim as optim
 import time
 from src.search.dpn107 import DPN
 import numpy as np
-
+from src.head.metrics import CosFace, SphereFace, ArcFace, MagFace
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -29,7 +30,10 @@ from src.search.operations import *
 import os
 import numpy as np
 import random
-
+device = torch.device("cuda")
+import torch.optim as optim
+from src.utils.utils import get_val_data, separate_resnet_bn_paras, warm_up_lr, \
+    schedule_lr, AverageMeter, accuracy, load_checkpoint
 def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -103,7 +107,7 @@ class dotdict(dict):
 
 
 def fairness_objective_dpn(config, seed, budget):
-    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml", "r") as ymlfile:
+    with open("search_configs/config_celeba.yaml", "r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
     args.opt = config["optimizer"]
@@ -372,86 +376,26 @@ def fairness_objective_dpn(config, seed, budget):
 
 
 if __name__ == "__main__":
-
-    # SMAC config 1
-    '''config ={
-     'edge1': 0,
-     'edge2': 0,
-     'edge3': 0,
-     'head': 'CosFace',
-     'lr_sgd': 0.2813375341651194,
-     'optimizer': 'SGD',
-    }
-    '''
-    # SMAC config 2
-    config = {
-        'edge1': 0,
-        'edge2': 0,
-        'edge3': 0,
-        'head': 'CosFace',
-        'lr_sgd': 0.2813375341651194,
-        'optimizer': 'SGD',
-    }
-    '''config={
-  'edge1': 6,
-  'edge2': 8,
-  'edge3': 0,
-  'head': 'CosFace',
-  'lr_adam': 0.0006048015915653069,
-  'optimizer': 'Adam',
- }'''
-    # SMAC config 3
-    '''config={
-  'edge1': 6,
-  'edge2': 8,
-  'edge3': 0,
-  'head': 'CosFace',
-  'lr_adam': 0.0006048015915653069,
-  'optimizer': 'Adam',
- }
- #Config 4
- config = {
-  'edge1': 4,
-  'edge2': 6,
-  'edge3': 7,
-  'head': 'MagFace',
-  'lr_sgd': 0.21727296500399912,
-  'optimizer': 'SGD',}
- # config 5
- config =  {
-      "edge1": 5,
-      "edge2": 2,
-      "edge3": 0,
-      "head": "CosFace",
-      "optimizer": "SGD",
-      "lr_sgd": 0.12889657714325153
-    }
- # dpn smac acc 95.9
- config = {
-      "edge1": 4,
-      "edge2": 0,
-      "edge3": 3,
-      "head": "CosFace",
-      "optimizer": "SGD",
-      "lr_sgd": 0.2523152758955039
-    }
-# dpn smac acc 96
-#config = {
-#      "edge1": 1,
-#      "edge2": 5,
-#      "edge3": 2,
-#      "head": "CosFace",
-#      "optimizer": "Adam",
-#      "lr_adam": 0.0006383109384330796
-#    }
-#config = {"edge1": 0, "edge2": 4, "edge3": 0, "head": "CosFace", "optimizer": "Adam", "lr_adam": 0.0005900596101948813}
-#config = {
-#    'edge1': 3,
-#  'edge2': 0,
-#  'edge3': 1,
-#  'head': 'CosFace',
-#  'lr_adam': 0.0002097247501603349,
-#  'optimizer': 'Adam',
-#}
-'''
+    # add argparser
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--config', type=str,
+                           default="config1", help='CelebA config name')
+    argparser.add_argument('--seed', type=int, default=111, help='seed')
+    args = argparser.parse_args()
+    if args.config == "config1":
+        config = {
+            'edge1': 0,
+            'edge2': 0,
+            'edge3': 0,
+            'head': 'CosFace',
+            'lr_sgd': 0.2813375341651194,
+            'optimizer': 'SGD', }
+    else:
+        config = {
+            'edge1': 0,
+            'edge2': 1,
+            'edge3': 0,
+            'head': 'CosFace',
+            'lr_adam': 0.32348738788346576,
+            'optimizer': 'SGD', }
     fairness_objective_dpn(config, 0, 100)
