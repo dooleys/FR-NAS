@@ -107,7 +107,7 @@ def fairness_objective_dpn(config, seed, budget):
         os.makedirs(directory)
     output_dir = "Checkpoints_vggface2/"
     args.batch_size = 64
-    dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test, demographic_to_labels_val = prepare_data(
+    dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_val, demographic_to_labels_test = prepare_data(
         args)
     args.num_class = 7058
 

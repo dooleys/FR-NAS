@@ -9,11 +9,10 @@ from src.loss.focal import FocalLoss
 from src.utils.utils import AverageMeter, accuracy
 from src.utils.fairness_utils import evaluate
 from src.utils.data_utils_balanced import prepare_data
-from src.utils.utils_train import Network
 import numpy as np
 import pandas as pd
 import random
-from src.utils.utils_train import Network, get_head
+from src.utils.utils_train_angular import Network, get_head
 from src.utils.fairness_utils import evaluate, add_column_to_file
 from timm.optim import create_optimizer_v2, optimizer_kwargs
 from timm.scheduler import create_scheduler
@@ -34,6 +33,19 @@ import random
 device = torch.device("cuda")
 
 
+def set_seed(seed):
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+
+def count_parameters_in_MB(model):
+    return np.sum(np.prod(v.size()) for name, v in model.named_parameters() if "auxiliary" not in name)/1e6
+
+
 def rank_func(df):
     data = {}
     for g, g_df in df.groupby('gender_expression'):
@@ -52,15 +64,6 @@ def acc_overall(df):
     return (df['rank_by_id'] == 0).sum(axis=0)/df.shape[0]
 
 
-def set_seed(seed):
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
-    random.seed(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
-
-
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
     __getattr__ = dict.get
@@ -70,7 +73,7 @@ class dotdict(dict):
 
 def fairness_objective_dpn(config, seed, budget):
     set_seed(seed)
-    with open("search_configs/config_celeba.yaml", "r") as ymlfile:
+    with open("search_configs/config_vggface.yaml", "r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
     args.opt = config["optimizer"]
@@ -84,6 +87,7 @@ def fairness_objective_dpn(config, seed, budget):
         args.groups_to_modify[i]: args.p_identities[i]
         for i in range(len(args.groups_to_modify))
     }
+    print(p_identities)
     args.p_images = p_images
     args.p_identities = p_identities
 
@@ -95,17 +99,17 @@ def fairness_objective_dpn(config, seed, budget):
     if config["optimizer"] == "SGD":
         args.lr = config["lr_sgd"]
         lr_key = "lr_sgd"
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_{}/".format(str(config["edge1"])+str(
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_{}_angles/".format(str(config["edge1"])+str(
         config["edge2"])+str(config["edge3"]), config[lr_key], config["head"], config["optimizer"], str(seed))
-    directory = "Checkpoints_celeba/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_{}/".format(str(config["edge1"])+str(
+    directory = "Checkpoints_vgg/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_{}_angles/".format(str(config["edge1"])+str(
         config["edge2"])+str(config["edge3"]), config[lr_key], config["head"], config["optimizer"], str(seed))
     if not os.path.exists(directory):
         os.makedirs(directory)
-    output_dir = "Checkpoints_celeba/"
+    output_dir = "Checkpoints_vgg/"
     args.batch_size = 64
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_val, demographic_to_labels_test = prepare_data(
         args)
-    args.num_class = num_class
+    args.num_class = 7058
     edges = [config['edge1'], config['edge2'], config['edge3']]
     # Build model
     backbone = DPN(edges, num_init_features=128, k_r=200,
@@ -116,8 +120,11 @@ def fairness_objective_dpn(config, seed, budget):
     head = get_head(args)
     train_criterion = FocalLoss(elementwise=True)
     head, backbone = head.to(device), backbone.to(device)
+    print(count_parameters_in_MB(head))
+    print(count_parameters_in_MB(backbone))
     backbone = nn.DataParallel(backbone)
     model = Network(backbone, head)
+    print("model_loaded")
 
     print(args.lr)
     print(args.opt)
@@ -126,6 +133,7 @@ def fairness_objective_dpn(config, seed, budget):
     model.to(device)
     epoch = 0
     start = time.time()
+    dict_dem = {"male": 1, "female": -1}
     print('Start training')
     while epoch < int(budget):
         model.train()  # set to training mode
@@ -134,34 +142,38 @@ def fairness_objective_dpn(config, seed, budget):
         meters["top5"] = AverageMeter()
         for inputs, labels, sens_attr, _ in tqdm(iter((dataloaders["train"]))):
             inputs, labels = inputs.to(device), labels.to(device).long()
-            outputs, reg_loss = model(inputs, labels)
+            sens_attr = [dict_dem[s] for s in list(sens_attr)]
+            outputs, reg_loss = model(inputs, labels, torch.Tensor(sens_attr))
             loss = train_criterion(outputs, labels) + reg_loss
             loss = loss.mean()
             optimizer.zero_grad()
             loss.backward()
+
             optimizer.step()
             scheduler.step(epoch + 1, meters["top5"])
             prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
             meters["loss"].update(loss.data.item(), inputs.size(0))
             meters["top5"].update(prec5.data.item(), inputs.size(0))
             # break
-        checkpoint_name_to_save = directory+"model_{}.pth".format(str(epoch))
-        torch.save(
-            {
-                'epoch': epoch,
-                'model_state_dict': model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'config': config
-            }, checkpoint_name_to_save)
+        if epoch == 99:
+            checkpoint_name_to_save = directory + \
+                "model_{}.pth".format(str(epoch))
+            torch.save(
+                {
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'config': config
+                }, checkpoint_name_to_save)
         epoch = epoch+1
-        checkpoint_name_to_save = directory+"model_{}.pth".format(str(epoch))
-        torch.save(
-            {
-                'epoch': epoch,
-                'model_state_dict': model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'config': config
-            }, checkpoint_name_to_save)
+        # checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
+        # torch.save(
+        #    {
+        #        'epoch': epoch,
+        #        'model_state_dict': model.state_dict(),
+        #        'optimizer_state_dict': optimizer.state_dict(),
+        #        'config': config
+        #    }, checkpoint_name_to_save)
         k_accuracy = True
         multilabel_accuracy = True
         comp_rank = True
@@ -227,32 +239,18 @@ def fairness_objective_dpn(config, seed, budget):
                            kacc_df=kacc_df,
                            rank_by_image_df=rank_by_image_df,
                            rank_by_id_df=rank_by_id_df)
-        # break
 
 
 if __name__ == "__main__":
-
-    # add argparser
     argparser = argparse.ArgumentParser()
-    argparser.add_argument('--config', type=str,
-                           default="config1", help='CelebA config name')
     argparser.add_argument('--seed', type=int, default=111, help='seed')
     args = argparser.parse_args()
-    if args.config == "config1":
-        config = {
-            'edge1': 0,
-            'edge2': 0,
-            'edge3': 0,
-            'head': 'CosFace',
-            'lr_sgd': 0.2813375341651194,
-            'optimizer': 'SGD', }
-    else:
-        config = {
-            'edge1': 0,
-            'edge2': 1,
-            'edge3': 0,
-            'head': 'CosFace',
-            'lr_adam': 0.32348738788346576,
-            'optimizer': 'SGD', }
-     # SMAC config 3
-    fairness_objective_dpn(config, args.seed, 100)
+    config = {
+        "edge1": "3",
+        "edge2": "0",
+        "edge3": "1",
+        "head": "CosFace",
+        "optimizer": "SGD",
+        "lr_sgd": 0.13828312564892567
+    }
+    fairness_objective_dpn(config, args.seed, 10)

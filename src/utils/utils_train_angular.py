@@ -1,10 +1,9 @@
 import torch.optim as optim
 import torch
-from src.head.metrics import CosFace, SphereFace, ArcFace, MagFace
+from src.head.metrics_angular import CosFace, SphereFace, ArcFace, MagFace
 from src.utils.utils import separate_resnet_bn_paras
 import numpy as np
 import random
-
 class Network(torch.nn.Module):
 
     def __init__(self, backbone, head):
@@ -12,9 +11,9 @@ class Network(torch.nn.Module):
         self.head=head
         self.backbone=backbone
 
-    def forward(self, inputs, labels):
+    def forward(self, inputs, labels, sens):
         features = self.backbone(inputs)
-        outputs, reg_loss = self.head(features, labels)
+        outputs, reg_loss = self.head(features, labels, sens)
 
         return outputs, reg_loss
 
@@ -31,4 +30,3 @@ def get_head(args):
         print("Head not supported")
         return
     return head
-

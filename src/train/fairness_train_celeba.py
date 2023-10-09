@@ -117,6 +117,10 @@ if __name__ == '__main__':
                                      ).to(device)
         
     config = timm.data.resolve_data_config({}, model=backbone)
+    if (config["optimizer"] == "Adam") or (config["optimizer"] == "AdamW"):
+        args.lr = config["lr_adam"]
+    if config["optimizer"] == "SGD":
+        args.lr = config["lr_sgd"]
     model_input_size = args.input_size
 
     # get model's embedding size
