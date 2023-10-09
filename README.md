@@ -41,6 +41,8 @@ pip install -r requirements.txt
 | [CALFW](http://whdeng.cn/CALFW/?reload=true) | [download](https://github.com/ZhaoJ9014/face.evoLVe#Data-Zoo) | Test |
 | [CPLPW](http://whdeng.cn/CPLFW/index.html?reload=true) | [download](https://github.com/ZhaoJ9014/face.evoLVe#Data-Zoo) | Test | 
 
+Note: Folder ```splits/``` contains the identities used in the train-val-test split for CelebA and VGGFace2. Please use these files to create the necessary splits from the downloaded data. 
+
 # Large-scale study of fairness of architectures <a name="archs"></a>
 The set of experiments below are for the large-scale analysis we conduct for architectures and their biases. This study is a driving force to motivate the use of NAS and HPO in the next experiments. 
 ## Modify user configs <a name="user_configs"></a>
