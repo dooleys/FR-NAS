@@ -1,0 +1,5 @@
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/hrnet_w64/config_hrnet_w64_ArcFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/jx_nest_base/config_jx_nest_base_ArcFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/jx_nest_base/config_jx_nest_base_CosFace_SGD.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_ArcFace_SGD.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_unified_lr/legacy_senet154/config_legacy_senet154_CosFace_AdamW_0.001_cosine.yaml

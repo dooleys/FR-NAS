@@ -38,24 +38,35 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--config_path', type=str)
-
+    parser.add_argument('--seed', default=666, type=int, required=False)
     args = parser.parse_args()
 
+    seed = args.seed
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
     
     with open(args.config_path, "r") as ymlfile:
         options = yaml.load(ymlfile, Loader=yaml.FullLoader)
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-        
-    # dummy train example
+    
+    checkpoints_suffix = ''
+#     if seed != 666:
+    checkpoints_suffix = '_'+str(seed)
+#     args.checkpoints_root = f'Checkpoints/vggface2_train{checkpoints_suffix}/'
+    args.checkpoints_root = f'Checkpoints/CelebA-Phase2/CelebA_train{checkpoints_suffix}/'
     args.default_train_root = '/cmlscratch/sdooley1/data/RFW/test/img_split/'
     args.default_test_root = '/cmlscratch/sdooley1/data/RFW/test/img_split/'
     args.demographics_file = '/cmlscratch/sdooley1/data/RFW/RFW_demographics.txt'
+    args.metadata_file = '/cmlscratch/sdooley1/timm_model_metadata.csv'
     args.groups_to_modify = ['African','Asian','Caucasian','Indian']
     args.p_images = [1.0,1.0,1.0,1.0]
     args.p_identities = [1.0,1.0,1.0,1.0]
-    args.RFW_checkpoints_root = 'Checkpoints/RFW/'
+#     args.RFW_checkpoints_root = f'Checkpoints/RFW_vggface2/vggface2_train{checkpoints_suffix}/'
+    args.RFW_checkpoints_root = f'Checkpoints/RFW_celeba/celeba_train{checkpoints_suffix}/'
     args.dataset = 'RFW'
     
     p_images = {
@@ -85,14 +96,24 @@ if __name__ == '__main__':
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
         
-    ckpts = load_checkpoints_all(args,args.p_identities,args.p_images)
-    ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('.')[0]))
+#     ckpts = load_checkpoints_all(args,args.p_identities,args.p_images)
+#     ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('_')[0].split('.')[0]))
+#     ckpts = [x for x in ckpts if '.pth' in x]
+#     print(ckpts)
+#     if not len(ckpts):
+#         sys.exit()
+    ckpts = os.listdir(args.checkpoints_root)
+    print(args.checkpoints_root)
+#     ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('_')[0].split('.')[0]))
+    ckpts = [x for x in ckpts if '.pth' in x]
+    print(ckpts)
     if not len(ckpts):
         sys.exit()
 
 
     dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_test = prepare_data(
         args)
+    dataloader_test = dataloaders['test']
 
     args.num_class = 7058
     ''' Model '''
@@ -101,6 +122,17 @@ if __name__ == '__main__':
                                      num_classes=0,
                                      pretrained=args.pretrained,
                                      drop_connect_rate=args.drop_connect,
+                                     drop_path_rate=args.drop_path,
+                                     drop_block_rate=args.drop_block,
+                                     global_pool=args.gp,
+                                     bn_momentum=args.bn_momentum,
+                                     bn_eps=args.bn_eps,
+                                     scriptable=args.torchscript,
+                                     ).to(device)
+    elif 'mobilenet' in args.backbone or 'tf_efficient' in args.backbone:
+        backbone = timm.create_model(args.backbone,
+                                     num_classes=0,
+                                     pretrained=args.pretrained,
                                      drop_path_rate=args.drop_path,
                                      drop_block_rate=args.drop_block,
                                      global_pool=args.gp,
@@ -120,8 +152,7 @@ if __name__ == '__main__':
                                      bn_momentum=args.bn_momentum,
                                      bn_eps=args.bn_eps,
                                      scriptable=args.torchscript,
-                                     ).to(device)
-        
+                                     ).to(device)        
     config = timm.data.resolve_data_config({}, model=backbone)
     model_input_size = args.input_size
 
@@ -154,8 +185,10 @@ if __name__ == '__main__':
     model = model.to(device)
     #print(model_ema)
     print('Start training')
-    ckpts = load_checkpoints_all(args,args.p_identities,args.p_images)
-    ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('.')[0]))
+#     ckpts = load_checkpoints_all(args,args.p_identities,args.p_images)
+#     ckpts.sort(key = lambda x: int(x.split('Epoch_')[1].split('_')[0].split('.')[0]))
+#     ckpts = [x for x in ckpts if '.pth' in x]
+#     print(ckpts)
     #model = nn.DataParallel(model)
     model = model.to(device)
     checkpoints_model_root = args.checkpoints_root
@@ -188,7 +221,7 @@ if __name__ == '__main__':
         multilabel_accuracy = True
         comp_rank = True
         loss, acc, acc_k, predicted_all, intra, inter, angles_intra, angles_inter, correct, nearest_id, labels_all, indices_all, demographic_all, rank = evaluate(
-            dataloaders["test"],
+            dataloader_test,
             train_criterion,
             model,
             embedding_size,
@@ -196,17 +229,6 @@ if __name__ == '__main__':
             multilabel_accuracy=multilabel_accuracy,
             demographic_to_labels=demographic_to_labels_test,
             test=True, rank=comp_rank)
-        if model_ema is not None:
-            loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank = evaluate(
-                    dataloaders["test"],
-                    train_criterion,
-                    model_ema.module,
-                    embedding_size,
-                    k_accuracy=k_accuracy,
-                    multilabel_accuracy=multilabel_accuracy,
-                    demographic_to_labels=demographic_to_labels_test,
-                    test=True, rank=comp_rank)
-        # save outputs
         # save outputs
         kacc_df, multi_df, rank_by_image_df, rank_by_id_df = None, None, None, None
         if k_accuracy:
@@ -224,64 +246,22 @@ if __name__ == '__main__':
             rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
                                               list(rank[:,1])]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-        add_column_to_file(args.RFW_checkpoints_root,
-                           "val",
-                           run_name, 
-                           epoch,
-                           multi_df = multi_df, 
-                           kacc_df = kacc_df, 
-                           rank_by_image_df = rank_by_image_df,
-                           rank_by_id_df = rank_by_id_df)
+            rank_df = pd.DataFrame(np.insert(rank.numpy(), 0, indices_all, axis=1), 
+                                   columns=["index","nearest_by_img","nearest_by_id","closest_point","closest_same_id"])
+            pickle_file = checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
+                                                                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}_test.pkl"
+                                                                 .format(args.head, args.backbone, args.opt, args.name,
+                                                                         str(epoch+1)))
+            rank_df.to_pickle(pickle_file)
         results = {}
         results['Model'] = args.backbone
         results['config_file'] = args.config_path
         results['seed'] = args.seed
         results['epoch'] = epoch
         for k in acc_k.keys():
-
             results['Acc multi '+k] = (round(acc[k].item()*100, 3))
             results['Acc k '+k] = (round(acc_k[k].item()*100, 3))
             results['Intra '+k] = (round(intra[k], 3))
             results['Inter '+k] = (round(inter[k], 3))
 
         print(results)
-        save_output_from_dict(args.RFW_checkpoints_root, results, args.file_name)
-        if model_ema is not None:
-            kacc_df_ema, multi_df_ema, rank_by_image_df_ema, rank_by_id_df_ema = None, None, None, None
-            if comp_rank:
-                rank_by_image_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                             list(rank[:,0])]).T,
-                                   columns=['ids','epoch_'+str(epoch)]).astype(int)
-                rank_by_id_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                             list(rank[:,1])]).T,
-                                   columns=['ids','epoch_'+str(epoch)]).astype(int)
-            if k_accuracy:
-                kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                             list(nearest_id_ema)]).T,
-                                   columns=['ids','epoch_'+str(epoch)]).astype(int)
-            if multilabel_accuracy:
-                multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                              list(predicted_all_ema)]).T,
-                                    columns=['ids','epoch_'+str(epoch)]).astype(int)
-            add_column_to_file(args.RFW_checkpoints_root,
-                           "ema_val",
-                           run_name,
-                           epoch,
-                           multi_df = multi_df_ema,
-                           kacc_df = kacc_df_ema,
-                           rank_by_image_df = rank_by_image_df_ema,
-                           rank_by_id_df = rank_by_id_df_ema)
-            results_ema = {}
-            results_ema['Model'] = args.backbone
-            results_ema['config_file'] = args.config_path
-            results_ema['seed'] = args.seed
-            results_ema['epoch'] = epoch
-            for k in acc_k_ema.keys():
-                results_ema['Acc multi '+k] = (round(acc_ema[k].item()*100, 3))
-                results_ema['Acc k '+k] = (round(acc_k_ema[k].item()*100, 3))
-                results_ema['Intra '+k] = (round(intra_ema[k], 3))
-                results_ema['Inter '+k] = (round(inter_ema[k], 3))
-
-            print(results_ema)
-            save_output_from_dict(args.RFW_checkpoints_root, results_ema, args.file_name_ema)
-

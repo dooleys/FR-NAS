@@ -2,7 +2,7 @@ backbone: vit_large_patch16_224
 batch_size: 64
 bn_eps: null
 bn_momentum: null
-checkpoints_root: Checkpoints/timm_explore_few_epochs/
+checkpoints_root: Checkpoints/dpns_multi_seed/
 clip_grad: 1.0
 clip_mode: norm
 comet_api_key: KKiKMVZI9RCYowoKDZDS5Y2km
@@ -11,7 +11,7 @@ cooldown_epochs: 10
 dataset: CelebA
 decay_epochs: 100
 decay_rate: 0.1
-default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/test/
+default_test_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/val/
 default_train_root: /work/dlclarge2/sukthank-ZCP_Competition/FairNAS/FR-NAS/data/CelebA/Img/img_align_celeba_splits/train/
 demographics_file: CelebA/CelebA_demographics.txt
 dist_bn: reduce
@@ -64,7 +64,7 @@ p_images:
 patience_epochs: 10
 pretrained: false
 project_name: from-scratch_no-resampling_adam
-save_freq: 1
+save_freq: 20
 sched: cosine
 seed: 222
 split_bn: false

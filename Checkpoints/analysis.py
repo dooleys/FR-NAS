@@ -188,7 +188,10 @@ def analyze_pickle_files(pickle_files, metadata, ratio=False, error=False, epoch
     for model_pickle_files in pickle_files:
         df = pd.DataFrame()
         for f in model_pickle_files:
-            epoch = f.split('_')[-1].split('.')[0]
+            if f.split('_')[-1].split('.')[0].isdigit():
+                epoch = f.split('_')[-1].split('.')[0]
+            else:
+                epoch = f.split('_')[-2].split('.')[0]
             pickle_df = pd.read_pickle(f)
             pickle_df.columns = [f'Epoch_{epoch}_'+c for c in pickle_df.columns]
             if df.shape[0]:
@@ -203,10 +206,9 @@ def analyze_pickle_files(pickle_files, metadata, ratio=False, error=False, epoch
         df.columns = ['epoch_'+x.split('_')[1] for x in df.columns]
         df.reset_index(inplace=True)
         df = df.rename(columns = {'index':'ids'})
-        experiment = f.split('/')[1]
+        experiment = f.split('/')[-2]
         pd_dict_list += [{'experiment':experiment,
                           'df': df}]
-        
     acc_df, acc_ratio_df, rank_df = analyze_files_pd(pd_dict_list, metadata, ratio=ratio, error=error, epochs=epochs)
     return prepare(acc_df), prepare(acc_ratio_df), prepare(rank_df)
 

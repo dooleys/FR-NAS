@@ -1,0 +1,3 @@
+python src/fairness_train_timm-vggface2.py --config_path configs/coat_lite_small/config_coat_lite_small_CosFace_Adam.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/coat_lite_small/config_coat_lite_small_CosFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/coat_lite_small/config_coat_lite_small_CosFace_SGD.yaml

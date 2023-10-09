@@ -1,0 +1,3 @@
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/hrnet_w64/config_hrnet_w64_ArcFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/hrnet_w64/config_hrnet_w64_CosFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_unified_lr/jx_nest_base/config_jx_nest_base_MagFace_AdamW_0.001_cosine.yaml

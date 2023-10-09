@@ -1,0 +1,6 @@
+python src/fairness_train_timm-vggface2.py --config_path configs/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_rmsproptf.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_ArcFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_ArcFace_SGD.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_multi/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_MagFace_AdamW.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_unified_lr/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_CosFace_AdamW_0.001_cosine.yaml
+python src/fairness_train_timm-vggface2.py --config_path configs_unified_lr/tf_efficientnet_b7_ns/config_tf_efficientnet_b7_ns_MagFace_AdamW_0.001_cosine.yaml

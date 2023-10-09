@@ -28,11 +28,6 @@ sys.path.append('/cmlscratch/sdooley1/merge_timm/FR-NAS/')
 from dpn107 import DPN
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device_ids=range(torch.cuda.device_count())
-seed = 666
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)
-np.random.seed(seed)
-random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
@@ -40,10 +35,16 @@ def fairness_objective_dpn(config, seed, budget):
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--config_path', type=str)
+    parser.add_argument('--config_path', default='/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml', type=str)
+    parser.add_argument('--seed', default=666, type=int, required=False)
 
-    args = parser.parse_args(['--config_path','/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml'])
+    args = parser.parse_args()
 
+    seed = args.seed
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
     
     with open(args.config_path, "r") as ymlfile:
         options = yaml.load(ymlfile, Loader=yaml.FullLoader)
@@ -55,12 +56,14 @@ def fairness_objective_dpn(config, seed, budget):
     args.lr = config["lr"]
     print(args)
         
-    # dummy train example
-    args.checkpoints_root = 'Checkpoints/vggface2_train/'
+    checkpoints_suffix = ''
+    if seed != 666:
+        checkpoints_suffix = '_'+str(seed)
+    args.checkpoints_root = f'Checkpoints/vggface2_train{checkpoints_suffix}/'
     args.default_train_root = '/cmlscratch/sdooley1/data/vggface2/train/'
-    args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/test/'
+    args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/val/'
     args.demographics_file = '/cmlscratch/sdooley1/data/vggface2/vggface2_demographics.txt'
-    args.RFW_checkpoints_root = 'Checkpoints/vggface2_train/'
+    args.RFW_checkpoints_root = f'Checkpoints/vggface2_train{checkpoints_suffix}/'
     args.dataset = 'vggface2'
 
     p_images = {
@@ -166,9 +169,9 @@ def fairness_objective_dpn(config, seed, budget):
         backbone.eval()  # set to testing mode
         head.eval()
         '''For train data compute only multilabel accuracy'''
-        #             loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders.train, train_criterion, backbone,head, embedding_size,
-        #                                                 k_accuracy = False, multilabel_accuracy = True,
-        #                                                 demographic_to_labels = demographic_to_labels_train, test = False)
+#         loss_train, acc_train, _, _, _, _,_,_,_,_ = evaluate(dataloaders['train'], train_criterion, backbone,head, embedding_size,
+#                                                         k_accuracy = False, multilabel_accuracy = True,
+#                                                         demographic_to_labels = demographic_to_labels_train, test = False)
         '''For test data compute only k-neighbors accuracy and multi-accuracy'''
         k_accuracy = True
         multilabel_accuracy = True
@@ -183,7 +186,7 @@ def fairness_objective_dpn(config, seed, budget):
             demographic_to_labels=demographic_to_labels_test,
             test=True, rank=comp_rank)
         if model_ema is not None:
-            loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank = evaluate(
+            loss_ema, acc_ema, acc_k_ema, predicted_all_ema, intra_ema, inter_ema, angles_intra_ema, angles_inter_ema, correct_ema, nearest_id_ema, labels_all_ema, indices_all_ema, demographic_all_ema, rank_ema = evaluate(
                     dataloaders["test"],
                     train_criterion,
                     model_ema.module,
@@ -210,14 +213,13 @@ def fairness_objective_dpn(config, seed, budget):
             rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
                                               list(rank[:,1])]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-        add_column_to_file(args.RFW_checkpoints_root,
-                           "val",
-                           run_name, 
-                           epoch,
-                           multi_df = multi_df, 
-                           kacc_df = kacc_df, 
-                           rank_by_image_df = rank_by_image_df,
-                           rank_by_id_df = rank_by_id_df)
+            rank_df = pd.DataFrame(np.insert(rank.numpy(), 0, indices_all, axis=1), 
+                                   columns=["index","nearest_by_img","nearest_by_id","closest_point","closest_same_id"])
+            pickle_file = checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
+                                                                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pkl"
+                                                                 .format(args.head, args.backbone, args.opt, args.name,
+                                                                         str(epoch+1)))
+            rank_df.to_pickle(pickle_file)
         results = {}
         results['Model'] = args.backbone
         results['config_file'] = args.config_path
@@ -230,15 +232,15 @@ def fairness_objective_dpn(config, seed, budget):
             results['Inter '+k] = (round(inter[k], 3))
 
         print(results)
-        save_output_from_dict(args.RFW_checkpoints_root, results, args.file_name)
+#         save_output_from_dict(args.RFW_checkpoints_root, results, args.file_name)
         if model_ema is not None:
             kacc_df_ema, multi_df_ema, rank_by_image_df_ema, rank_by_id_df_ema = None, None, None, None
             if comp_rank:
                 rank_by_image_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                             list(rank[:,0])]).T,
+                                             list(rank_ema[:,0])]).T,
                                    columns=['ids','epoch_'+str(epoch)]).astype(int)
                 rank_by_id_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
-                                             list(rank[:,1])]).T,
+                                             list(rank_ema[:,1])]).T,
                                    columns=['ids','epoch_'+str(epoch)]).astype(int)
             if k_accuracy:
                 kacc_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
@@ -248,14 +250,13 @@ def fairness_objective_dpn(config, seed, budget):
                 multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
                                               list(predicted_all_ema)]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-            add_column_to_file(args.RFW_checkpoints_root,
-                           "ema_val",
-                           run_name,
-                           epoch,
-                           multi_df = multi_df_ema,
-                           kacc_df = kacc_df_ema,
-                           rank_by_image_df = rank_by_image_df_ema,
-                           rank_by_id_df = rank_by_id_df_ema)
+                rank_df_ema = pd.DataFrame(np.insert(rank_ema.numpy(), 0, indices_all, axis=1), 
+                                       columns=["index","nearest_by_img","nearest_by_id","closest_point","closest_same_id"])
+                pickle_file_ema = checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
+                                                                     "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}_ema.pkl"
+                                                                     .format(args.head, args.backbone, args.opt, args.name,
+                                                                             str(epoch+1)))
+                rank_df_ema.to_pickle(pickle_file_ema)
             results_ema = {}
             results_ema['Model'] = args.backbone
             results_ema['config_file'] = args.config_path
@@ -268,12 +269,12 @@ def fairness_objective_dpn(config, seed, budget):
                 results_ema['Inter '+k] = (round(inter_ema[k], 3))
 
             print(results_ema)
-            save_output_from_dict(args.RFW_checkpoints_root, results_ema, args.file_name_ema)
+#             save_output_from_dict(args.RFW_checkpoints_root, results_ema, args.file_name_ema)
 
         epoch += 1
 
+        
         # save checkpoints per epoch
-
 #             if (epoch == args.epochs) or (epoch % args.save_freq == 0):
         checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
             "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
@@ -294,26 +295,38 @@ def fairness_objective_dpn(config, seed, budget):
                 'model_ema_state_dict': model_ema.state_dict(),
                 'optimizer_state_dict': optimizer.state_dict()
             }, checkpoint_name_to_save)
-#         # remove the previous checkpoint in certain instances
-#         if ((epoch-1) % args.save_freq):
-#             prev_checkpoint_name_to_save = os.path.join(
-#                 args.RFW_checkpoints_root,
-#                 "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
-#                 .format(args.head, args.backbone, args.opt, args.name,
-#                         str(epoch-1)))
-#             os.remove(prev_checkpoint_name_to_save)
+        # remove the previous checkpoint in certain instances
+        if ((epoch-1) ):
+            prev_checkpoint_name_to_save = os.path.join(
+                args.RFW_checkpoints_root,
+                "Checkpoint_Head_{}_Backbone_{}_Opt_{}_Dataset_{}_Epoch_{}.pth"
+                .format(args.head, args.backbone, args.opt, args.name,
+                        str(epoch-1)))
+            os.remove(prev_checkpoint_name_to_save)
+
+
 
 if __name__ == '__main__':
     #SMAC config 1
     config ={
-    'edge1': 0,
-    'edge2': 0,
-    'edge3': 0,
-    'head': 'CosFace',
-    'lr': 0.2813375341651194,
-    'optimizer': 'SGD',
-    }
-    fairness_objective_dpn(config,0,100)
+   "edge1": 2,
+   "edge2": 5,
+   "edge3": 8,
+   "head": "CosFace",
+   "optimizer": "SGD",
+   "lr": 0.1404172769842098
+  }
+    fairness_objective_dpn(config,0,10)
+#     #SMAC config 1
+#     config ={
+#    "edge1": 2,
+#    "edge2": 4,
+#    "edge3": 8,
+#    "head": "CosFace",
+#    "optimizer": "SGD",
+#    "lr": 0.09532880096168164
+#   }
+#     fairness_objective_dpn(config,0,10)
 #     #SMAC config 2
 #     config={
 #     'edge1': 0,

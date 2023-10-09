@@ -2,7 +2,7 @@ backbone: resmlp_big_24_224_in22ft1k
 batch_size: 64
 bn_eps: null
 bn_momentum: null
-checkpoints_root: Checkpoints/timm_explore_few_epochs/
+checkpoints_root: Checkpoints/dpns_multi_seed/
 clip_grad: null
 clip_mode: norm
 comet_api_key: KKiKMVZI9RCYowoKDZDS5Y2km

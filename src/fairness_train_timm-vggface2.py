@@ -26,11 +26,6 @@ from timm.scheduler import create_scheduler
 from timm.utils.model_ema import ModelEmaV2
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 #device_ids=range(torch.cuda.device_count())
-seed = 666
-torch.manual_seed(seed)
-torch.cuda.manual_seed_all(seed)
-np.random.seed(seed)
-random.seed(seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
@@ -39,18 +34,29 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--config_path', type=str)
-
+    parser.add_argument('--seed', default=666, type=int, required=False)
     args = parser.parse_args()
+
+    seed = args.seed
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    
     with open(args.config_path, "r") as ymlfile:
         options = yaml.load(ymlfile, Loader=yaml.FullLoader)
         print(options)
     for key, value in options.items():
         setattr(args, key, value)
-    args.checkpoints_root = "Checkpoints/vggface2_train/"
+    
+    checkpoints_suffix = ''
+    if seed != 666:
+        checkpoints_suffix = '_'+str(seed)
+    args.checkpoints_root = f'Checkpoints/vggface2_train{checkpoints_suffix}/'
     args.default_train_root = '/cmlscratch/sdooley1/data/vggface2/train/'
     args.default_test_root = '/cmlscratch/sdooley1/data/vggface2/val/'
     args.demographics_file = '/cmlscratch/sdooley1/data/vggface2/vggface2_demographics.txt'
-    args.RFW_checkpoints_root = 'Checkpoints/vggface2_train/'
+    args.RFW_checkpoints_root = f'Checkpoints/vggface2_train{checkpoints_suffix}/'
     args.metadata_file = '/cmlscratch/sdooley1/timm_model_metadata.csv'
     args.dataset = 'vggface2'
     args.epochs=10
@@ -96,7 +102,7 @@ if __name__ == '__main__':
                                      bn_eps=args.bn_eps,
                                      scriptable=args.torchscript,
                                      ).to(device)
-    elif 'mobilenet' in args.backbone:
+    elif 'mobilenet' in args.backbone or 'tf_efficient' in args.backbone:
         backbone = timm.create_model(args.backbone,
                                      num_classes=0,
                                      pretrained=args.pretrained,
@@ -233,14 +239,6 @@ if __name__ == '__main__':
             rank_by_id_df = pd.DataFrame(np.array([list(indices_all),
                                               list(rank[:,1])]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-#         add_column_to_file(args.RFW_checkpoints_root,
-#                            "val",
-#                            run_name, 
-#                            epoch,
-#                            multi_df = multi_df, 
-#                            kacc_df = kacc_df, 
-#                            rank_by_image_df = rank_by_image_df,
-#                            rank_by_id_df = rank_by_id_df)
             rank_df = pd.DataFrame(np.insert(rank.numpy(), 0, indices_all, axis=1), 
                                    columns=["index","nearest_by_img","nearest_by_id","closest_point","closest_same_id"])
             pickle_file = checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,
@@ -278,14 +276,6 @@ if __name__ == '__main__':
                 multi_df_ema= pd.DataFrame(np.array([list(indices_all_ema),
                                               list(predicted_all_ema)]).T,
                                     columns=['ids','epoch_'+str(epoch)]).astype(int)
-#             add_column_to_file(args.RFW_checkpoints_root,
-#                            "ema_val",
-#                            run_name,
-#                            epoch,
-#                            multi_df = multi_df_ema,
-#                            kacc_df = kacc_df_ema,
-#                            rank_by_image_df = rank_by_image_df_ema,
-#                            rank_by_id_df = rank_by_id_df_ema)
                 rank_df_ema = pd.DataFrame(np.insert(rank_ema.numpy(), 0, indices_all, axis=1), 
                                        columns=["index","nearest_by_img","nearest_by_id","closest_point","closest_same_id"])
                 pickle_file_ema = checkpoint_name_to_save = os.path.join(args.RFW_checkpoints_root,

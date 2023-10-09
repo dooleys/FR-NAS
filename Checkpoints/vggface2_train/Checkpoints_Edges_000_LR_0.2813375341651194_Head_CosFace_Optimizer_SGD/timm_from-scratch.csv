@@ -1,0 +1,7 @@
+Model	config_file	seed	epoch	Acc multi male	Acc k male	Intra male	Inter male	Acc multi female	Acc k female	Intra female	Inter female
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	0	0.0	75.573	33.612	35.418	0.0	61.283	29.291	24.356
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	1	0.0	89.624	40.649	51.557	0.0	79.705	43.02	46.798
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	2	0.0	90.453	42.432	54.3	0.0	82.202	45.111	51.104
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	3	0.0	91.87	42.441	55.64	0.0	84.232	45.633	53.277
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	4	0.0	92.05	42.987	56.334	0.0	84.748	45.57	52.694
+dpn107	/cmlscratch/sdooley1/merge_timm/FR-NAS/configs/dpn107/config_dpn107_CosFace_sgd.yaml	222	5	0.0	92.53	43.558	58.112	0.0	85.061	45.923	54.064

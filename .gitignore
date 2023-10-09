@@ -140,4 +140,5 @@ cml-tools/
 DataParallel/
 *.pth
 src/fairness_train_timm.py
+*.zip
 rhea/
