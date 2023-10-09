@@ -92,7 +92,12 @@ Note: You need to start schedulers and workers separately for search on CelebA a
 sbatch scripts/job_celeba.sh
 sbatch scripts/job_vgg.sh
 ```
-
+### Other NAS methods
+To run other NAS methods like NSGA-II and MO-ASHA (on VGGFace2) use the following commands
+```
+python src/search/search_nsga.py
+python src/search/search_moasha.py
+```
 ## Training<a name="training"></a>
 Train architectures discovered on CelebA
 ```
