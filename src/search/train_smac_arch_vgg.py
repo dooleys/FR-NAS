@@ -244,9 +244,9 @@ if __name__ == "__main__":
     argparser.add_argument('--seed', type=int, default=111, help='seed')
     args = argparser.parse_args()
     config = {
-        "edge1": "3",
-        "edge2": "0",
-        "edge3": "1",
+        "edge1": 3,
+        "edge2": 0,
+        "edge3": 1,
         "head": "CosFace",
         "optimizer": "SGD",
         "lr_sgd": 0.13828312564892567

@@ -1,4 +1,3 @@
-# from comet_ml import Experiment
 import argparse
 from tqdm import tqdm
 import os
@@ -30,6 +29,9 @@ import os
 import numpy as np
 import random
 
+device = torch.device("cuda")
+
+
 def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
@@ -37,40 +39,6 @@ def set_seed(seed):
     random.seed(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-
-
-class Network_Discriminator(torch.nn.Module):
-
-    def __init__(self, backbone, head, head_sens):
-        super(Network_Discriminator, self).__init__()
-        self.head = head
-        self.backbone = backbone
-        self.head_sens = head_sens
-
-    def forward(self, inputs, labels):
-        features = self.head_sens(self.backbone(inputs))
-        outputs, reg_loss = self.head(features, labels)
-
-        return outputs, reg_loss
-
-
-def get_head(args):
-    if args.head == "CosFace":
-        head = CosFace(in_features=args.embedding_size, out_features=args.num_class,
-                       device_id=range(torch.cuda.device_count()))
-    elif args.head == "ArcFace":
-        head = ArcFace(in_features=args.embedding_size, out_features=args.num_class,
-                       device_id=range(torch.cuda.device_count()))
-    elif args.head == "SphereFace":
-        head = SphereFace(in_features=args.embedding_size,
-                          out_features=args.num_class, device_id=range(torch.cuda.device_count()))
-    elif args.head == "MagFace":
-        head = MagFace(in_features=args.embedding_size, out_features=args.num_class,
-                       device_id=range(torch.cuda.device_count()))
-    else:
-        print("Head not supported")
-        return
-    return head
 
 
 def count_parameters_in_MB(model):
@@ -95,6 +63,39 @@ def acc_overall(df):
     return (df['rank_by_id'] == 0).sum(axis=0)/df.shape[0]
 
 
+def get_identities_dict(dataloader):
+    identities_dict = {"male": [], "female": []}
+    dict_dem = {"male": 1, "female": -1}
+    count = 0
+    for inputs, labels, sens_attr, _ in tqdm(iter((dataloader))):
+        sens_attr = [dict_dem[s] for s in sens_attr]
+        for i in range(len(sens_attr)):
+            if sens_attr[i] == 1:
+                if labels[i] not in identities_dict["male"]:
+                    identities_dict["male"].append(int(labels[i]))
+            else:
+                if labels[i] not in identities_dict["female"]:
+                    identities_dict["female"].append(int(labels[i]))
+        # break
+    return identities_dict
+
+
+def flip(labels, to_labels, fraction, sense_attr):
+    ids_male = []
+    for i in range(len(sense_attr)):
+        if sense_attr[i] == 1:
+            ids_male.append(i)
+    n = int(fraction*len(ids_male))
+    index = list(np.random.choice(ids_male, n, replace=False))
+    for i in range(len(index)):
+        while True:
+            current_choice = random.choice(to_labels)
+            if current_choice != labels[index[i]]:
+                break
+        labels[index[i]] = current_choice
+    return torch.Tensor(labels).long()
+
+
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
     __getattr__ = dict.get
@@ -103,7 +104,8 @@ class dotdict(dict):
 
 
 def fairness_objective_dpn(config, seed, budget):
-    with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml", "r") as ymlfile:
+    set_seed(seed)
+    with open("search_configs/config_celeba.yaml", "r") as ymlfile:
         args = yaml.load(ymlfile, Loader=yaml.FullLoader)
     args = dotdict(args)
     args.opt = config["optimizer"]
@@ -129,15 +131,15 @@ def fairness_objective_dpn(config, seed, budget):
     if config["optimizer"] == "SGD":
         args.lr = config["lr_sgd"]
         lr_key = "lr_sgd"
-    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_/".format(str(config["edge1"])+str(
+    run_name = "Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_flipped/".format(str(config["edge1"])+str(
         config["edge2"])+str(config["edge3"]), config[lr_key], config["head"], config["optimizer"])
-    directory = "Checkpoints_celeba/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_/".format(str(
+    directory = "Checkpoints_celeba/Checkpoints_Edges_{}_LR_{}_Head_{}_Optimizer_{}_flipped/".format(str(
         config["edge1"])+str(config["edge2"])+str(config["edge3"]), config[lr_key], config["head"], config["optimizer"])
     if not os.path.exists(directory):
         os.makedirs(directory)
     output_dir = "Checkpoints_celeba/"
     args.batch_size = 64
-    dataloaders, num_class, demographic_to_labels_train, demographic_to_labels_val, demographic_to_labels_test = prepare_data(
+    dataloaders, num_class, demographic_to_labels_train,  demographic_to_labels_val, demographic_to_labels_test = prepare_data(
         args)
     args.num_class = num_class
     edges = [config['edge1'], config['edge2'], config['edge3']]
@@ -149,142 +151,53 @@ def fairness_objective_dpn(config, seed, budget):
     args.embedding_size = output.shape[-1]
     head = get_head(args)
     train_criterion = FocalLoss(elementwise=True)
-    sens_criterion = torch.nn.CrossEntropyLoss()
     head, backbone = head.to(device), backbone.to(device)
     print(count_parameters_in_MB(head))
     print(count_parameters_in_MB(backbone))
+    backbone = nn.DataParallel(backbone)
+    model = Network(backbone, head)
     # model.load_state_dict(torch.load("/work/dlclarge2/sukthank-ZCP_Competition/models_pareto/680/model_99.pth")["model_state_dict"])
     # print("model_loaded")
 
     print(args.lr)
     print(args.opt)
-    args.one_layer_sens = False
-    args.only_discriminator = False
-    args.manipulate = 1
-    if args.one_layer_sens:
-        head_sens = nn.Linear(in_features=args.embedding_size, out_features=2)
-    else:
-        head_sens = nn.Sequential(nn.Linear(in_features=args.embedding_size, out_features=args.embedding_size),
-                                  nn.ReLU(),
-                                  nn.Linear(in_features=args.embedding_size,
-                                            out_features=args.embedding_size),
-                                  nn.ReLU(),
-                                  nn.Linear(in_features=args.embedding_size, out_features=2))
-
-    _, head_paras_wo_bn = separate_resnet_bn_paras(head)
-
-    if args.only_discriminator:
-        optimizer = optim.SGD([{'params': head_sens.parameters(
-        ), 'weight_decay': args.weight_decay, 'lr': args.lr_sens}], momentum=args.momentum)
-    else:
-        sensitive_net = nn.Sequential(nn.Linear(in_features=args.embedding_size, out_features=args.embedding_size),
-                                      nn.ReLU(),
-                                      nn.Linear(
-                                          in_features=args.embedding_size, out_features=args.embedding_size),
-                                      nn.ReLU(),
-                                      nn.Linear(
-                                          in_features=args.embedding_size, out_features=args.embedding_size),
-                                      nn.ReLU(),
-                                      nn.Linear(in_features=args.embedding_size, out_features=args.embedding_size))
-
-        # backbone = nn.Sequential(backbone, sensitive_net)
-        # optimizer = create_optimizer_v2(model, **optimizer_kwargs(cfg=args))
-
-        if args.opt == "SGD":
-            optimizer = optim.SGD([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.01},
-                                   {'params': sensitive_net.parameters(
-                                   ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                   {'params': backbone.parameters(
-                                   ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                   {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}], momentum=args.momentum)
-        elif args.opt == "Adam":
-            optimizer = optim.Adam([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.001},
-                                    {'params': sensitive_net.parameters(
-                                    ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                    {'params': backbone.parameters(
-                                    ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                    {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}])
-        elif args.opt == "AdamW":
-            optimizer = optim.Adam([{'params': head_sens.parameters(), 'weight_decay': args.weight_decay, 'lr': 0.001},
-                                    {'params': sensitive_net.parameters(
-                                    ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                    {'params': backbone.parameters(
-                                    ), 'weight_decay': args.weight_decay, 'lr': args.lr},
-                                    {'params': head_paras_wo_bn, 'weight_decay': args.weight_decay, 'lr': args.lr}])
-        scheduler, num_epochs = create_scheduler(args, optimizer)
-    head_sens = head_sens.to(device)
-    backbone = nn.DataParallel(backbone)
-    backbone = backbone.to(device)
-    model = Network_Discriminator(backbone, head, sensitive_net)
+    optimizer = create_optimizer_v2(model, **optimizer_kwargs(cfg=args))
+    scheduler, num_epochs = create_scheduler(args, optimizer)
     model.to(device)
     epoch = 0
     start = time.time()
     dict_dem = {"male": 1, "female": -1}
+    identities_dict = get_identities_dict(dataloaders["train"])
     print('Start training')
-    num_epoch_warm_up = budget // 25  # use the first 1/25 epochs to warm up
-    # use the first 1/25 epochs to warm up
-    num_batch_warm_up = len(dataloaders['train']) * num_epoch_warm_up
     while epoch < int(budget):
         model.train()  # set to training mode
-        head_sens.train()
         meters = {}
         meters["loss"] = AverageMeter()
         meters["top5"] = AverageMeter()
-        meters["sens_losses"] = AverageMeter()
-        meters["sens_accs"] = AverageMeter()
-        batch = 0
         for inputs, labels, sens_attr, _ in tqdm(iter((dataloaders["train"]))):
-            batch = batch+1
-            inputs, labels = inputs.to(device), labels.to(device).long()
-            sens_attr = torch.Tensor([dict_dem[s] for s in list(sens_attr)])
-            protected = torch.tensor(
-                sens_attr == -1).type(torch.long).to(device)
-            outputs, reg_loss = model(inputs, labels)
-            features_sens = F.normalize(
-                model.head_sens(model.backbone(inputs)))
-            outputs_sens = head_sens(features_sens)
-            softmax_scores = nn.Softmax()(outputs_sens)
-
-            if args.manipulate == 1:
-                # manipulate males
-                regularization = torch.log(
-                    1 + torch.abs(0.9 - softmax_scores[:, 1])).mean()
-            elif args.manipulate == 0:
-                # manipulate females
-                regularization = torch.log(
-                    1 + torch.abs(0.9 - softmax_scores[:, 0])).mean()
-            else:
-                print('Manipulate arg is wrong')
-
-            outputs_sens_detached = head_sens(features_sens.detach())
-            sens_loss = sens_criterion(outputs_sens_detached, protected)
+            # print(labels.shape)
+            sens_attr = [dict_dem[s] for s in list(sens_attr)]
+            # print("labels before",labels)
+            labels_after = flip(list(labels.long().numpy()),
+                                identities_dict["male"], 0.3, sens_attr)
+            # print("Flipped")
+            # print("labels after",labels_after)
+            # print(torch.sum(labels==labels_after))
+            inputs, labels = inputs.to(device), labels_after.to(device).long()
+            outputs, reg_loss = model(inputs, labels) #, torch.Tensor(sens_attr))
             loss = train_criterion(outputs, labels) + reg_loss
             loss = loss.mean()
-            if args.only_:
-                optimizer.zero_grad()
+            optimizer.zero_grad()
+            loss.backward()
 
-            elif (batch + 1 <= num_batch_warm_up):
-                total_loss = loss
-                optimizer.zero_grad()
-                total_loss.backward(retain_graph=True)
-            else:
-                total_loss = loss + args.alpha * regularization
-
-                optimizer.zero_grad()
-                total_loss.backward(retain_graph=True)
-                for param in head_sens.parameters():
-                    param.grad = torch.zeros_like(param.grad)
-
-            sens_loss.backward()
-            # optimizer.step()
+            optimizer.step()
             scheduler.step(epoch + 1, meters["top5"])
             prec1, prec5 = accuracy(outputs.data, labels, topk=(1, 5))
             meters["loss"].update(loss.data.item(), inputs.size(0))
             meters["top5"].update(prec5.data.item(), inputs.size(0))
             # break
-        # break
-        epoch = 1234
-        if epoch == 1234:
+
+        if epoch == 99:
             checkpoint_name_to_save = directory + \
                 "model_{}.pth".format(str(epoch))
             torch.save(
@@ -294,6 +207,7 @@ def fairness_objective_dpn(config, seed, budget):
                     'optimizer_state_dict': optimizer.state_dict(),
                     'config': config
                 }, checkpoint_name_to_save)
+        # epoch=epoch+1
         # checkpoint_name_to_save=directory+"model_{}.pth".format(str(epoch))
         # torch.save(
         #    {
@@ -368,90 +282,32 @@ def fairness_objective_dpn(config, seed, budget):
                            rank_by_image_df=rank_by_image_df,
                            rank_by_id_df=rank_by_id_df)
         # break
+        # if epoch==2:
+        #    break
         epoch = epoch+1
 
 
 if __name__ == "__main__":
-
-    # SMAC config 1
-    '''config ={
-     'edge1': 0,
-     'edge2': 0,
-     'edge3': 0,
-     'head': 'CosFace',
-     'lr_sgd': 0.2813375341651194,
-     'optimizer': 'SGD',
-    }
-    '''
-    # SMAC config 2
-    config = {
-        'edge1': 0,
-        'edge2': 0,
-        'edge3': 0,
-        'head': 'CosFace',
-        'lr_sgd': 0.2813375341651194,
-        'optimizer': 'SGD',
-    }
-    '''config={
-  'edge1': 6,
-  'edge2': 8,
-  'edge3': 0,
-  'head': 'CosFace',
-  'lr_adam': 0.0006048015915653069,
-  'optimizer': 'Adam',
- }'''
-    # SMAC config 3
-    '''config={
-  'edge1': 6,
-  'edge2': 8,
-  'edge3': 0,
-  'head': 'CosFace',
-  'lr_adam': 0.0006048015915653069,
-  'optimizer': 'Adam',
- }
- #Config 4
- config = {
-  'edge1': 4,
-  'edge2': 6,
-  'edge3': 7,
-  'head': 'MagFace',
-  'lr_sgd': 0.21727296500399912,
-  'optimizer': 'SGD',}
- # config 5
- config =  {
-      "edge1": 5,
-      "edge2": 2,
-      "edge3": 0,
-      "head": "CosFace",
-      "optimizer": "SGD",
-      "lr_sgd": 0.12889657714325153
-    }
- # dpn smac acc 95.9
- config = {
-      "edge1": 4,
-      "edge2": 0,
-      "edge3": 3,
-      "head": "CosFace",
-      "optimizer": "SGD",
-      "lr_sgd": 0.2523152758955039
-    }
-# dpn smac acc 96
-#config = {
-#      "edge1": 1,
-#      "edge2": 5,
-#      "edge3": 2,
-#      "head": "CosFace",
-#      "optimizer": "Adam",
-#      "lr_adam": 0.0006383109384330796
-#    }
-#config = {"edge1": 0, "edge2": 4, "edge3": 0, "head": "CosFace", "optimizer": "Adam", "lr_adam": 0.0005900596101948813}
-#config = {
-#    'edge1': 3,
-#  'edge2': 0,
-#  'edge3': 1,
-#  'head': 'CosFace',
-#  'lr_adam': 0.0002097247501603349,
-#  'optimizer': 'Adam',
-#}
-'''
+    # add argparser
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('--config', type=str,
+                           default="config1", help='CelebA config name')
+    argparser.add_argument('--seed', type=int, default=111, help='seed')
+    args = argparser.parse_args()
+    if args.config == "config1":
+        config = {
+            'edge1': 0,
+            'edge2': 0,
+            'edge3': 0,
+            'head': 'CosFace',
+            'lr_sgd': 0.2813375341651194,
+            'optimizer': 'SGD', }
+    else:
+        config = {
+            'edge1': 0,
+            'edge2': 1,
+            'edge3': 0,
+            'head': 'CosFace',
+            'lr_adam': 0.32348738788346576,
+            'optimizer': 'SGD', }
     fairness_objective_dpn(config, 0, 100)
