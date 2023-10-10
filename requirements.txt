@@ -35,7 +35,7 @@ boto3==1.28.20
 botocore==1.31.20
 botorch==0.9.1
 cachetools==5.0.0
-certifi==2022.12.7
+certifi==2023.7.22
 cffi==1.15.0
 cfgv==3.3.1
 chardet==3.0.4
