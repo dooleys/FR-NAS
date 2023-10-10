@@ -168,7 +168,7 @@ matplotlib-inline==0.1.3
 mccabe==0.7.0
 mdit-py-plugins==0.4.0
 mdurl==0.1.2
-MechanicalSoup==0.8.0
+MechanicalSoup==1.3.0
 mistune==0.8.4
 ml-dtypes==0.1.0
 more-itertools==9.1.0
