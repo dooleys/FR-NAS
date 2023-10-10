@@ -368,7 +368,7 @@ typeguard==2.13.3
 typing_extensions==4.1.1
 tzdata==2022.1
 tzlocal==4.2
-ujson==5.2.0
+ujson==5.4.0
 urllib3==1.26.9
 uvloop==0.16.0
 virtualenv==20.14.1
