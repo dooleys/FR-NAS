@@ -15,8 +15,8 @@
 - [Joint NAS+HPO](#jointnashpo)
     - [Search](#search)
     - [Training](#training)
-    - [Evaluation](#evaluation)
     - [Analysis](#analysis2)
+- [Evaluation with pre-trained models](#evaluation)
 # Setup <a name="setup"></a>
 To setup your environment use the commands below:
 ```
@@ -110,7 +110,6 @@ Train architecture discovered on VGGFace2
 python src/search/train_smac_arch_vgg.py --seed 111 
 ```
 ## Analysis <a name="analysis2"></a>
-# Evaluation on FR Benchmarks <a name="evaluation"></a>
 # Comparison with Fairness Baselines <a name="baselines"></a>
 ## Angular
 ```
@@ -129,3 +128,6 @@ python src/baselines/smac_dpn_trainer_flip_vgg.py --seed 111
 python src/baselines/smac_dpn_trainer_discriminator_celeba.py --seed 111 
 python src/baselines/smac_dpn_trainer_discriminator_vgg.py --seed 111 
 ```
+# Evaluation on FR Benchmarks <a name="evaluation"></a>
+
+You can download our pretrained models from [here](). To evaluate the models on different face recognition benchmarks:
