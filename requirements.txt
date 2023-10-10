@@ -86,7 +86,7 @@ fonttools==4.31.2
 formulaic==0.3.4
 frozenlist==1.4.0
 fsspec==2022.3.0
-future==0.18.2
+future==0.18.3
 fvcore==0.1.5.post20210630
 gast==0.4.0
 gdown==4.4.0
