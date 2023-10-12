@@ -203,7 +203,7 @@ nvidia-cusparse-cu11==11.7.4.91
 nvidia-ml-py3==7.352.0
 nvidia-nccl-cu11==2.14.3
 nvidia-nvtx-cu11==11.7.91
-oauthlib==3.2.0
+oauthlib==3.2.2
 onnxruntime==1.15.1
 opt-einsum==3.3.0
 packaging==21.3
