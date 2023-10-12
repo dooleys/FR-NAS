@@ -181,7 +181,7 @@ mypy-extensions==0.4.3
 myst-parser==2.0.0
 nats-bench==1.7
 nbclient==0.6.2
-nbconvert==6.5.0
+nbconvert==6.5.1
 nbformat==5.4.0
 nest-asyncio==1.5.5
 networkx==2.5.1
