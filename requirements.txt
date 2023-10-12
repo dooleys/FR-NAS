@@ -300,7 +300,7 @@ schema==0.7.5
 scikit-image==0.19.2
 scikit-learn==1.2.0
 scikit-optimize==0.9.0
-scipy==1.9.3
+scipy==1.10.0
 seaborn==0.12.0
 semantic-version==2.9.0
 Send2Trash==1.8.0
