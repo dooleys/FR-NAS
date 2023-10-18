@@ -93,10 +93,18 @@ sbatch scripts/job_celeba.sh
 sbatch scripts/job_vgg.sh
 ```
 ### Other NAS methods
+
+#### Search
 To run other NAS methods like NSGA-II and MO-ASHA (on VGGFace2) use the following commands
 ```
 python src/search/search_nsga.py
 python src/search/search_moasha.py
+```
+#### Train from scratch
+To run other NAS methods like NSGA-II and MO-ASHA (on VGGFace2) use the following commands
+```
+python src/search/train_synetune_archs.py --config moasha
+python src/search/train_synetune_archs.py --config nsga2
 ```
 ## Training<a name="training"></a>
 Train architectures discovered on CelebA
