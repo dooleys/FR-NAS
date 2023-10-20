@@ -58,10 +58,10 @@ if __name__ == '__main__':
 
     print("P identities: {}".format(args.p_identities))
     print("P images: {}".format(args.p_images))
-    args.backbone = "mobilenetv3_large_100"
+    args.backbone = "tnt_s_patch16_224"
     ####################################################################################################################################
     # ======= data, model and test data =======#
-    run_name = "mobilenetv3_large_100_666"
+    run_name = "tnt_444"
     output_dir = os.path.join(args.checkpoints_root, run_name)
     if not os.path.isdir(args.checkpoints_root):
         os.mkdir(args.checkpoints_root)
@@ -131,7 +131,7 @@ if __name__ == '__main__':
     ####################################################################################################################
     # ======= argsimizer =======#
     model = Network(backbone, head)
-    checkpoint = torch.load("/work/dlclarge2/sukthank-ZCP_Competition/checkpoints_celeba/mobilenetv3_large_100/model_666.pth")
+    checkpoint = torch.load("/work/dlclarge2/sukthank-ZCP_Competition/checkpoints_celeba/tnt/model_444.pth")
     #checkpoint = torch.load("")
     #model = nn.DataParallel(model)
     model = model.to(device)
