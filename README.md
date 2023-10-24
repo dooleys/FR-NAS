@@ -152,3 +152,15 @@ python src/baselines/smac_dpn_trainer_discriminator_vgg.py --seed 111
 # Evaluation on FR Benchmarks <a name="evaluation"></a>
 
 You can download our pretrained models from [here](). To evaluate the models on different face recognition benchmarks:
+
+
+## Citation 
+Please cite our work if you use code from this repo:
+```bibtex
+@inproceedings{fair-nas-2023,
+  title={Rethinking Bias Mitigation: Fairer Architectures Make for Fairer Face Recognition},
+  author={Dooley, Samuel and Sukthanker, Rhea and Dickerson, John P and White, Colin and Hutter, Frank and Goldblum, Micah},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2023},
+} 
+```
