@@ -118,6 +118,19 @@ Train architecture discovered on VGGFace2
 python src/search/train_smac_arch_vgg.py --seed 111 
 ```
 ## Analysis <a name="analysis2"></a>
+After all the training and testing scripts are finished, use the `analysis/analysis.py` script to analyze the performance of the models. The anlysis centers on assembling a list of all the file paths into a list and passing that and the associated metadata to functions which perform the analysis and aggregate them into a dataframe. For example, if all your model output files live in pickle files in the subdirectories of the `output/` folder, obtain the accuracy, error, disparity, rank disparity, ratio, rank ratio, and error ratio dataframes here:
+```
+files = glob.glob('output/**/*.pkl')
+metadata = pd.read_csv(f'vggface/vggface2_val_identities_gender.csv')
+
+acc_df_vgg, acc_disp_df_vgg, rank_df_vgg = analyze_pickle_files(files, metadata)
+_, acc_disp_ratio_df_vgg, rank_ratio_df_vgg = analyze_pickle_files(files, metadata, ratio=True)
+err_df, error_ratio_df, _ = analyze_pickle_files(files, metadata, ratio=True, error=True)                
+```
+
+The results for our training and testing runs can be found in the csvs in the `analysis/` folder. There is also the notebook `Paper_plots.ipynb` which reproduces the main figures in the paper. 
+
+
 # Comparison with Fairness Baselines <a name="baselines"></a>
 ## Angular
 ```
