@@ -8,6 +8,7 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from src.utils.utils_train import Network, get_head
 from src.utils.utils import  get_val_data, separate_irse_bn_paras, separate_resnet_bn_paras, warm_up_lr, schedule_lr, perform_val, get_time, buffer_val, AverageMeter, accuracy
+
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
 import os
@@ -36,18 +37,38 @@ parser.add_argument('--head', type = str, default = 'CosFace', help = 'head type
 parser.add_argument('--dataset', type = str, default = 'vggface2', help = 'dataset the model is trained on')
 parser.add_argument('--optimizer', type = str, default = 'AdamW', help = 'optimzier used to change the model')
 args = parser.parse_args()
-if args.backbone!="nas":
+if not "smac" in args.backbone:
     backbone = timm.create_model(args.backbone, pretrained=False, num_classes=0)
     backbone = backbone.to("cuda")
     input_dummy = torch.randn(4, 3, 112, 112).cuda()
     output_dummy = backbone(input_dummy)
     emb_size = output_dummy.shape[-1]
     args.embedding_size = emb_size
-    if args.dataset == "vggface2":
-        args.num_class = 7058
+    args.num_class = 7058
     head = get_head(args)
     backbone = nn.DataParallel(backbone)
     model = Network(backbone, head)
+else:
+    from src.search.dpn107 import DPN
+    if args.backbone == "smac_301":
+        choices = [3,0,1]
+    elif args.backbone == "smac_000":
+        choices = [0,0,0]
+    elif args.backbone == "smac_010":
+        choices = [0,1,0]
+    elif args.backbone == "smac_680":
+        choices = [6,8,0]
+    model = DPN(choices, num_init_features=128, k_r=200,
+                   groups=50, k_sec=(1, 1, 1, 1), inc_sec=(20, 64, 64, 128))
+    model = nn.DataParallel(model)
+    model = model.to("cuda")
+    input_dummy = torch.randn(4, 3, 112, 112).cuda()
+    output_dummy = model(input_dummy)
+    emb_size = output_dummy.shape[-1]
+    args.embedding_size = emb_size
+    args.num_class = 7058
+    head = get_head(args)
+    model = Network(model, head)
 
     
 
