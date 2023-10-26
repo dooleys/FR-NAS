@@ -4,7 +4,7 @@ import numpy as np
 import random
 import os
 import pandas as pd
-
+import argparse
 def l2_norm(input, axis = 1):
     # normalizes input with respect to second norm
     norm = torch.norm(input, 2, axis, True)
@@ -60,15 +60,20 @@ def predictions(feature_matrix, labels, demographic_to_labels, test_features, te
         acc_k[k] = (correct[test_demographic == int(k)]).float().mean()
 
     return acc_k, correct, nearest_id, nearest_same_label
-
+parser = argparse.ArgumentParser(description = 'Evaluation on different datasets')
+parser.add_argument('--backbone', type = str, default = 'dpn107', help = 'model type to evaluate')
+parser.add_argument('--head', type = str, default = 'CosFace', help = 'head type to evaluate')
+parser.add_argument('--dataset', type = str, default = 'vggface2', help = 'dataset the model is trained on')
+parser.add_argument('--optimizer', type = str, default = 'AdamW', help = 'optimzier used to change the model')
 import pickle
-with open("agedb_features_010.pkl","rb") as f:
+args = parser.parse_args()
+with open("agedb_features_"+args.backbone+"_"+args.head+"_"+args.optimizer+"_"+args.dataset+".pkl","rb") as f:
     agedb_features = pickle.load(f)
-with open("agedb_labels_010.pkl","rb") as f:
+with open("agedb_labels_"+args.backbone+"_"+args.head+"_"+args.optimizer+"_"+args.dataset+".pkl","rb") as f:
     agedb_labels = pickle.load(f)
-with open("agedb_ages_010.pkl","rb") as f:
+with open("agedb_ages_"+args.backbone+"_"+args.head+"_"+args.optimizer+"_"+args.dataset+".pkl","rb") as f:
     agedb_ages = pickle.load(f)
-with open("agedb_ages_binned_010.pkl","rb") as f:
+with open("agedb_ages_binned_"+args.backbone+"_"+args.head+"_"+args.optimizer+"_"+args.dataset+".pkl","rb") as f:
     agedb_ages_binned = pickle.load(f)
 agedb_ages_binned = [a[0] for a in agedb_ages_binned]
 demographics = {}
@@ -83,3 +88,12 @@ print(acc_k)
 print(correct)
 print(nearest_id)
 print(nearest_same_label)
+
+# compute max diff across accuracy of age groups
+max_diff = 0
+for i in range(4):
+    for j in range(i+1,4):
+        diff = abs(acc_k[str(i)] - acc_k[str(j)])
+        if diff > max_diff:
+            max_diff = diff
+print("Max diff: ", max_diff*100)

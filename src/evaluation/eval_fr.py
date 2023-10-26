@@ -82,15 +82,14 @@ model.backbone.eval()
 
 head = args.head
 dataset = args.dataset
-MULTI_GPU = False
+MULTI_GPU = True
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 EMBEDDING_SIZE = emb_size
 epoch = 0
 BACKBONE = model.backbone
-BATCH_SIZE = 128
-writer = SummaryWriter("logs/{}_{}_{}_{}".format(head, dataset, args.backbone, args.optimizer))
+BATCH_SIZE = 32
 agedb , cfp_fp, cfp_ff, lfw, calfw, cplfw, agedb_issame, cfp_fp_issame, cfp_ff_issame, lfw_issame, calfw_issame, cplfw_issame = get_data("/work/dlclarge2/sukthank-ZCP_Competition/NeurIPS2023/fr_datasets")
-print("Perform Evaluation on LFW, CFP_FF, CFP_FP, AgeDB, CALFW, CPLFW and VGG2_FP, and Save Checkpoints...")
+print("Perform Evaluation on LFW, CFP_FF, CFP_FP, AgeDB, CALFW, and CPLFW")
 accuracy_lfw, best_threshold_lfw, roc_curve_lfw = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, lfw, lfw_issame)
 print("LFW Accuracy: ", accuracy_lfw*100)
 #buffer_val(writer, "LFW", accuracy_lfw, best_threshold_lfw, roc_curve_lfw, epoch + 1)
@@ -109,4 +108,4 @@ print("CALFW Accuracy: ", accuracy_calfw*100)
 accuracy_cplfw, best_threshold_cplfw, roc_curve_cplfw = perform_val(MULTI_GPU, DEVICE, EMBEDDING_SIZE, BATCH_SIZE, BACKBONE, cplfw, cplfw_issame)
 print("CPLFW Accuracy: ", accuracy_cplfw*100)
 #buffer_val(writer, "CPLFW", accuracy_cplfw, best_threshold_cplfw, roc_curve_cplfw, epoch + 1)
-print("Epoch {}/{}, Evaluation: LFW Acc: {}, CFP_FF Acc: {}, CFP_FP Acc: {}, AgeDB Acc: {}, CALFW Acc: {}, CPLFW Acc: {}".format(epoch + 1, 1, accuracy_lfw, accuracy_cfp_ff, accuracy_cfp_fp, accuracy_agedb, accuracy_calfw, accuracy_cplfw,))
+print("Epoch {}/{}, Evaluation: LFW Acc: {}, CFP_FF Acc: {}, CFP_FP Acc: {}, AgeDB Acc: {}, CALFW Acc: {}, CPLFW Acc: {}".format(epoch + 1, 1, accuracy_lfw*100, accuracy_cfp_ff*100, accuracy_cfp_fp*100, accuracy_agedb*100, accuracy_calfw*100, accuracy_cplfw*100))

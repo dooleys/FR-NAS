@@ -247,7 +247,7 @@ class DPN(nn.Module):
         r = (k_r * bw) // (64 * bw_factor)
         blocks['conv2_1'] = DualPathBlock( op_choices, num_init_features, r, r, bw, inc, groups, 'proj', b)
         in_chs = bw + 3 * inc
-        print(in_chs)
+        #print(in_chs)
         for i in range(2, k_sec[0] + 1):
             blocks['conv2_' + str(i)] = DualPathBlock( op_choices, in_chs, r, r, bw, inc, groups, 'normal', b)
             in_chs += inc
@@ -259,7 +259,7 @@ class DPN(nn.Module):
         r = (k_r * bw) // (64 * bw_factor)
         blocks['conv3_1'] = DualPathBlock( op_choices, in_chs, r, r, bw, inc, groups, 'down', b)
         in_chs = bw + 3 * inc
-        print(in_chs)
+        #print(in_chs)
         for i in range(2, k_sec[1] + 1):
             blocks['conv3_' + str(i)] = DualPathBlock( op_choices, in_chs, r, r, bw, inc, groups, 'normal', b)
             in_chs += inc
@@ -271,7 +271,7 @@ class DPN(nn.Module):
         r = (k_r * bw) // (64 * bw_factor)
         blocks['conv4_1'] = DualPathBlock( op_choices, in_chs, r, r, bw, inc, groups, 'down', b)
         in_chs = bw + 3 * inc
-        print(in_chs)
+        #print(in_chs)
         for i in range(2, k_sec[2] + 1):
             blocks['conv4_' + str(i)] = DualPathBlock( op_choices, in_chs, r, r, bw, inc, groups, 'normal', b)
             in_chs += inc
@@ -283,7 +283,7 @@ class DPN(nn.Module):
         r = (k_r * bw) // (64 * bw_factor)
         blocks['conv5_1'] = DualPathBlock(op_choices, in_chs, r, r, bw, inc, groups, 'down', b)
         in_chs = bw + 3 * inc
-        print(in_chs)
+        #print(in_chs)
         for i in range(2, k_sec[3] + 1):
             blocks['conv5_' + str(i)] = DualPathBlock(op_choices, in_chs, r, r, bw, inc, groups, 'normal', b)
             in_chs += inc
