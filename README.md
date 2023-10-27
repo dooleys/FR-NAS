@@ -98,30 +98,30 @@ sbatch scripts/job_vgg.sh
 
 #### Search
 To run other NAS methods like NSGA-II and MO-ASHA (on VGGFace2) use the following commands
-```
+```python
 python src/search/search_nsga.py
 python src/search/search_moasha.py
 ```
 #### Train from scratch
 To run other NAS methods like NSGA-II and MO-ASHA (on VGGFace2) use the following commands
-```
+```python
 python src/search/train_synetune_archs.py --config moasha
 python src/search/train_synetune_archs.py --config nsga2
 ```
 ## Training<a name="training"></a>
 Train architectures discovered on CelebA
-```
+```python
 python src/search/train_smac_arch_celeba.py --seed 111 --config config1
 python src/search/train_smac_arch_celeba.py --seed 111 --config config2
 ```
 
 Train architecture discovered on VGGFace2
-```
+```python
 python src/search/train_smac_arch_vgg.py --seed 111 
 ```
 ## Analysis <a name="analysis2"></a>
 After all the training and testing scripts are finished, use the `analysis/analysis.py` script to analyze the performance of the models. The anlysis centers on assembling a list of all the file paths into a list and passing that and the associated metadata to functions which perform the analysis and aggregate them into a dataframe. For example, if all your model output files live in pickle files in the subdirectories of the `output/` folder, obtain the accuracy, error, disparity, rank disparity, ratio, rank ratio, and error ratio dataframes here:
-```
+```python
 files = glob.glob('output/**/*.pkl')
 metadata = pd.read_csv(f'vggface/vggface2_val_identities_gender.csv')
 
@@ -135,19 +135,19 @@ The results for our training and testing runs can be found in the csvs in the `a
 
 # Comparison with Fairness Baselines <a name="baselines"></a>
 ## Angular
-```
+```python
 python src/baselines/smac_dpn_trainer_angular_celeba.py --seed 111 
 python src/baselines/smac_dpn_trainer_angular_vgg.py --seed 111 
 ```
 
 ## Label Flip
-```
+```python
 python src/baselines/smac_dpn_trainer_flip_celeba.py --seed 111 
 python src/baselines/smac_dpn_trainer_flip_vgg.py --seed 111 
 ```
 
 ## SensitiveNets
-```
+```python
 python src/baselines/smac_dpn_trainer_discriminator_celeba.py --seed 111 
 python src/baselines/smac_dpn_trainer_discriminator_vgg.py --seed 111 
 ```
