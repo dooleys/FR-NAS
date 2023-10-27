@@ -43,6 +43,8 @@ pip install -r requirements.txt
 
 Note: Folder ```splits/``` contains the identities used in the train-val-test split for CelebA and VGGFace2. Please use these files to create the necessary splits from the downloaded data. 
 
+If you want to compute disparities across agegroups on the agedb dataset prepare the dataset following instructions [here](https://github.com/dooleys/FR-NAS/blob/main/agedb/prepare_agedb_groups.md)
+
 # Large-scale study of fairness of architectures <a name="archs"></a>
 The set of experiments below are for the large-scale analysis we conduct for architectures and their biases. This study is a driving force to motivate the use of NAS and HPO in the next experiments. 
 ## Modify user configs <a name="user_configs"></a>
@@ -151,11 +153,26 @@ python src/baselines/smac_dpn_trainer_discriminator_vgg.py --seed 111
 ```
 # Evaluation on FR Benchmarks <a name="evaluation"></a>
 
-You can download our pretrained models from [here](). To evaluate the models on different face recognition benchmarks:
+You can download our pretrained models from [here](https://drive.google.com/drive/folders/1HSLZw2cBd3KTLI-apxIUoq4WI2zkDksK?usp=sharing) and save it it your current directory. To evaluate the models on different face recognition benchmarks:
+## VGGFace2
+```python
+python src/evaluation/eval_fr.py --backbone smac_301 --optimizer SGD --dataset vggface2 --head CosFace
+python src/evaluation/eval_fr.py --backbone dpn107  --optimizer SGD --dataset vggface2 --head CosFace
+python src/evaluation/eval_fr.py --backbone dpn107  --optimizer AdamW --dataset vggface2 --head CosFace
+python src/evaluation/eval_fr.py --backbone rexnet_200 --optimizer SGD --dataset vggface2 --head CosFace
+```
 
+## CelebA
+```python
+python src/evaluation/eval_fr.py --backbone smac_000 --optimizer SGD --dataset celeba --head CosFace
+python src/evaluation/eval_fr.py --backbone smac_010 --optimizer SGD --dataset celeba --head CosFace
+python src/evaluation/eval_fr.py --backbone smac_680 --optimizer SGD --dataset celeba --head CosFace
+python src/evaluation/eval_fr.py --backbone dpn107 --optimizer SGD --dataset celeba --head CosFace
+python src/evaluation/eval_fr.py --backbone dpn107 --optimizer SGD --dataset celeba --head MagFace
+```
 
-## Citation 
-Please cite our work if you use code from this repo:
+# Bibtex
+If this repo is helpful to you, please consider to cite it. Thank you! :)
 ```bibtex
 @inproceedings{fair-nas-2023,
   title={Rethinking Bias Mitigation: Fairer Architectures Make for Fairer Face Recognition},
@@ -164,3 +181,6 @@ Please cite our work if you use code from this repo:
   year={2023},
 } 
 ```
+
+# Acknowledgements
+Our training and evaluation pipelines are inspired from [face.evoLVe](https://github.com/ZhaoJ9014/face.evoLVe)
