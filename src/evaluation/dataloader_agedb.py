@@ -43,7 +43,7 @@ class Network(torch.nn.Module):
 class AgedbDataset(Dataset):
     """Agedb dataset."""
 
-    def __init__(self, root_dir="/work/dlclarge2/sukthank-ZCP_Competition/agedb_binned_dataset", transform=None):
+    def __init__(self, root_dir="agedb_binned_dataset/", transform=None):
         """
         Arguments:
             root_dir (string): Directory with all the images.
@@ -63,7 +63,7 @@ class AgedbDataset(Dataset):
         return len(self.image_paths)
     
     def map_id(self,identity):
-        with open("/work/dlclarge2/sukthank-ZCP_Competition/agedb_identities.pkl","rb") as f:
+        with open("agedb/agedb_identities.pkl","rb") as f:
             identities = pickle.load(f)
         return identities[identity]
     

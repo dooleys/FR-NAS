@@ -50,7 +50,7 @@ import torch.nn as nn
 from src.utils.data_utils_balanced import prepare_data
 import yaml
 import tqdm
-with open("/work/dlclarge2/sukthank-ZCP_Competition/FR-NAS/vgg_configs/configs_default/dpn107/config_dpn107_CosFace_sgd.yaml","r") as ymlfile:
+with open("search_configs/config_vggface.yaml","r") as ymlfile:
     args = yaml.load(ymlfile, Loader=yaml.FullLoader)
 args = dotdict(args)
 p_images = {

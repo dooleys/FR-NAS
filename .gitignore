@@ -5,7 +5,8 @@ __pycache__/
 Checkpoint*
 # C extensions
 *.so
-*.pkl
+probes/*
+models/*
 # Distribution / packaging
 .Python
 build/

@@ -22,12 +22,12 @@ def get_pair(root, name):
     return carray, issame
 
 def get_data(data_root):
-    agedb_30, agedb_30_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/agedb_30/", 'agedb_30')
-    cfp_fp, cfp_fp_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/cfp_fp", 'cfp_fp')
-    lfw, lfw_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/lfw", 'lfw')
-    calfw, calfw_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/calfw", 'calfw')
-    cplfw, cplfw_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/cplfw", 'cplfw')
-    cfp_ff, cfp_ff_issame = get_pair("/work/dlclarge2/sukthank-ZCP_Competition/fairnas_backup/facerec_data/cfp_ff", 'cfp_ff')
+    agedb_30, agedb_30_issame = get_pair("/path/to/agedb_30/", 'agedb_30')
+    cfp_fp, cfp_fp_issame = get_pair("/path/to/cfp_fp", 'cfp_fp')
+    lfw, lfw_issame = get_pair("/path/to/lfw", 'lfw')
+    calfw, calfw_issame = get_pair("/path/to/calfw", 'calfw')
+    cplfw, cplfw_issame = get_pair("/path/to/cplfw", 'cplfw')
+    cfp_ff, cfp_ff_issame = get_pair("/path/to/cfp_ff", 'cfp_ff')
     return agedb_30, cfp_fp, cfp_ff, lfw, calfw, cplfw, agedb_30_issame, cfp_fp_issame, cfp_ff_issame, lfw_issame, calfw_issame, cplfw_issame
 
 # define argparse
