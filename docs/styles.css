@@ -1,0 +1,86 @@
+:root {
+    --heading: #7EA0B7;
+    --link: #6F8CA1;
+    --link-active: #597081;
+    --caption: #9EB9D1;
+    --text: #36494E;
+    --button: #5594D4;
+    --button-active: #4B8FD2;
+}
+
+.c3-line {
+    stroke-width: 2px;
+}
+
+.c3-title {
+    font-family: var(--bs-font-sans-serif);
+    font-size: 20px;
+    fill: var(--heading);
+}
+
+.domain {
+    stroke-width: 1.2px;
+    fill: var(--text);
+}
+
+.tick {
+    font-size: 14px;
+    fill: var(--text);
+}
+
+.c3-legend-item text {
+    fill: var(--text);
+}
+
+.display-7 {
+    font-size: calc(1.325rem + 1vw);
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+body {
+    padding-bottom: 50px;
+    padding-top: 5%;
+}
+
+.nav {
+    margin-bottom: 1em;
+}
+
+.nav-tabs {
+    border-bottom: 0;
+}
+
+.nav-tabs .robustness-link {
+    border-radius: 0.25rem;
+}
+
+[class*="display-"] {
+    color: var(--heading);
+}
+
+.robustness-link {
+    color: var(--link);
+}
+
+.robustness-link:active,
+.robustness-link:hover {
+    color: var(--link-active);
+}
+
+p,
+.form-control {
+    color: var(--text);
+}
+
+.btn-robustness {
+    color: white;
+    background-color: var(--button) !important;
+    border-color: var(--button) !important;
+}
+
+.btn-robustness:hover {
+    color: white;
+    background-color: var(--button-active) !important;
+    border-color: var(--button-active) !important;
+}

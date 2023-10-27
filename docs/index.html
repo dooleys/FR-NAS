@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+      defer
+    ></script>
+
+    <!-- Additional styles -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <h1 class="display-5 text-center">
+          Rethinking Bias Mitigation: Fairer Architectures Make for Fairer Face Recognition
+        </h1>
+        <div class="col-12 col-sm-7">
+          <ul class="nav nav-fill">
+            <li class="nav-item">
+              <a
+                class="nav-link robustness-link"
+                href="http://spamueldooley.com/"
+                >Samuel Dooley</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link robustness-link"
+                href="https://rheasukthanker.github.io"
+                >Rhea Sanjay Sukthanker</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link robustness-link" href="http://jpdickerson.com"
+                >John P. Dickerson</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link robustness-link" href="http://crwhite.ml">Colin White </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link robustness-link" href="https://ml.informatik.uni-freiburg.de/profile/hutter/">Frank Hutter</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link robustness-link" href="https://goldblum.github.io">Micah Goldblum</a>
+            </li>
+          </ul>
+          <ul class="nav nav-tabs justify-content-center">
+            <li class="nav-item">
+              <a
+                class="nav-link robustness-link"
+                href="https://github.com/dooleys/FR-NAS"
+                >Code</a
+              >
+            </li>
+          </ul>
+          <h3 class="display-6 text-center">Abstract</h3>
+          <p class="fs-5">
+            Face recognition systems are widely deployed in safety-critical applications, including law enforcement, yet they
+            exhibit bias across a range of socio-demographic dimensions, such as gender and race. Conventional wisdom dictates that
+            model biases arise from biased training data. As a consequence, previous works on bias mitigation largely focused on
+            pre-processing the training data, adding penalties to prevent bias from effecting the model during training, or
+            post-processing predictions to debias them, yet these approaches have shown limited success on hard problems such as
+            face recognition. In our work, we discover that biases are actually inherent to neural network architectures themselves.
+            Following this reframing, we conduct the first neural architecture search for fairness, jointly with a search for
+            hyperparameters. Our search outputs a suite of models which Pareto-dominate all other high-performance architectures and
+            existing bias mitigation methods in terms of accuracy and fairness, often by large margins, on the two most widely used
+            datasets for face identification, CelebA and VGGFace2. Furthermore, these models generalize to other datasets and
+            sensitive attributes. 
+
+          </p>
+
+          <img
+            src="../img/fr-nas-overview.png"
+            alt="Figure showing the different corruptions used"
+            class="img-fluid mx-auto d-block"
+            style="max-width: 80%"
+          />
+          
+          <h3 class="display-6 text-center">Acknowledgements</h3>
+          <p class="fs-5">
+            This research was partially supported by the following sources:
+            NSF CAREER Award IIS-1846237, NSF D-ISN Award \#2039862, NSF Award CCF-1852352, NIH R01 Award NLM-013039-01, NIST MSE
+            Award \#20126334, DARPA GARD \#HR00112020007, DoD WHS Award \#HQ003420F0035, ARPA-E Award \#4334192; 
+            TAILOR, a project funded by EU Horizon 2020 research and innovation programme under GA No 952215; the German
+              Federal Ministry of Education and Research (BMBF, grant RenormalizedFlows 01IS19077C); the Deutsche
+              Forschungsgemeinschaft (DFG, German Research Foundation) under grant number 417962828; the European Research Council
+              (ERC) Consolidator Grant ``Deep Learning 2.0'' (grant no.\ 101045765). Funded by the European Union. Views and
+              opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union
+              or the ERC. Neither the European Union nor the ERC can be held responsible for them.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
